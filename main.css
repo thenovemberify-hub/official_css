@@ -8,102 +8,78 @@
  *** Tutoriel pour utiliser les variables
  *** https://blankthemerpg.forumactif.com/t139-utiliser-les-variables-css ***/
 
-/* VARIABLE DU MODE DE BASE (ici clair) */
+/* --- 1. LE DEFAUT : VELVET SIN (DARK MODE) --- */
+/* On met ici tout ce qui est SOMBRE. C'est la base. */
 :root {
-  color-scheme: light;
-  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
-
-  --neutral: #fafbfc;
-  --neutralDark: #f2f4f9;
-  --neutralDarker: #dce3f4;
-
-  --contrast: #171938;
-  --contrastLight: #232657;
-  --contrastLighter: rgba(212, 175, 55, 0.3);
-  /* Forcing gold here to kill the blue */
-
-  --borderGold: rgba(212, 175, 55, .3);
-
-  --accentClr: #D4AF37;
-  --accentClrDark: #D4AF37;
-
-  --textColor: #232657;
-  --textColorAccent: #000;
-
-  --border: 1px solid #363636;
-
-  --shadowBox: 0 0 20px #23265730;
-
-  --little-size: 0.7rem;
-  --normal-size: 0.8rem;
-  --medium-size: 0.92rem;
-  --large-size: 1.1rem;
-  --title-size: 1.4rem;
-
-  --font: "Inter", sans-serif;
-  --font2: "Bodoni Moda", serif;
-  --font3: "Roboto", sans-serif;
-
-  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
-  --bg-blur: none;
-  --font-millgary: 'Millgary', serif;
-
-  /* Consolidated color variables */
-  --gold-accent: #eaba6b;
-  --gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
-  --gold-text-gradient: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
-  --white: var(--white);
-  --font-cinzel: 'Cinzel', serif;
-}
-
-/* VARIABLES DU MODE INVERSE (ici sombre) */
-[data-color-scheme="dark"] {
   color-scheme: dark;
-  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+  /* Force les ascenseurs et inputs en sombre */
 
+  /* Le fond principal */
   --fond-category: #2a1a1a;
   --neutral: #120a0a;
-  /* Nouveau fond rouge-brun foncé */
-
+  /* Noir/Rouge très sombre */
   --neutralDark: #0e0808;
-  /* Plus foncé */
   --neutralDarker: #241515;
-  /* Variation */
   --dark: #080404;
 
-  --subcategory-dark: #1e1e24;
+  /* Textes */
+  --textColor: #c7c5cd;
+  /* Gris clair pour le texte */
+  --textColorAccent: #e5e5f0;
 
-  --contrast: #e5e5f0;
-  --contrastLight: #f4f4f4;
-  --contrastLighter: #40485e;
-
+  /* Décorations */
   --accentClr: #D4AF37;
+  /* Doré */
   --accentClrDark: #D4AF37;
+  --border: 1px solid #363636;
+  --shadowBox: 0 0 20px var(--neutralDark);
 
+  /* Images */
+  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
+
+  /* Fonts & Tailles (Communs aux deux modes, on les laisse ici) */
   --little-size: 0.7rem;
   --normal-size: 0.8rem;
   --medium-size: 0.92rem;
   --large-size: 1.1rem;
   --title-size: 1.4rem;
-
   --font: "Inter", sans-serif;
-  --font-title: "Playfair Display";
-  --font3: "Roboto", sans-serif;
-
-  --textColor: #c7c5cd;
-  --textColorAccent: #e5e5f0;
-
-  --border: 1px solid #363636;
-
-  --shadowBox: 0 0 20px var(--neutralDark);
+  --font-title: "Playfair Display", serif;
   --font-millgary: 'Millgary', serif;
+  --font-cinzel: 'Cinzel', serif;
 
-  /* Consolidated color variables (same as light mode for consistency) */
+  /* Dégradés Or (Communs) */
   --gold-accent: #eaba6b;
   --gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
-  --gold-text-gradient: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
-  --white: var(--white);
-  --font-cinzel: 'Cinzel', serif;
+}
+
+/* --- 2. L'OPTIONNEL : MODE CLAIR (LIGHT MODE) --- */
+/* Ne s'active QUE si le javascript ajoute l'attribut data-color-scheme="light" */
+[data-color-scheme="light"] {
+  color-scheme: light;
+  /* Repasse les ascenseurs en blanc */
+
+  /* On écrase les couleurs sombres par des claires */
+  --fond-category: #ffffff;
+  /* Ou une autre couleur claire */
+  --neutral: #fafbfc;
+  /* Blanc cassé */
+  --neutralDark: #f2f4f9;
+  /* Gris très clair */
+  --neutralDarker: #dce3f4;
+  /* Bleu pâle */
+  --dark: #ffffff;
+
+  --textColor: #232657;
+  /* Bleu nuit pour le texte */
+  --textColorAccent: #000000;
+
+  --border: 1px solid #e0e0e0;
+  --shadowBox: 0 0 20px #23265730;
+
+  /* Si tu veux changer l'image de fond en mode clair, c'est ici : */
+  /* --bg-img: url("URL_DE_TON_FOND_CLAIR"); */
 }
 
 /* S'applique à TOUS les éléments du forum*/
