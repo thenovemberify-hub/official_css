@@ -1,0 +1,5233 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap');
+
+/****** STRUCTURE DU FORUM ----------------------------------------------------------- 
+ ****** Elements du forum qui définissent sa structure et sa hiérachie sur toutes les pages 
+ ****** (ne les RENOMMEZ PAS, ils sont généraux aux pages Web ou à Forumactif) ------- ******/
+
+/*** ROOT 
+ *** Tutoriel pour utiliser les variables
+ *** https://blankthemerpg.forumactif.com/t139-utiliser-les-variables-css ***/
+
+/* VARIABLE DU MODE DE BASE (ici clair) */
+:root {
+  color-scheme: light;
+  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+
+  --neutral: #fafbfc;
+  --neutralDark: #f2f4f9;
+  --neutralDarker: #dce3f4;
+
+  --contrast: #171938;
+  --contrastLight: #232657;
+  --contrastLighter: rgba(212, 175, 55, 0.3);
+  /* Forcing gold here to kill the blue */
+
+  --borderGold: rgba(212, 175, 55, .3);
+
+  --accentClr: #D4AF37;
+  --accentClrDark: #D4AF37;
+
+  --textColor: #232657;
+  --textColorAccent: #000;
+
+  --border: 1px solid #363636;
+
+  --shadowBox: 0 0 20px #23265730;
+
+  --little-size: 0.7rem;
+  --normal-size: 0.8rem;
+  --medium-size: 0.92rem;
+  --large-size: 1.1rem;
+  --title-size: 1.4rem;
+
+  --font: "Inter", sans-serif;
+  --font2: "Bodoni Moda", serif;
+  --font3: "Roboto", sans-serif;
+
+  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
+  --bg-blur: none;
+  --font-millgary: 'Millgary', serif;
+
+  /* Consolidated color variables */
+  --gold-accent: #eaba6b;
+  --gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
+  --gold-text-gradient: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  --white: var(--white);
+  --font-cinzel: 'Cinzel', serif;
+}
+
+/* VARIABLES DU MODE INVERSE (ici sombre) */
+[data-color-scheme="dark"] {
+  color-scheme: dark;
+  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+
+  --fond-category: #2a1a1a;
+  --neutral: #120a0a;
+  /* Nouveau fond rouge-brun foncé */
+
+  --neutralDark: #0e0808;
+  /* Plus foncé */
+  --neutralDarker: #241515;
+  /* Variation */
+  --dark: #080404;
+
+  --subcategory-dark: #1e1e24;
+
+  --contrast: #e5e5f0;
+  --contrastLight: #f4f4f4;
+  --contrastLighter: #40485e;
+
+  --accentClr: #D4AF37;
+  --accentClrDark: #D4AF37;
+
+  --little-size: 0.7rem;
+  --normal-size: 0.8rem;
+  --medium-size: 0.92rem;
+  --large-size: 1.1rem;
+  --title-size: 1.4rem;
+
+  --font: "Inter", sans-serif;
+  --font-title: "Playfair Display";
+  --font3: "Roboto", sans-serif;
+
+  --textColor: #c7c5cd;
+  --textColorAccent: #e5e5f0;
+
+  --border: 1px solid #363636;
+
+  --shadowBox: 0 0 20px var(--neutralDark);
+  --font-millgary: 'Millgary', serif;
+
+  /* Consolidated color variables (same as light mode for consistency) */
+  --gold-accent: #eaba6b;
+  --gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
+  --gold-text-gradient: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  --white: var(--white);
+  --font-cinzel: 'Cinzel', serif;
+}
+
+/* S'applique à TOUS les éléments du forum*/
+* {
+  box-sizing: border-box;
+  /*évite que les éléments soient agrandis par le padding*/
+  /* SCROLLBAR CUSTOM POUR MOZILLA */
+  scrollbar-color: var(--contrastLight);
+  scrollbar-width: thin;
+}
+
+/*** ------------------------------- ***/
+/*** TOUTES LES PAGES --------------- ***/
+
+/* FOND DU FORUM ---*/
+body {
+  background: #1e1e24;
+  font-family: var(--font);
+  font-size: var(--normal-size);
+  color: var(--textColor);
+  margin: 0 !important;
+  --top-offset: var(--offset-to-main);
+  background-color: #2c352d;
+  background-image: var(--bg-img), var(--bg-blur);
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+}
+
+.body__background {
+  --top-offset: var(--offset-to-main);
+  width: 100vw;
+  height: 100vh;
+  background-color: #2c352d;
+  background-image: var(--bg-img), var(--bg-blur);
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
+  position: fixed;
+  z-index: -1;
+}
+
+/* SCROLLBAR --- */
+/* Scrollbar entière */
+/* Rail */
+/* ::-webkit-scrollbar-track {} - Removed empty rule */
+
+/* Poignée */
+/* ::-webkit-scrollbar-thumb {} - Removed empty rule */
+
+/* HERO SECTION */
+.full-height {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #e3c16f;
+  position: relative;
+}
+
+.hero__title {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  margin-left: -50px;
+}
+
+.hero__subtitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-family: "Crimson Text", serif;
+}
+
+.hero__separator {
+  width: 50px;
+  height: 2px;
+  background: #bb8a89;
+  margin: 20px auto;
+}
+
+.hero__text {
+  max-width: 600px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero__plus a {
+  color: #e3c16f;
+  text-decoration: none;
+  border: 1px solid #bb8a89;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.hero__plus a:hover {
+  background: #bb8a89;
+}
+
+/* STRUCTURE PRINCIPALE ---*/
+.main_forum {
+  width: 1060px;
+  /* Increased to fit 900px content + padding */
+  margin: 20px auto;
+  padding: 20px;
+  background: transparent;
+  border-radius: 5px;
+}
+
+/* BANNIERE ---*/
+/* Mettre la bannière en fond permet de la changer selon le thème clair ou sombre */
+.velvet-header {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  /* Tu peux ajuster la hauteur ici */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bordure extérieure fine */
+.velvet-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-image: var(--gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.5));
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Bordure intérieure plus épaisse */
+.velvet-header::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  /* 1px border + 3px gap */
+  border: 2px solid transparent;
+  border-image: var(--gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.5));
+  z-index: 10;
+  pointer-events: none;
+}
+
+.video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  object-fit: cover;
+  filter: brightness(0.5);
+  /* Pour assombrir la vidéo et faire ressortir le texte */
+}
+
+.velvet-logo {
+  position: relative;
+  z-index: 2;
+  /* Pour que le titre soit par-dessus la vidéo */
+  text-align: center;
+}
+
+.velvet-logo h1 {
+  font-family: var(--font-millgary), serif;
+  font-size: 6rem;
+  letter-spacing: 10px;
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+
+  /* Gold Text Gradient */
+  background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d4af37;
+  /* Fallback */
+
+  /* Text Shadow to pop from video */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+.velvet-logo-container {
+  text-align: center;
+  z-index: 10;
+}
+
+.millgary-title {
+  font-family: 'Millgary', serif;
+  font-size: 4rem;
+  color: #D4AF37;
+  margin-bottom: 0;
+}
+
+.phantom-subtitle {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  /* Légèrement plus grand pour Cinzel qui est fine */
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(215, 196, 158, 0);
+  transition: all 3s ease;
+  filter: blur(12px);
+  margin-top: 12px;
+  min-height: 1.2em;
+  /* Réserve la hauteur d'une ligne */
+  display: block;
+  /* S'assure qu'il se comporte comme un bloc propre */
+}
+
+/* Classe activée par le JavaScript */
+.phantom-subtitle.visible {
+  color: rgba(215, 196, 158, 0.95);
+  filter: blur(0);
+  transform: none;
+  text-shadow: 0 0 10px rgba(215, 196, 158, 0.5), 0 0 20px rgba(215, 196, 158, 0.2);
+  /* Lueur mystique */
+}
+
+
+/* Conteneur de toutes les sous-sections
+ * comme les encadrés d'options, de rappel, etc... */
+.panel {
+  background: var(--neutral);
+  border: var(--border);
+  border-radius: 5px;
+  margin: 25px 0;
+}
+
+.sidebar {
+  position: fixed;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  inset: 0;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 10px;
+  z-index: 999;
+}
+
+/* Conteneur de switcheroo */
+.sidebar_top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Conteneur de l'ascenseur
+ * Sert essentiellement à définir où le placer dans la page */
+.sidebar_bottom {
+  width: 45px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Lien de renvoi haut/bas */
+.sidebar_bottom>a {
+  padding: 5px 8px;
+  background: var(--neutralDark);
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* BOUTON CHANGEMENT DE THEME ---*/
+@media (prefers-color-scheme: dark) {
+  .color-scheme-toggle .dark {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .color-scheme-toggle .light {
+    display: none;
+  }
+}
+
+.color-scheme-toggle,
+[data-color-scheme="light"] .color-scheme-toggle .dark,
+[data-color-scheme="dark"] .color-scheme-toggle .light {
+  display: block;
+  width: 100%;
+}
+
+[data-color-scheme="dark"] .color-scheme-toggle .dark,
+[data-color-scheme="light"] .color-scheme-toggle .light {
+  display: none;
+}
+
+.color-scheme-toggle {
+  background-color: transparent;
+  padding: 10px;
+  font-family: var(--font2);
+  font-size: 14px;
+  /* Slightly larger for icon */
+  text-align: center;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-scheme-toggle i {
+  font-size: 24px;
+  /* Increased size */
+}
+
+.color-scheme-toggle:hover {
+  color: var(--accentClr);
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** GÉNÉRALITÉS ------------------------------------------------------------------ 
+ ****** Sélecteurs généraux s'appliquant à plusieurs reprises sur tout le forum ******/
+
+/*** ----------------------------------- ***/
+/*** LIENS ET TEXTE -------------------- ***/
+
+/* LIENS DU FORUM --- */
+a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--textColorAccent);
+}
+
+/*liens au survol*/
+a:hover {
+  color: var(--accentClr);
+}
+
+/* Emoji mis par défaut de FA
+ * Les réduire les rend moins horribles à voir */
+.emojione {
+  width: 19px !important;
+}
+
+/* TITRES DES PAGES --- ***/
+
+/* Utilisé pour des titres de pages */
+h1,
+h1.page-title {
+  color: var(--contrastLight);
+  margin: -6px 0 20px;
+  font-size: var(--title-size);
+  font-weight: 700;
+  text-transform: lowercase;
+  font-family: "Cinzel", serif;
+  text-align: center;
+}
+
+/* Utilisé pour des titres de sujets, blogs... */
+h2,
+.h2 {
+  margin: 0;
+  font-size: var(--large-size);
+  font-weight: 700;
+}
+
+/* Utilisé pour des titres de sous-sections, petit encadré, ...*/
+h3,
+.h3 {
+  color: var(--contrastLight);
+  padding-bottom: 10px;
+  margin: 0;
+  font-size: var(--medium-size);
+  font-weight: bold;
+}
+
+/*** --------------------------------------- ***/
+/*** BOUTONS D'INTERACTION ET BARRE DE GESTION ***/
+.links_bar {
+  width: 1000px;
+  margin: 10px auto;
+  background: var(--neutral);
+  border: 1px solid var(--border);
+  padding: 5px;
+  text-align: center;
+}
+
+/* CHAMPS DE TEXTE ---*/
+input:is([type="text"], [type="password"], .inputbox),
+textarea {
+  border: none;
+  border-radius: 5px;
+  background: var(--neutralDark);
+  font-size: var(--normal-size);
+  color: var(--contrastLight) !important;
+  padding: 8px 10px;
+}
+
+/* Au focus */
+:focus:is(input:is([type="text"], [type="password"], .inputbox), textarea) {
+  outline: none;
+  border: 1px solid var(--accentClr);
+}
+
+/* BOUTONS D'INTERACTION --- *
+ * Envoyer, prévisualiser, sauvegarder, aller,... */
+input:is([type="submit"], [type="button"], [type="hidden"], [type="reset"]),
+.button,
+button {
+  font-size: var(--normal-size);
+  padding: 10px 15px !important;
+  border-radius: 5px;
+  background: var(--neutralDarker);
+  color: var(--contrastLight);
+  font-weight: 600;
+  border: none;
+}
+
+/* Au survol */
+:hover:is(input:is([type="submit"], [type="button"], [type="hidden"], [type="reset"]),
+  .button) {
+  color: var(--accentClr);
+}
+
+/* Boutons désactivés */
+:disabled:is(input:is([type="submit"], [type="button"], [type="hidden"], [type="reset"]),
+  .button) {
+  opacity: 0.5;
+  filter: saturate(1);
+  cursor: not-allowed;
+}
+
+:disabled:hover:is(input:is([type="submit"], [type="button"], [type="hidden"], [type="reset"]),
+  .button) {
+  color: inherit;
+}
+
+.submit-buttons {
+  text-align: center;
+}
+
+.quickmod {
+  margin-bottom: 20px;
+}
+
+/* MENUS DEROULANTS --- */
+select {
+  background: transparent;
+  border: var(--border);
+  border-radius: 5px;
+  font-size: var(--normal-size);
+  padding: 8px 10px;
+  color: var(--textColor);
+}
+
+select:focus-visible {
+  outline: 1px solid var(--accentClr);
+}
+
+/*** ------------------------------- ***/
+/*** EDITEUR DE TEXTE -------------- ***/
+/* Editeur de texte */
+.sceditor-container {
+  border: var(--border) !important;
+  background-color: var(--neutral) !important;
+}
+
+/* Barre d'outils de l'éditeur de texte*/
+div.sceditor-toolbar {
+  background: var(--neutral) !important;
+  border-bottom: var(--border) !important;
+}
+
+/* Conteneur des groupes d'outils */
+div.sceditor-group {
+  background: var(--neutralDark) !important;
+  border-bottom: var(--border) !important;
+}
+
+/* Bouton d'un outil */
+a.sceditor-button {
+  height: 26px !important;
+  /*ne pas retirer*/
+  width: 26px !important;
+  /*ne pas retirer*/
+}
+
+/* Bouton d'un outil au survol ou actif*/
+.sceditor-button.active,
+.sceditor-button:active,
+.sceditor-button:hover,
+.sceditor-button.hover {
+  background: var(--neutral) !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: 1px solid var(--neutralDarker);
+}
+
+/* Conteneur de la zone de texte */
+.sceditor-container iframe,
+.sceditor-container textarea {
+  background-color: var(--neutral) !important;
+  /*ne pas supprimer*/
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 5px !important;
+  /*ne pas supprimer*/
+  min-height: 250px !important;
+}
+
+.sceditor-container textarea:focus {
+  outline: none;
+}
+
+/*Boîte Smiley*/
+html#sceditor_smilies,
+body#sce_smilies_body {
+  background: transparent !important;
+}
+
+/*** ------------------------------- ***/
+/*** PAGINATIONS -------------------- ***/
+
+/* .pagination {} - Removed empty rule */
+
+/*lien unique vers les pages numérotées*/
+.pagination span a {
+  font-size: var(--little-size);
+}
+
+/*survol des liens uniques des pages*/
+.pagination span a:hover {
+  font-weight: 600;
+}
+
+/*lien actif : page sur laquelle vous vous trouvez */
+.pagination span strong {
+  background-color: var(--neutralDark);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/*suppression de l'image-lien "aller à la page suivante" */
+.page-topic span a:last-child,
+.pag-img {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** ELEMENTS ESTHETIQUES ---------- ***/
+
+/* Contenur général qui sert généralement de fond et/ou de contour*/
+.container {
+  background: var(--neutralDark);
+  border-radius: 5px;
+}
+
+/* Barre de séparation */
+.separator {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid var(--neutralDark);
+  clear: both;
+  height: 1px;
+  width: 100%;
+}
+
+hr {
+  border: none;
+  border-top: var(--border);
+}
+
+/* Titre d'un toggle */
+summary {
+  cursor: pointer;
+}
+
+/* Conteneur moins large (les historiques des messages essentiellement) */
+.wrapped {
+  width: 80%;
+  margin: 10px auto;
+  clear: both;
+}
+
+/* Image/avatar réduit */
+.mini_img img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+  margin-right: 10px;
+  background: var(--neutralDark);
+}
+
+/* Permet d'aligner un élément à droite ou à gauche */
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+/* Barre de gestion 
+ * Contient des boutons ou des liens spéciaux */
+.links_bar {
+  padding: 10px;
+  border: var(--border);
+  border-radius: 5px;
+  margin: 25px 0;
+  clear: both;
+}
+
+/* supprime si vide */
+.links_bar:empty {
+  display: none;
+}
+
+/* Dernière barre de liens à 15px en dessous */
+.links_bar:last-of-type {
+  margin-top: 15px;
+}
+
+/* Lien spécial mis en avant */
+.specials_links a,
+a.specials_links {
+  background: var(--neutralDark);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+/* Suppression des liens vides */
+.specials_links a:empty,
+a.specials_links:empty {
+  display: none;
+}
+
+/****** ------------------------------------------------------------------------------ 
+ ****** ENTETE DU FORUM --------------------------------------------------------------
+ ****** Tous les éléments qui s'affichent en tête de toutes les pages ---------------- ******/
+
+/* Notiffi CSS */
+/* Cache la toolbar défaut */
+#fa_toolbar {
+  display: none;
+}
+
+/* Bouton de notification */
+/* Bouton de notification */
+#notiffi_button {
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  z-index: auto;
+  top: auto;
+  right: auto;
+  height: auto;
+
+  /* Match Navbar Typography */
+  font-family: var(--font2);
+  font-size: var(--little-size);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  font-weight: 400;
+}
+
+#notiffi_button:hover {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+/* Conteneur du nombre de notification non lues REMPLI */
+.unread_count {
+  position: relative;
+  background: var(--neutralDarker);
+  border-radius: 5px;
+  width: 25px;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  scale: 1;
+  opacity: 1;
+  aspect-ratio: 1;
+  transition: scale ease-out 0.2s;
+}
+
+/* Conteneur du nombre de notification non lues VIDE */
+.unread_count:empty {
+  position: absolute;
+  scale: 0;
+  opacity: 0;
+  transition: all ease-out 0.2s;
+}
+
+/* Menu des notifications FERMÉ */
+#notiffi_panel {
+  --menuSize: 500px;
+  /* taille du Menu */
+  width: var(--menuSize);
+  position: fixed;
+  z-index: 98;
+  top: 0;
+  height: 100%;
+  right: calc(var(--menuSize) * -1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  background: var(--neutral);
+  border-left: 1px solid var(--neutralDark);
+  padding: 15px;
+  padding-top: 80px;
+  /* Increased to avoid navbar overlap */
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease 0.7s;
+}
+
+/* Menu des notifications OUVERT */
+#notiffi_panel.open {
+  right: 0;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Conteneur des notifications */
+.all_notifications {
+  width: 100%;
+  overflow: auto;
+  max-height: 100%;
+  background: var(--neutralDark);
+  padding: 10px;
+  border-radius: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  /* Désactive la barre de défilement dans le contenenur */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Conteneur des notifications VIDE */
+.no_notification {
+  text-align: center;
+  font-style: italic;
+}
+
+/* Conteneur du footer du menu
+  (voir toutes les notifications, marquer comme lu, tout supprimer) */
+.notiffi_manage {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Conteneur des bouton d'action des notifications */
+.notiffi_actions {
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+
+  /* Bouton d'action */
+  button {
+    padding: 2px 10px;
+    background: var(--neutralDark);
+    border-radius: 5px;
+
+    &:hover {
+      color: var(--accentClr);
+    }
+  }
+}
+
+/* Apparence d'une notification */
+.notification {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: border 0.2s;
+  animation: notiffiFadeIn 0.3s ease-in-out;
+
+  /* Notification au survol */
+  &:hover {
+    border-color: var(--neutralDarker);
+  }
+}
+
+/* Animation d'apparition des notifications */
+@keyframes notiffiFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apparence d'une notification NON LUE */
+.notification.unread {
+  background-color: var(--neutral);
+}
+
+/* Conteneur des détails de la notification (avatar, icone) */
+.notif_details {
+  position: relative;
+  align-self: start;
+}
+
+/* Conteneur de l'avatar */
+.notif_avatar {
+  background: var(--neutral);
+  height: 35px;
+  border-radius: 5px;
+  aspect-ratio: 1;
+
+  /* Image de l'avatar */
+  & img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+  }
+}
+
+/* Icone du type de la notification */
+.notif_icon {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: var(--neutral);
+  width: 18px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+/* Icone lorsque la notification est non lue */
+.notification.unread .notif_icon {
+  color: var(--neutral);
+  background: var(--accentClr);
+}
+
+/* Conteneur du texte et la date de la notification */
+.notif_content {
+  width: 100%;
+}
+
+/* Date de la notification */
+.notif_time {
+  font-size: var(--little-size);
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Bouton de suppression de la notification */
+.notif_close {
+  background: transparent;
+  align-self: start;
+  font-size: 18px;
+  line-height: 0;
+  opacity: 0;
+  border-radius: 100px;
+  aspect-ratio: 1;
+  padding: 2px;
+  transition: all 0.3s;
+}
+
+/* Affiche le bouton de suppression au survol de la notification */
+.notification:hover .notif_close {
+  opacity: 1;
+}
+
+/* Alerte d'une notification */
+.notification.alert {
+  position: fixed;
+  width: 400px;
+  align-items: center;
+  z-index: 99;
+  bottom: 10px;
+  right: 10px;
+  background: var(--neutralDarker);
+  transform: translateY(100%);
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.alert.up {
+  transform: translateY(0%);
+  opacity: 1;
+  filter: blur(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.alert_close {
+  background: var(--neutral);
+  font-size: 18px;
+  line-height: 0;
+  border-radius: 100px;
+  aspect-ratio: 1;
+  padding: 2px;
+}
+
+/*** ------------------------------- ***/
+/*** SWITCHEROO - Par Monomer ------ ***/
+/*** Gestionnaire de multicompte --- ***/
+
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
+}
+
+/* BARRE SWITCHEROO --- */
+/* BARRE --- */
+.switcheroo {
+  color: var(--textColor);
+}
+
+/* Positionnement des ronds */
+.switcheroo__squircles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 15px;
+}
+
+/* AFFICHAGE DES COMPTES ---*/
+
+/* Rond */
+.switcheroo__squircle {
+  position: relative;
+  display: grid;
+  place-items: center;
+  background-color: var(--neutralDark);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: 5px solid transparent;
+  transition: border-radius 128ms var(--ease);
+}
+
+/* Rond au survol */
+.switcheroo__squircle:hover {
+  outline-color: var(--neutralDarker);
+  border-radius: 8px;
+}
+
+.switcheroo__squircle:hover img {
+  border-radius: 8px;
+}
+
+/* Conteneur de l'avatar */
+.switcheroo__avatar {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+/* Image de l'avatar */
+.switcheroo__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  transition: border-radius 128ms var(--ease);
+  position: relative;
+}
+
+/* Avatar du compte connecté */
+.switcheroo__squircle.active,
+.switcheroo__squircle.active img {
+  outline-color: var(--neutralDark);
+  cursor: default;
+}
+
+/* AJOUTER UN COMPTE ---*/
+/* button : ajouter un compte - Style comme #notiffi_button */
+.switcheroo__squircle--button {
+  width: 40px !important;
+  height: 40px !important;
+  background: #120a0a !important;
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  outline: none !important;
+}
+
+/* icon plus */
+.switcheroo__squircle--button i {
+  font-size: 18px;
+  color: var(--gold-accent);
+  transition: all 0.3s ease;
+}
+
+.switcheroo__squircle--button:hover {
+  background: #2d1b1b !important;
+  border-color: var(--gold-accent) !important;
+  box-shadow: 0 0 15px rgba(234, 186, 107, 0.5) !important;
+}
+
+.switcheroo__squircle--button:hover i {
+  color: var(--white);
+}
+
+/* Bouton de suppression */
+.switcheroo__delete {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: -7px;
+  right: -7px;
+  border-radius: 50%;
+  background-color: var(--accentClr);
+  transform: scale(0);
+  opacity: 1;
+  transition: transform 128ms var(--ease), opacity 64ms var(--ease);
+  cursor: pointer;
+  color: var(--neutral);
+  line-height: 0;
+}
+
+.switcheroo__squircle:hover .switcheroo__delete {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* TOOLTIP - INFOBULLE DU PSEUDO ---*/
+
+/* Conteneur du pseudo */
+.switcheroo__popper {
+  background-color: var(--neutralDarker);
+  padding: 0.3rem 1rem;
+  position: absolute;
+  width: -webkit-max-content;
+  width: max-content;
+  border-radius: 5px;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 64ms var(--ease), transform 128ms var(--ease-bounce);
+  pointer-events: none;
+  color: var(--textColor);
+  left: 155%;
+  top: 50%;
+  transform-origin: left;
+  transform: translateY(-50%) scale(0.98);
+}
+
+/* Flèche tooltip */
+.switcheroo__popper:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--neutralDarker);
+  z-index: -1;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  border-radius: 2px;
+}
+
+.switcheroo__squircle:hover .switcheroo__popper {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* LOGO --- retirez display:none pour retrouver le logo */
+.switcheroo__logo,
+.switcheroo__divider {
+  display: none;
+}
+
+/* MODAL : FENETRE DE CONNEXION --- */
+
+/* Fond de l'affichage de connexion */
+.monomer-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s opacity ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Boîte de connexion */
+.monomer-modal {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  width: 94%;
+  padding: 30px;
+  transition: 0.2s opacity ease;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  background: var(--neutral);
+  padding: 50px;
+  box-shadow: var(--shadowBox);
+}
+
+/* Champs à remplir */
+.switcheroo__form-row {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Nom du champ */
+.switcheroo__form-label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Zone de texte */
+.switcheroo__form-input {
+  padding: 6px !important;
+  border-radius: 4px;
+  width: 100%;
+  background-color: var(--neutral);
+  color: var(--contrastLight);
+  cursor: text;
+}
+
+/* Bouton de connexion */
+.switcheroo__form-button {
+  border-radius: 8px;
+  padding: 4px 10px 5px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  align-self: center;
+  background-color: var(--accentClr);
+  cursor: pointer;
+  color: var(--neutral);
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.switcheroo__form-button:hover {
+  background: var(--contrastLight);
+}
+
+.monomer-modal.monomer-open,
+.monomer-overlay.monomer-open {
+  opacity: 1;
+}
+
+/* Fermer la boîte de connexion */
+.monomer-close {
+  font-size: 16px;
+  line-height: 12px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: var(--textColor);
+  border: 0;
+  outline: none;
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+  padding: 0;
+  padding-left: 1px;
+}
+
+.monomer-close:hover {
+  background: var(--contrastLight);
+}
+
+/*** ------------------------------- ***/
+/*** BARRE DE NAVIGATION ----------- ***/
+
+/* Conteneur de la barre de nav */
+.navbar {
+  background: rgba(45, 27, 27, 0.85);
+  /* Fond bordeaux semi-transparent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* Flou pour effet de transparence */
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  /* Arrondi uniquement en bas */
+  padding: 15px 60px;
+  display: flex;
+  flex-wrap: nowrap;
+  /* Empêche le retour à la ligne */
+  align-items: center;
+  gap: 25px;
+  /* Plus d'espace entre les éléments */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
+  width: 100%;
+  max-width: 1020px;
+  /* Plus large pour tout contenir */
+  height: auto;
+  z-index: 999;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  box-sizing: border-box;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+  /* Ombre pour le détacher */
+}
+
+/* Ensure no large auto-margin on the first nav item (remove gap after "Accueil") */
+.navbar>li:first-child {
+  margin-right: 0 !important;
+}
+
+.navbar li {
+  margin: 0;
+  /* reset any per-item margins that could create uneven spacing */
+}
+
+/* Hide entire li if its anchor is one of the 'suppressed' links so it doesn't occupy space.
+   Uses :has() (supported in modern browsers). Keep explicit selectors for clarity.
+*/
+.navbar>li:has(a[href^="/faq"]),
+.navbar>li:has(a[href^="/calendar"]),
+.navbar>li:has(a[href^="/groups"]),
+.navbar>li:has(a[href^="/images"]) {
+  display: none !important;
+}
+
+/* Also handle inline-hidden anchors (style="display:none") if present */
+.navbar>li:has(a[style*="display:none"]) {
+  display: none !important;
+}
+
+/* Fallback for browsers without :has(): remove whitespace nodes by collapsing font-size
+   of anchors that are hidden and remove non-breaking space effect. This is less ideal
+   but prevents visible gaps when :has() isn't available.
+*/
+.navbar a[href^="/faq"],
+.navbar a[href^="/calendar"],
+.navbar a[href^="/groups"],
+.navbar a[href^="/images"] {
+  display: none !important;
+}
+
+/* If HTML contains literal non-breaking spaces after links, set the li's font-size to 0
+   only for li whose anchors are hidden — use a conservative selector so it doesn't
+   affect all nav items. This uses attribute presence on the anchor as a hint.
+   Note: this is intentionally broad but scoped under .navbar.
+*/
+.navbar>li>a[style="display:none"] {
+  font-size: 0;
+}
+
+/* Suppression des liens peu utilisés*/
+.navbar a[href^="/faq"],
+/*faq*/
+.navbar a[href^="/calendar"],
+/*calendrier*/
+.navbar a[href^="/groups"],
+/*groupes*/
+.navbar a[href^="/images"]
+
+/*Dernières images*/
+  {
+  display: none;
+}
+
+/* liens de navigation */
+a.mainmenu {
+  font-family: var(--font2);
+  font-size: var(--little-size);
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Home button: show text, hide icon */
+.navbar a[href="/"] {
+  color: var(--white);
+  background-image: none;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline;
+}
+
+.navbar a[href="/"]:hover {
+  /* no effect */
+}
+
+.navbar a[href="/"]:hover::after {
+  display: none;
+}
+
+.navbar a[href="/"] img {
+  display: none;
+}
+
+/* Lien navigation au survol*/
+a.mainmenu:hover,
+.nav-welcome:hover,
+.nav-notifs:hover {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+
+
+/* Image des liens */
+a.mainmenu img {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** ANNONCES DEFILANTES ----------- ***/
+
+/* Barre défilante */
+.module {
+  border-radius: 5px;
+  border: var(--border);
+  margin: 10px auto;
+  padding: 4px 8px;
+  width: 1000px;
+  box-sizing: border-box;
+}
+
+/* Barre de liens utilitaires (Messages depuis...) */
+.links_bar {
+  width: 1000px;
+  margin: 10px auto;
+  background: var(--neutralDarker);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 5px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.links_bar a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.links_bar a:hover {
+  color: var(--gold-accent);
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** PAGE PRINCIPALE, INDEX ------------------------------------------------------- ******/
+
+
+
+/*** ------------------------------- ***/
+/*** CATEGORIES -------------------- ***/
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:ital@0;1&family=Crimson+Text:wght@400;700&family=Cinzel:wght@700&family=DM+Serif+Display:ital@0;1&display=swap");
+
+.category {
+  margin-bottom: 20px;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 1000px;
+  margin: 0 auto 20px auto;
+  padding: 0;
+}
+
+/* Ensure no wrapper borders on list container */
+.forums {
+  border: none !important;
+  padding: 0;
+  margin: 0;
+}
+
+.cate_title {
+  /* Box styles moved here to allow text gradient on h2 */
+  background: rgba(18, 10, 10, 0.5);
+  /* Frosted glass */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* border-top removed */
+  padding: 0;
+  margin-bottom: 20px;
+  /* max-height removed to allow content to fit */
+}
+
+/* Titre d'une catégorie */
+.cate_title h2 {
+  /* Text Styles */
+  padding: 15px;
+  /* Padding for text */
+  margin: 0;
+  font-family: var(--font-millgary);
+  font-size: 22px;
+  /* Taille semblable */
+  letter-spacing: 3px;
+  font-weight: 400 !important;
+  /* Adjusted to 400 for Millgary usually */
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+
+  /* Gold Text Gradient Effect */
+  background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d4af37;
+  /* Fallback */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+/* conteneur d'un forum*/
+.forum {
+  display: grid;
+  grid-template-columns: 1fr 80px 120px;
+  grid-template-rows: auto auto auto;
+  gap: 0 8px;
+  /* 0 vertical, 8px horizontal */
+  background: transparent;
+  /* Was #1e1e24 - Transparent to show gaps */
+  padding: 0;
+  margin-bottom: 5px;
+  /* Espacement entre forums */
+  align-items: stretch;
+  transition: 0.3s ease;
+  width: 100%;
+  /* Remplir les 900px */
+  margin: 0 auto 5px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Important pour padding inclus */
+}
+
+.forums {
+  width: 100%;
+  /* Reset to fit parent (.category) */
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.forum:last-child {
+  margin-bottom: 25px;
+}
+
+/* Reordering nested elements */
+.forum_content,
+.forum_details {
+  display: contents;
+}
+
+/* Section 1: Vertical Decoration Bar */
+.forum-img {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 32px;
+  height: 100%;
+  background: #2d1b1b;
+  border: 0px solid var(--gold-accent);
+  padding: 0;
+  object-fit: none;
+  display: block;
+  box-shadow: inset -1px 0 3px rgba(0, 0, 0, 0.05),
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.cat_new .forum-img {
+  background: #fff8dc;
+}
+
+/* Section 2: Main Info Column (Title & Desc) */
+a.forumtitle {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-title, "Times New Roman", serif);
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+  padding: 5px 15px 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: normal;
+  margin: 0;
+  height: 32px;
+  font-weight: 400;
+  box-shadow: none;
+
+
+}
+
+
+
+.forum_desc {
+  grid-column: 1;
+  grid-row: 3;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0;
+  height: 100px;
+  /* Compressed */
+  overflow-y: auto;
+  font-size: 14px;
+  color: var(--textColor);
+  line-height: 1.7;
+  box-shadow: none;
+  font-family: var(--font);
+  scrollbar-width: thin !important;
+  scrollbar-color: #3b0606 transparent !important;
+}
+
+
+/* Custom Scrollbar for Description */
+
+/* On cible la zone de scroll de forum_desc */
+.forum_desc::-webkit-scrollbar {
+  width: 3px !important;
+  /* Largeur ultra-fine */
+  background-color: transparent !important;
+}
+
+/* Le "curseur" qui bouge */
+.forum_desc::-webkit-scrollbar-thumb {
+  background-color: #D4AF37 !important;
+  /* Ton doré */
+  border-radius: 0px !important;
+  /* Garde un look droit et tranchant comme tes bordures */
+}
+
+/* On cache les boutons fléchés en haut et en bas pour un look plus moderne */
+.forum_desc::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+.forum_desc .txt {
+  padding: 8px 12px;
+  text-align: justify;
+}
+
+.forum_desc bb3 {
+  display: inline;
+  /* Texte continue sur la même ligne */
+  color: var(--gold-accent);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-right: 8px;
+  /* Espacement après le titre */
+  letter-spacing: 1px;
+  font-size: 0.9em;
+  border-bottom: none;
+}
+
+.forum_desc .sublink {
+  font-style: italic;
+  font-family: 'Cinzel', serif;
+  text-decoration: none;
+  color: inherit;
+  /* Ou une couleur par défaut si nécessaire */
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.forum_desc .sublink:hover {
+  color: #D4AF37;
+  /* Légère couleur dorée */
+  text-shadow: 0 0 15px rgba(234, 186, 107, 0.6);
+}
+
+/* Section 3: Links List Box (Symmetrical width with Stats) */
+#subforum {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-flow: row wrap;
+  /* Wrap to prevent squashing */
+  gap: 10px 15px;
+  /* Vertical and Horizontal spacing */
+  align-items: center;
+  justify-content: center;
+  /* Organized center alignment */
+  background: var(--neutral);
+  border-top: none;
+  border-bottom: none;
+  padding: 8px 10px;
+  overflow: visible;
+  /* Allow content to dictate height */
+  font-size: 0;
+  /* Hide commas */
+  height: auto;
+  min-height: 40px;
+  box-shadow: none;
+}
+
+#subforum a {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--textColorAccent);
+  margin-bottom: 0;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  line-height: normal;
+  transition: 0.2s ease;
+  text-align: center;
+  font-family: var(--font);
+  background: transparent;
+  padding: 2px 5px;
+  border-radius: 0;
+  opacity: 0.8;
+  position: relative;
+}
+
+#subforum a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+#subforum a:hover {
+  color: #ffd700;
+}
+
+/* Section 4: Portrait Image Box */
+.forum_avatar {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  width: 80px;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.forum_avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+
+/* Section 5: Stats & Last Post Column (Symmetrical width with Links) */
+/* Subjects Box (Top) */
+/* Subjects Box (Top) */
+.forum_sujets {
+  grid-column: 3;
+  grid-row: 1;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: rgba(255, 255, 255, 0.7);
+  /* Blanc 0.7 opacité */
+  text-transform: uppercase;
+  font-size: 9px;
+  padding: 6px 4px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  box-shadow: none;
+}
+
+
+/* Last Post Box (Middle) */
+.forum_lastpost {
+  grid-column: 3;
+  grid-row: 2;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass + update background */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 8px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  font-size: 9px;
+  color: var(--gold-accent);
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+}
+
+.forum_lastpost a.lastpost_link {
+  display: block;
+  color: var(--gold-accent);
+  text-transform: lowercase;
+  font-size: 13px;
+  margin-bottom: 2px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.forum_lastpost .gensmall a {
+  color: var(--gold-accent);
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+/* Messages Box (Bottom) */
+.forum_messages {
+  grid-column: 3;
+  grid-row: 3;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: rgba(255, 255, 255, 0.7);
+  /* Blanc 0.7 opacité */
+  text-transform: uppercase;
+  font-size: 9px;
+  padding: 6px 4px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+
+/*** ------------------------------- ***/
+/*** QUI EST EN LIGNE -------------- ***/
+/*** ------------------------------- ***/
+
+/* Bannière "Stepping into the spotlight" */
+/* Bannière "Stepping into the spotlight" */
+/* Bannière "Stepping into the spotlight" */
+.qeel_banner {
+  /* Text Styles matching .cate_title h2 */
+  font-family: var(--font-millgary);
+  font-size: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 auto 20px auto;
+  width: 1000px;
+  letter-spacing: 3px;
+  font-weight: 400 !important;
+  padding: 15px;
+  /* Matches padding in .cate_title h2 */
+
+  /* Resetting box styles */
+  border: none;
+  position: relative;
+  z-index: 1;
+
+  /* Gold Text Gradient Effect */
+  background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--gold-accent);
+  /* Fallback */
+}
+
+.qeel_banner::before {
+  /* Box Background Styles matching .cate_title */
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Covers the whole area */
+  background: rgba(18, 10, 10, 0.5);
+  /* Exact value from .cate_title */
+  z-index: -1;
+  /* Behind text */
+  border: none;
+}
+
+.qeel {
+  background: var(--neutralDark);
+  border: 1px solid var(--borderGold);
+  /* Changed from var(--contrastLighter) (blue) to Gold */
+  border-radius: 0;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 8px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  /* Aligned bottom page width */
+  width: 1000px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
+  box-sizing: border-box;
+  /* Ensures padding doesn't expand width */
+}
+
+
+
+.qeelbgimg {
+  margin-left: 3px;
+  width: 277px;
+  height: 40px;
+  background-color: var(--ssfo);
+  border: none;
+  /* Removed blue border */
+  padding: 3px;
+}
+
+.qeel-bg-img {
+  width: 277px;
+  height: 40px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.qeel-img-1 {
+  width: 100%;
+  height: 100%;
+  background-image: url(https://www.zupimages.net/up/23/27/emdb.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.qeel-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.qeel-col:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Grille des groupes - 2 colonnes, largeur de l'image */
+.qeel-col:first-child>.qeel-groups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 6px;
+  width: 277px;
+}
+
+/* Image au centre */
+.qeel-col:first-child>.qeel-bg-img {
+  width: 277px;
+  height: 40px;
+}
+
+/* Boîte "Connectés" après tous les éléments */
+.qeel-col:first-child>.qeel-box {
+  width: 277px;
+  flex-grow: 1;
+  /* Stretch to fill column height */
+}
+
+.qeel-box {
+  background: var(--neutral);
+  border: 1px solid var(--borderGold);
+  /* Changed from var(--contrastLighter) to Gold */
+  padding: 6px;
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+}
+
+.qeel-header {
+  background: var(--neutralDarker);
+  color: var(--textColorAccent);
+  text-align: center;
+  padding: 8px;
+  /* Increased padding slightly */
+  font-size: 14px;
+  /* Increased from 10px */
+  letter-spacing: 1px;
+  margin: -6px -6px 6px -6px;
+  font-weight: 400;
+  /* Adjusted for Millgary */
+  text-transform: uppercase;
+  font-family: var(--font-millgary);
+  /* Changed from Arial to main font */
+  border-bottom: 1px solid var(--borderGold);
+  /* Added separation */
+}
+
+/* Dernier inscrit */
+#last_user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Center the username */
+}
+
+#lastuser_avatar img {
+  border: 5px solid var(--darkreader-border--ssfob);
+  object-fit: cover;
+  object-position: center;
+  box-sizing: border-box;
+  border: 1px solid var(--borderGold);
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.qeel-groups-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  align-items: stretch;
+  /* Ensure all items stretch to fill the row height */
+}
+
+.qeel-groups-grid .groups {
+  background: var(--neutral);
+  border: 1px solid var(--borderGold);
+  /* Changed from blue to gold */
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  color: var(--textColor);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 35px;
+  box-sizing: border-box;
+  /* Fix potential sizing issues */
+  margin: 0 !important;
+  /* Force removal of any parasitic margins */
+}
+
+.qeel-content {
+  background: var(--neutral);
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.qeel-groups-grid .groups:hover {
+  background: var(--neutralDark);
+  transform: none;
+  opacity: 1;
+  border-color: var(--accentClr);
+}
+
+/* Image Banner Container */
+.qeel-image-banner {
+  width: 277px;
+  box-sizing: border-box;
+  border: 1px solid var(--borderGold);
+  margin: 0 auto;
+  /* Ensure centering */
+  display: flex;
+  /* Remove unwanted whitespace */
+}
+
+.qeel-image-banner img {
+  width: 100%;
+  height: 100%;
+  /* Fill container */
+  object-fit: cover;
+  /* Maintain aspect ratio filling the box */
+  display: block;
+}
+
+/*Connectés en ce moment*/
+#online_users {
+  height: 95px;
+  overflow: auto;
+}
+
+/*ne pas supprimer*/
+#online_users br {
+  display: none;
+}
+
+/* PA / Homepage Panel specific overrides */
+.introduction {
+  margin-top: 0 !important;
+}
+
+.bienvenue-box {
+  flex: 3;
+}
+
+.bienvenue-box .qeel-content.split {
+  display: flex;
+  flex-direction: row !important;
+  /* Force horizontal layout */
+  align-items: center;
+  justify-content: space-between;
+  background: var(--neutral);
+  flex: 1;
+}
+
+.bienvenue-left {
+  flex: 1;
+  text-align: center;
+}
+
+.bienvenue-title {
+  color: #939c7d;
+  font-size: 24px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.bienvenue-logo img {
+  width: 100px;
+  opacity: 0.5;
+}
+
+.bienvenue-right img {
+  width: 120px;
+  object-fit: cover;
+  border: 1px solid transparent;
+  border-image: var(--gold-gradient) 1;
+}
+
+.stats-box {
+  text-align: center;
+  padding: 8px 6px;
+  background: var(--neutral);
+  flex: 1;
+}
+
+.stats-main {
+  font-family: "Crimson Text", serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--textColor);
+  border-bottom: 1px solid var(--contrastLighter);
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.stats-main span {
+  font-weight: 700;
+}
+
+#newest_user,
+#newest_user a {
+  font-family: var(--font-millgary), serif;
+  font-size: 22px;
+  /* At least 14px */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Reduced specific to small size */
+  font-weight: 400;
+  text-decoration: none;
+
+  /* Gold Gradient Text */
+  background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d4af37;
+  /* Fallback */
+
+  /* Filter from title, but reduced shadow for readability */
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+}
+
+#newest_user a:hover {
+  filter: brightness(1.2);
+  /* Slight hover effect */
+}
+
+.stats-secondary {
+  font-size: 9px;
+  color: var(--textColor);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.last-96h {
+  height: 100%;
+  min-height: auto;
+}
+
+.copyright-box {
+  background: var(--neutral) !important;
+  color: var(--textColor);
+  font-size: 9px;
+  text-align: center;
+  padding: 6px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 10px !important;
+  letter-spacing: 0.5px;
+}
+
+.qeel-footer-links {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 11px;
+  color: #4d4d4d;
+  letter-spacing: 1px;
+}
+
+.qeel-footer-links a {
+  color: #4d4d4d;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.qeel-footer-links a:hover {
+  color: #1a1a1a;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** LISTE DES SUJETS ------------------------------------------------------------- ******/
+
+/*** ------------------------------- ***/
+/*** ENTETE ET FOOTER DE LA LISTE DES SUJETS ***/
+
+/* Chaîne de navigation et pagination
+ * (réutilisé dans l'affichage d'un sujet (viewtopic_body)) */
+.navigation_links {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+/* chaîne de lien de navigation : catégorie > forum > sous-fo */
+.navigation_chain {
+  font-size: 0;
+  /*retire les :: de séparation */
+}
+
+.navigation_chain a {
+  font-size: initial;
+  /*rétablit la taille des liens*/
+  margin-right: 8px;
+}
+
+.navigation_chain a:before {
+  content: "›";
+  /*symbole ou texte modifiable*/
+  font-size: var(--nomal-size);
+  margin-right: 3px;
+}
+
+/* BOUTONS DE MESSAGE : Répondre, Nouveau,... ---*
+ * (réutilisé dans l'affichage d'un sujet (viewtopic_body) et les MP (privmsgs_body) */
+.buttons {
+  background: var(--neutralDark);
+  padding: 1px 8px;
+  margin-right: 5px;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.buttons:hover {
+  opacity: 0.7;
+}
+
+/* BOUTONS : modérer les sujets de ce forum */
+#moderation_forum_tools,
+#moderation_forum_tools strong {
+  font-size: 0px;
+}
+
+#moderation_forum_tools a {
+  background: var(--neutralDark);
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: var(--normal-size);
+}
+
+/*** ------------------------------- ***/
+/*** LISTE DES SUJETS -------------- ***/
+
+/* Bloc de description du forum */
+.forum-page_desc {
+  margin: 0 0 20px;
+  background: var(--neutral);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Conteneur sujet dans la liste */
+.topicslist_row {
+  background: var(--neutral);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.topicslist_row:last-child {
+  margin-bottom: 0;
+}
+
+/* Image du sujet */
+.topicslist-img {
+  width: 50px;
+  height: 50px;
+  background: var(--neutralDark);
+}
+
+.topicslist_infos {
+  flex-grow: 100;
+}
+
+/*titre du sujet*/
+.topictitle {
+  font-size: var(--medium-size);
+  /* permet de raccourir les titres trop long ainsi : "Titre du suj..." */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  max-width: 430px;
+  white-space: nowrap;
+  vertical-align: bottom;
+}
+
+/* icône de type de message ( exemple : -18 ans, sujet résolu, ... ) */
+.topic_msgicon {
+  margin-right: 5px;
+}
+
+.topic_msgicon:empty {
+  display: none;
+}
+
+.topiclist-infos img {
+  margin-right: 3px;
+}
+
+.topicslist-stats {
+  text-align: right;
+}
+
+.topicslist-avatar-lastpost img {
+  object-fit: cover;
+  object-position: center;
+  width: 50px;
+  height: 50px;
+  background: var(--neutralDark);
+}
+
+.topicslist-lastpost {
+  width: 180px;
+}
+
+.topicslist-description {
+  border-top: 1px solid var(--neutralDark);
+  padding-top: 5px;
+  width: 100%;
+}
+
+/* ligne qui séparent les annonces et les notes des autres sujets (à activer dans "message > configuration") */
+.topic_separator {
+  height: 5px;
+  background: var(--neutral);
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* Bouton "trier les sujets" */
+#sort-topics {
+  position: relative;
+  display: inline;
+  background: var(--neutralDark);
+  margin: 10px 0;
+}
+
+.sort-form {
+  width: max-content;
+  background: var(--neutral);
+  border: 1px solid var(--neutralDarker);
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  display: none;
+}
+
+.expanded~.sort-form {
+  display: block;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** AFFICHAGE D'UN SUJET --------------------------------------------------------- ******/
+
+/* PARTICIPANTS DU SUJET ---*/
+
+/* Conteneur de la liste des participants au sujet */
+.poster-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* Avatar du participant*/
+.poster {
+  background: var(--poster-avatar);
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  margin-left: -8px;
+  border: 2px solid var(--neutralDark);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Lien de renvoi vers son profil */
+.poster a {
+  display: block;
+  height: 100%;
+}
+
+/* Nombre de participants */
+.poster-count {
+  margin-left: 8px;
+}
+
+.poster-more-list {
+  display: none;
+}
+
+.poster-more {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.poster-more:hover .poster-more-list {
+  display: block;
+  position: absolute;
+  top: 29px;
+  width: 150px;
+  background: var(--neutralDarker);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/*** ------------------------------- ***/
+/*** SUJET ------------------------- ***/
+
+.post_row {
+  background: var(--neutral);
+  display: grid;
+  grid-template-rows: max-content auto;
+  grid-template-columns: min-content 1fr;
+  border-bottom: 1px solid var(--borderGold);
+}
+
+div.post_row:nth-of-type(2) {
+  border-radius: 5px 5px 0 0;
+}
+
+.post_details {
+  grid-column: 1 / span 2;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--borderGold);
+}
+
+.post_date {
+  flex-grow: 100;
+}
+
+/* BOUTONS D'EDITION DU MESSAGE --- */
+/* Conteneur boutons d'édition */
+ul.profile-icons {
+  flex-grow: 1;
+  display: flex;
+}
+
+/*UN SEUL bouton d'édition */
+ul.profile-icons li {
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+
+/* Cache les boutons pour les invités */
+.profile-icons a[href=""] {
+  display: none;
+}
+
+/*hover d'un bouton d'édition*/
+ul.profile-icons li:hover {
+  background: var(--neutralDark);
+}
+
+/* BOUTON LIKE --- */
+/* Conteneur du bouton like */
+.like_button {
+  float: right;
+  margin-left: 10px;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* Bouton like */
+.rep-button,
+.rep-button:active,
+.rep-button:focus {
+  background: var(--neutralDark);
+  color: var(--textColor);
+  border: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+/*Bouton au survol*/
+.rep-button:hover {
+  background: var(--var(--contrastLighter));
+}
+
+/* Texte "j'aime" */
+button.rep-button .like_text {}
+
+/*compteur de like*/
+button.rep-button .rep-nb {
+  margin-left: 5px;
+  padding: 0 3px;
+  background: var(--neutral);
+  border-radius: 3px;
+}
+
+.post_profile {
+  padding: 10px;
+  border-right: 1px solid var(--borderGold);
+}
+
+.post_pseudo {
+  font-weight: bold;
+  text-transform: lowercase;
+  font-family: "April Fatface", serif;
+  font-size: var(--large-size);
+  font-weight: 700;
+}
+
+/* Lien "@" de mention */
+a.fa-mention {
+  cursor: pointer;
+}
+
+/* Mention "en ligne" */
+.presence {
+  display: none;
+}
+
+.presence.online {
+  display: inline-block;
+  position: relative;
+  background-color: var(--neutralDarker);
+  border-radius: 5px;
+  padding: 0 5px;
+  margin: 0 auto;
+}
+
+/* RECOMPENSES --- */
+/* Conteneur des récompenses */
+#list_awards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Récompense */
+.award {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-image: var(--award-image);
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.award:hover .award_tooltiptext {
+  display: block;
+}
+
+/* Bloc description de la récompenses */
+.award_tooltiptext {
+  width: max-content;
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25px;
+  background-color: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* titre de la récompenses*/
+.award_tooltiptext_title {
+  font-weight: 600;
+}
+
+.online:empty {
+  display: none;
+}
+
+.post_message {
+  padding: 25px;
+}
+
+/* REPONSE RAPIDE --- */
+/*supression de la mention "réponse rapide" */
+.quickreply div.h3 {
+  display: none;
+}
+
+/*centrer la réponse rapide*/
+.quickreply {
+  display: flex;
+  justify-content: center;
+}
+
+/* Retire le cadre de la réponse rapide pour les invités */
+#quickreply_content:empty {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** SONDAGE ----------------------- ***/
+
+.poll {
+  background: var(--neutral);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.head_poll {
+  padding: 10px;
+  border-bottom: 1px solid var(--neutralDark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poll_list {
+  display: grid;
+  grid-template-columns: 220px auto;
+}
+
+.poll_option {
+  padding: 10px 20px 0 10px;
+  border-right: 1px solid var(--neutralDark);
+  text-align: right;
+}
+
+.poll_vote {
+  padding: 10px 10px 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.poll_send {
+  margin-left: 220px;
+  padding: 20px 10px 20px 20px;
+  border-left: 1px solid var(--neutralDark);
+}
+
+.poll_vote:nth-child(2),
+.poll_option:first-child {
+  padding-top: 20px;
+}
+
+.votes-users-list {
+  justify-content: start;
+  margin: 20px 0 0;
+}
+
+/*** ------------------------------- ***/
+/*** TEXTES, BALISES, ETC ---------- ***/
+
+/* Lien-tag des utilisateurs */
+.mentiontag {}
+
+/* BALISES DE MESSAGE : spoiler, code, quote... */
+
+/* Balise code, spoiler et hide*/
+.codebox {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Contenu code, spoiler et hide*/
+.codebox dd {
+  background: var(--neutralDark);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Nom de balise "code, spoiler" */
+.codebox dt {
+  font-weight: 700;
+  font-size: var(--little-size);
+}
+
+/*retire la mention "code" du bloc*/
+#codeBox dt {
+  height: 0;
+  font-size: 0;
+}
+
+/* bouton "copier" */
+.copyCode {
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  top: 5px;
+  right: 13px;
+  font-family: monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+div.cont_code {
+  clear: right;
+}
+
+/* Spoiler */
+.hidebox.spoiler {}
+
+/* spoiler fermé */
+.spoiler_content {
+  display: none;
+}
+
+/* spoiler ouvert */
+.spoiler_content.hidden {
+  display: block;
+}
+
+/* Citation contenu */
+blockquote div {
+  padding-left: 20px;
+}
+
+/* Citation mention "... a écrit" */
+blockquote cite {
+  display: block;
+  margin-left: -20px;
+  font-style: normal;
+}
+
+/* Citation pseudo */
+blockquote cite a {
+  text-decoration: none !important;
+}
+
+/* Hide */
+.codebox.hidecode dd {
+  background: transparent;
+  opacity: 0.8;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** MEMBRES ------------------------------------------------------ ******/
+
+/*** ------------------------------- ***/
+/*** PAGE DE PROFIL ---------------- ***/
+
+.user_profile {
+  background: var(--neutral);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: max-content auto;
+  padding: 10px;
+  grid-gap: 20px;
+}
+
+.profile_avatar {
+  width: 200px;
+}
+
+.profile_infos {}
+
+.profile_contact {
+  display: flex;
+  gap: 5px;
+  float: right;
+}
+
+.profile_content {
+  height: 265px;
+  overflow: auto;
+}
+
+.profile_field {
+  margin: 10px 0;
+  display: grid;
+  grid-template-columns: 135px auto;
+  grid-gap: 10px;
+}
+
+.profile_field label,
+.profile_field label>span {
+  font-weight: 600;
+  color: var(--link);
+}
+
+.profile_field field {
+  position: relative;
+}
+
+.profile_admin {
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+/* Bouton "suivre le membre" */
+.followBtn {
+  background: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.followBtn::before {
+  top: 1px;
+  position: relative;
+  color: var(--accentClr);
+  margin-right: 5px;
+}
+
+/* Bouton édition d'un champ de profil */
+.ajax-profil_edit {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0px;
+}
+
+/* Bouton édition d'un champ de profil */
+.ajax-profil_edit {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: -15px;
+}
+
+/* Bouton validation des modifications */
+.ajax-profil_valid {
+  cursor: pointer;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/*** ------------------------------- ***/
+/*** WOMBAT PROFILS EN POP UP ---- ***/
+
+/* Fond atténué */
+.wombat-overlay {
+  position: fixed;
+  z-index: 990;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s opacity ease;
+  background: var(--neutral);
+}
+
+/* effet de transition du fond atténué */
+.wombat-overlay.open {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+/* Fenêtre du popup */
+.wombat-aside {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  z-index: 999;
+  transition: 0.2s all ease;
+  visibility: hidden;
+  opacity: 0;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: var(--shadowBox);
+  border-radius: 10px;
+  height: max-content;
+  transform: translateX(-20%);
+}
+
+/* effet de transition pour la fenêtre */
+.wombat-aside.open {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/*** ------------------------------- ***/
+/*** PROFILS SIMPLIFIÉS DES TAGS ---- ***/
+
+/* Supression de la flèche peu esthétique*/
+.tooltipster-arrow {}
+
+.tooltipster-default {}
+
+.preview_content {
+  display: flex;
+}
+
+.preview_avatar img {
+  object-fit: cover;
+  object-position: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.preview_infos {
+  width: 100%;
+  padding-top: 3px;
+}
+
+.preview_pseudo,
+.preview_pseudo strong {
+  font-size: var(--medium-size);
+}
+
+.preview_contacts {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.preview_contacts a {
+  margin-left: 5px;
+}
+
+.tooltipster-arrow {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** LISTE DES MEMBRES ------------- ***/
+
+/* Galerie des membres */
+.userlist {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 10px 0;
+}
+
+/* Carte de membre */
+.userlist_profil {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.userlist_profil:hover {
+  transform: scale(1.02);
+}
+
+/* Conteneur image et overlay */
+.userlist_avatar {
+  overflow: hidden;
+  background: #000;
+  width: 100%;
+  aspect-ratio: 3/4;
+  outline: 1px solid var(--contrastLight);
+  outline-offset: 4px;
+}
+
+.userlist_avatar img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  top: 0;
+  left: 0;
+}
+
+/* Pseudo en bas par default */
+.userlist_pseudo {
+  font-size: var(--large-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: left;
+}
+
+.userlist_pseudo a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+/* Détails (date, messages) cachés par défaut */
+.userlist_details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 1;
+  z-index: 3;
+  /* Removed padding transition which was fighting flexbox */
+}
+
+/* Background overlay via pseudo-element for smooth transition */
+.userlist_details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+  z-index: -1;
+  transition: background 0.8s ease;
+}
+
+.userlist_avatar:hover .userlist_details {
+  /* Removed padding-bottom lift - simply expanding content is safer for layout stability */
+}
+
+.userlist_avatar:hover .userlist_details::before {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* Infos visibles au survol */
+.userlist_infos {
+  color: #c7c5cd;
+  font-size: var(--little-size);
+  line-height: 1.6;
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.userlist_avatar:hover .userlist_infos {
+  max-height: 85px;
+  /* Tuned to content size for correct speed */
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.userlist_infos br {
+  display: block;
+  content: "";
+  margin: 5px 0;
+}
+
+/* Boutons de contact */
+.userlist_contact {
+  margin-top: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.userlist_avatar:hover .userlist_contact {
+  max-height: 50px;
+  opacity: 1;
+  /* removed margin-top: auto to prevent jump */
+}
+
+.userlist_contact img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.userlist_contact img:hover {
+  opacity: 1;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** MESSAGES PRIVES -------------------------------------------------------------- ******/
+
+/*** ------------------------------- ***/
+/*** LISTE DES MPs ----------------- ***/
+
+/* Menu des MPS */
+#privmsgs-menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px auto;
+}
+
+#privmsgs-menu li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Affichage d'un MP dans la liste */
+.mp_row {
+  background: var(--neutral);
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 55px auto;
+  grid-gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+/*** ------------------------------- ***/
+/*** AFFICHAGE D'UN MESSAGE PRIVÉ -- ***/
+
+.message {
+  background: var(--neutral);
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: max-content auto;
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.message_infos {
+  grid-column: 1 / span 2;
+  border-bottom: 1px solid var(--neutralDark);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mp-icons {
+  display: flex;
+  float: right;
+}
+
+.message_profil {
+  padding: 10px;
+  border-right: 1px solid var(--neutralDark);
+  text-align: center;
+}
+
+.message_content {
+  padding: 25px;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** PAGES ANNEXES ---------------------------------------------------------- ******/
+
+/*** ------------------------------- ***/
+/*** PAGE D'ENVOI D'UN MESSAGE ----- ***/
+
+.message-edition {
+  display: flex;
+  flex-direction: row;
+  /* flex-direction: row-reverse; -- pour smileys à droite */
+  gap: 15px;
+  /*espace entre la zone de texte et la boîte à smileys*/
+}
+
+/* Prévisualisation d'un message */
+#preview {
+  background: var(--neutral);
+  padding: 10px;
+  border: var(--border);
+  border-radius: 5px;
+}
+
+/*** ------------------------------- ***/
+/*** EDITION DE PROFIL ------------- ***/
+
+/* Onglets dans la modification de profil */
+#tabs ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0 10px;
+}
+
+/*onglet*/
+#tabs li {
+  padding: 5px 10px;
+  border: 1px solid transparent;
+}
+
+/* Onglet selectionné */
+#tabs li.activetab {
+  background: var(--neutralDark);
+  border: var(--border);
+  border-radius: 5px;
+}
+
+/* onglet au survol */
+#tabs li:hover {
+  background: var(--neutralDark);
+  border-radius: 5px;
+  border: var(--border);
+}
+
+/* Suppression de l'onglet "amis et ignorés" */
+div#tabs li:nth-child(5) {
+  display: none;
+}
+
+.profil_preferences dl,
+.profil_editavatar dl {
+  grid-template-columns: 40% auto;
+}
+
+.profil_preferences .italic {
+  font-size: var(--little-size);
+}
+
+/* EDITER SIGNATURE ---*/
+#parent_editor_simple>#smiley-box {
+  float: left;
+  /* float: right; -- pour smileys à droite */
+}
+
+#parent_editor_simple #message-box {
+  margin-left: 240px;
+  /* margin-right: XXXpx -- pour smileys à droite */
+}
+
+#parent_editor_simple #message-box>br {
+  display: none;
+}
+
+#parent_editor_simple #message-box>#textarea_content {
+  width: 100% !important;
+}
+
+.panel.row2.sig {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/*** ------------------------------- ***/
+/*** PAGES DE RECHERCHES ----------- ***/
+
+/* RECHERCHE DE MESSAGE -----*/
+
+/* Conteneur d'un message*/
+.post_search {
+  display: grid;
+  grid-template-columns: 200px auto;
+  border-radius: 5px;
+  margin: 10px 0;
+  background: var(--neutral);
+}
+
+.post_search>div {
+  padding: 10px;
+}
+
+/* Colonne d'information du message */
+.postsearch_infos {
+  border-right: var(--border);
+  font-size: var(--little-size);
+}
+
+/* RECHERCHE DE SUJET -----*/
+/* Même CSS que la liste des sujets dans un forum */
+
+/*** ------------------------------- ***/
+/*** PAGE DE CONNEXION ------------- ***/
+
+/* Centrer les pages de connexion */
+form[name="form_login"],
+form[name="form_login"]~.panel {
+  text-align: center;
+}
+
+form[name="form_login"] .content {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+/*** ------------------------------- ***/
+/*** ELEMENTS FLOTTANTS ------------ ***/
+
+/* Fenêtre popup "recherche" */
+.overview {
+  background: var(--neutral);
+  border-radius: 5px;
+  border: var(--border);
+  padding: 10px;
+  position: fixed !important;
+  top: 50% !important;
+}
+
+/* Bouton rechercher */
+.overview button[type="submit"] {
+  width: 26px;
+  height: 26px;
+  margin-left: 5px;
+}
+
+.overview div {
+  margin-bottom: 5px;
+}
+
+.overview a {
+  float: right;
+}
+
+/* Boîte "recherche un utilisateur" */
+#find_username {
+  display: none;
+  position: fixed;
+  left: 50%;
+  width: 450px;
+  margin-left: -225px;
+  top: 50%;
+  margin-top: -125px;
+  background-color: var(--neutral);
+  padding: 10px;
+  border: var(--border);
+  border-radius: 5px;
+}
+
+/* Old Navbar Styles Deleted */
+
+/* Move "Associate Character" icon to the start (left/top) */
+.sidebar_top a[href*="associ"] {
+  order: -1 !important;
+  align-self: flex-start;
+  /* If container is column, allows specific alignment */
+}
+
+
+
+
+
+/* Harmonisation des bordures catégories (comme QEEL) */
+.category {
+  border: 2px solid var(--contrastLighter);
+}
+
+/* --- NOUVELLE PAGE D'ACCUEIL (TAPIS) --- */
+
+/* Balises Personnalisées */
+staff_name {
+  font-family: var(--font-title, "Times New Roman", serif);
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.1em;
+}
+
+velvetify {
+  font-family: var(--font, Arial, sans-serif);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+coeur {
+  font-family: var(--font-title, "Times New Roman", serif);
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+rune {
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  font-weight: 700;
+  border-bottom: 1px solid var(--contrastLighter);
+  display: block;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+}
+
+/* Grille Principale - Alignement des colonnes */
+#tapis {
+  display: grid;
+  width: 1000px;
+  margin: 0 auto 20px auto;
+  gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0px 150px 90px;
+  /* Row 2 réduite, Row 3 augmentée pour les icônes */
+  grid-template-areas: "nav nav nav"
+    "desc center links"
+    "mini center links";
+  /* center s'étend sur les 2 lignes */
+  align-items: stretch;
+  /* Étirer pour remplir */
+  position: relative;
+}
+
+
+/* Styles Communs Blocs */
+#disclaimer,
+#contextebox,
+#monthnews,
+#minimoodboard,
+.adminun,
+.admindeux,
+.admintrois {
+  background: var(--neutral);
+  border: none;
+  padding: 8px;
+  height: 100%;
+  /* Padding réduit (était 10px) */
+  box-sizing: border-box;
+}
+
+/* -- COLONNE 1 : GAUCHE -- */
+
+/* Disclaimer - Style IDENTIQUE au popup admin */
+#disclaimer {
+  grid-area: desc;
+  font-family: var(--font);
+  /* Police normale comme le popup */
+  font-size: 12px;
+  /* Même taille que le popup */
+  text-align: justify;
+  /* Justifié comme le popup */
+  line-height: 1.3;
+  /* Même interligne que le popup */
+  color: var(--textColor);
+  /* Couleur normale, PAS or */
+  text-transform: none;
+  /* PAS de majuscules forcées */
+  font-weight: 500;
+  /* Poids normal */
+  letter-spacing: 4;
+  /* Pas d'espacement */
+  background: transparent !important;
+  border: none !important;
+}
+
+#disclaimer .survol {
+  transition: opacity 0.3s;
+  text-align: center;
+  /* Centrer le contenu */
+}
+
+#tapis:has(.moodun:hover) #disclaimer .survol,
+#tapis:has(.mooddeux:hover) #disclaimer .survol,
+#tapis:has(.moodtrois:hover) #disclaimer .survol {
+  opacity: 0;
+}
+
+/* Liens dans disclaimer - style comme popup */
+#disclaimer a {
+  color: var(--gold-accent);
+  text-decoration: none;
+}
+
+#disclaimer a:hover {
+  color: var(--white);
+}
+
+/* Popups Admin */
+.adminun,
+.admindeux {
+  position: absolute;
+  top: 60px;
+  /* Nav(30) + Gap(30) = 60px pile */
+  left: 0;
+  width: calc((100% - 60px) / 3);
+  height: 150px;
+  /* Force Height match row 1 */
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  font-size: 11px;
+  /* Agradin */
+  text-align: left;
+  color: var(--textColor);
+  line-height: 1.3;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  /* Match disclaimer padding */
+}
+
+.moodun:hover .adminun,
+.mooddeux:hover .admindeux,
+.moodtrois:hover .admintrois {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Styles de texte admin - cohérents avec #disclaimer */
+.adminun strong,
+.admindeux strong,
+.admintrois strong {
+  color: var(--gold-accent);
+  /* Or - même que disclaimer */
+}
+
+.adminun em,
+.admindeux em,
+.admintrois em {
+  color: var(--white);
+  /* Blanc - même que disclaimer */
+  font-style: italic;
+}
+
+/* Custom elements pour popups admin */
+staff_name {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--gold-accent);
+  /* Or */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+velvetify {
+  display: inline;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--gold-accent);
+  /* Or */
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 1px;
+}
+
+/* Liens dans popups admin */
+.adminun a,
+.admindeux a,
+.admintrois a {
+  color: var(--gold-accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.adminun a:hover,
+.admindeux a:hover,
+.admintrois a:hover {
+  color: var(--white);
+  text-shadow: 0 0 5px rgba(234, 186, 107, 0.5);
+}
+
+/* Mini Moodboard (Zone réduite) */
+#minimoodboard {
+  grid-area: mini;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.minimood {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.moodun,
+.mooddeux {
+  width: 49%;
+  cursor: pointer;
+  position: static !important;
+  transform: none !important;
+  border: none;
+  /* Pas de bordure */
+  background: transparent;
+  /* Pas de fond */
+}
+
+.moodun img,
+.mooddeux img {
+  width: 100%;
+  height: 100%;
+  /* Remplir tout l'espace disponible (90px) */
+  object-fit: cover;
+  border: 1px solid transparent;
+  border-image: var(--gold-gradient) 1;
+  display: block;
+  transition: 0.3s;
+}
+
+.moodun:hover img,
+.mooddeux:hover img {
+  transform: scale(1.05);
+  z-index: 30;
+}
+
+
+/* -- COLONNE 2 : CENTRE (Image + Réseaux) -- */
+#contextebox {
+  grid-area: center;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  /* Hauteur gérée par grid (180px) */
+  border: 1px solid transparent !important;
+  border-image: var(--gold-gradient) 1 !important;
+}
+
+.contexteimage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.contexteimage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: transform 1s ease-in-out;
+  transform-origin: top;
+}
+
+#contextebox:hover .contexteimage img {
+  transform: translateY(-100%);
+}
+
+.contexteimage .contexte {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 5;
+  background: var(--neutral);
+  color: var(--textColor);
+  font-size: 11px;
+  text-align: justify;
+  line-height: 1.3;
+}
+
+.contexteimage .contexte::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contexteimage .contexte::-webkit-scrollbar-thumb {
+  background: var(--gold-accent);
+}
+
+.contexteimage .contexte::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Réseaux (Déplacé ici) */
+#reseaux {
+  grid-area: reseaux;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  padding: 0;
+  border: none;
+  background: transparent;
+  align-self: center;
+  /* Centré dans la ligne de 50px */
+}
+
+#reseaux a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32%;
+  height: 100%;
+  background: var(--neutral);
+  border: none;
+  color: var(--gold-accent);
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+#reseaux a:hover {
+  background: var(--contrastLighter);
+  color: var(--white);
+}
+
+
+/* -- COLONNE 3 : NEWS -- */
+#monthnews {
+  grid-area: news;
+  font-size: 10px;
+  /* Plus petit pour caser le texte */
+  line-height: 1.4;
+  color: var(--textColor);
+  text-align: left;
+  overflow-y: auto;
+  /* Scroll si trop long */
+}
+
+#monthnews center {
+  text-align: left;
+  margin-bottom: 5px;
+  display: block;
+}
+
+#monthnews::-webkit-scrollbar {
+  width: 3px;
+}
+
+#monthnews::-webkit-scrollbar-thumb {
+  background: var(--gold-accent);
+}
+
+
+/* -- COLONNE 4 : LIENS -- */
+#navdroite {
+  grid-area: links;
+  border: none;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#navdroite center {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Titre Liens Rapides */
+#navdroite rune {
+  display: block;
+  margin-bottom: 5px;
+  flex-shrink: 0;
+}
+
+/* Conteneur des boutons (div interne) */
+#navdroite div[style*="margin-top"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* Distribution équitable */
+  flex-grow: 1;
+  /* Occupe tout l'espace restant */
+  margin-top: 0 !important;
+  /* Override inline style */
+  height: 100%;
+  padding-bottom: 0px;
+  gap: 0;
+  /* Le gap est géré par space-between */
+}
+
+/* Masquer les <br> pour que Flexbox gère l'espacement */
+#navdroite br {
+  display: none;
+}
+
+#navdroite a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral);
+  padding: 0;
+  height: 28px;
+  /* Hauteur fixe pour uniformité */
+  width: 100%;
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  font-size: 9px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- REGULATION PAGE STYLES --- */
+
+/* --- REDESIGN REGLEMENT (Refined Style) --- */
+
+.vs-reg-container {
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.vs-reg-header {
+  font-family: var(--font-millgary), serif;
+  font-size: 3.5rem;
+  letter-spacing: 5px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  padding: 20px;
+
+  /* Velvet Sin signature gradient */
+  background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d4af37;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
+}
+
+.vs-reg-content {
+  padding: 30px;
+  color: var(--textColor);
+  text-align: justify;
+}
+
+.vs-reg-intro {
+  margin-bottom: 30px;
+  font-style: italic;
+  text-align: center;
+  font-size: 14px;
+}
+
+.vs-reg-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--gold-accent);
+  margin: 35px 0 20px 0;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.vs-reg-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-accent), transparent);
+  opacity: 0.6;
+}
+
+.vs-reg-content ul {
+  list-style: none;
+  /* We can add custom bullets if needed */
+  padding: 0;
+  margin: 0;
+}
+
+.vs-reg-content li {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.vs-reg-content li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--contrastLighter);
+}
+
+.vs-reg-content strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.vs-reg-content ins {
+  text-decoration: none;
+  border-bottom: 1px solid var(--contrastLighter);
+}
+
+/* --- FIN REDESIGN REGLEMENT (Refined Style) --- */
+
+/* --- REDESIGN FICHE PRESENTATION --- */
+
+/* --- CONTENEUR GLOBAL --- */
+.vs-sheet-container {
+  width: 90%;
+  max-width: 950px;
+  margin: 40px auto;
+  background-color: #120a0a;
+  /* Noir Onyx */
+  border: 1px solid #333;
+  /* Bordure discrète */
+  /* Double cadre effet "Luxe" */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 1),
+    inset 0 0 0 3px rgba(212, 175, 55, 0.2);
+  padding: 40px;
+  color: #ccc;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* --- EN-TÊTE --- */
+.vs-sheet-title-block {
+  text-align: center;
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding-bottom: 30px;
+}
+
+.vs-sheet-name {
+  font-family: 'Cinzel', serif;
+  font-size: 42px;
+  color: #D4AF37;
+  /* Or */
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+.vs-sheet-quote {
+  display: block;
+  margin-top: 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* --- GRILLE PRINCIPALE (Flexbox) --- */
+.vs-sheet-body {
+  display: flex;
+  flex-wrap: wrap;
+  /* Pour le mobile */
+  gap: 40px;
+}
+
+/* COLONNE GAUCHE : VISUELS */
+.vs-sheet-visuals {
+  flex: 0 0 300px;
+  /* Largeur fixe pour la colonne image */
+  width: 300px;
+}
+
+.vs-main-avatar {
+  width: 100%;
+  height: 480px;
+  /* Ratio 400x640 adapté */
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #333;
+  margin-bottom: 15px;
+  filter: sepia(20%) contrast(110%);
+  /* Petit filtre d'ambiance */
+  transition: 0.5s;
+}
+
+.vs-main-avatar:hover {
+  filter: sepia(0%) contrast(100%);
+}
+
+.vs-icon-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vs-sheet-icon {
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #333;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.vs-sheet-icon:hover {
+  opacity: 1;
+  border-color: #D4AF37;
+}
+
+/* COLONNE DROITE : CONTENU */
+.vs-sheet-info {
+  flex: 1;
+  /* Prend tout le reste de la place */
+}
+
+/* --- BLOC IDENTITÉ (Lignes fines) --- */
+.vs-id-card {
+  margin-bottom: 30px;
+}
+
+.vs-id-line {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 0;
+  align-items: center;
+}
+
+.vs-id-label {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  width: 120px;
+  /* Largeur fixe du label */
+  font-size: 14px;
+  line-height: 1.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vs-id-value {
+  color: #eee;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* SÉPARATEUR */
+.vs-sheet-sep {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, #D4AF37, transparent);
+  margin: 30px 0;
+  opacity: 0.5;
+}
+
+/* --- BLOCS DE TEXTE --- */
+.vs-text-block {
+  margin-bottom: 40px;
+}
+
+.vs-text-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  color: #e0e0e0;
+  border-left: 3px solid #D4AF37;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+.vs-text-content {
+  font-size: 14px;
+  line-height: 1.7;
+  text-align: justify;
+  padding-right: 10px;
+  /* Pour pas que le texte touche la scrollbar */
+  color: #aaa;
+}
+
+.vs-text-content strong {
+  color: #D4AF37;
+  font-weight: normal;
+}
+
+/* Code couleur spécial pour la validation */
+.vs-code-verif {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  border: 1px dashed #444;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* RESPONSIVE : Si écran petit, tout passe en colonne */
+@media (max-width: 768px) {
+  .vs-sheet-body {
+    flex-direction: column;
+  }
+
+  .vs-sheet-visuals {
+    width: 100%;
+    flex: none;
+  }
+
+  .vs-main-avatar {
+    height: 500px;
+  }
+}
+
+
+/* --- FIN REDESIGN FICHE PRESENTATION --- */
+
+
+/* Post Control Buttons (Citer, Editer, etc.) */
+ul.profile-icons {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  gap: 15px;
+}
+
+ul.profile-icons li a,
+.i_icon_quote,
+.i_icon_edit,
+.i_icon_delete,
+.i_icon_ip {
+  font-family: 'Karla', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--contrastLight);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+ul.profile-icons li a:hover,
+.i_icon_quote:hover,
+.i_icon_edit:hover,
+.i_icon_delete:hover,
+.i_icon_ip:hover {
+  color: var(--accentClr);
+  border-bottom-color: var(--accentClr);
+}
+
+/* Added for The Crimson Codex links centering */
+.sublink {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.sublink br {
+  display: none;
+}
+
+
+
+/* GENERALIZED: Reduce spacing between category title and links for ALL forums */
+.forum .forumtitle {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Fix spacing for ALL forums - Grid Approach */
+.forum .forum_desc {
+  grid-row: 2 / span 2;
+  /* Span adjacent rows to fill layout gap */
+  align-self: start;
+  /* Anchor to top of the row (under title) */
+  margin-top: 10px;
+  /* Preserved user preference */
+  border-top: none;
+  z-index: 5;
+}
+
+/*** RESPONSIVE NAVBAR: Back to top on small screens ***/
+@media only screen and (max-width: 1200px) {
+
+  /* Override body .navbar */
+  body .navbar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    padding: 10px 40px !important;
+
+    margin-bottom: 20px !important;
+    border-radius: 5px !important;
+    border: 2px solid var(--contrastLighter) !important;
+    border-left: 2px solid var(--contrastLighter) !important;
+    border-right: 2px solid var(--contrastLighter) !important;
+
+    transform: none !important;
+    overflow-y: visible !important;
+    box-shadow: none !important;
+  }
+
+  .navbar::before {
+    display: none !important;
+  }
+
+  .navbar li {
+    margin: 0 !important;
+    width: auto !important;
+    background: transparent !important;
+    display: inline-block !important;
+  }
+
+  .navbar li a.mainmenu {
+    border-bottom: none !important;
+    padding: 2px !important;
+    text-align: center !important;
+    display: inline !important;
+    width: auto !important;
+  }
+
+  .navbar li a.mainmenu:hover {
+    background: transparent !important;
+    padding-left: 2px !important;
+  }
+}
+
+/* Top Sites - Mini Box */
+#top_sites {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: var(--neutral);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 3px;
+  /* Leger arrondi pour 'mini case' effect */
+}
+
+/* Logos Top Sites */
+.ts-link {
+  width: 50px;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+
+.ts-link:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Disclaimer Styles - Harmonisé avec les popups admin */
+title_disclaimer {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 1.3em;
+  /* Même que staff_name */
+  font-weight: 700;
+  /* Même que staff_name */
+  color: var(--gold-accent);
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: none;
+  /* Plus propre, comme les popups */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Même que staff_name */
+}
+
+#disclaimer .survol {
+  text-align: left;
+  display: block;
+  padding-top: 5px;
+  height: 100%;
+  line-height: 2;
+  /* Espacement vertical pour lisibilité */
+}
+
+/* Tags - Style similaire au texte descriptif du popup */
+tag {
+  display: inline;
+  font-family: var(--font);
+  /* Police normale, pas Cinzel */
+  font-size: 0.95em;
+  font-weight: 400;
+  /* Normal, pas gras */
+  text-transform: none;
+  /* Pas de majuscules forcées */
+  color: var(--gold-accent);
+  /* Or pour ressembler aux liens du popup */
+  padding: 0;
+  border: none;
+  background: transparent;
+  transition: all 0.3s ease;
+  letter-spacing: 0;
+  cursor: default;
+  margin: 0;
+}
+
+tag::after {
+  content: " \00B7 ";
+  /* Middle Dot */
+  color: #0a0a0a;
+  margin: 0 4px;
+}
+
+tag:last-child::after {
+  content: none;
+}
+
+tag:hover {
+  text-shadow: 0 0 5px var(--gold-accent);
+  color: var(--white);
+  background: transparent;
+}
+
+/* Navigation Droite - Links Column */
+#navdroite {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around !important;
+  height: 100% !important;
+}
+
+.pa-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: link-counter;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 25px;
+  /* Ajoute de l'espacement entre les éléments pour éviter le chevauchement */
+}
+
+.pa-li-link {
+  margin-bottom: 0;
+  display: flex;
+  /* Pour bien aligner le contenu */
+  align-items: center;
+}
+
+.pa-link {
+  font-family: 'Cinzel', serif !important;
+  font-size: 2.8em !important;
+  /* BEAUCOUP plus grand */
+  font-weight: 300 !important;
+  color: var(--white) !important;
+  /* BLANC pour contraste */
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  /* Aligne le contenu au début */
+  transition: all 0.3s ease;
+  padding-left: 0;
+  /* Retirer le padding gauche pour aligner avec le chiffre */
+  background: transparent !important;
+  border: none !important;
+  letter-spacing: 3px !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  /* Prendre toute la largeur */
+}
+
+.pa-link::before {
+  counter-increment: link-counter;
+  content: "0" counter(link-counter) ".";
+  font-family: 'Cinzel', serif;
+  color: var(--gold-accent);
+  /* Or */
+  margin-right: 20px;
+  /* Espacement entre le numéro et le texte */
+  font-size: 0.9em;
+  font-weight: 400;
+  opacity: 0.8;
+  min-width: 60px;
+  /* Largeur fixe pour aligner les numéros */
+  text-align: left;
+  /* Ancre les numéros à gauche */
+  flex-shrink: 0;
+  /* Empêche le numéro de se rétrécir */
+}
+
+.pa-link:hover {
+  text-shadow: 0 0 15px rgba(234, 186, 107, 0.6);
+  color: var(--gold-accent) !important;
+  /* Or au hover */
+  transform: translateX(10px);
+}
+
+.pa-link:hover::before {
+  color: var(--white) !important;
+  /* Chiffre en blanc au hover */
+  opacity: 1;
+}
+
+/* Top Sites Integration in PA Links */
+.pa-link-topsites {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  /* Espacement entre les icônes */
+  cursor: default !important;
+  width: 85%;
+}
+
+.pa-link-topsites::before {
+  content: "0" counter(link-counter) ".";
+  /* Garde le compteur pour 05. */
+  font-family: 'Cinzel', serif;
+  color: var(--gold-accent);
+  /* Or */
+  margin-right: 20px;
+  /* Espacement entre le numéro et le texte */
+  font-size: 0.9em;
+  font-weight: 400;
+  opacity: 0.8;
+  min-width: 60px;
+  /* Largeur fixe pour aligner les numéros */
+  text-align: left;
+  /* Ancre les numéros à gauche */
+  flex-shrink: 0;
+  /* Empêche le numéro de se rétrécir */
+}
+
+.pa-link-topsites a {
+  display: inline-flex;
+  transition: all 0.3s ease;
+}
+
+.pa-link-topsites .ts-link {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.pa-link-topsites a:hover .ts-link {
+  opacity: 1;
+  border-color: var(--gold-accent);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(234, 186, 107, 0.4);
+}
+
+/* ========================================= */
+/* NOTIFICATION ICON (Fixed, Top-Right of Page) */
+/* ========================================= */
+
+#notiffi_button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  /* Au-dessus de tout */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #120a0a;
+  /* Même fond que le body */
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#notiffi_button:hover {
+  background: #2d1b1b;
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 15px rgba(234, 186, 107, 0.5);
+}
+
+/* Bell Icon (Font Awesome) */
+#notiffi_button i {
+  font-size: 18px;
+  color: var(--gold-accent);
+  transition: all 0.3s ease;
+}
+
+#notiffi_button:hover i {
+  color: var(--white);
+  transform: rotate(15deg);
+}
+
+/* SVG Bell Icon Fallback (si Font Awesome non chargé) */
+#notiffi_button svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--gold-accent);
+  transition: all 0.3s ease;
+}
+
+#notiffi_button:hover svg {
+  fill: var(--white);
+  transform: rotate(15deg);
+}
+
+/* Hide the text "Notifications" */
+#notiffi_button .ntf_button-text {
+  display: none;
+}
+
+/* Unread Count Badge */
+#notiffi_button .unread_count,
+#notiffi_button [data-name="unread_notifs"] {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #c41e3a;
+  /* Rouge vif */
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border: 2px solid #120a0a;
+}
+
+/* Hide badge if empty or shows [count] placeholder */
+#notiffi_button .unread_count:empty,
+#notiffi_button [data-name="unread_notifs"]:empty {
+  display: none;
+}
+
+/* ========================================
+   GROUP POST CARDS - START
+   Styles for group presentation posts
+   ======================================== */
+
+.vsO-cdr {
+  background: var(--mso2);
+  border: 5px solid var(--accent) !important;
+  margin: auto;
+  padding: 0 5px 5px;
+  text-align: center;
+  width: 450px
+}
+
+.vsO-cdr img {
+  max-width: 200px;
+  margin-bottom: 0;
+  margin-top: 6px
+}
+
+.vsO-tt {
+  background: var(--wallpaper);
+  border: 1px solid var(--accent) !important;
+  color: var(--title);
+  font-family: Arapey;
+  font-size: 19px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px 0;
+  text-align: center
+}
+
+.vsO-txt {
+  background: var(--mso1);
+  border: 1px solid var(--accent) !important;
+  font-family: helvetica;
+  font-size: 14px;
+  padding: 20px 23px;
+  text-align: justify
+}
+
+.vsO-txt img {
+  margin-top: 0 !important
+}
+
+.vsO-cdt {
+  background: var(--wallpaper);
+  background-size: 50%;
+  border: 1px solid var(--accent) !important;
+  color: var(--title);
+  font-family: Arapey;
+  font-size: 8px;
+  letter-spacing: 4px;
+  margin-top: 5px;
+  padding: 1px 0;
+  text-align: center;
+  text-transform: uppercase
+}
+
+
+/* ========================================
+   GROUP POST CARDS - END
+   ======================================== */
+
+/* ========================================
+   FAQ - START
+   ======================================== */
+
+/* --- CONTENEUR GLOBAL FAQ --- */
+.vs-faq-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-top: 1px solid var(--borderGold);
+}
+
+.vs-faq-wrapper br {
+  display: none;
+}
+
+/* --- L'ÉLÉMENT (LA BOÎTE) --- */
+.vs-faq-item {
+  border-bottom: 1px solid var(--borderGold);
+  /* Lignes de séparation fines */
+  transition: all 0.5s ease;
+}
+
+/* Changement de couleur au survol de la question */
+.vs-faq-item:hover {
+  background: rgba(197, 160, 89, 0.05);
+  /* Légère teinte dorée très subtile */
+}
+
+/* --- LE TITRE CLIQUABLE (SUMMARY) --- */
+.vs-faq-item summary {
+  list-style: none;
+  /* Cache la flèche moche par défaut */
+  cursor: pointer;
+  padding: 25px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Cache la flèche par défaut sur Chrome/Safari */
+.vs-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Le texte de la question */
+.vs-faq-title {
+  font-family: 'Playfair Display', serif;
+  /* Ta police titre */
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #ccc;
+  transition: 0.3s;
+}
+
+/* L'icône (+) */
+.vs-faq-icon {
+  color: #555;
+  font-size: 14px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* --- ÉTAT OUVERT (QUAND ON CLIQUE) --- */
+/* La question devient dorée */
+.vs-faq-item[open] .vs-faq-title {
+  color: #C5A059;
+}
+
+/* L'icône tourne de 45° pour faire une croix (x) et devient dorée */
+.vs-faq-item[open] .vs-faq-icon {
+  transform: rotate(45deg);
+  color: #C5A059;
+}
+
+/* --- LE CONTENU (LA RÉPONSE) --- */
+.vs-faq-content {
+  padding: 0 20px 20px 20px;
+  font-size: 14px;
+  line-height: 160%;
+  color: #888;
+  text-align: justify;
+  animation: fadeIn 0.5s ease;
+  /* Petit effet d'apparition */
+}
+
+/* Animation douce */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   FAQ - END
+   ======================================== */
+
+/* ========================================
+   BOTTIN VELVET SIN - START
+   ======================================== */
+
+/* Import des polices */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+/* Le Conteneur Principal */
+.vs-registry-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  background-color: #0c0c0c;
+  border: 1px solid #1a1a1a;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  font-family: 'Playfair Display', serif;
+  color: #c5a059;
+  padding-bottom: 30px;
+}
+
+/* En-tête */
+.vs-registry-header {
+  padding: 30px 15px 10px 15px;
+  text-align: center;
+  border-bottom: 2px solid #8a6e36;
+  margin-bottom: 25px;
+}
+
+.vs-registry-title {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #e6c888;
+  letter-spacing: 5px;
+  line-height: 1;
+}
+
+.vs-registry-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #c5a059;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+/* La Grille */
+.vs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  /* Espace entre les blocs */
+  padding: 0 15px;
+}
+
+.vs-grid br {
+  display: none;
+}
+
+/* La Boîte de Lettre (TAILLE FIXE ICI) */
+.vs-box {
+  width: 230px;
+  /* Largeur fixe */
+  height: 250px;
+  /* Hauteur fixe (Change cette valeur si tu veux plus grand) */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid #333;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* La Lettre (A, B, C...) */
+.vs-letter {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  color: #8a6e36;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  flex-shrink: 0;
+  /* Empêche la lettre d'être écrasée */
+}
+
+/* La zone de contenu (Noms) */
+.vs-content {
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-y: auto;
+  /* Scroll si trop de noms */
+  flex-grow: 1;
+  /* Prend tout l'espace restant */
+  padding-right: 5px;
+  /* Espace pour la scrollbar */
+}
+
+/* Design de la Scrollbar (Chrome/Safari) */
+.vs-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.vs-content::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.vs-content::-webkit-scrollbar-thumb {
+  background: #8a6e36;
+}
+
+/* Style des noms */
+.vs-row {
+  margin-bottom: 4px;
+}
+
+.vs-name {
+  color: #e6c888;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.vs-char {
+  color: #777;
+  font-style: italic;
+}
+
+
+/* ========================================
+   BOTTIN VELVET SIN - END
+   ======================================== */
+
+/* ========================================
+   PAGE DESTINS (SCENARIOS & HOOKS) - START
+   ======================================== */
+
+/* Conteneur principal */
+.vs-destiny-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  font-family: 'Playfair Display', serif;
+  color: #ccc;
+}
+
+/* Titres de section (Scénarios / Amorces) */
+.vs-section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #e6c888;
+  text-transform: uppercase;
+  border-bottom: 1px solid #8a6e36;
+  padding-bottom: 10px;
+  margin: 40px 0 20px 0;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+/* --- STYLE 1 : LES SCENARIOS (Grosses cartes avec image) --- */
+.vs-scenario-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.vs-scenario-card {
+  width: 48%;
+  /* 2 par ligne */
+  background: #0c0c0c;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.vs-scenario-card:hover {
+  border-color: #8a6e36;
+  transform: translateY(-2px);
+}
+
+.vs-scen-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 2px solid #8a6e36;
+  flex-shrink: 0;
+}
+
+.vs-scen-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.vs-scen-name {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: #e6c888;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.vs-scen-desc {
+  font-size: 11px;
+  color: #999;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.vs-scen-link {
+  display: block;
+  margin-top: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  color: #8a6e36;
+  text-decoration: none;
+  text-align: right;
+}
+
+/* --- STYLE 2 : LES HOOKS (Petites notes compactes) --- */
+.vs-hooks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Grille auto-ajustable */
+  gap: 15px;
+}
+
+.vs-hook-box {
+  background: #111;
+  border-left: 3px solid #8a6e36;
+  /* Barre dorée à gauche */
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.vs-hook-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.vs-hook-text {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.vs-hook-meta {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+  border-top: 1px solid #222;
+  padding-top: 5px;
+  text-align: right;
+}
+
+/* Responsive Mobile */
+@media (max-width: 600px) {
+  .vs-scenario-card {
+    width: 100%;
+  }
+
+  .vs-hooks-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   PAGE DESTINS (SCENARIOS & HOOKS) - END
+   ======================================== */
+
+
+/* ========================================
+   PAGE FAQ - START
+   ======================================== */
+
+/* --- CONFIGURATION GLOBALE --- */
+.vs-faq-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Playfair Display', serif;
+  background: #050505;
+  border: 1px solid #1a1a1a;
+  padding: 20px;
+}
+
+/* --- LE BLOC QUESTION --- */
+details.vs-faq-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #1a1a1a;
+  transition: all 0.3s ease;
+}
+
+details.vs-faq-item:last-child {
+  border-bottom: none;
+}
+
+/* --- LE TITRE (SUMMARY) --- */
+summary.vs-faq-title {
+  position: relative;
+  /* Nécessaire pour placer l'icône */
+  display: block;
+  /* On change le flex pour mieux gérer le positionnement */
+  padding: 15px 40px 15px 10px;
+  /* 40px à droite pour laisser place à l'icône */
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  /* Un peu plus fin */
+  letter-spacing: 1px;
+  color: #888;
+  text-transform: uppercase;
+  list-style: none;
+  transition: color 0.3s ease, padding 0.3s ease;
+}
+
+/* Cache le marqueur par défaut */
+summary.vs-faq-title::-webkit-details-marker {
+  display: none;
+}
+
+/* --- L'ICÔNE DESSINÉE EN CSS (Barres fines) --- */
+/* La barre horizontale (toujours visible) */
+summary.vs-faq-title::after {
+  content: '';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 12px;
+  /* Longueur de la barre */
+  height: 1px;
+  /* Épaisseur fine */
+  background-color: #555;
+  /* Gris au repos */
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+/* La barre verticale (qui va disparaître/tourner) */
+summary.vs-faq-title::before {
+  content: '';
+  position: absolute;
+  right: 15.5px;
+  /* Ajusté pour centrer sur la barre horizontale (right: 10px + half width) */
+  top: 50%;
+  width: 1px;
+  /* Épaisseur fine */
+  height: 12px;
+  /* Hauteur */
+  background-color: #555;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* --- ETAT SURVOL (HOVER) --- */
+summary.vs-faq-title:hover {
+  color: #c5a059;
+  padding-left: 18px;
+}
+
+summary.vs-faq-title:hover::after,
+summary.vs-faq-title:hover::before {
+  background-color: #c5a059;
+  /* Les barres deviennent dorées */
+}
+
+/* --- ETAT OUVERT (OPEN) --- */
+details.vs-faq-item[open] summary.vs-faq-title {
+  color: #c5a059;
+  padding-left: 18px;
+}
+
+details.vs-faq-item[open] summary.vs-faq-title::after {
+  background-color: #c5a059;
+}
+
+/* La magie : on tourne la barre verticale de 90deg, elle se fond dans l'horizontale */
+details.vs-faq-item[open] summary.vs-faq-title::before {
+  transform: translateY(-50%) rotate(90deg);
+  background-color: #c5a059;
+}
+
+/* --- LE CONTENU --- */
+.vs-faq-content {
+  padding: 5px 20px 20px 20px;
+  color: #999;
+  font-size: 13px;
+  line-height: 1.7;
+  animation: fadeContent 0.5s ease;
+}
+
+@keyframes fadeContent {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vs-faq-content a {
+  color: #c5a059;
+  text-decoration: none;
+  border-bottom: 1px dotted #c5a059;
+}
+
+/* ========================================
+   PAGE FAQ - END
+   ======================================== */
