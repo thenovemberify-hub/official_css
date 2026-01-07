@@ -148,66 +148,6 @@ body {
   z-index: -1;
 }
 
-/* SCROLLBAR --- */
-/* Scrollbar entière */
-/* Rail */
-/* ::-webkit-scrollbar-track {} - Removed empty rule */
-
-/* Poignée */
-/* ::-webkit-scrollbar-thumb {} - Removed empty rule */
-
-/* HERO SECTION */
-.full-height {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #e3c16f;
-  position: relative;
-}
-
-.hero__title {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-  margin-left: -50px;
-}
-
-.hero__subtitle {
-  font-size: 24px;
-  margin-bottom: 10px;
-  font-family: "Crimson Text", serif;
-}
-
-.hero__separator {
-  width: 50px;
-  height: 2px;
-  background: #bb8a89;
-  margin: 20px auto;
-}
-
-.hero__text {
-  max-width: 600px;
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 30px;
-}
-
-.hero__plus a {
-  color: #e3c16f;
-  text-decoration: none;
-  border: 1px solid #bb8a89;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: background 0.3s;
-}
-
-.hero__plus a:hover {
-  background: #bb8a89;
-}
-
 /* STRUCTURE PRINCIPALE ---*/
 .main_forum {
   width: 1060px;
@@ -3901,6 +3841,104 @@ velvetify {
 
 /* --- REGULATION PAGE STYLES --- */
 
+/* --- TEMPLATE ADMINISTRATIF VELVET SIN --- */
+
+/* Le Conteneur Principal */
+.vs-admin-card {
+  max-width: 750px;
+  /* Largeur idéale pour la lecture */
+  margin: 40px auto;
+  /* Centré avec de l'espace autour */
+  background-color: #050505;
+  /* Fond Noir Profond */
+  border: 1px solid #c5a059;
+  /* Le filet doré fin (1px) */
+  padding: 50px;
+  /* Espace intérieur aéré */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  /* Ombre portée légère */
+  position: relative;
+  color: #cccccc;
+  /* Texte gris clair (pas blanc pur pour les yeux) */
+  font-family: 'Inter', sans-serif;
+  /* Police de corps propre */
+  font-size: 14px;
+  line-height: 1.8;
+  /* Interligne confortable */
+  text-align: justify;
+}
+
+/* Le Titre Principal */
+.vs-admin-title {
+  font-family: 'Playfair Display', serif;
+  /* Police Titre */
+  color: #c5a059;
+  /* Doré */
+  font-size: 28px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+/* Le Sous-titre / Date */
+.vs-admin-subtitle {
+  display: block;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  /* Espace avant le texte */
+  border-bottom: 1px solid #1a1a1a;
+  /* Ligne de séparation très discrète */
+  padding-bottom: 20px;
+}
+
+/* Les Titres de section (h2, h3 simulés) */
+.vs-admin-h2 {
+  color: #c5a059;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-left: 2px solid #c5a059;
+  /* Petite barre dorée à gauche */
+  padding-left: 15px;
+}
+
+/* Texte mis en valeur (Gras/Doré) */
+.vs-gold {
+  color: #c5a059;
+  font-weight: bold;
+}
+
+/* Bloc de citation / Note importante */
+.vs-admin-note {
+  background-color: #101010;
+  /* Légèrement plus clair que le fond */
+  border: 1px solid #1a1a1a;
+  padding: 20px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #999;
+  text-align: center;
+}
+
+/* La Signature en bas */
+.vs-admin-footer {
+  margin-top: 50px;
+  text-align: right;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
 /* --- REDESIGN REGLEMENT (Refined Style) --- */
 
 .vs-reg-container {
@@ -3996,207 +4034,6 @@ velvetify {
 }
 
 /* --- FIN REDESIGN REGLEMENT (Refined Style) --- */
-
-/* --- REDESIGN FICHE PRESENTATION --- */
-
-/* --- CONTENEUR GLOBAL --- */
-.vs-sheet-container {
-  width: 90%;
-  max-width: 950px;
-  margin: 40px auto;
-  background-color: #120a0a;
-  /* Noir Onyx */
-  border: 1px solid #333;
-  /* Bordure discrète */
-  /* Double cadre effet "Luxe" */
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 1),
-    inset 0 0 0 3px rgba(212, 175, 55, 0.2);
-  padding: 40px;
-  color: #ccc;
-  font-family: 'Montserrat', sans-serif;
-}
-
-/* --- EN-TÊTE --- */
-.vs-sheet-title-block {
-  text-align: center;
-  margin-bottom: 50px;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  padding-bottom: 30px;
-}
-
-.vs-sheet-name {
-  font-family: 'Cinzel', serif;
-  font-size: 42px;
-  color: #D4AF37;
-  /* Or */
-  text-transform: uppercase;
-  letter-spacing: 6px;
-  margin: 0;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-}
-
-.vs-sheet-quote {
-  display: block;
-  margin-top: 10px;
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  font-style: italic;
-  color: #888;
-  letter-spacing: 1px;
-}
-
-/* --- GRILLE PRINCIPALE (Flexbox) --- */
-.vs-sheet-body {
-  display: flex;
-  flex-wrap: wrap;
-  /* Pour le mobile */
-  gap: 40px;
-}
-
-/* COLONNE GAUCHE : VISUELS */
-.vs-sheet-visuals {
-  flex: 0 0 300px;
-  /* Largeur fixe pour la colonne image */
-  width: 300px;
-}
-
-.vs-main-avatar {
-  width: 100%;
-  height: 480px;
-  /* Ratio 400x640 adapté */
-  background-size: cover;
-  background-position: center;
-  border: 1px solid #333;
-  margin-bottom: 15px;
-  filter: sepia(20%) contrast(110%);
-  /* Petit filtre d'ambiance */
-  transition: 0.5s;
-}
-
-.vs-main-avatar:hover {
-  filter: sepia(0%) contrast(100%);
-}
-
-.vs-icon-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.vs-sheet-icon {
-  width: 90px;
-  height: 90px;
-  background-size: cover;
-  background-position: center;
-  border: 1px solid #333;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.vs-sheet-icon:hover {
-  opacity: 1;
-  border-color: #D4AF37;
-}
-
-/* COLONNE DROITE : CONTENU */
-.vs-sheet-info {
-  flex: 1;
-  /* Prend tout le reste de la place */
-}
-
-/* --- BLOC IDENTITÉ (Lignes fines) --- */
-.vs-id-card {
-  margin-bottom: 30px;
-}
-
-.vs-id-line {
-  display: flex;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 10px 0;
-  align-items: center;
-}
-
-.vs-id-label {
-  font-family: 'Cinzel', serif;
-  color: #D4AF37;
-  width: 120px;
-  /* Largeur fixe du label */
-  font-size: 14px;
-  line-height: 1.7;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.vs-id-value {
-  color: #eee;
-  font-size: 13px;
-  font-style: italic;
-}
-
-/* SÉPARATEUR */
-.vs-sheet-sep {
-  border: 0;
-  height: 1px;
-  background: linear-gradient(to right, #D4AF37, transparent);
-  margin: 30px 0;
-  opacity: 0.5;
-}
-
-/* --- BLOCS DE TEXTE --- */
-.vs-text-block {
-  margin-bottom: 40px;
-}
-
-.vs-text-title {
-  font-family: 'Cinzel', serif;
-  font-size: 18px;
-  color: #e0e0e0;
-  border-left: 3px solid #D4AF37;
-  padding-left: 15px;
-  margin-bottom: 20px;
-  letter-spacing: 2px;
-}
-
-.vs-text-content {
-  font-size: 14px;
-  line-height: 1.7;
-  text-align: justify;
-  padding-right: 10px;
-  /* Pour pas que le texte touche la scrollbar */
-  color: #aaa;
-}
-
-.vs-text-content strong {
-  color: #D4AF37;
-  font-weight: normal;
-}
-
-/* Code couleur spécial pour la validation */
-.vs-code-verif {
-  font-family: 'Courier New', monospace;
-  font-size: 11px;
-  border: 1px dashed #444;
-  padding: 5px 10px;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-/* RESPONSIVE : Si écran petit, tout passe en colonne */
-@media (max-width: 768px) {
-  .vs-sheet-body {
-    flex-direction: column;
-  }
-
-  .vs-sheet-visuals {
-    width: 100%;
-    flex: none;
-  }
-
-  .vs-main-avatar {
-    height: 500px;
-  }
-}
-
-
-/* --- FIN REDESIGN FICHE PRESENTATION --- */
 
 
 /* Post Control Buttons (Citer, Editer, etc.) */
