@@ -5052,3 +5052,122 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* ========================================
    PAGE FAQ - END
    ======================================== */
+
+/* ========================================
+   PAGE CARTE - START
+   ======================================== */
+
+/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
+.vs-flip-card {
+  background-color: transparent;
+  width: 300px;
+  /* Largeur de la carte de Tarot */
+  height: 480px;
+  /* Hauteur (Format portrait classique) */
+  perspective: 1000px;
+  /* Donne la profondeur 3D */
+  margin: 20px auto;
+  /* Centré */
+  cursor: pointer;
+  /* Indique qu'on peut interagir */
+}
+
+/* --- L'INTERIEUR QUI BOUGE --- */
+.vs-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  /* Durée de l'animation (0.8s est fluide) */
+  transform-style: preserve-3d;
+}
+
+/* L'ACTION : Quand on survole, on tourne */
+.vs-flip-card:hover .vs-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* --- LES DEUX FACES (RECTO / VERSO) --- */
+.vs-flip-front,
+.vs-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Cache le dos de l'élément */
+  backface-visibility: hidden;
+  border-radius: 5px;
+  /* Coins légèrement arrondis */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  /* Ombre portée */
+}
+
+/* --- RECTO : L'IMAGE --- */
+.vs-flip-front {
+  background-color: #000;
+  overflow: hidden;
+  /* 1. Coupe tout ce qui oserait dépasser */
+  line-height: 0;
+  /* 2. L'arme absolue : supprime l'espace pour le texte fantôme */
+  border-radius: 5px;
+  /* On garde les coins ronds */
+}
+
+.vs-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Remplit bien tout le cadre */
+  display: block;
+  /* 3. Dit au navigateur "ce n'est pas du texte" */
+  margin: 0;
+  /* Sécurité supplémentaire */
+  border-radius: 5px;
+}
+
+/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
+.vs-flip-back {
+  background-color: #050505;
+  /* Ton Noir Profond */
+  border: 1px solid #c5a059;
+  /* Bordure Dorée */
+  color: #e0e0e0;
+  transform: rotateY(180deg);
+  /* Elle commence déjà retournée */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centre le texte verticalement */
+  align-items: center;
+  padding: 30px;
+  /* Marge intérieure */
+  box-sizing: border-box;
+  /* Important pour que le padding ne casse pas la taille */
+}
+
+/* TYPOGRAPHIE DU DOS */
+.vs-back-title {
+  font-family: 'Playfair Display', serif;
+  color: #c5a059;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  width: 100%;
+  /* La ligne prend toute la largeur */
+}
+
+.vs-back-desc {
+  font-family: 'Playfair Display', serif;
+  /* Ou ta police de corps */
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+/* ========================================
+   PAGE CARTE - END
+   ======================================== */
