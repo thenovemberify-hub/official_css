@@ -282,7 +282,7 @@ body {
 /* Conteneur de toutes les sous-sections
  * comme les encadrés d'options, de rappel, etc... */
 .panel {
-  background: var(--neutral);
+  background: #120a0a;
   border: var(--border);
   border-radius: 5px;
   margin: 25px 0;
