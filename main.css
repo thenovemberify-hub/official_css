@@ -4,6 +4,53 @@
  ****** Elements du forum qui définissent sa structure et sa hiérachie sur toutes les pages 
  ****** (ne les RENOMMEZ PAS, ils sont généraux aux pages Web ou à Forumactif) ------- ******/
 
+:root {
+  --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+
+  --fond-category: #2a1a1a;
+  --neutral: #120a0a;
+  /* Nouveau fond rouge-brun foncé */
+
+  --neutralDark: #0e0808;
+  /* Plus foncé */
+  --neutralDarker: #241515;
+  /* Variation */
+  --dark: #080404;
+
+  --subcategory-dark: #1e1e24;
+
+  --contrast: #e5e5f0;
+  --contrastLight: #f4f4f4;
+  --contrastLighter: #40485e;
+
+  --accentClr: #D4AF37;
+  --accentClrDark: #D4AF37;
+
+  --little-size: 0.7rem;
+  --normal-size: 0.8rem;
+  --medium-size: 0.92rem;
+  --large-size: 1.1rem;
+  --title-size: 1.4rem;
+
+  --font: "Inter", sans-serif;
+  --font-title: "Playfair Display";
+  --font3: "Roboto", sans-serif;
+
+  --textColor: #c7c5cd;
+  --textColorAccent: #e5e5f0;
+
+  --border: 1px solid #363636;
+
+  --shadowBox: 0 0 20px var(--neutralDark);
+  --font-millgary: 'Millgary', serif;
+
+  /* Consolidated color variables (same as light mode for consistency) */
+  --gold-accent: #eaba6b;
+  --gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
+  --gold-text-gradient: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  --white: var(--white);
+  --font-cinzel: 'Cinzel', serif;
+}
 
 /* S'applique à TOUS les éléments du forum*/
 * {
