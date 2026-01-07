@@ -3849,9 +3849,9 @@ velvetify {
   /* Largeur idéale pour la lecture */
   margin: 40px auto;
   /* Centré avec de l'espace autour */
-  background-color: #050505;
+  background-color: var(--dark);
   /* Fond Noir Profond */
-  border: 1px solid #c5a059;
+  border: 1px solid var(--borderGold);
   /* Le filet doré fin (1px) */
   padding: 50px;
   /* Espace intérieur aéré */
@@ -3882,6 +3882,28 @@ velvetify {
   font-weight: 400;
 }
 
+/* Le Titre de Section */
+.vs-reg-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--gold-accent);
+  margin: 35px 0 20px 0;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.vs-reg-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-accent), transparent);
+  opacity: 0.6;
+}
+
 /* Le Sous-titre / Date */
 .vs-admin-subtitle {
   display: block;
@@ -3897,35 +3919,11 @@ velvetify {
   padding-bottom: 20px;
 }
 
-/* Les Titres de section (h2, h3 simulés) */
-.vs-admin-h2 {
-  color: #c5a059;
-  font-family: 'Playfair Display', serif;
-  font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-left: 2px solid #c5a059;
-  /* Petite barre dorée à gauche */
-  padding-left: 15px;
-}
 
 /* Texte mis en valeur (Gras/Doré) */
 .vs-gold {
   color: #c5a059;
   font-weight: bold;
-}
-
-/* Bloc de citation / Note importante */
-.vs-admin-note {
-  background-color: #101010;
-  /* Légèrement plus clair que le fond */
-  border: 1px solid #1a1a1a;
-  padding: 20px;
-  margin: 20px 0;
-  font-style: italic;
-  color: #999;
-  text-align: center;
 }
 
 /* La Signature en bas */
@@ -3968,10 +3966,17 @@ velvetify {
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
 }
 
-.vs-reg-content {
-  padding: 30px;
-  color: var(--textColor);
+.vs-text-elite {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  color: #e0e0e0;
+  /* Gris très clair quasi blanc */
+  line-height: 1.6;
+  /* Aéré pour la lecture */
   text-align: justify;
+  /* Justifié pour faire "bloc" propre */
+  display: block;
+  /* Assure que ça prend toute la largeur */
 }
 
 .vs-reg-intro {
@@ -3979,27 +3984,6 @@ velvetify {
   font-style: italic;
   text-align: center;
   font-size: 14px;
-}
-
-.vs-reg-title {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  color: var(--gold-accent);
-  margin: 35px 0 20px 0;
-  font-family: 'Cinzel', serif;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 2px;
-  font-weight: 700;
-}
-
-.vs-reg-title::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--gold-accent), transparent);
-  opacity: 0.6;
 }
 
 .vs-reg-content ul {
@@ -4032,8 +4016,6 @@ velvetify {
   text-decoration: none;
   border-bottom: 1px solid var(--contrastLighter);
 }
-
-/* --- FIN REDESIGN REGLEMENT (Refined Style) --- */
 
 
 /* Post Control Buttons (Citer, Editer, etc.) */
