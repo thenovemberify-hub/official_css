@@ -32,6 +32,7 @@
   --large-size: 1.1rem;
   --title-size: 1.4rem;
 
+  --font-millgary: 'Millgary', serif;
   --font: "Inter", sans-serif;
   --font-title: "Playfair Display";
   --font3: "Roboto", sans-serif;
@@ -42,7 +43,8 @@
   --border: 1px solid #363636;
 
   --shadowBox: 0 0 20px var(--neutralDark);
-  --font-millgary: 'Millgary', serif;
+  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
+  --bg-blur: none;
 
   /* Consolidated color variables (same as light mode for consistency) */
   --gold-accent: #eaba6b;
@@ -1611,7 +1613,7 @@ a.forumtitle {
 .forum_desc {
   grid-column: 1;
   grid-row: 3;
-  background: rgba(18, 10, 10, 0.4);
+  background: var(--dark);
   /* Frosted glass */
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
