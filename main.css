@@ -3937,7 +3937,7 @@ velvetify {
   letter-spacing: 2px;
 }
 
-/* --- REDESIGN REGLEMENT (Refined Style) --- */
+/* --- STYLE ELITE --- */
 
 .vs-reg-container {
   width: 100%;
@@ -3969,14 +3969,10 @@ velvetify {
 .vs-text-elite {
   font-family: 'Playfair Display', serif;
   font-size: 14px;
-  color: #e0e0e0;
-  /* Gris très clair quasi blanc */
-  line-height: 1.6;
-  /* Aéré pour la lecture */
+  color: var(--textColor);
+  line-height: 1.7;
   text-align: justify;
-  /* Justifié pour faire "bloc" propre */
   display: block;
-  /* Assure que ça prend toute la largeur */
 }
 
 .vs-reg-intro {
@@ -5052,3 +5048,119 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* ========================================
    PAGE FAQ - END
    ======================================== */
+
+
+/* --- LES CARTES DE TAROT (GROUPES) --- */
+
+/* La Grille Conteneur */
+.vs-tarot-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  /* Espace entre les cartes */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* La Carte (L'objet) */
+.vs-tarot-card {
+  width: 48%;
+  /* 2 cartes par ligne (laisse un peu de marge) */
+  background-color: #0c0c0c;
+  border: 1px solid #333;
+  /* Bordure discrète par défaut */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Effet au survol : la carte monte légèrement et brille */
+.vs-tarot-card:hover {
+  transform: translateY(-5px);
+  border-color: #c5a059;
+  box-shadow: 0 10px 25px rgba(197, 160, 89, 0.1);
+}
+
+/* Zone Image (Haut de la carte) */
+.vs-tarot-img-container {
+  width: 100%;
+  height: 250px;
+  /* Hauteur fixe de l'image */
+  overflow: hidden;
+  border-bottom: 2px solid #c5a059;
+  position: relative;
+}
+
+.vs-tarot-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* L'image remplit le cadre sans être déformée */
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.vs-tarot-card:hover .vs-tarot-img {
+  opacity: 1;
+  /* L'image s'éclaire au survol */
+}
+
+/* Zone Texte (Bas de la carte) */
+.vs-tarot-body {
+  padding: 25px;
+  text-align: center;
+  background: linear-gradient(to bottom, #0f0f0f, #080808);
+}
+
+/* Le Numéro (Chiffre romain en haut) */
+.vs-tarot-num {
+  font-family: 'Cinzel', serif;
+  color: #555;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Le Titre (Nom du groupe) */
+.vs-tarot-title {
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  color: #e6c888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+/* Le Sous-titre (Surnom) */
+.vs-tarot-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #8a6e36;
+  font-size: 12px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* La Description */
+.vs-tarot-desc {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  color: #aaa;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* RESPONSIVE : Sur mobile, 1 seule colonne */
+@media screen and (max-width: 700px) {
+  .vs-tarot-card {
+    width: 100%;
+  }
+}
+
+/* --- END LES CARTES DE TAROT (GROUPES) --- */
