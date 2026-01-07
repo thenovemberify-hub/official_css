@@ -4647,6 +4647,10 @@ tag:hover {
   padding-bottom: 30px;
 }
 
+.vs-registry-container br {
+  display: none;
+}
+
 /* En-tête */
 .vs-registry-header {
   padding: 30px 15px 10px 15px;
