@@ -2106,10 +2106,6 @@ a.forumtitle {
   margin-top: 0 !important;
 }
 
-.bienvenue-box {
-  flex: 3;
-}
-
 .bienvenue-box .qeel-content.split {
   display: flex;
   flex-direction: row !important;
@@ -2136,10 +2132,6 @@ a.forumtitle {
 .bienvenue-logo img {
   width: 100px;
   opacity: 0.5;
-}
-
-.bienvenue-right {
-  max-width: 110px;
 }
 
 .bienvenue-right img {
