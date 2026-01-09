@@ -2068,12 +2068,17 @@ a.forumtitle {
 /* Image Banner Container */
 .qeel-image-banner {
   width: 277px;
+  height: 80px;
+  /* Reduced height to allow user box to expand more */
+  flex: 0 0 auto;
+  /* Prevent flex growth */
   box-sizing: border-box;
   border: 1px solid var(--borderGold);
   margin: 0 auto;
   /* Ensure centering */
   display: flex;
-  /* Remove unwanted whitespace */
+  overflow: hidden;
+  /* Ensure clean crop */
 }
 
 .qeel-image-banner img {
@@ -2133,8 +2138,12 @@ a.forumtitle {
   opacity: 0.5;
 }
 
+.bienvenue-right {
+  max-width: 110px;
+}
+
 .bienvenue-right img {
-  width: 120px;
+  width: 110px;
   object-fit: cover;
   border: 1px solid transparent;
   border-image: var(--gold-gradient) 1;
