@@ -5034,3 +5034,212 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* ========================================
    PAGE CARTE - END
    ======================================== */
+
+
+/* GROUPES */
+
+/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
+.vs-flip-card {
+  background-color: transparent;
+  width: 300px;
+  /* Largeur de la carte de Tarot */
+  height: 480px;
+  /* Hauteur (Format portrait classique) */
+  perspective: 1000px;
+  /* Donne la profondeur 3D */
+  margin: 20px auto;
+  /* Centré */
+  cursor: pointer;
+  /* Indique qu'on peut interagir */
+}
+
+/* --- L'INTERIEUR QUI BOUGE --- */
+.vs-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  /* Durée de l'animation (0.8s est fluide) */
+  transform-style: preserve-3d;
+}
+
+/* L'ACTION : Quand on survole, on tourne */
+.vs-flip-card:hover .vs-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* --- LES DEUX FACES (RECTO / VERSO) --- */
+.vs-flip-front,
+.vs-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Cache le dos de l'élément */
+  backface-visibility: hidden;
+  border-radius: 5px;
+  /* Coins légèrement arrondis */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  /* Ombre portée */
+}
+
+/* --- RECTO : L'IMAGE --- */
+.vs-flip-front {
+  background-color: #000;
+  overflow: hidden;
+  /* 1. Coupe tout ce qui oserait dépasser */
+  line-height: 0;
+  /* 2. L'arme absolue : supprime l'espace pour le texte fantôme */
+  border-radius: 5px;
+  /* On garde les coins ronds */
+}
+
+.vs-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Remplit bien tout le cadre */
+  display: block;
+  /* 3. Dit au navigateur "ce n'est pas du texte" */
+  margin: 0;
+  /* Sécurité supplémentaire */
+  border-radius: 5px;
+}
+
+/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
+.vs-flip-back {
+  background-color: #050505;
+  /* Ton Noir Profond */
+  border: 1px solid #c5a059;
+  /* Bordure Dorée */
+  color: #e0e0e0;
+  transform: rotateY(180deg);
+  /* Elle commence déjà retournée */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centre le texte verticalement */
+  align-items: center;
+  padding: 30px;
+  /* Marge intérieure */
+  box-sizing: border-box;
+  /* Important pour que le padding ne casse pas la taille */
+}
+
+/* TYPOGRAPHIE DU DOS */
+.vs-back-title {
+  font-family: 'Playfair Display', serif;
+  color: #c5a059;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  width: 100%;
+  /* La ligne prend toute la largeur */
+}
+
+.vs-back-desc {
+  font-family: 'Playfair Display', serif;
+  /* Ou ta police de corps */
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+/* FIN GROUPES */
+
+/* BOTTIN */
+
+/* --- BOTTIN VELVET SIN (Style Machine à écrire) --- */
+
+/* --- BOTTIN VELVET SIN (Version Or & Lignes Fines) --- */
+
+.vs-bottin-container {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #121212;
+  /* Fond très sombre mais pas noir pur */
+  color: #bfbfbf;
+  /* Texte gris argenté pour ne pas agresser l'oeil */
+  font-family: 'Courier New', Courier, monospace;
+  /* La police demandée */
+  padding: 40px;
+  border: 1px solid #d4af37;
+  /* Bordure fine dorée */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  /* Lueur dorée très subtile */
+  line-height: 1.6em;
+  font-size: 13px;
+}
+
+.vs-bottin-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: #d4af37;
+  /* Titre doré */
+  border-bottom: 1px solid #d4af37;
+  /* Ligne fine dorée */
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  /* Un peu plus petit pour le côté chic */
+  letter-spacing: 3px;
+  /* Espacement des lettres */
+  font-weight: normal;
+  /* Pas de gras, on reste fin */
+}
+
+/* La Lettre (A, B, C...) */
+.vs-letter-header {
+  font-size: 20px;
+  color: #d4af37;
+  /* Lettre dorée */
+  border-bottom: 1px dotted #554411;
+  /* Pointillés discrets */
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 2px;
+}
+
+/* Une ligne de célébrité */
+.vs-entry {
+  display: block;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #1f1f1f;
+  /* Séparation très sombre */
+  padding: 3px 0;
+  transition: 0.3s;
+}
+
+.vs-celeb {
+  font-weight: bold;
+  color: #e5c15d;
+  /* Nom de la star en or pâle */
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+
+.vs-sep {
+  color: #666;
+  /* Le tiret de séparation discret */
+  margin-right: 8px;
+}
+
+.vs-player {
+  color: #999;
+  /* Nom du joueur en gris */
+  font-style: normal;
+}
+
+/* Effet au survol : une petite barre dorée apparaît à gauche */
+.vs-entry:hover {
+  padding-left: 10px;
+  border-left: 2px solid #d4af37;
+  background-color: #191919;
+}
+
+/* FIN BOTTIN */
