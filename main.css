@@ -5735,3 +5735,212 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   END VELVET SIN - OPENING LETTER EFFECT
    Format enveloppe paysage - Noir Élégant
    ======================================== */
+
+/* ========================================
+   PROFIL À ONGLETS - VIEWTOPIC
+   ======================================== */
+
+.vs-profile-tabs {
+  width: 225px;
+  min-width: 225px;
+  max-width: 225px;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #0a0a0a;
+  border-right: 1px solid var(--borderGold);
+}
+
+/* Pseudo */
+.vs-profile-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #c5a059;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.vs-profile-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Rang */
+.vs-profile-rank {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a94438;
+  background: linear-gradient(90deg, transparent, rgba(169, 68, 56, 0.2), transparent);
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Avatar - 200x320px */
+.vs-profile-avatar {
+  width: 200px;
+  height: 320px;
+  margin: 0 auto 15px auto;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+
+.vs-profile-avatar img {
+  width: 200px;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* --- Système d'onglets CSS pur --- */
+
+/* Cacher les inputs radio */
+.vs-tab-input {
+  display: none;
+}
+
+/* Conteneur des onglets */
+.vs-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  text-align: left;
+}
+
+/* Labels des onglets (boutons) */
+.vs-tab-label {
+  font-family: 'Cinzel', serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 5px;
+  text-align: center;
+  cursor: pointer;
+  background: #111;
+  border: 1px solid #333;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.vs-tab-label:first-of-type {
+  border-right: none;
+}
+
+.vs-tab-label:hover {
+  color: #c5a059;
+  background: #1a1a1a;
+}
+
+/* Contenu des onglets */
+.vs-tab-content {
+  grid-column: 1 / -1;
+  padding: 12px 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #333;
+  border-top: none;
+  display: none;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #999;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Afficher l'onglet actif */
+.vs-tab-input:nth-of-type(1):checked~.vs-tab1 {
+  display: block;
+}
+
+.vs-tab-input:nth-of-type(2):checked~.vs-tab2 {
+  display: block;
+}
+
+/* Style du label actif */
+.vs-tab-input:nth-of-type(1):checked+.vs-tab-label {
+  background: #1a1a1a;
+  color: #c5a059;
+  border-bottom-color: #1a1a1a;
+}
+
+.vs-tab-input:nth-of-type(2):checked+.vs-tab-label {
+  background: #1a1a1a;
+  color: #c5a059;
+  border-bottom-color: #1a1a1a;
+}
+
+/* Champs dans les onglets */
+.vs-field {
+  margin-bottom: 6px;
+}
+
+.vs-field-label {
+  color: #c5a059;
+  text-transform: uppercase;
+  font-size: 9px;
+  display: block;
+}
+
+.vs-field-content {
+  color: #ccc;
+}
+
+/* Statut en ligne */
+.vs-online-status {
+  display: none;
+}
+
+.vs-online-status.online {
+  display: block;
+  color: #5a5;
+  font-size: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Récompenses */
+.vs-awards {
+  margin-top: 10px;
+}
+
+/* Contact */
+.vs-contact {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+.vs-contact a {
+  margin: 0 3px;
+}
+
+.vs-contact a img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.vs-contact a:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Scrollbar personnalisée */
+.vs-tab-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.vs-tab-content::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.vs-tab-content::-webkit-scrollbar-thumb {
+  background: #c5a059;
+}
+
+/* ========================================
+   FIN PROFIL À ONGLETS
+   ======================================== */
