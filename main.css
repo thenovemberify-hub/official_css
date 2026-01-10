@@ -5093,8 +5093,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* BOTTIN */
 
-/* --- BOTTIN VELVET SIN (Style Machine à écrire) --- */
-
 /* --- BOTTIN VELVET SIN (Version Or & Lignes Fines) --- */
 
 .vs-bottin-container {
@@ -5182,4 +5180,558 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   background-color: #191919;
 }
 
-/* FIN BOTTIN */
+/* ========================================
+   VELVET SIN - OPENING LETTER EFFECT
+   Format enveloppe paysage - Noir Élégant
+   ======================================== */
+
+/* Variables */
+:root {
+  --envelope-width: 550px;
+  --envelope-height: 320px;
+  --letter-bg: #faf6ed;
+  --envelope-dark: #0d0d0d;
+  --seal-bordeaux: #5c1a1a;
+  --seal-bordeaux-light: #7d2828;
+  --seal-bordeaux-dark: #3a0f0f;
+  --gold-accent: #d4af37;
+  --paper-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Container principal */
+.vs-letter-scene {
+  perspective: 1500px;
+  width: var(--envelope-width);
+  /* Hauteur initiale = hauteur enveloppe */
+  height: var(--envelope-height);
+  margin: 20px auto 30px;
+  position: relative;
+  /* Transition fluide pour pousser le contenu en dessous */
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quand la lettre est ouverte, agrandir le conteneur pour la lettre */
+.vs-letter-scene.letter-opened {
+  height: 1400px;
+  /* Ajuster selon la longueur de votre lettre */
+}
+
+/* L'enveloppe complète */
+.vs-envelope {
+  width: 100%;
+  height: var(--envelope-height);
+  /* Hauteur FIXE pour ne pas déformer */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.vs-envelope.flipped {
+  transform: rotateY(180deg);
+}
+
+.vs-envelope.opened {
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+/* Désactiver les clics sur la face avant quand l'enveloppe est retournée */
+.vs-envelope.flipped .vs-envelope-front,
+.vs-envelope.flipped .vs-envelope-front * {
+  pointer-events: none;
+}
+
+/* ========================================
+   FACE AVANT DE L'ENVELOPPE
+   ======================================== */
+.vs-envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 50%, #0d0d0d 100%);
+  border-radius: 5px;
+  box-shadow: var(--paper-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.vs-envelope-front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(30, 30, 30, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(25, 25, 25, 0.4) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+.vs-envelope-front::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.vs-envelope-address {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold-accent);
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vs-envelope-address .to {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.vs-envelope-address .name {
+  font-size: 30px;
+  font-style: italic;
+}
+
+.vs-envelope-hint {
+  position: absolute;
+  bottom: 25px;
+  font-size: 10px;
+  color: var(--gold-accent);
+  opacity: 0.4;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ========================================
+   FACE ARRIÈRE DE L'ENVELOPPE
+   ======================================== */
+.vs-envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, #151515 0%, #0a0a0a 100%);
+  border-radius: 5px;
+  box-shadow: var(--paper-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.vs-envelope-back::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(30, 30, 30, 0.4) 0%, transparent 40%);
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+.vs-envelope-flap {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 130px;
+  background: linear-gradient(180deg, #1c1c1c 0%, #101010 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s ease;
+  z-index: 3;
+}
+
+.vs-envelope.opened .vs-envelope-flap {
+  transform: rotateX(180deg);
+}
+
+/* ========================================
+   CACHET DE CIRE BORDEAUX - TOUT CLIQUABLE
+   ======================================== */
+.vs-wax-seal {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 15;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.vs-wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: brightness(1.15);
+}
+
+/* Overlay cliquable couvrant tout le cachet */
+.vs-seal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  /* Invisible mais cliquable */
+  background: transparent;
+}
+
+/* SVG entièrement cliquable */
+.vs-seal-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8));
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Image du cachet (version ForumActif) */
+.vs-seal-img {
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Masquer les br ajoutés par ForumActif */
+.vs-letter-paper br,
+.vs-letter-body br {
+  display: none;
+}
+
+/* Tous les éléments SVG sont cliquables */
+.vs-seal-svg * {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Animation du cachet */
+.vs-wax-seal.breaking {
+  animation: breakSeal 0.7s forwards;
+}
+
+@keyframes breakSeal {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+    filter: brightness(1);
+  }
+
+  20% {
+    transform: translate(-50%, -50%) scale(1.15) rotate(-3deg);
+    filter: brightness(1.4);
+  }
+
+  40% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+    filter: brightness(1.6);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.1) rotate(180deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+/* ========================================
+   LE PAPIER DE LA LETTRE - PRESTIGIEUX
+   ======================================== */
+.vs-letter-paper {
+  position: absolute;
+  width: calc(var(--envelope-width) - 30px);
+  height: auto;
+  min-height: 450px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  overflow: hidden;
+  opacity: 0;
+  z-index: 5;
+  border-radius: 2px;
+  pointer-events: none;
+
+  background:
+    linear-gradient(180deg,
+      #fcf9f0 0%,
+      #f8f3e6 20%,
+      #faf6ed 50%,
+      #f5efe0 80%,
+      #f0e8d5 100%);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 5px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.vs-letter-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.vs-letter-paper::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(180, 150, 80, 0.15);
+  pointer-events: none;
+}
+
+.vs-letter-watermark {
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 0 0 100px rgba(200, 180, 140, 0.1),
+    inset 0 0 30px rgba(160, 140, 100, 0.05);
+  pointer-events: none;
+}
+
+.vs-letter-paper.sliding-out {
+  animation: slideUpThenOver 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUpThenOver {
+  0% {
+    opacity: 1;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.85);
+    z-index: 5;
+  }
+
+  30% {
+    opacity: 1;
+    top: -30px;
+    transform: translateX(-50%) translateY(-100%) scale(0.9);
+    z-index: 25;
+  }
+
+  40% {
+    opacity: 1;
+    top: -30px;
+    transform: translateX(-50%) translateY(-100%) scale(0.95);
+    z-index: 25;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+    transform: translateX(-50%) translateY(0) scale(1);
+    z-index: 25;
+    pointer-events: auto;
+  }
+}
+
+.vs-letter-paper.unfolded {
+  opacity: 1;
+  top: 0;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 25;
+  cursor: pointer;
+}
+
+/* Animation de retour dans l'enveloppe */
+.vs-letter-paper.sliding-in {
+  animation: slideBackIn 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes slideBackIn {
+  0% {
+    opacity: 1;
+    top: 0;
+    transform: translateX(-50%) translateY(0) scale(1);
+    z-index: 25;
+  }
+
+  30% {
+    opacity: 1;
+    top: -30px;
+    transform: translateX(-50%) translateY(-100%) scale(0.95);
+    z-index: 25;
+  }
+
+  50% {
+    opacity: 1;
+    top: -30px;
+    transform: translateX(-50%) translateY(-100%) scale(0.9);
+    z-index: 5;
+  }
+
+  100% {
+    opacity: 0;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+    z-index: 5;
+  }
+}
+
+/* Contenu de la lettre */
+.vs-letter-content {
+  position: relative;
+  padding: 50px 60px;
+  font-family: 'Playfair Display', serif;
+  color: #2a1f15;
+  font-size: 15px;
+  line-height: 2;
+  z-index: 2;
+}
+
+.vs-letter-header {
+  text-align: right;
+  font-style: italic;
+  margin-bottom: 35px;
+  color: #7a6a5a;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.vs-letter-greeting {
+  font-size: 19px;
+  margin-bottom: 28px;
+  color: #3a2a1a;
+  font-weight: 500;
+}
+
+.vs-letter-body {
+  text-align: justify;
+  margin-bottom: 25px;
+}
+
+.vs-letter-body p {
+  margin-bottom: 20px;
+  text-indent: 35px;
+}
+
+.vs-letter-body em {
+  color: #5a4030;
+  font-style: italic;
+}
+
+.vs-letter-signature {
+  text-align: right;
+  font-style: italic;
+  margin-top: 45px;
+  font-size: 16px;
+  color: #4a3a2a;
+}
+
+.vs-letter-signature .name {
+  font-family: 'Mr De Haviland', cursive;
+  font-size: 55px;
+  /* Plus grand pour être lisible car très fin */
+  color: #3a2a1a;
+  margin-top: 15px;
+  display: inline-block;
+  transform: rotate(-5deg);
+  /* Légère rotation pour effet naturel */
+  opacity: 0.9;
+}
+
+/* Bouton fermer */
+.vs-letter-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid rgba(100, 80, 60, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #8a7a6a;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.vs-letter-close:hover {
+  background: rgba(100, 80, 60, 0.08);
+  border-color: rgba(100, 80, 60, 0.3);
+  color: #5a4a3a;
+}
+
+/* ========================================
+   EFFETS GÉNÉRAUX
+   ======================================== */
+.vs-letter-scene:hover .vs-envelope:not(.flipped):not(.opened) {
+  transform: translateY(-5px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  :root {
+    --envelope-width: 340px;
+    --envelope-height: 200px;
+  }
+
+  .vs-letter-paper {
+    min-height: 400px;
+  }
+
+  .vs-letter-content {
+    padding: 35px 30px;
+    font-size: 13px;
+  }
+
+  .vs-envelope-address .name {
+    font-size: 24px;
+  }
+
+  .vs-wax-seal {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* ========================================
+  END VELVET SIN - OPENING LETTER EFFECT
+   Format enveloppe paysage - Noir Élégant
+   ======================================== */
