@@ -4861,7 +4861,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   background-color: transparent;
   width: 300px;
   /* Largeur de la carte de Tarot */
-  height: 480px;
+  height: 500px;
   /* Hauteur (Format portrait classique) */
   perspective: 1000px;
   /* Donne la profondeur 3D */
