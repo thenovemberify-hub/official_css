@@ -5737,17 +5737,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    ======================================== */
 
 /* ========================================
-   PROFIL À ONGLETS - VIEWTOPIC
+   PROFIL À ONGLETS - START
    ======================================== */
 
 .vs-profile-tabs {
-  width: 225px;
-  min-width: 225px;
-  max-width: 225px;
-  padding: 12px;
-  box-sizing: border-box;
-  background: #0a0a0a;
-  border-right: 1px solid var(--borderGold);
+  width: 200px;
+  /* Largeur fixe pour la colonne de profil */
+  min-width: 200px;
 }
 
 /* Pseudo */
@@ -5777,20 +5773,16 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   text-align: center;
 }
 
-/* Avatar - 200x320px */
+/* Avatar */
 .vs-profile-avatar {
-  width: 200px;
-  height: 320px;
-  margin: 0 auto 15px auto;
-  border: 1px solid #333;
+  margin-bottom: 15px;
+  border: 2px solid #333;
   overflow: hidden;
 }
 
 .vs-profile-avatar img {
-  width: 200px;
-  height: 320px;
-  object-fit: cover;
-  object-position: center top;
+  width: 100%;
+  height: auto;
   display: block;
 }
 
@@ -5813,10 +5805,10 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Labels des onglets (boutons) */
 .vs-tab-label {
   font-family: 'Cinzel', serif;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 8px 5px;
+  padding: 10px 5px;
   text-align: center;
   cursor: pointer;
   background: #111;
@@ -5837,15 +5829,15 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Contenu des onglets */
 .vs-tab-content {
   grid-column: 1 / -1;
-  padding: 12px 8px;
+  padding: 15px 10px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
   border-top: none;
   display: none;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.6;
   color: #999;
-  max-height: 250px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -5873,14 +5865,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* Champs dans les onglets */
 .vs-field {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .vs-field-label {
   color: #c5a059;
   text-transform: uppercase;
-  font-size: 9px;
-  display: block;
+  font-size: 10px;
 }
 
 .vs-field-content {
@@ -5895,26 +5886,15 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-online-status.online {
   display: block;
   color: #5a5;
-  font-size: 10px;
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-/* Récompenses */
-.vs-awards {
-  margin-top: 10px;
+  font-size: 11px;
+  margin-bottom: 10px;
 }
 
 /* Contact */
 .vs-contact {
-  margin-top: 12px;
-  padding-top: 8px;
+  margin-top: 15px;
+  padding-top: 10px;
   border-top: 1px solid #333;
-  text-align: center;
-}
-
-.vs-contact a {
-  margin: 0 3px;
 }
 
 .vs-contact a img {
@@ -5941,6 +5921,83 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   background: #c5a059;
 }
 
+/* Cible les images dans la zone de contenu de tes champs */
+/* Remplace .vs-value par .vs-field-content si tu as renommé ta classe */
+.vs-value img,
+.vs-field-content img {
+  max-width: 180px;
+  /* Ta limite de largeur */
+  height: auto;
+  /* Garde les proportions (ne déforme pas l'image) */
+  display: block;
+  /* Pour éviter les décalages de ligne bizarres */
+
+  /* Petits bonus esthétiques pour le Velvet Sin (optionnels) */
+  object-fit: cover;
+  /* Si jamais tu forces une hauteur, ça recadre proprement */
+  margin: 5px auto;
+  /* Centre l'image si elle est plus petite que le conteneur */
+}
+
+/* --- CIBLE TON BLOC ICI (ex: .vs-tab-content) --- */
+.vs-tabs {
+  /* Pour Firefox (options limitées mais nécessaires) */
+  scrollbar-width: thin;
+  /* Rend la barre fine */
+  scrollbar-color: #444444 transparent;
+  /* Couleur barre / Couleur fond */
+
+  /* Pour que le scroll soit fluide */
+  overflow-y: auto;
+}
+
+/* --- PERSONNALISATION CHROME / SAFARI / EDGE --- */
+
+/* 1. La largeur globale de la barre */
+.vs-tabs::-webkit-scrollbar {
+  width: 3px;
+  /* Très fin (standard = 10-12px) */
+  height: 3px;
+  /* Pour le scroll horizontal si besoin */
+}
+
+/* 2. Le fond de la barre (le rail) */
+.vs-tabs::-webkit-scrollbar-track {
+  background: transparent;
+  /* Invisible pour être discret */
+}
+
+/* 3. La partie mobile (le curseur) */
+.vs-tabs::-webkit-scrollbar-thumb {
+  background-color: #2a2a2a;
+  /* Gris très sombre pour se fondre */
+  border-radius: 10px;
+  /* Arrondi pour la douceur */
+  border: none;
+  /* Pas de bordure */
+}
+
+/* 4. Effet au survol (optionnel mais recommandé pour l'UX) */
+/* Quand on passe la souris sur le BLOC, la barre s'éclaire un peu */
+.vs-tabs:hover::-webkit-scrollbar-thumb {
+  background-color: #d4af37;
+  /* Devient Or (Velvet Sin) au survol */
+  /* OU reste gris plus clair : background-color: #555; */
+}
+
+/* Conteneur du post - ajuster pour sticky */
+.post.post_row {
+  align-items: flex-start;
+}
+
+/* Profil sticky qui suit le scroll */
+.vs-profile-tabs {
+  position: sticky;
+  top: 80px;
+  /* Ajuster selon la hauteur de ta navbar */
+  align-self: flex-start;
+}
+
 /* ========================================
-   FIN PROFIL À ONGLETS
+   PROFIL À ONGLETS - END
    ======================================== */
