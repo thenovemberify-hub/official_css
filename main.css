@@ -412,6 +412,29 @@ h1.page-title {
   text-align: center;
 }
 
+.page-title {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+  background: rgba(18, 10, 10, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+  padding: 30px 10px 1px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: normal;
+  margin: 0;
+  height: 10px;
+  box-shadow: none;
+}
+
 /* Utilisé pour des titres de sujets, blogs... */
 h2,
 .h2 {
@@ -2302,89 +2325,223 @@ a.forumtitle {
   margin: 0 0 20px;
   background: var(--neutral);
   border-radius: 5px;
-  padding: 10px;
+  padding: 20px 30px;
 }
 
-/* Conteneur sujet dans la liste */
+/* Styles spécifiques pour le contenu de la description (bb3, txt) */
+.forum-page_desc .txt {
+  padding: 8px 12px;
+  text-align: justify;
+}
+
+.forum-page_desc bb3 {
+  display: inline;
+  color: var(--gold-accent);
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-right: 8px;
+  letter-spacing: 1px;
+  font-size: 0.9em;
+}
+
+/* Conteneur sujet dans la liste - Style FADE TO BLACK */
 .topicslist_row {
   background: var(--neutral);
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  border-radius: 0;
+  padding: 12px 15px;
+  margin-bottom: 2px;
+  display: grid;
+  grid-template-columns: 80px 100px 1fr 180px;
+  gap: 15px;
   align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.topicslist_row:hover {
+  background: var(--neutralDark);
 }
 
 .topicslist_row:last-child {
   margin-bottom: 0;
 }
 
-/* Image du sujet */
-.topicslist-img {
-  width: 50px;
-  height: 50px;
-  background: var(--neutralDark);
-}
-
-.topicslist_infos {
-  flex-grow: 100;
-}
-
-/*titre du sujet*/
-.topictitle {
-  font-size: var(--medium-size);
-  /* permet de raccourir les titres trop long ainsi : "Titre du suj..." */
+/* 1. Avatar du dernier posteur (GAUCHE) - Grand et proéminent */
+.topicslist-avatar-lastpost {
+  width: 80px;
+  height: 80px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  display: inline-block;
-  max-width: 430px;
-  white-space: nowrap;
-  vertical-align: bottom;
-}
-
-/* icône de type de message ( exemple : -18 ans, sujet résolu, ... ) */
-.topic_msgicon {
-  margin-right: 5px;
-}
-
-.topic_msgicon:empty {
-  display: none;
-}
-
-.topiclist-infos img {
-  margin-right: 3px;
-}
-
-.topicslist-stats {
-  text-align: right;
+  background: var(--neutralDark);
+  flex-shrink: 0;
 }
 
 .topicslist-avatar-lastpost img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  width: 50px;
-  height: 50px;
+  display: block;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.topicslist_row:hover .topicslist-avatar-lastpost img {
+  filter: grayscale(0%);
+}
+
+/* 2. Statistiques (réponses/vues) - Colonne verticale */
+.topicslist-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--textColor);
+  opacity: 0.8;
+}
+
+.topicslist-stats .stat-replies,
+.topicslist-stats .stat-views {
+  display: block;
+  white-space: nowrap;
+}
+
+/* 3. Infos du sujet (centre) */
+.topicslist_infos {
+  flex-grow: 1;
+  min-width: 0;
+  /* Permet le text-overflow */
+}
+
+/* Type de sujet (IMPORTANT, ANNONCE, NOTE) */
+.topic-type {
+  display: inline-block;
+  background: #eaba6b;
+  color: #000;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.topic-type:empty {
+  display: none;
+}
+
+/* Titre du sujet */
+.topictitle {
+  font-family: "Crimson Text", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--textColorAccent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.topictitle:hover {
+  color: #eaba6b;
+}
+
+/* Méta infos (auteur + pagination) */
+.topic-meta {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.topic-author {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--textColor);
+  opacity: 0.7;
+}
+
+.topic-author a {
+  color: #eaba6b;
+  font-weight: 600;
+}
+
+/* Pagination du sujet */
+.topicslist-pagination {
+  font-size: 12px;
+}
+
+.topicslist-pagination a {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-right: 3px;
   background: var(--neutralDark);
+  border-radius: 3px;
+  font-size: 11px;
 }
 
+.topicslist-pagination a:hover {
+  background: #eaba6b;
+  color: #000;
+}
+
+/* 4. Dernier message (DROITE) */
 .topicslist-lastpost {
-  width: 180px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
+.lastpost-date {
+  font-size: 11px;
+  color: #eaba6b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lastpost-author {
+  font-size: 12px;
+  color: var(--textColorAccent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lastpost-author a {
+  color: #eaba6b;
+}
+
+.lastpost-author img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* Description du sujet */
 .topicslist-description {
-  border-top: 1px solid var(--neutralDark);
-  padding-top: 5px;
-  width: 100%;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  color: var(--textColor);
+  opacity: 0.7;
 }
 
-/* ligne qui séparent les annonces et les notes des autres sujets (à activer dans "message > configuration") */
+/* Séparateur entre annonces et sujets normaux */
 .topic_separator {
-  height: 5px;
-  background: var(--neutral);
-  margin-bottom: 10px;
-  border-radius: 5px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(234, 186, 107, 0.3), transparent);
+  margin: 15px 0;
+  border-radius: 0;
 }
 
 /* Bouton "trier les sujets" */
@@ -3950,8 +4107,8 @@ velvetify {
 
 .vs-reg-header {
   font-family: var(--font-millgary), serif;
-  font-size: 3.5rem;
-  letter-spacing: 5px;
+  font-size: 3rem;
+  letter-spacing: 4px;
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
@@ -5133,13 +5290,12 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* La Lettre (A, B, C...) */
 .vs-letter-header {
-  font-size: 20px;
+  font-size: 40px;
   color: #d4af37;
-  /* Lettre dorée */
   border-bottom: 1px dotted #554411;
-  /* Pointillés discrets */
   margin-top: 25px;
   margin-bottom: 10px;
+  padding-left: 20px;
   padding-bottom: 2px;
 }
 
@@ -5621,15 +5777,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   z-index: 2;
 }
 
-.vs-letter-header {
-  text-align: right;
-  font-style: italic;
-  margin-bottom: 35px;
-  color: #7a6a5a;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-
 .vs-letter-greeting {
   font-size: 19px;
   margin-bottom: 28px;
@@ -5737,13 +5884,17 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    ======================================== */
 
 /* ========================================
-   PROFIL À ONGLETS - START
+   PROFIL À ONGLETS - VIEWTOPIC
    ======================================== */
 
 .vs-profile-tabs {
-  width: 200px;
-  /* Largeur fixe pour la colonne de profil */
-  min-width: 200px;
+  width: 225px;
+  min-width: 225px;
+  max-width: 225px;
+  padding: 12px;
+  box-sizing: border-box;
+  background: #0a0a0a;
+  border-right: 1px solid var(--borderGold);
 }
 
 /* Pseudo */
@@ -5773,16 +5924,20 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   text-align: center;
 }
 
-/* Avatar */
+/* Avatar - 200x320px */
 .vs-profile-avatar {
-  margin-bottom: 15px;
-  border: 2px solid #333;
+  width: 200px;
+  height: 320px;
+  margin: 0 auto 15px auto;
+  border: 1px solid #333;
   overflow: hidden;
 }
 
 .vs-profile-avatar img {
-  width: 100%;
-  height: auto;
+  width: 200px;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
@@ -5805,10 +5960,10 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Labels des onglets (boutons) */
 .vs-tab-label {
   font-family: 'Cinzel', serif;
-  font-size: 10px;
+  font-size: 9px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  padding: 10px 5px;
+  padding: 8px 5px;
   text-align: center;
   cursor: pointer;
   background: #111;
@@ -5829,15 +5984,15 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Contenu des onglets */
 .vs-tab-content {
   grid-column: 1 / -1;
-  padding: 15px 10px;
+  padding: 12px 8px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid #333;
   border-top: none;
   display: none;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.5;
   color: #999;
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: auto;
 }
 
@@ -5865,13 +6020,14 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* Champs dans les onglets */
 .vs-field {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .vs-field-label {
   color: #c5a059;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 9px;
+  display: block;
 }
 
 .vs-field-content {
@@ -5886,15 +6042,26 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-online-status.online {
   display: block;
   color: #5a5;
-  font-size: 11px;
-  margin-bottom: 10px;
+  font-size: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Récompenses */
+.vs-awards {
+  margin-top: 10px;
 }
 
 /* Contact */
 .vs-contact {
-  margin-top: 15px;
-  padding-top: 10px;
+  margin-top: 12px;
+  padding-top: 8px;
   border-top: 1px solid #333;
+  text-align: center;
+}
+
+.vs-contact a {
+  margin: 0 3px;
 }
 
 .vs-contact a img {
@@ -5921,83 +6088,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   background: #c5a059;
 }
 
-/* Cible les images dans la zone de contenu de tes champs */
-/* Remplace .vs-value par .vs-field-content si tu as renommé ta classe */
-.vs-value img,
-.vs-field-content img {
-  max-width: 180px;
-  /* Ta limite de largeur */
-  height: auto;
-  /* Garde les proportions (ne déforme pas l'image) */
-  display: block;
-  /* Pour éviter les décalages de ligne bizarres */
-
-  /* Petits bonus esthétiques pour le Velvet Sin (optionnels) */
-  object-fit: cover;
-  /* Si jamais tu forces une hauteur, ça recadre proprement */
-  margin: 5px auto;
-  /* Centre l'image si elle est plus petite que le conteneur */
-}
-
-/* --- CIBLE TON BLOC ICI (ex: .vs-tab-content) --- */
-.vs-tabs {
-  /* Pour Firefox (options limitées mais nécessaires) */
-  scrollbar-width: thin;
-  /* Rend la barre fine */
-  scrollbar-color: #444444 transparent;
-  /* Couleur barre / Couleur fond */
-
-  /* Pour que le scroll soit fluide */
-  overflow-y: auto;
-}
-
-/* --- PERSONNALISATION CHROME / SAFARI / EDGE --- */
-
-/* 1. La largeur globale de la barre */
-.vs-tabs::-webkit-scrollbar {
-  width: 3px;
-  /* Très fin (standard = 10-12px) */
-  height: 3px;
-  /* Pour le scroll horizontal si besoin */
-}
-
-/* 2. Le fond de la barre (le rail) */
-.vs-tabs::-webkit-scrollbar-track {
-  background: transparent;
-  /* Invisible pour être discret */
-}
-
-/* 3. La partie mobile (le curseur) */
-.vs-tabs::-webkit-scrollbar-thumb {
-  background-color: #2a2a2a;
-  /* Gris très sombre pour se fondre */
-  border-radius: 10px;
-  /* Arrondi pour la douceur */
-  border: none;
-  /* Pas de bordure */
-}
-
-/* 4. Effet au survol (optionnel mais recommandé pour l'UX) */
-/* Quand on passe la souris sur le BLOC, la barre s'éclaire un peu */
-.vs-tabs:hover::-webkit-scrollbar-thumb {
-  background-color: #d4af37;
-  /* Devient Or (Velvet Sin) au survol */
-  /* OU reste gris plus clair : background-color: #555; */
-}
-
-/* Conteneur du post - ajuster pour sticky */
-.post.post_row {
-  align-items: flex-start;
-}
-
-/* Profil sticky qui suit le scroll */
-.vs-profile-tabs {
-  position: sticky;
-  top: 80px;
-  /* Ajuster selon la hauteur de ta navbar */
-  align-self: flex-start;
-}
-
 /* ========================================
-   PROFIL À ONGLETS - END
+   FIN PROFIL À ONGLETS
    ======================================== */
