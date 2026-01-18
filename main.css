@@ -6901,3 +6901,705 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
     padding: 20px;
   }
 }
+
+/* ========================================
+   VELVET SIN - DOSSIER CONFIDENTIEL
+   Fiche de présentation style noir & or
+   ======================================== */
+
+/* Variables */
+:root {
+  --dossier-max-width: 750px;
+  --dossier-bg: #0a0a0a;
+  --dossier-surface: #111111;
+  --dossier-border: #1a1a1a;
+  --dossier-gold: #d4af37;
+  --dossier-gold-dim: rgba(212, 175, 55, 0.3);
+  --dossier-text: #c5c5c5;
+  --dossier-text-muted: #666666;
+  --dossier-accent: #2a2a2a;
+}
+
+/* Container principal */
+.vs-dossier {
+  max-width: var(--dossier-max-width);
+  margin: 40px auto;
+  background: var(--dossier-bg);
+  border: 1px solid var(--dossier-border);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+  color: var(--dossier-text);
+}
+
+/* Bande supérieure "CONFIDENTIEL" */
+.vs-dossier::before {
+  content: "DOSSIER CONFIDENTIEL";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+  color: var(--dossier-gold);
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--dossier-border);
+  text-transform: uppercase;
+}
+
+/* ========================================
+   BLOC IDENTITÉ
+   ======================================== */
+.vs-dossier-identity {
+  display: flex;
+  gap: 25px;
+  padding: 40px 30px 20px;
+  border-bottom: 1px solid var(--dossier-border);
+  background: linear-gradient(180deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+}
+
+/* Photo avec trombone image */
+.vs-dossier-photo-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Trombone doré (image PNG) */
+/* Trombone doré (image PNG) */
+.vs-dossier-clip {
+  position: absolute;
+  top: -5px;
+  left: -75px;
+  width: 140px;
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.9)) contrast(1.4) brightness(1.1);
+  transform: rotate(60deg);
+  pointer-events: none;
+}
+
+.vs-dossier-photo {
+  width: 160px;
+  height: 240px;
+  object-fit: cover;
+  border: 3px solid var(--dossier-accent);
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  filter: contrast(1.05) brightness(0.95);
+  position: relative;
+  z-index: 1;
+}
+
+/* Infos d'identité */
+.vs-dossier-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 0;
+  align-items: center;
+  text-align: center;
+}
+
+.vs-dossier-name {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 26px;
+  color: var(--dossier-gold);
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 100%;
+}
+
+/* Nom de la personnalité choisie */
+.vs-dossier-celebrity {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--dossier-text-muted);
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.vs-dossier-field {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 13px;
+  width: 100%;
+  gap: 12px;
+}
+
+.vs-dossier-label {
+  color: var(--dossier-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 9px;
+  min-width: 120px;
+  text-align: right;
+  padding-top: 0;
+}
+
+.vs-dossier-value {
+  color: var(--dossier-text);
+  font-size: 14px;
+  text-align: left;
+  min-width: 150px;
+}
+
+/* ========================================
+   SECTION RORSCHACH
+   ======================================== */
+.vs-dossier-rorschach {
+  padding: 15px 25px;
+  border-bottom: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-section-title {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 11px;
+  color: var(--dossier-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--dossier-gold-dim);
+  text-align: center;
+}
+
+/* Grille d'images symboles */
+.vs-dossier-symbols {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.vs-dossier-symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-dossier-symbol-img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border: 2px solid var(--dossier-accent);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  filter: grayscale(30%) contrast(1.1);
+  transition: filter 0.3s ease, border-color 0.3s ease;
+}
+
+.vs-dossier-symbol-img:hover {
+  filter: grayscale(0%) contrast(1.2);
+  border-color: var(--dossier-gold-dim);
+}
+
+.vs-dossier-symbol-keyword {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dossier-text-muted);
+  text-align: center;
+}
+
+/* ========================================
+   ZONE ARCHIVES
+   ======================================== */
+.vs-dossier-archives {
+  padding: 15px 25px;
+  border-bottom: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-archives-content {
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--dossier-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dossier-text);
+}
+
+/* Scrollbar personnalisée */
+.vs-dossier-archives-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-track {
+  background: var(--dossier-bg);
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-thumb {
+  background: var(--dossier-gold-dim);
+  border-radius: 3px;
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-thumb:hover {
+  background: var(--dossier-gold);
+}
+
+/* Style pour les paragraphes */
+.vs-dossier-archives-content p {
+  margin: 0 0 15px 0;
+  text-align: justify;
+}
+
+.vs-dossier-archives-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Style pour les listes */
+.vs-dossier-archives-content ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.vs-dossier-archives-content ul li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+
+.vs-dossier-archives-content ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--dossier-gold);
+}
+
+/* ========================================
+   PIED DE PAGE - POISON & LIMITE
+   ======================================== */
+.vs-dossier-footer {
+  display: flex;
+  justify-content: center;
+  padding: 12px 25px 15px;
+  background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+  gap: 2px;
+}
+
+.vs-dossier-trait {
+  flex: 1;
+  max-width: 50%;
+}
+
+.vs-dossier-trait-label {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.vs-dossier-trait--poison .vs-dossier-trait-label {
+  color: #8b3a3a;
+  text-align: left;
+}
+
+.vs-dossier-trait--arme .vs-dossier-trait-label {
+  color: #5a6a8a;
+  text-align: right;
+}
+
+.vs-dossier-trait-value {
+  font-size: 13px;
+  font-style: italic;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-trait--poison .vs-dossier-trait-value {
+  text-align: left;
+  border-left: 2px solid #8b3a3a;
+}
+
+.vs-dossier-trait--arme .vs-dossier-trait-value {
+  text-align: right;
+  border-right: 2px solid #5a6a8a;
+}
+
+/* ========================================
+   BANDE INFÉRIEURE
+   ======================================== */
+/* ========================================
+   BANDE INFÉRIEURE (ID DOSSIER)
+   ======================================== */
+.vs-dossier-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+  color: var(--dossier-text-muted);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--dossier-border);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 520px) {
+  .vs-dossier {
+    margin: 20px 10px;
+  }
+
+  .vs-dossier-identity {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px 25px;
+  }
+
+  .vs-dossier-info {
+    align-items: center;
+  }
+
+  .vs-dossier-field {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .vs-dossier-label {
+    min-width: auto;
+  }
+
+  .vs-dossier-rorschach,
+  .vs-dossier-archives {
+    padding: 20px;
+  }
+
+  .vs-dossier-symbols {
+    gap: 12px;
+  }
+
+  .vs-dossier-symbol-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .vs-dossier-footer {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .vs-dossier-trait {
+    max-width: 48%;
+  }
+}
+
+/* ========================================
+   VELVET SIN - DOSSIER CONFIDENTIEL
+   FIN Fiche de présentation style noir & or
+   ======================================== */
+
+/* ========================================
+   VELVET SIN - FICHE DE LIENS V2
+   Style élégant, minimaliste, dark mode
+   ======================================== */
+
+/* Variables */
+:root {
+  --fl-width: 750px;
+  --fl-black: #111111;
+  --fl-dark: #222222;
+  --fl-gold: #d4af37;
+  --fl-gold-dim: rgba(212, 175, 55, 0.3);
+  --fl-text: #c5c5c5;
+  --fl-text-muted: #888888;
+}
+
+/* Container Principal */
+.vs-fiche-liens {
+  max-width: var(--fl-width);
+  margin: 40px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+  color: var(--fl-text);
+}
+
+/* Titre de Section */
+.vs-fl-section-title {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 14px;
+  color: var(--fl-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--fl-gold-dim);
+}
+
+/* ========================================
+   BLOC 1 : RECHERCHES (CASTING)
+   ======================================== */
+.vs-fl-recherches {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-recherches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.vs-fl-recherche-card {
+  background: var(--fl-dark);
+  border: 1px solid var(--fl-gold-dim);
+  padding: 25px 20px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.vs-fl-recherche-card:hover {
+  border-color: var(--fl-gold);
+}
+
+.vs-fl-recherche-titre {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 13px;
+  color: var(--fl-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.vs-fl-recherche-desc {
+  font-size: 12px;
+  color: var(--fl-text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ========================================
+   BLOC 2 : SCÉNARIOS (INTRIGUES)
+   ======================================== */
+.vs-fl-scenarios {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-scenarios-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vs-fl-scenarios-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.vs-fl-scenarios-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vs-fl-scenarios-list li::before {
+  content: '◆';
+  color: var(--fl-gold);
+  margin-right: 12px;
+  font-size: 8px;
+  vertical-align: middle;
+}
+
+/* ========================================
+   BLOC 3 : LES LIENS (GALERIE FLIP)
+   ======================================== */
+.vs-fl-liens {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-liens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Carte avec effet Fade (Image disparaît au survol) */
+.vs-fl-lien-card {
+  width: 200px;
+  height: 320px;
+  position: relative;
+  border: 1px solid var(--fl-gold-dim);
+}
+
+.vs-fl-lien-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.vs-fl-lien-front,
+.vs-fl-lien-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease;
+}
+
+/* Face Avant : Avatar (Au-dessus) */
+.vs-fl-lien-front {
+  z-index: 2;
+  opacity: 1;
+  background: var(--fl-dark);
+}
+
+.vs-fl-lien-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Face Arrière : Texte (En dessous) */
+.vs-fl-lien-back {
+  z-index: 1;
+  opacity: 1;
+  /* Toujours visible, mais caché par l'image */
+  background: var(--fl-dark);
+  padding: 20px 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Au survol : l'image disparaît */
+.vs-fl-lien-card:hover .vs-fl-lien-front {
+  opacity: 0;
+}
+
+.vs-fl-lien-back::-webkit-scrollbar {
+  width: 4px;
+}
+
+.vs-fl-lien-back::-webkit-scrollbar-track {
+  background: var(--fl-black);
+}
+
+.vs-fl-lien-back::-webkit-scrollbar-thumb {
+  background: var(--fl-gold-dim);
+  border-radius: 2px;
+}
+
+.vs-fl-lien-nom {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-size: 13px;
+  color: var(--fl-gold);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.vs-fl-lien-type {
+  font-size: 10px;
+  color: var(--fl-text-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fl-gold-dim);
+}
+
+.vs-fl-lien-texte {
+  font-size: 11px;
+  color: var(--fl-text);
+  line-height: 1.7;
+  text-align: justify;
+  flex: 1;
+}
+
+/* ========================================
+   BLOC 4 : HORS-CHAMP (MÉTA)
+   ======================================== */
+.vs-fl-horschamp {
+  background: var(--fl-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+}
+
+.vs-fl-horschamp .vs-fl-section-title {
+  color: var(--fl-text-muted);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.vs-fl-horschamp-content {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--fl-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 780px) {
+  .vs-fiche-liens {
+    margin: 20px 10px;
+  }
+
+  .vs-fl-recherches-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .vs-fl-liens-grid {
+    grid-template-columns: repeat(2, 200px);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vs-fl-liens-grid {
+    grid-template-columns: 200px;
+  }
+}
+
+/* FIX FORUMACTIF : Masquer les sauts de lignes automatiques qui cassent la grille */
+.vs-fl-recherches br,
+.vs-fl-liens br {
+  display: none;
+}
+
+/* ========================================
+   VELVET SIN - FIN FICHE DE LIENS V2
+   Style élégant, minimaliste, dark mode
+   ======================================== */
