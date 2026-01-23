@@ -7603,3 +7603,387 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    VELVET SIN - FIN FICHE DE LIENS V2
    Style élégant, minimaliste, dark mode
    ======================================== */
+
+/* ========================================
+   VELVET SIN - FICHE DE PRÉFÉRENCES RP
+   Style document confidentiel / contrat
+   ======================================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Special+Elite&display=swap');
+
+/* Variables */
+:root {
+  --comfort-max-width: 680px;
+  --comfort-bg: #1a1a1a;
+  --comfort-surface: #0d0d0d;
+  --comfort-border: #2a2a2a;
+  --comfort-text: #b8b0a0;
+  --comfort-text-muted: #6a6560;
+  --comfort-gold: #a39060;
+  --comfort-gold-dim: rgba(163, 144, 96, 0.25);
+  --comfort-blood: #8a0303;
+  --comfort-blood-dim: rgba(138, 3, 3, 0.3);
+  --comfort-green: #2d5a2d;
+  --comfort-yellow: #8a7a30;
+  --comfort-red: #8a0303;
+}
+
+/* Container principal */
+.vs-comfort {
+  max-width: 680px;
+  margin: 40px auto;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 0 60px rgba(0, 0, 0, .6), inset 0 0 100px rgba(0, 0, 0, .3);
+  position: relative;
+  font-family: 'Special Elite', 'Courier New', monospace;
+  color: #b8b0a0;
+  line-height: 1.6
+}
+
+.vs-comfort br {
+  display: none !important
+}
+
+.vs-comfort::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .1) 0%, transparent 5%, transparent 95%, rgba(0, 0, 0, .1) 100%), linear-gradient(180deg, rgba(0, 0, 0, .05) 0%, transparent 10%, transparent 90%, rgba(0, 0, 0, .05) 100%);
+  pointer-events: none;
+  z-index: 1
+}
+
+.vs-comfort-header {
+  padding: 35px 30px 25px;
+  border-bottom: 1px solid #2a2a2a;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(10, 10, 10, .8) 0%, transparent 100%);
+  position: relative
+}
+
+.vs-comfort-header::after {
+  content: "— DOCUMENT CONFIDENTIEL —";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  font-family: 'Special Elite', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #8a0303;
+  text-transform: uppercase;
+  opacity: .7
+}
+
+.vs-comfort-name {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #a39060;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .5)
+}
+
+.vs-comfort-tagline {
+  font-size: 12px;
+  font-style: italic;
+  color: #6a6560;
+  letter-spacing: 2px;
+  border-top: 1px solid #2a2a2a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 8px 0;
+  margin-top: 15px
+}
+
+.vs-comfort-section {
+  padding: 25px 30px;
+  border-bottom: 1px solid #2a2a2a
+}
+
+.vs-comfort-section:last-of-type {
+  border-bottom: none
+}
+
+.vs-comfort-section-title {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a39060;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(163, 144, 96, .25);
+  display: flex;
+  align-items: center;
+  gap: 12px
+}
+
+.vs-comfort-section-title::before {
+  content: "§";
+  color: #8a0303;
+  font-size: 16px
+}
+
+.vs-comfort-section-subtitle {
+  font-size: 10px;
+  color: #6a6560;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: auto;
+  font-family: 'Special Elite', monospace
+}
+
+.vs-comfort-rhythm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  font-size: 0
+}
+
+.vs-comfort-rhythm-item {
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  padding: 15px;
+  font-size: 14px
+}
+
+.vs-comfort-rhythm-label {
+  font-size: 10px;
+  color: #6a6560;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px
+}
+
+.vs-comfort-rhythm-value {
+  font-size: 14px;
+  color: #b8b0a0
+}
+
+.vs-comfort-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  font-size: 0
+}
+
+.vs-comfort-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px
+}
+
+.vs-comfort-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0
+}
+
+.vs-comfort-topic {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 15px;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  border-left: 3px solid #2a2a2a;
+  font-size: 13px
+}
+
+.vs-comfort-topic--green {
+  border-left-color: #2d5a2d
+}
+
+.vs-comfort-topic--yellow {
+  border-left-color: #8a7a30
+}
+
+.vs-comfort-topic--red {
+  border-left-color: #8a0303
+}
+
+.vs-comfort-indicator {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .5)
+}
+
+.vs-comfort-indicator--green {
+  background: radial-gradient(circle at 30% 30%, #4a8a4a, #2d5a2d);
+  box-shadow: 0 0 8px rgba(45, 90, 45, .4)
+}
+
+.vs-comfort-indicator--yellow {
+  background: radial-gradient(circle at 30% 30%, #b8a840, #8a7a30);
+  box-shadow: 0 0 8px rgba(138, 122, 48, .4)
+}
+
+.vs-comfort-indicator--red {
+  background: radial-gradient(circle at 30% 30%, #c01010, #8a0303);
+  box-shadow: 0 0 8px rgba(138, 3, 3, .4)
+}
+
+.vs-comfort-topic-content {
+  flex: 1
+}
+
+.vs-comfort-topic-title {
+  font-size: 13px;
+  color: #b8b0a0;
+  margin-bottom: 4px
+}
+
+.vs-comfort-topic-desc {
+  font-size: 11px;
+  color: #6a6560;
+  font-style: italic
+}
+
+.vs-comfort-mastery-block {
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  padding: 15px;
+  margin-bottom: 15px
+}
+
+.vs-comfort-mastery-block:last-child {
+  margin-bottom: 0
+}
+
+.vs-comfort-mastery-question {
+  font-size: 12px;
+  color: #a39060;
+  margin-bottom: 10px;
+  font-style: italic
+}
+
+.vs-comfort-mastery-answer {
+  font-size: 13px;
+  color: #b8b0a0;
+  line-height: 1.7
+}
+
+.vs-comfort-footer {
+  padding: 25px 30px;
+  background: linear-gradient(0deg, rgba(10, 10, 10, .8) 0%, transparent 100%);
+  border-top: 1px solid #2a2a2a
+}
+
+.vs-comfort-notes-title {
+  font-size: 10px;
+  color: #8a0303;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px
+}
+
+.vs-comfort-notes-content {
+  font-size: 12px;
+  color: #6a6560;
+  line-height: 1.7;
+  padding: 12px 15px;
+  background: #0d0d0d;
+  border: 1px solid #2a2a2a;
+  border-left: 2px solid #8a0303;
+  min-height: 50px
+}
+
+.vs-comfort-signature {
+  margin-top: 25px;
+  text-align: right
+}
+
+.vs-comfort-signature-line {
+  display: inline-block;
+  width: 200px;
+  border-bottom: 1px solid #6a6560;
+  padding-bottom: 5px;
+  margin-bottom: 5px
+}
+
+.vs-comfort-signature-label {
+  font-size: 9px;
+  color: #6a6560;
+  text-transform: uppercase;
+  letter-spacing: 2px
+}
+
+.vs-comfort-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(138, 3, 3, .08), transparent);
+  color: #6a6560;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid #2a2a2a;
+  z-index: 2
+}
+
+@media (max-width:520px) {
+  .vs-comfort {
+    margin: 20px 10px
+  }
+
+  .vs-comfort-header,
+  .vs-comfort-section,
+  .vs-comfort-footer {
+    padding: 20px
+  }
+
+  .vs-comfort-name {
+    font-size: 22px;
+    letter-spacing: 2px
+  }
+
+  .vs-comfort-rhythm-grid {
+    grid-template-columns: 1fr
+  }
+
+  .vs-comfort-legend {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start
+  }
+
+  .vs-comfort-topic {
+    flex-direction: column;
+    gap: 10px
+  }
+
+  .vs-comfort-indicator {
+    margin-top: 0
+  }
+
+  .vs-comfort-signature-line {
+    width: 150px
+  }
+}
+
+/* ========================================
+   VELVET SIN - FICHE DE PRÉFÉRENCES RP
+   FIN
+   ======================================== */
