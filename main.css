@@ -7886,3 +7886,490 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    VELVET SIN - FICHE DE PRÉFÉRENCES RP
    FIN
    ======================================== */
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — FICHE SCÉNARIO (WANTED)
+   Aligné sur le style dossier.css (noir & or)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Variables ─── */
+:root {
+  --vs-w-bg-deep: #0a0a0a;
+  --vs-w-bg-main: #0a0a0a;
+  --vs-w-bg-card: #111111;
+  --vs-w-bg-subtle: rgba(0, 0, 0, 0.4);
+  --vs-w-border: #1a1a1a;
+  --vs-w-border-accent: #2a2a2a;
+
+  --vs-w-text-primary: #c5c5c5;
+  --vs-w-text-secondary: #a0a0a0;
+  --vs-w-text-muted: #666666;
+
+  /* Accent doré (aligné sur dossier) */
+  --vs-w-accent: #d4af37;
+  --vs-w-accent-dim: rgba(212, 175, 55, 0.3);
+  --vs-w-accent-glow: rgba(212, 175, 55, 0.15);
+
+  /* Rouge velours */
+  --vs-w-velvet: #8b3a3a;
+  --vs-w-velvet-dim: rgba(139, 58, 58, 0.3);
+
+  /* Statuts */
+  --vs-w-status-libre: #4a7c59;
+  --vs-w-status-pris: #7c4a4a;
+  --vs-w-status-reserve: #7c6a4a;
+
+  --vs-w-font-title: 'Cinzel', 'Times New Roman', serif;
+  --vs-w-font-body: 'Segoe UI', Tahoma, Geneva, sans-serif;
+
+  --vs-w-radius: 0;
+  --vs-w-transition: 0.3s ease;
+}
+
+/* ─── Container Principal ─── */
+.vs-wanted {
+  max-width: 750px;
+  margin: 40px auto;
+  background: var(--vs-w-bg-main);
+  border: 1px solid var(--vs-w-border);
+  font-family: var(--vs-w-font-body);
+  color: var(--vs-w-text-primary);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Bande supérieure */
+.vs-wanted::before {
+  content: "SCÉNARIO RECHERCHÉ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+  color: var(--vs-w-accent);
+  font-family: var(--vs-w-font-title);
+  font-size: 10px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--vs-w-border);
+  text-transform: uppercase;
+}
+
+/* ─── En-tête ─── */
+.vs-wanted-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 30px 20px;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+  border-bottom: 1px solid var(--vs-w-border);
+}
+
+.vs-wanted-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vs-wanted-status {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.vs-status-libre {
+  background: rgba(74, 124, 89, 0.15);
+  border-color: var(--vs-w-status-libre);
+  color: #7cb88a;
+}
+
+.vs-status-pris {
+  background: rgba(124, 74, 74, 0.15);
+  border-color: var(--vs-w-status-pris);
+  color: #b87c7c;
+}
+
+.vs-status-reserve {
+  background: rgba(124, 106, 74, 0.15);
+  border-color: var(--vs-w-status-reserve);
+  color: #b8a67c;
+}
+
+/* ─── Corps Principal ─── */
+.vs-wanted-body {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: auto auto;
+  /* Force exactement 2 rangs */
+  gap: 15px 25px;
+  /* row-gap column-gap */
+  padding: 20px 30px 10px 30px;
+  border-bottom: none;
+  align-items: start;
+  align-content: start;
+  /* Empêche l'étirement vertical */
+  max-height: 600px;
+  /* Limite la hauteur */
+}
+
+/* ─── Zone Avatar ─── */
+.vs-wanted-avatar {
+  grid-row: 1;
+  grid-column: 1;
+  flex-shrink: 0;
+  width: 160px;
+}
+
+.vs-wanted-avatar img {
+  display: block;
+  width: 160px;
+  height: 240px;
+  object-fit: cover;
+  border: 3px solid var(--vs-w-border-accent);
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  filter: contrast(1.05) brightness(0.95) grayscale(30%);
+  transition: filter var(--vs-w-transition), border-color var(--vs-w-transition);
+}
+
+.vs-wanted-avatar img:hover {
+  filter: contrast(1.2) brightness(1) grayscale(0%);
+  border-color: var(--vs-w-accent-dim);
+}
+
+/* ─── Zone Contenu ─── */
+.vs-wanted-content {
+  display: contents;
+}
+
+/* ─── Détails Rapides (Tags) ─── */
+.vs-wanted-details {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-self: center;
+  /* Centrer verticalement face à l'avatar si souhaité, ou 'start' */
+}
+
+.vs-wanted-tag {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 12px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  border-left: 2px solid var(--vs-w-accent-dim);
+  box-sizing: border-box;
+}
+
+.vs-tag-label {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--vs-w-accent);
+  margin-bottom: 4px;
+}
+
+.vs-tag-value {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--vs-w-text-primary);
+  word-break: break-word;
+}
+
+.vs-tag-value.vs-negotiable {
+  color: var(--vs-w-accent);
+}
+
+.vs-tag-value.vs-fixed {
+  color: var(--vs-w-velvet);
+}
+
+/* ─── Zone Histoire ─── */
+.vs-wanted-story {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  /* Prend toute la largeur (avatar + content) */
+  display: flex;
+  flex-direction: column;
+}
+
+.vs-wanted-story-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-accent-dim);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.vs-wanted-story-text {
+  flex: 1;
+  max-height: 180px;
+  overflow-y: auto;
+  padding: 12px 15px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-primary);
+}
+
+.vs-wanted-story-text p {
+  margin: 0 0 15px 0;
+  text-align: justify;
+}
+
+.vs-wanted-story-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Scrollbar personnalisée (style dossier) */
+.vs-wanted-story-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-track {
+  background: var(--vs-w-bg-deep);
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-thumb {
+  background: var(--vs-w-accent-dim);
+  border-radius: 3px;
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-thumb:hover {
+  background: var(--vs-w-accent);
+}
+
+/* ─── Section Liens ─── */
+.vs-wanted-links {
+  padding: 5px 25px 20px 25px;
+  /* Padding haut réduit à 5px */
+  border-top: 1px solid var(--vs-w-border);
+}
+
+.vs-wanted-links-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-accent-dim);
+  text-align: center;
+}
+
+.vs-wanted-link-row {
+  display: flex;
+  gap: 15px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  border-left: 2px solid var(--vs-w-accent-dim);
+}
+
+.vs-wanted-link-row:last-child {
+  margin-bottom: 0;
+}
+
+.vs-wanted-link-visual {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100px;
+}
+
+.vs-wanted-link-visual img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid var(--vs-w-border-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  filter: grayscale(30%) contrast(1.1);
+  transition: filter var(--vs-w-transition), border-color var(--vs-w-transition);
+}
+
+.vs-wanted-link-visual img:hover {
+  filter: grayscale(0%) contrast(1.2);
+  border-color: var(--vs-w-accent-dim);
+}
+
+.vs-wanted-link-name {
+  font-family: var(--vs-w-font-title);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.vs-wanted-link-desc {
+  flex: 1;
+  min-width: 0;
+  max-height: 100px;
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-primary);
+}
+
+.vs-wanted-link-desc p {
+  margin: 0 0 10px 0;
+}
+
+.vs-wanted-link-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Scrollbar liens */
+.vs-wanted-link-desc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-track {
+  background: var(--vs-w-bg-deep);
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-thumb {
+  background: var(--vs-w-accent-dim);
+  border-radius: 3px;
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-thumb:hover {
+  background: var(--vs-w-accent);
+}
+
+/* ─── Bande Inférieure (ID) ─── */
+.vs-wanted-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.05), transparent);
+  color: var(--vs-w-text-muted);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--vs-w-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+
+@media screen and (max-width: 520px) {
+  .vs-wanted {
+    margin: 20px 10px;
+  }
+
+  .vs-wanted-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 50px 20px 20px;
+  }
+
+  .vs-wanted-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .vs-wanted-body {
+    grid-template-columns: 1fr;
+    /* Une seule colonne */
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .vs-wanted-avatar {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+  }
+
+  .vs-wanted-avatar img {
+    width: 140px;
+    height: 210px;
+  }
+
+  .vs-wanted-details {
+    grid-row: 2;
+    grid-column: 1;
+    width: 100%;
+    /* S'assurer que les tags prennent la largeur */
+    justify-content: center;
+  }
+
+  .vs-wanted-tag {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .vs-wanted-story {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .vs-wanted-story-text {
+    max-height: none;
+    text-align: left;
+  }
+
+  .vs-wanted-links {
+    padding: 20px;
+  }
+
+  .vs-wanted-link-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .vs-wanted-link-desc {
+    text-align: left;
+    padding-right: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   VARIANTE : Texte extensible (sans scroll)
+   Ajouter la classe .vs-wanted-expand au container principal
+   ═══════════════════════════════════════════════════════════════════ */
+
+.vs-wanted.vs-wanted-expand .vs-wanted-story-text {
+  max-height: none;
+  overflow-y: visible;
+}
