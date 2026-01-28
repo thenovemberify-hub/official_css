@@ -458,8 +458,6 @@ h3,
 .links_bar {
   width: 1000px;
   margin: 10px auto;
-  background: var(--neutral);
-  border: 1px solid var(--border);
   padding: 5px;
   text-align: center;
 }
@@ -4112,8 +4110,6 @@ velvetify {
   font-weight: 400;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 25px;
-  padding: 20px;
 
   /* Velvet Sin signature gradient */
   background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
@@ -4805,7 +4801,7 @@ summary.vs-faq-title {
   font-size: 13px;
   /* Un peu plus fin */
   letter-spacing: 1px;
-  color: #888;
+  color: var(--neutralDark);
   text-transform: uppercase;
   list-style: none;
   transition: color 0.3s ease, padding 0.3s ease;
@@ -5280,7 +5276,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
 
