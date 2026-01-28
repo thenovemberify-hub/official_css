@@ -7763,7 +7763,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-comfort-mastery-question {
   font-size: 15px;
-  color: var(--gold-accent);
+  color: var(--textColor);
   margin-bottom: 10px;
   font-style: italic
 }
