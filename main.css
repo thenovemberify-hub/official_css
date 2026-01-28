@@ -7764,12 +7764,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-comfort-mastery-question {
   font-size: 15px;
+  color: var(--gold-accent);
   margin-bottom: 10px;
   font-style: italic
 }
 
 .vs-comfort-mastery-answer {
-  font-size: 14px;
+  font-size: 13px;
   color: #b8b0a0;
   line-height: 1.7
 }
