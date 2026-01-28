@@ -1449,8 +1449,6 @@ a.mainmenu img {
 .links_bar {
   width: 1000px;
   margin: 10px auto;
-  background: var(--neutralDarker);
-  border: 1px solid rgba(212, 175, 55, 0.3);
   padding: 5px;
   text-align: center;
   box-sizing: border-box;
@@ -7748,7 +7746,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 }
 
 .vs-comfort-topic-desc {
-  font-size: 11px;
+  font-size: 14px;
   color: #6a6560;
   font-style: italic
 }
@@ -7765,14 +7763,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 }
 
 .vs-comfort-mastery-question {
-  font-size: 12px;
-  color: #a39060;
+  font-size: 15px;
   margin-bottom: 10px;
   font-style: italic
 }
 
 .vs-comfort-mastery-answer {
-  font-size: 13px;
+  font-size: 14px;
   color: #b8b0a0;
   line-height: 1.7
 }
@@ -7792,7 +7789,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 }
 
 .vs-comfort-notes-content {
-  font-size: 12px;
+  font-size: 14px;
   color: #6a6560;
   line-height: 1.7;
   padding: 12px 15px;
