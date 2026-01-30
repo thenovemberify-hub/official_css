@@ -8009,9 +8009,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   border-bottom: none;
   align-items: start;
   align-content: start;
-  /* Empêche l'étirement vertical */
-  max-height: 600px;
-  /* Limite la hauteur */
 }
 
 /* ─── Zone Avatar ─── */
