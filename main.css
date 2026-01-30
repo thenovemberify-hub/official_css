@@ -1865,8 +1865,6 @@ a.forumtitle {
 /*** ------------------------------- ***/
 
 /* Bannière "Stepping into the spotlight" */
-/* Bannière "Stepping into the spotlight" */
-/* Bannière "Stepping into the spotlight" */
 .qeel_banner {
   /* Text Styles matching .cate_title h2 */
   font-family: var(--font-millgary);
@@ -1887,6 +1885,7 @@ a.forumtitle {
 
   /* Gold Text Gradient Effect */
   background: linear-gradient(to bottom, #cfc09f 22%, #634f2c 24%, #cfc09f 26%, #cfc09f 27%, #ffecb3 40%, #3a2c0f 78%);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -6077,7 +6076,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* But show text in proper child elements */
 .vs-vacant-portrait>* {
   font-size: 12px !important;
-  color: inherit !important;
   word-spacing: normal !important;
 }
 
@@ -7016,7 +7014,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 }
 
 .vs-dossier-archives-content {
-  max-height: 180px;
+  max-height: 400px;
   overflow-y: auto;
   padding: 12px 15px;
   background: rgba(0, 0, 0, 0.4);
@@ -8118,7 +8116,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-wanted-story-text {
   flex: 1;
-  max-height: 180px;
+  max-height: 400px;
   overflow-y: auto;
   padding: 12px 15px;
   background: var(--vs-w-bg-subtle);
