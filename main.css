@@ -8011,6 +8011,17 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   align-content: start;
 }
 
+/* Masquer les <br> parasites de Forumactif dans les zones grid/flex */
+.vs-wanted-body>br,
+.vs-wanted-content>br,
+.vs-wanted-details>br,
+.vs-wanted-story>br,
+.vs-wanted-links>br,
+.vs-wanted-link-row>br,
+.vs-wanted-link-visual>br {
+  display: none;
+}
+
 /* ─── Zone Avatar ─── */
 .vs-wanted-avatar {
   grid-row: 1;
