@@ -6510,7 +6510,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Badge de statut */
 .vs-vacant-status {
   position: absolute;
-  top: -8px;
+  top: -4px;
   right: 10px;
   font-family: 'Inter', sans-serif;
   font-size: 9px;
