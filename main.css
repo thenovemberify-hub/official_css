@@ -8107,6 +8107,9 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   /* Prend toute la largeur (avatar + content) */
   display: flex;
   flex-direction: column;
+  max-height: 450px;
+  /* Titre + zone texte scrollable */
+  overflow: hidden;
 }
 
 .vs-wanted-story-title {
