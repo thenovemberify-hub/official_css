@@ -8365,3 +8365,38 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   max-height: none;
   overflow-y: visible;
 }
+
+/* ─── Note d'Intention / Envies (Nouveau) ─── */
+.vs-wanted-notes {
+  background: var(--vs-w-bg-card);
+  border-top: 1px solid var(--vs-w-border);
+  padding: 25px 30px;
+}
+
+.vs-wanted-notes-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-text-muted);
+  /* Plus discret que les titres dorés */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-border-accent);
+}
+
+.vs-wanted-notes-content {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-secondary);
+  font-style: italic;
+  text-align: center;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — FICHE SCÉNARIO (WANTED)
+   Fin
+   ═══════════════════════════════════════════════════════════════════ */
