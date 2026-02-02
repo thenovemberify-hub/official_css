@@ -4165,6 +4165,51 @@ velvetify {
 }
 
 
+
+/* ========================================
+   POST LAYOUT & STICKY PROFILE
+   ======================================== */
+
+/* Post Row Layout (for sticky profile) */
+.post.post_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  /* Critical for sticky to work */
+  gap: 20px;
+}
+
+/* Post Details (date, actions) - Full width at top */
+.post_details {
+  width: 100%;
+  order: -1;
+}
+
+/* Sticky Profile Sidebar */
+.post_profile.vs-profile-tabs {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+  /* Below navbar */
+  align-self: flex-start;
+  flex-shrink: 0;
+  width: 200px;
+  /* Fixed width for profile column */
+}
+
+
+/* Profile Field Images */
+.vs-tab-content .vs-field img {
+  max-width: 180px;
+  height: auto;
+}
+
+/* Post Message - Fills remaining space */
+.post_message.postbody.content {
+  flex: 1;
+  min-width: 0;
+}
+
 /* Post Control Buttons (Citer, Editer, etc.) */
 ul.profile-icons {
   display: flex;
