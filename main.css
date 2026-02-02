@@ -4198,6 +4198,15 @@ velvetify {
 }
 
 
+/* Profile Fields - Inline Label and Content */
+.vs-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
 /* Profile Field Images */
 .vs-tab-content .vs-field img {
   max-width: 180px;
@@ -4431,6 +4440,73 @@ tag:hover {
   text-shadow: 0 0 5px var(--gold-accent);
   color: var(--white);
   background: transparent;
+}
+
+
+/* ========================================= */
+/* CUSTOM PM ICON (Feather) */
+/* ========================================= */
+
+/* Hide the default PM image */
+.vs-contact .i_icon_pm {
+  display: none;
+}
+
+/* Add the FontAwesome icon to the link */
+.vs-contact a[href*="/privmsg"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  /* Bonne échelle */
+  color: var(--contrastLight);
+  /* Default color */
+  transition: all 0.3s ease;
+}
+
+.vs-contact a[href*="/privmsg"]::before {
+  content: "\f56b";
+  /* feather-alt / feather-pointed */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+
+.vs-contact a[href*="/privmsg"]:hover {
+  color: var(--accentClr);
+  transform: scale(1.1);
+}
+
+/* CUSTOM WEBSITE ICON (ID Card) */
+/* Hide the default WWW image */
+.vs-contact a[title="Visiter le site web de l'utilisateur"] img {
+  display: none;
+}
+
+/* Add the FontAwesome icon to the link */
+.vs-contact a[title="Visiter le site web de l'utilisateur"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--contrastLight);
+  transition: all 0.3s ease;
+  margin-left: 5px;
+  /* Spacing between icons */
+}
+
+.vs-contact a[title="Visiter le site web de l'utilisateur"]::before {
+  content: "\f2c2";
+  /* id-card */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.vs-contact a[title="Visiter le site web de l'utilisateur"]:hover {
+  color: var(--accentClr);
+  transform: scale(1.1);
 }
 
 /* Navigation Droite - Links Column */
