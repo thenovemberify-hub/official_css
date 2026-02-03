@@ -44,7 +44,7 @@
   --font2: "Bodoni Moda", serif;
   --font3: "Roboto", sans-serif;
 
-  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
+  --bg-img: url('https://2img.net/i.imgur.com/7tQsmn4.jpeg');
   --bg-blur: none;
   --font-millgary: 'Millgary', serif;
 
@@ -96,7 +96,7 @@
   --border: 1px solid #363636;
 
   --shadowBox: 0 0 20px var(--neutralDark);
-  --bg-img: url("https://i.postimg.cc/FRDxStmP/Gemini-Generated-Image-tm105mtm105mtm10-upscale.png");
+  --bg-img: url("https://i.ibb.co/356Ld048/background-marbre-velvet-sin.jpg");
   --bg-blur: none;
   --font-millgary: 'Millgary', serif;
 
@@ -122,15 +122,14 @@
 
 /* FOND DU FORUM ---*/
 body {
-  background: #1e1e24;
+  background-image: var(--bg-img);
+  background-size: cover;
   font-family: var(--font);
   font-size: var(--normal-size);
   color: var(--textColor);
   margin: 0 !important;
   --top-offset: var(--offset-to-main);
-  background-color: #2c352d;
-  background-image: var(--bg-img), var(--bg-blur);
-  background-size: cover, cover;
+  /* Important : comme tu as mis 'repeat', on ne met pas 'cover' */
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed, fixed;
 }
