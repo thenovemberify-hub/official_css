@@ -1253,7 +1253,7 @@ a.specials_links:empty {
   flex-wrap: nowrap;
   /* Empêche le retour à la ligne */
   align-items: center;
-  gap: 25px;
+  gap: 20px;
   /* Plus d'espace entre les éléments */
   position: fixed;
   top: 0;
