@@ -5872,17 +5872,42 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   text-decoration: none;
 }
 
-/* Rang */
+/* Rang - Style doré élégant avec lignes décoratives */
 .vs-profile-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   font-family: 'Cinzel', serif;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #a94438;
-  background: linear-gradient(90deg, transparent, rgba(169, 68, 56, 0.2), transparent);
-  padding: 5px 10px;
+  font-weight: 600;
+  /* Dégradé doré sur le texte */
+  background: linear-gradient(90deg, #b8860b, #d4af37 30%, #ffd700 50%, #d4af37 70%, #b8860b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 5px 0;
   margin-bottom: 15px;
   text-align: center;
+}
+
+.vs-profile-rank::before,
+.vs-profile-rank::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  max-width: 40px;
+  opacity: 0.6;
+}
+
+.vs-profile-rank::before {
+  background: linear-gradient(to right, transparent, var(--gold-accent, #d4af37));
+}
+
+.vs-profile-rank::after {
+  background: linear-gradient(to right, var(--gold-accent, #d4af37), transparent);
 }
 
 /* Avatar - 200x320px */
