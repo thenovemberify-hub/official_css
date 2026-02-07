@@ -417,7 +417,7 @@ input:is([type="text"], [type="password"], .inputbox),
 textarea {
   border: none;
   border-radius: 5px;
-  background: var(--neutralDark);
+  background: var(--subcategory-dark);
   font-size: var(--normal-size);
   color: var(--contrastLight) !important;
   padding: 8px 10px;
@@ -437,7 +437,7 @@ button {
   font-size: var(--normal-size);
   padding: 10px 15px !important;
   border-radius: 5px;
-  background: var(--neutralDarker);
+  background: var(--subcategory-dark);
   color: var(--contrastLight);
   font-weight: 600;
   border: none;
