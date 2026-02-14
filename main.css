@@ -7491,6 +7491,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* Au survol : l'image disparaît */
 .vs-fl-lien-card:hover .vs-fl-lien-front {
   opacity: 0;
+  pointer-events: none;
 }
 
 .vs-fl-lien-back::-webkit-scrollbar {
