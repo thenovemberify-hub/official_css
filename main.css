@@ -8103,7 +8103,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 /* ─── Corps Principal ─── */
 .vs-wanted-body {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 250px 1fr;
   grid-template-rows: auto auto;
   /* Force exactement 2 rangs */
   gap: 15px 25px;
@@ -8130,13 +8130,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   grid-row: 1;
   grid-column: 1;
   flex-shrink: 0;
-  width: 160px;
+  width: 250px;
 }
 
 .vs-wanted-avatar img {
   display: block;
-  width: 160px;
-  height: 240px;
+  width: 250px;
+  height: 400px;
   object-fit: cover;
   border: 3px solid var(--vs-w-border-accent);
   box-shadow:
@@ -8149,6 +8149,19 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-wanted-avatar img:hover {
   filter: contrast(1.2) brightness(1) grayscale(0%);
   border-color: var(--vs-w-accent-dim);
+}
+
+.vs-wanted-feat {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--vs-w-font-body);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--vs-w-accent);
+  opacity: 0.7;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: lowercase;
 }
 
 /* ─── Zone Contenu ─── */
@@ -8307,12 +8320,12 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  width: 100px;
+  width: 150px;
 }
 
 .vs-wanted-link-visual img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 200px;
   object-fit: cover;
   border: 2px solid var(--vs-w-border-accent);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
