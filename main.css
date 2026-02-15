@@ -8952,3 +8952,256 @@ a.replypm_button:hover {
 #i_icon_profile {
   display: none;
 }
+
+/****** ------------------------------------------------------------------------------ 
+ ****** PAGE DE PRÉVISUALISATION / ENVOI DE MP ----------------------------------------
+ ****** Styles pour la page d'envoi et de prévisualisation de messages privés --------- ******/
+
+/* ============================
+   1. BLOC DE PRÉVISUALISATION
+   ============================ */
+
+/* Titre "Prévisualisation" */
+.h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-accent);
+  padding: 12px 20px;
+  margin: 15px 0 0;
+  background: var(--neutralDark);
+  border: var(--border);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 5px 5px 0 0;
+}
+
+/* Bloc contenant le message prévisualisé */
+.post.row2 {
+  background: var(--neutral);
+  border: var(--border);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.post.row2 .inner {
+  padding: 0;
+}
+
+/* Titre du sujet dans la prévisualisation */
+.postbody h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  padding: 14px 20px 6px;
+  margin: 0;
+}
+
+/* Auteur & date */
+.postbody .author {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--textColor);
+  opacity: 0.55;
+  padding: 0 20px 12px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  margin: 0;
+}
+
+/* Contenu du message prévisualisé */
+.postbody .content {
+  padding: 18px 20px;
+  line-height: 1.65;
+  color: var(--textColor);
+  font-size: 0.82rem;
+}
+
+/* Signature — séparateur doré subtil */
+.signature_div {
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  margin-top: 15px;
+  padding-top: 12px;
+  opacity: 0.7;
+}
+
+/* Masque les <br> disgracieux autour de la prévisualisation */
+.post.row2+br {
+  display: none;
+}
+
+/* ============================
+   2. FORMULAIRE D'ENVOI (.container, #postingbox)
+   ============================ */
+
+/* Titre de la page "Envoyer un nouveau message privé" */
+.page-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-accent);
+  text-align: center;
+  margin: 25px 0 20px;
+  font-weight: 600;
+}
+
+/* Panneau d'édition */
+#postingbox {
+  background: var(--neutralDark);
+  border: var(--border);
+  border-radius: 5px;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+}
+
+#postingbox h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Labels des champs */
+#postingbox .fields1 dt label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+/* Champs de saisie */
+#postingbox .inputbox {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 3px;
+  color: var(--textColor);
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#postingbox .inputbox:focus {
+  outline: none;
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.1);
+}
+
+/* Bouton "Trouver un nom d'utilisateur" */
+#postingbox .button2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--textColor);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.75;
+}
+
+#postingbox .button2:hover {
+  color: var(--gold-accent);
+  border-color: rgba(212, 175, 55, 0.4);
+  opacity: 1;
+}
+
+/* ============================
+   3. BOUTONS POSTER (Prévisualisation, Envoyer)
+   ============================ */
+.posting-buttons .button1,
+.posting-buttons .button2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--textColor);
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 3px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.posting-buttons .button1:hover,
+.posting-buttons .button2:hover {
+  color: var(--gold-accent);
+  border-color: rgba(212, 175, 55, 0.5);
+  opacity: 1;
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.2);
+}
+
+/* Le bouton Envoyer — accent plus fort */
+.posting-buttons .button1 {
+  border-color: rgba(212, 175, 55, 0.35);
+  color: var(--gold-accent);
+  opacity: 1;
+}
+
+/* ============================
+   4. PANNEAU OPTIONS
+   ============================ */
+.container+br+.panel,
+#postingbox~.panel {
+  background: var(--neutral);
+  border: var(--border);
+  border-radius: 5px;
+  padding: 15px 20px;
+  margin-top: 10px;
+}
+
+.container+br+.panel h3,
+#postingbox~.panel h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.container+br+.panel label,
+#postingbox~.panel label {
+  font-size: 0.75rem;
+  color: var(--textColor);
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+
+.container+br+.panel input[type="checkbox"],
+#postingbox~.panel input[type="checkbox"] {
+  accent-color: var(--gold-accent);
+}
+
+/* ============================
+   5. NETTOYAGE VISUEL
+   ============================ */
+
+/* Masque le formulaire "Sauter vers un forum" sur les pages de posting */
+form[name="jumpbox"] {
+  display: none;
+}
+
+/* Masque les <br> parasites dans le container */
+.container>br {
+  display: none;
+}
