@@ -8352,7 +8352,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-wanted-link-desc {
   flex: 1;
   min-width: 0;
-  max-height: 100px;
+  max-height: 210px;
   overflow-y: auto;
   padding-right: 8px;
   font-size: 13px;
@@ -8517,7 +8517,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   line-height: 1.6;
   color: var(--vs-w-text-secondary);
   font-style: italic;
-  text-align: center;
 }
 
 
