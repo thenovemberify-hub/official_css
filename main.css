@@ -9206,3 +9206,30 @@ form[name="jumpbox"] {
 .container>br {
   display: none;
 }
+
+/* ============================
+   BOUTON LOGOUT — Texte "Quitter"
+   Reprend le style a.mainmenu
+   ============================ */
+#logout {
+  font-size: 0 !important;
+  letter-spacing: normal !important;
+}
+
+#logout::after {
+  content: "Quitter";
+  font-family: var(--font2);
+  font-size: var(--little-size);
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 10px;
+  color: var(--white, #ffffff);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#logout:hover::after {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+}
