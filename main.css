@@ -464,6 +464,7 @@ button {
 
 .submit-buttons {
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .quickmod {
@@ -8786,7 +8787,8 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    4. HISTORIQUE DES MESSAGES PRIVÉS (.wrapped)
    ============================ */
 .wrapped {
-  width: 85%;
+  width: 1018px;
+  max-width: 100%;
   margin: 30px auto 15px;
   clear: both;
 }
@@ -8920,4 +8922,33 @@ a.replypm_button:hover {
   background: rgba(212, 175, 55, 0.08);
   border-color: var(--gold-accent);
   text-shadow: 0 0 6px rgba(212, 175, 55, 0.3);
+}
+
+/* --- Boutons submit (répondre, supprimer, etc.) --- */
+.submit-buttons input[type="submit"],
+.submit-buttons button {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--textColor);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 6px 14px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.submit-buttons input[type="submit"]:hover,
+.submit-buttons button:hover {
+  color: var(--gold-accent);
+  opacity: 1;
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Masque l'icône profil dans les MP */
+#i_icon_profile {
+  display: none;
 }
