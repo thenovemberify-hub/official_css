@@ -309,7 +309,7 @@ body {
   color: var(--white);
   cursor: pointer;
   border: none;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -7899,7 +7899,6 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   border: 1px solid #2a2a2a;
   border-left: 2px solid #8a0303;
   min-height: 50px;
-  text-align: center;
 }
 
 .vs-comfort-signature {
