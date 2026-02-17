@@ -263,6 +263,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-self: flex-end;
 }
 
 /* Lien de renvoi haut/bas */
