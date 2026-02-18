@@ -256,14 +256,16 @@ body {
 }
 
 /* Conteneur de l'ascenseur
- * Sert essentiellement à définir où le placer dans la page */
+ * Placé en bas à droite de la page */
 .sidebar_bottom {
+  position: fixed;
+  bottom: 15px;
+  right: 10px;
   width: 45px;
   z-index: 999;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-self: flex-end;
 }
 
 /* Lien de renvoi haut/bas */
@@ -2390,7 +2392,6 @@ a.forumtitle {
   font-weight: 400;
   color: var(--textColorAccent);
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
   display: inline-block;
