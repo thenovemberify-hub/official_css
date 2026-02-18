@@ -2391,7 +2391,6 @@ a.forumtitle {
   font-style: italic;
   font-weight: 400;
   color: var(--textColorAccent);
-  overflow: hidden;
   white-space: nowrap;
   max-width: 100%;
   display: inline-block;
