@@ -2640,7 +2640,7 @@ ul.profile-icons li:hover {
 .rep-button,
 .rep-button:active,
 .rep-button:focus {
-  background: var(--neutralDark);
+  background: var(--neutral);
   color: var(--textColor);
   border: none;
   padding: 3px 5px;
