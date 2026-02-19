@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /****** STRUCTURE DU FORUM ----------------------------------------------------------- 
  ****** Elements du forum qui définissent sa structure et sa hiérachie sur toutes les pages 
@@ -40,6 +41,7 @@
   --font: "Inter", sans-serif;
   --font-title: "Playfair Display";
   --font3: "Roboto", sans-serif;
+  --font-4: "Roboto Condensed", sans-serif;
 
   --textColor: #c7c5cd;
   --textColorAccent: #e5e5f0;
@@ -2025,8 +2027,8 @@ a.forumtitle {
 
 .qeel-content {
   background: var(--neutral);
-  font-family: var(--font);
-  font-size: 13px;
+  font-family: var(--font-4);
+  font-size: 14px;
   padding: 0;
   margin: 0;
   flex: 1;
@@ -2651,15 +2653,30 @@ ul.profile-icons li:hover {
   background: var(--var(--contrastLighter));
 }
 
-/* Texte "j'aime" */
-button.rep-button .like_text {}
+button.rep-button .like_text {
+  font-family: 'Karla', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--contrastLight);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
 
-/*compteur de like*/
 button.rep-button .rep-nb {
-  margin-left: 5px;
-  padding: 0 3px;
-  background: var(--neutral);
-  border-radius: 3px;
+  font-family: 'Karla', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--contrastLight);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
 }
 
 .post_profile {
