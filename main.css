@@ -2025,6 +2025,8 @@ a.forumtitle {
 
 .qeel-content {
   background: var(--neutral);
+  font-family: var(--font3);
+  font-size: 13px;
   padding: 0;
   margin: 0;
   flex: 1;
