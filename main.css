@@ -2028,6 +2028,7 @@ a.forumtitle {
 .qeel-content {
   background: var(--neutral);
   font-family: var(--font-4);
+  text-align: justify;
   font-size: 14px;
   padding: 0;
   margin: 0;
