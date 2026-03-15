@@ -49,7 +49,7 @@
   --border: 1px solid #363636;
 
   --shadowBox: 0 0 20px var(--neutralDark);
-  --bg-img: url("https://i.ibb.co/356Ld048/background-marbre-velvet-sin.jpg");
+  --bg-img: url("https://i.postimg.cc/sfkqsKqR/background-marbre-velvet-sin.jpg");
   --bg-blur: none;
   --font-millgary: 'Millgary', serif;
 
@@ -584,7 +584,7 @@ body#sce_smilies_body {
 
 /* Contenur général qui sert généralement de fond et/ou de contour*/
 .container {
-  background: var(--neutralDark);
+  /*background: var(--neutralDark);*/
   border-radius: 5px;
 }
 
@@ -2603,6 +2603,8 @@ div.post_row:nth-of-type(2) {
 
 .post_date {
   flex-grow: 100;
+  text-transform: lowercase;
+  font-size: 13px;
 }
 
 /* BOUTONS D'EDITION DU MESSAGE --- */
@@ -2782,50 +2784,7 @@ a.fa-mention {
   display: none;
 }
 
-/*** ------------------------------- ***/
-/*** SONDAGE ----------------------- ***/
-
-.poll {
-  background: var(--neutral);
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.head_poll {
-  padding: 10px;
-  border-bottom: 1px solid var(--neutralDark);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.poll_list {
-  display: grid;
-  grid-template-columns: 220px auto;
-}
-
-.poll_option {
-  padding: 10px 20px 0 10px;
-  border-right: 1px solid var(--neutralDark);
-  text-align: right;
-}
-
-.poll_vote {
-  padding: 10px 10px 0 20px;
-  display: flex;
-  align-items: center;
-}
-
-.poll_send {
-  margin-left: 220px;
-  padding: 20px 10px 20px 20px;
-  border-left: 1px solid var(--neutralDark);
-}
-
-.poll_vote:nth-child(2),
-.poll_option:first-child {
-  padding-top: 20px;
-}
+/* SONDAGE : styles déplacés en fin de fichier (section Velvet Sin) */
 
 .votes-users-list {
   justify-content: start;
@@ -9253,4 +9212,425 @@ form[name="jumpbox"] {
 #logout:hover::after {
   color: transparent;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — MOODBOARD (Style Pinterest)
+   Aligné sur le thème Velvet Sin (noir & or)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Variables ─── */
+:root {
+  --vs-mb-bg-deep: #0a0a0a;
+  --vs-mb-bg-main: #0a0a0a;
+  --vs-mb-border: #1a1a1a;
+
+  --vs-mb-text-primary: #c5c5c5;
+  --vs-mb-text-muted: #666666;
+
+  /* Accent doré */
+  --vs-mb-accent: #d4af37;
+  --vs-mb-accent-dim: rgba(212, 175, 55, 0.3);
+
+  /* Gradient doré (identique au velvet-header) */
+  --vs-mb-gold-gradient: linear-gradient(45deg, #cfc09f, #634f2c, #cfc09f, #ffecb3, #3a2c0f);
+
+  --vs-mb-font-title: 'Cinzel', 'Times New Roman', serif;
+  --vs-mb-font-body: 'Segoe UI', Tahoma, Geneva, sans-serif;
+
+  --vs-mb-transition: 0.3s ease;
+  --vs-mb-columns: 3;
+}
+
+/* ─── Conteneur Principal ─── */
+.vs-moodboard {
+  max-width: 850px;
+  margin: 40px auto;
+  background: var(--vs-mb-bg-main);
+  border: 1px solid var(--vs-mb-border);
+  font-family: var(--vs-mb-font-body);
+  color: var(--vs-mb-text-primary);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  padding: 30px;
+}
+
+/* Bande supérieure décorative */
+.vs-moodboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--vs-mb-gold-gradient);
+  opacity: 0.6;
+}
+
+/* ─── Titre du Moodboard ─── */
+.vs-moodboard-title {
+  font-family: var(--vs-mb-font-title);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--vs-mb-accent);
+  margin: 0 0 8px 0;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Sous-titre / description optionnelle */
+.vs-moodboard-subtitle {
+  font-size: 12px;
+  color: var(--vs-mb-text-muted);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 25px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--vs-mb-accent-dim);
+}
+
+/* ─── Grille Masonry (CSS Columns) ─── */
+.vs-moodboard-grid {
+  column-count: var(--vs-mb-columns);
+  column-gap: 6px;
+}
+
+/* Ignorer les retours à la ligne générés automatiquement par le forum */
+.vs-moodboard-grid br {
+  display: none;
+}
+
+/* ─── Item / Image individuelle ─── */
+.vs-mood-item {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+/* — Cadre doré extérieur (bordure fine) — */
+.vs-mood-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-image: var(--vs-mb-gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.4));
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity var(--vs-mb-transition);
+}
+
+/* — Cadre doré intérieur (bordure plus épaisse) — */
+.vs-mood-item::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid transparent;
+  border-image: var(--vs-mb-gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.3));
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity var(--vs-mb-transition);
+}
+
+/* Au survol : cadre doré plus visible */
+.vs-mood-item:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(207, 192, 159, 0.6));
+}
+
+.vs-mood-item:hover::after {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 5px rgba(207, 192, 159, 0.5));
+}
+
+/* — Image — */
+.vs-mood-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.05) saturate(0.9);
+  transition: filter var(--vs-mb-transition);
+}
+
+/* Au survol : image en pleine luminosité (pas de zoom) */
+.vs-mood-item:hover img {
+  filter: brightness(1) contrast(1.1) saturate(1);
+}
+
+/* ─── Légende optionnelle ─── */
+.vs-mood-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  padding: 20px 10px 8px;
+  font-family: var(--vs-mb-font-title);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--vs-mb-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity var(--vs-mb-transition), transform var(--vs-mb-transition);
+}
+
+/* Afficher la légende au survol */
+.vs-mood-item:hover .vs-mood-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Footer / Signature ─── */
+.vs-moodboard-footer {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--vs-mb-accent-dim);
+  text-align: center;
+  font-size: 10px;
+  color: var(--vs-mb-text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Tablette → 2 colonnes */
+@media screen and (max-width: 700px) {
+  .vs-moodboard {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  .vs-moodboard-grid {
+    column-count: 2;
+  }
+}
+
+/* Mobile → 1 colonne */
+@media screen and (max-width: 450px) {
+  .vs-moodboard-grid {
+    column-count: 1;
+  }
+
+  .vs-moodboard-title {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — SONDAGE (Poll)
+   ═══════════════════════════════════════════════════════════════════ */
+.poll {
+  background: var(--neutralDark, #0e0808);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 5px;
+  margin: 0 0 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(212, 175, 55, 0.08);
+}
+
+.poll::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold-gradient);
+  opacity: 0.6;
+}
+
+/* En-tête */
+.head_poll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.head_poll h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold-accent, #eaba6b);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.head_poll .right a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--textColor, #c5c5c5);
+  opacity: 0.5;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 3px;
+  padding: 4px 10px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.head_poll .right a:hover {
+  color: var(--gold-accent, #eaba6b);
+  opacity: 1;
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+/* Grille des options : radio à gauche, texte à droite */
+.poll_list {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  padding: 4px 0;
+  grid-auto-flow: dense;
+  /* Placement dense pour combler les trous sans sauter de ligne */
+}
+
+.poll_option {
+  grid-column: 2;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  color: var(--textColor, #c5c5c5);
+  padding: 8px 16px 8px 0;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.25);
+  transition: color 0.3s ease;
+  margin-left: 20px;
+}
+
+.poll_vote {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.25);
+}
+
+.poll_option:last-of-type,
+.poll_vote:last-of-type {
+  border-bottom: none;
+}
+
+.poll_option:hover {
+  color: var(--gold-accent, #eaba6b);
+}
+
+/* Radio custom doré */
+.poll_vote input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.poll_vote input[type="radio"]:hover {
+  border-color: var(--gold-accent, #eaba6b);
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.2);
+}
+
+.poll_vote input[type="radio"]:checked {
+  border-color: var(--gold-accent, #eaba6b);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.poll_vote input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-accent, #eaba6b);
+}
+
+/* Zone d'envoi */
+.poll_send {
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+  font-size: 0.72rem;
+  color: var(--textColor, #c5c5c5);
+  line-height: 1.6;
+}
+
+.poll_send input[type="submit"].button1 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-accent, #eaba6b);
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 3px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.poll_send input[type="submit"].button1:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--gold-accent, #eaba6b);
+}
+
+.poll_send a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--textColor, #c5c5c5);
+  opacity: 0.55;
+  transition: all 0.3s ease;
+}
+
+.poll_send a:hover {
+  color: var(--gold-accent, #eaba6b);
+  opacity: 1;
+}
+
+.poll_send i {
+  font-size: 0.68rem;
+  opacity: 0.45;
+  font-style: italic;
+}
+
+.poll_send b {
+  color: var(--gold-accent, #eaba6b);
+  font-weight: 600;
 }
