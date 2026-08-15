@@ -541,77 +541,204 @@
 
 /* Harmonisation des bordures catégories (comme QEEL) */
 /* --- REGULATION PAGE STYLES --- */
-/* --- TEMPLATE ADMINISTRATIF VELVET SIN --- */
-/* Le Conteneur Principal */
-/* Le Conteneur Principal */
+/* ==========================================================================
+   CARTE ADMINISTRATIVE VELVET SIN (DISPATCH OFFICIEL)
+   ========================================================================== */
 .vs-admin-card {
-  max-width: 750px;
-  margin: 40px auto;
-  background: var(--surface-glass-dim);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  max-width: 780px;
+  margin: 35px auto;
+  padding: 45px 50px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
   border-radius: 8px;
-  padding: 50px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.12);
   position: relative;
-  color: #d8d4f2;
-  font-family: "Karla", sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
+  color: var(--textColor);
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 13.5px;
+  line-height: 1.75;
   text-align: justify;
 }
 
-/* Le Titre Principal */
-.vs-admin-title {
-  font-family: "Cormorant Garamond", serif;
-  color: #d8d4f2;
-  font-size: 28px;
-  text-transform: uppercase;
+/* Badge supérieur institutionnel */
+.vs-admin-badge {
   text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  font-weight: 700;
   letter-spacing: 3px;
-  margin-bottom: 10px;
-  font-weight: 300;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  margin-bottom: 8px;
+  opacity: 0.85;
 }
 
-/* Le Titre de Section */
-.vs-reg-title {
+/* Titre Principal (vs-admin-header & vs-reg-header compatibilité) */
+.vs-admin-header,
+.vs-admin-card .vs-reg-header {
+  font-family: "Cinzel", "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--contrastLight);
+  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  background: none;
+  -webkit-text-fill-color: initial;
+  filter: none;
+}
+
+.vs-admin-subtitle {
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--taupe);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+/* Titres de Section (vs-admin-section & vs-reg-title) */
+.vs-admin-section,
+.vs-admin-card .vs-reg-title {
   display: flex;
   align-items: center;
   gap: 15px;
-  color: #c4b2bc;
-  margin: 35px 0 20px 0;
-  font-family: "Karla", sans-serif;
-  text-transform: uppercase;
-  font-size: 19px;
-  letter-spacing: 2px;
+  margin: 30px 0 18px;
+  color: var(--accentClr);
+  font-family: "Cinzel", serif;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-.vs-reg-title::after {
+.vs-admin-section::after,
+.vs-admin-card .vs-reg-title::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, #c4b2bc, transparent);
-  opacity: 0.6;
+  background: linear-gradient(to right, rgba(var(--gold-rgb), 0.45), transparent);
 }
 
-/* Le Sous-titre / Date */
-.vs-admin-subtitle {
+/* Corps du texte */
+.vs-admin-body p,
+.vs-admin-card p {
+  margin: 0 0 16px;
+  text-align: justify;
+  color: var(--textColor);
+}
+
+/* Boîte Callout (pour listes, règles ou arguments) */
+.vs-admin-callout {
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-left: 3px solid var(--accentClr);
+  border-radius: 4px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+
+.vs-callout-title {
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  margin-bottom: 12px;
+}
+
+/* Listes stylisées (support des balises [list] / <ul>) */
+.vs-admin-list,
+.vs-admin-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vs-admin-list li,
+.vs-admin-card ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--textColor);
+}
+
+.vs-admin-list li::before,
+.vs-admin-card ul li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 8px;
+  color: var(--accentClr);
+}
+
+.vs-admin-list strong,
+.vs-admin-card ul li strong,
+.vs-admin-card ul li b {
+  color: var(--contrastLight);
+}
+
+/* Bloc Conclusion & Signature */
+.vs-admin-footer-sign {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-sign-quote {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accentClr);
+  letter-spacing: 0.5px;
+}
+
+.vs-sign-team {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.8;
+}
+
+/* Re-thématisation de la balise <velvetify> quand elle est dans une admin-card */
+.vs-admin-card velvetify {
   display: block;
   text-align: center;
-  font-family: "Karla", sans-serif;
-  font-size: 11px;
-  color: #a29587;
+  margin-top: 30px;
+  padding: 16px 20px;
+  background: transparent;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.1);
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--accentClr);
   letter-spacing: 1px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.1);
-  padding-bottom: 20px;
+  text-transform: none;
 }
 
 /* Texte mis en valeur (Gras/Doré) */
 .vs-gold {
-  color: #d8d4f2;
+  color: var(--contrastLight);
   font-weight: bold;
 }
 
