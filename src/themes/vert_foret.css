@@ -1,5 +1,6 @@
 /* ============================================================================
- * THÈME 2 : VERT FORÊT
+ * THÈME 2 : BLEU AZUR & AMBRE
+ * Palette : #5095BF | #A0D3F2 | #F28705 | #D96704 | #8C2703
  * ============================================================================ */
 [data-theme="vert_foret"] {
     --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
@@ -7,70 +8,77 @@
     --bg-position: center 10%;
     --bg-blur: none;
     --hp-visual-img: url("https://64.media.tumblr.com/76fd205c3cd32b79b37ab49248af146a/9ac08417b001f6b8-f8/s500x750/df335cb2391907d1c2469c7d1456d4878812a7b5.gif");
-    --fond-category: #0f281e;
-    --midnight-purple: #143d2b;
-    --taupe: #8ea287;
-    --neutral: #ebf0ec;
-    --thistle: #b2c4b8;
-    --neutralDark: #e4ede6;
-    --neutralDarker: #ccd6ce;
-    --dark: #99a89c;
-    --subcategory-dark: #d5e0d7;
-    --bg-soft: #2b543e;
-    --bg-dim: #1e402e;
-    --bg-darker: #132b20;
-    --bg-black: #0a1711;
-    --bg-warm-deep: #08120d;
-    --bg-warm-soft: #182b20;
-    --textColor: #c3cdc5;
-    --textColorAccent: #e2ede5;
-    --text-soft: #b8c4ba;
-    --text-muted: #606d63;
-    --text-cream: #f4f7f4;
 
-    --contrast: #e2ede5;
-    --contrastLight: #f2f7f3;
-    --contrastLighter: #2d4a3b;
+    /* Surfaces & Fonds (nuances sombres basées sur #5095BF & #8C2703) */
+    --fond-category: #112330;
+    --midnight-purple: #2d130a;
+    --taupe: #8ea6b6;
+    --neutral: #ecf4f9;
+    --thistle: #A0D3F2;
+    --neutralDark: #dbeef7;
+    --neutralDarker: #b8d7e8;
+    --dark: #89aabf;
+    --subcategory-dark: #cfe7f5;
+    --bg-soft: #1e3848;
+    --bg-dim: #152936;
+    --bg-darker: #0c1820;
+    --bg-black: #060d12;
+    --bg-warm-deep: #1a0904;
+    --bg-warm-soft: #2e1208;
+
+    /* Typographie & Contrastes */
+    --textColor: #c2d6e3;
+    --textColorAccent: #A0D3F2;
+    --text-soft: #9bb5c7;
+    --text-muted: #688091;
+    --text-cream: #f7fbfd;
+    --contrast: #A0D3F2;
+    --contrastLight: #f0f8fc;
+    --contrastLighter: #1e3848;
     --white: #ffffff;
-    --accentClr: #48a868;
-    --accentClrDark: #3b8a55;
-    --gold-rgb: 72, 168, 104;
-    --borderGold: #48a868;
 
-    --gold-accent: #7ece95;
-    --gold-light: #b0deb9;
-    --gold-medium: #62b87f;
-    --gold-warm: #a2b8a6;
-    --gold-bronze: #3b6e4b;
-    --gold-dark: #274731;
-    --gold-darker: #142b1c;
-    --gold-cream: #dff2e3;
-    --gold-mid: #49855c;
+    /* Accents Ambre & Or (#F28705, #D96704, #8C2703) */
+    --accentClr: #F28705;
+    --accentClrDark: #D96704;
+    --gold-rgb: 242, 135, 5;
+    --borderGold: #F28705;
 
-    --qeel-dark: #060f0a;
-    --qeel-surface: #0f281e;
-    --qeel-border: rgba(178, 196, 184, 0.15);
-    --qeel-lavender: #d4f2dc;
-    --qeel-mauve: #b2c4b8;
-    --qeel-taupe: #8ea287;
-    --qeel-purple: #143d2b;
-    --qeel-purple-light: #215c40;
-    --qeel-purple-dim: rgba(20, 61, 43, 0.5);
-    --qeel-text-bright: #e5f5ea;
-    --qeel-glass: rgba(15, 40, 30, 0.45);
-    --qeel-glass-deep: rgba(6, 18, 12, 0.35);
+    --gold-accent: #F28705;
+    --gold-light: #f7ba63;
+    --gold-medium: #D96704;
+    --gold-warm: #d99152;
+    --gold-bronze: #a64d03;
+    --gold-dark: #8C2703;
+    --gold-darker: #541702;
+    --gold-cream: #ffe1b3;
+    --gold-mid: #D96704;
 
-    --hp-dark: #060f0a;
-    --hp-darker: #040a07;
-    --hp-surface: #0f281e;
-    --hp-border: rgba(178, 196, 184, 0.15);
-    --hp-lavender: #d4f2dc;
-    --hp-mauve: #b2c4b8;
-    --hp-taupe: #8ea287;
-    --hp-purple: #143d2b;
-    --hp-purple-light: #215c40;
-    --hp-purple-dim: rgba(20, 61, 43, 0.5);
-    --hp-text: #d4f2dc;
-    --hp-text-dim: #8ea287;
-    --hp-text-bright: #e5f5ea;
+    /* QEEL */
+    --qeel-dark: #060d12;
+    --qeel-surface: #112330;
+    --qeel-border: rgba(160, 211, 242, 0.15);
+    --qeel-lavender: #A0D3F2;
+    --qeel-mauve: #5095BF;
+    --qeel-taupe: #8ea6b6;
+    --qeel-purple: #8C2703;
+    --qeel-purple-light: #b83605;
+    --qeel-purple-dim: rgba(140, 39, 3, 0.5);
+    --qeel-text-bright: #f0f8fc;
+    --qeel-glass: rgba(17, 35, 48, 0.55);
+    --qeel-glass-deep: rgba(6, 13, 18, 0.45);
+
+    /* Page d'Accueil (HP) */
+    --hp-dark: #060d12;
+    --hp-darker: #04080c;
+    --hp-surface: #112330;
+    --hp-border: rgba(160, 211, 242, 0.15);
+    --hp-lavender: #A0D3F2;
+    --hp-mauve: #5095BF;
+    --hp-taupe: #8ea6b6;
+    --hp-purple: #8C2703;
+    --hp-purple-light: #b83605;
+    --hp-purple-dim: rgba(140, 39, 3, 0.5);
+    --hp-text: #A0D3F2;
+    --hp-text-dim: #8ea6b6;
+    --hp-text-bright: #f0f8fc;
 }

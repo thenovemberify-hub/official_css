@@ -47,5 +47,5 @@
 
 .velvet-theme[data-t="vert_foret"],
 .velvet-theme[data-theme="vert_foret"] {
-    background: #0f281e;
+    background: linear-gradient(135deg, #5095BF 50%, #F28705 50%);
 }
