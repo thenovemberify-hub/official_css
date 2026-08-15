@@ -31,7 +31,10 @@
     --textColorAccent: #A0D3F2;
     --text-soft: #9bb5c7;
     --text-muted: #688091;
-    --text-cream: #f7fbfd;
+    --text-cream: #f4f7f4;
+    --surface-glass: rgba(17, 35, 48, 0.55);
+    --surface-glass-dim: rgba(17, 35, 48, 0.4);
+    --surface-glass-deep: rgba(17, 35, 48, 0.75);
     --contrast: #A0D3F2;
     --contrastLight: #f0f8fc;
     --contrastLighter: #1e3848;

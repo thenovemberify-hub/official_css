@@ -56,7 +56,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -99,7 +99,7 @@
 /* Lien de renvoi haut/bas — modernisé avec hover élégant */
 .sidebar_bottom > a {
   padding: var(--space-2xs) var(--space-xs);
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -380,7 +380,7 @@
 }
 
 .wrap-mp-main-container {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -551,7 +551,7 @@
 
 /* --- Conteneur d'un message dans l'historique --- */
 .wrapped .panel {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -678,7 +678,7 @@
   width: 100%;
   height: 220px;
   /* Glassmorphisme : fond semi-transparent + flou de l'arrière-plan */
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid var(--hp-border);

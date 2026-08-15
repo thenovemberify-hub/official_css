@@ -27,7 +27,7 @@ div.sceditor-group {
 /* Conteneur de la zone de texte */
 .sceditor-container iframe,
 .sceditor-container textarea {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -54,7 +54,7 @@ div.sceditor-group {
   margin: 10px auto;
   position: relative;
   border: 1px solid rgba(216, 212, 242, 0.15);
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   border-radius: 8px;
 }
 
@@ -124,7 +124,7 @@ div.sceditor-group {
   color: var(--neutral);
   padding: 12px 20px;
   margin: 15px 0 0;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border: var(--border);
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
   border-radius: 5px 5px 0 0;
@@ -136,7 +136,7 @@ div.sceditor-group {
 /* Titre de la page "Envoyer un nouveau message privé" */
 /* Panneau d'édition */
 #postingbox {
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(216, 212, 242, 0.15);
@@ -168,7 +168,7 @@ div.sceditor-group {
 
 /* Champs de saisie */
 #postingbox .inputbox {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border: 1px solid rgba(216, 212, 242, 0.15);
   border-radius: 4px;
   color: #d8d4f2;
@@ -248,7 +248,7 @@ div.sceditor-group {
    ============================ */
 .container + br + .panel,
 #postingbox ~ .panel {
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(216, 212, 242, 0.15);
@@ -291,7 +291,7 @@ div.sceditor-group {
    ============================ */
 /* Conteneur principal de l'éditeur */
 .sceditor-container {
-  background: rgba(18, 40, 63, 0.45) !important;
+  background: var(--surface-glass) !important;
   backdrop-filter: blur(12px) saturate(140%) !important;
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;

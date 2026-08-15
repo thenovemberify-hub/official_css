@@ -93,20 +93,18 @@ h3,
 /* CHAMPS DE TEXTE ---
  * Refonte moderne : focus-visible, transitions douces, autofill thématisé,
  * placeholder lisible, taille de police ≥16px sur mobile pour éviter le zoom iOS. */
-input:is(
-  [type="text"],
+input:is([type="text"],
   [type="password"],
   [type="email"],
   [type="search"],
   [type="url"],
   [type="tel"],
   [type="number"],
-  .inputbox
-),
+  .inputbox),
 textarea {
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   font-family: inherit;
   font-size: max(16px, var(--normal-size));
   /* iOS : pas de zoom intempestif */
@@ -126,21 +124,19 @@ textarea::placeholder {
 }
 
 /* Focus moderne : anneau lumineux doré au lieu d'une simple bordure */
-input:is(
-    [type="text"],
-    [type="password"],
-    [type="email"],
-    [type="search"],
-    [type="url"],
-    [type="tel"],
-    [type="number"],
-    .inputbox
-  ):focus-visible,
+input:is([type="text"],
+  [type="password"],
+  [type="email"],
+  [type="search"],
+  [type="url"],
+  [type="tel"],
+  [type="number"],
+  .inputbox):focus-visible,
 textarea:focus-visible {
   outline: none;
   border-color: var(--midnight-purple);
   box-shadow: 0 0 0 3px var(--accent-100, rgba(var(--gold-rgb), 0.25));
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
 }
 
 /* Autofill (Chrome/Safari) — thématise les champs auto-remplis */
@@ -169,7 +165,7 @@ button {
   font-size: var(--normal-size);
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-sm);
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   color: var(--contrastLight);
   font-weight: 600;
   border: 1px solid transparent;
@@ -191,7 +187,7 @@ button {
 select {
   appearance: none;
   -webkit-appearance: none;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   /* Chevron SVG (currentColor) — la couleur suit color: ci-dessous */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c7c5cd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
   background-repeat: no-repeat;
@@ -418,7 +414,7 @@ h1.profile-title-override {
   }
 
   h1.page-title,
-  .profile_infos > strong,
+  .profile_infos>strong,
   .profile_avatar,
   form.profile_contact,
   #alltopics,
@@ -448,6 +444,7 @@ h1.profile-title-override {
 }
 
 @media only screen {
+
   /* Override body .navbar */
   body .navbar {
     position: relative !important;
@@ -502,6 +499,7 @@ h1.profile-title-override {
 }
 
 @media print {
+
   /* Fond et vidéos inutiles à l'impression */
   body,
   .body__background,

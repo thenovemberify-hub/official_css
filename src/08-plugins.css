@@ -169,7 +169,7 @@
 
 .submit-buttons {
   text-align: center;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -269,7 +269,7 @@ summary:focus-visible {
   text-transform: uppercase;
   font-weight: 700;
   border-radius: 5px;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
   display: flex;
   justify-content: space-between;
@@ -350,7 +350,7 @@ a.specials_links:empty {
   transition: 0.3s;
   background: #2d1b1b;
   border-color: var(--thistle);
-  box-shadow: 0 0 15px rgba(18, 40, 63, 0.45);
+  box-shadow: 0 0 15px var(--surface-glass);
 }
 
 /* Conteneur du nombre de notification non lues REMPLI */
@@ -405,7 +405,7 @@ a.specials_links:empty {
   right: 0;
   visibility: visible;
   opacity: 1;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -416,7 +416,7 @@ a.specials_links:empty {
   width: 100%;
   overflow: auto;
   max-height: 100%;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 10px;
   border: 2px solid var(--contrastLighter) !important;
@@ -449,7 +449,7 @@ a.specials_links:empty {
   gap: 5px;
   button {
     padding: 2px 10px;
-    background: rgba(18, 40, 63, 0.45);
+    background: var(--surface-glass);
     backdrop-filter: blur(12px) saturate(140%);
     border-radius: 5px !important;
     border: 2px solid var(--contrastLighter) !important;
@@ -585,7 +585,7 @@ a.specials_links:empty {
   padding: 30px;
   transition: 0.2s opacity ease;
   transform: translate(-50%, -50%);
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 10px;
   border: 2px solid var(--contrastLighter) !important;
@@ -668,7 +668,7 @@ a.specials_links:empty {
   height: auto;
   margin: 0 auto;
   overflow: visible;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(10px);
   border: var(--border);
   border-radius: var(--radius-lg);
@@ -677,7 +677,7 @@ a.specials_links:empty {
 }
 
 .cate_title {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(10px);
   border: var(--border);
   border-radius: var(--radius-lg);
@@ -966,7 +966,7 @@ a.specials_links:empty {
 /* chaîne de lien de navigation : catégorie > forum > sous-fo */
 .navigation_chain {
   font-size: 0;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -1109,7 +1109,7 @@ a.specials_links:empty {
   font-family: "Share Tech Mono", "Courier New", monospace;
   font-size: 12px;
   color: #ffffff;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border: 1px solid var(--contrastLighter);
   padding: 8px 20px;
   text-transform: uppercase;
@@ -1339,7 +1339,7 @@ a.specials_links:empty {
 /*** ------------------------------- ***/
 /*** SUJET ------------------------- ***/
 .post_row {
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   display: grid;
@@ -1785,7 +1785,7 @@ blockquote cite a {
   grid-template-columns: 140px 1fr;
   grid-template-rows: auto 1fr;
   gap: 0;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -1802,7 +1802,7 @@ blockquote cite a {
   justify-content: space-between;
   align-items: center;
   padding: 10px 18px;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
 }
@@ -1855,7 +1855,7 @@ blockquote cite a {
 
 /* Prévisualisation d'un message */
 #preview {
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(216, 212, 242, 0.15);
@@ -1871,7 +1871,7 @@ blockquote cite a {
 #tabs ul {
   display: flex;
   justify-content: space-between;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border-radius: 5px !important;
   margin: 20px 0 10px;
 }
@@ -1891,7 +1891,7 @@ blockquote cite a {
 
 /* onglet au survol */
 #tabs li:hover {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border: 2px solid var(--contrastLighter) !important;
 }
@@ -1930,7 +1930,7 @@ div#tabs li:nth-child(5) {
 }
 
 #textarea_content > div > textarea {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -1945,7 +1945,7 @@ div#tabs li:nth-child(5) {
   display: grid;
   grid-template-columns: 200px auto;
   margin: 10px 0;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -1981,7 +1981,7 @@ form[name="form_login"] .content {
 /*** ELEMENTS FLOTTANTS ------------ ***/
 /* Fenêtre popup "recherche" */
 .overview {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border-radius: 5px;
   border: var(--border);
   padding: 10px;
@@ -2424,7 +2424,7 @@ tag:hover {
 }
 
 .fieldset {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -2450,7 +2450,7 @@ tag:hover {
 .submit-buttons input[type="submit"]:hover,
 .submit-buttons button:hover {
   opacity: 1;
-  border-color: rgba(18, 40, 63, 0.9);
+  border-color: var(--fond-category);
 }
 
 /* Overlay des popups */
@@ -2537,7 +2537,7 @@ form[name="jumpbox"] select:hover {
    VELVET SIN — SONDAGE (Poll)
    ═══════════════════════════════════════════════════════════════════ */
 .poll {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border-radius: 5px !important;
   border: 2px solid var(--contrastLighter) !important;
@@ -2768,7 +2768,7 @@ div.posts input[type="checkbox"] {
   padding: 30px;
   position: relative;
   box-sizing: border-box;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid rgba(196, 178, 188, 0.15);
@@ -2776,7 +2776,7 @@ div.posts input[type="checkbox"] {
 
   /* Effet double bordure */
   box-shadow:
-    inset 0 0 0 5px rgba(18, 40, 63, 0.6),
+    inset 0 0 0 5px var(--surface-glass-deep),
     inset 0 0 0 6px rgba(197, 160, 89, 0.25),
     /* Touche gold */ 0 10px 30px rgba(0, 0, 0, 0.5);
 }

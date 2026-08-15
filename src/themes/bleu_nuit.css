@@ -28,6 +28,9 @@
     --text-soft: #c5c5c5;
     --text-muted: #6a6560;
     --text-cream: #faf6ed;
+    --surface-glass: rgba(18, 40, 63, 0.45);
+    --surface-glass-dim: rgba(18, 40, 63, 0.35);
+    --surface-glass-deep: rgba(18, 40, 63, 0.6);
 
     --contrast: #e5e5f0;
     --contrastLight: #f4f4f4;

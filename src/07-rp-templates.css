@@ -415,7 +415,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none !important;
-  background: rgba(18, 40, 63, 0.6);
+  background: var(--surface-glass-deep);
   border: 1px solid rgba(196, 178, 188, 0.1);
   border-left-width: 2px;
   border-radius: 4px;
@@ -434,7 +434,7 @@
 }
 
 .vs-qeel-group:hover {
-  background: rgba(18, 40, 63, 0.9);
+  background: color-mix(in srgb, var(--fond-category) 90%, transparent);
   transform: translateX(2px);
 }
 
@@ -547,7 +547,7 @@
 .vs-admin-card {
   max-width: 750px;
   margin: 40px auto;
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(216, 212, 242, 0.15);
@@ -1628,7 +1628,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-tab-content {
   grid-column: 1 / -1;
   padding: 12px 8px;
-  background: rgba(18, 40, 63, 0.3);
+  background: var(--surface-glass-dim);
   border: 1px solid rgba(216, 212, 242, 0.1);
   border-top: none;
   display: none;
@@ -1654,13 +1654,13 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* Style du label actif */
 .vs-tab-input:nth-of-type(1):checked + .vs-tab-label {
-  background: rgba(18, 40, 63, 0.5);
+  background: var(--surface-glass);
   color: #d8d4f2;
   border-bottom-color: transparent;
 }
 
 .vs-tab-input:nth-of-type(2):checked + .vs-tab-label {
-  background: rgba(18, 40, 63, 0.5);
+  background: var(--surface-glass);
   color: #d8d4f2;
   border-bottom-color: transparent;
 }

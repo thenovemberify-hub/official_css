@@ -111,7 +111,7 @@
 
 /* Bloc contenant le message prévisualisé */
 .post.row2 {
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   border: 2px solid var(--contrastLighter) !important;
   border-top: none;
   border-radius: 0 0 5px 5px;

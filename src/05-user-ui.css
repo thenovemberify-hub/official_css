@@ -358,7 +358,7 @@
   border: var(--border);
   margin: 15px 0 25px;
   flex-wrap: wrap;
-  background: rgba(18, 40, 63, 0.45);
+  background: var(--surface-glass);
   backdrop-filter: blur(12px) saturate(140%);
   border: 2px solid var(--contrastLighter) !important;
   border-radius: 5px !important;
@@ -607,7 +607,7 @@
   transition: opacity 0.3s ease;
   z-index: 5;
   border-radius: 6px;
-  background: rgba(18, 40, 63, 0.5);
+  background: var(--surface-glass);
 }
 
 .vs-hp-avatar:hover .vs-hp-avatar-overlay {
@@ -722,7 +722,7 @@ form.profile_contact #field_id a:hover,
 }
 
 .profile_content::-webkit-scrollbar-track {
-  background: rgba(18, 40, 63, 0.4);
+  background: var(--surface-glass-dim);
   border-radius: 5px;
 }
 
