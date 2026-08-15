@@ -1,0 +1,411 @@
+/*** ------------------------------- ***/
+/*** EDITEUR DE TEXTE -------------- ***/
+/* Editeur de texte */
+/* Barre d'outils de l'éditeur de texte*/
+div.sceditor-toolbar {
+  background: var(--neutral) !important;
+  border-bottom: var(--border) !important;
+}
+
+/* Conteneur des groupes d'outils */
+div.sceditor-group {
+  background: var(--neutralDark) !important;
+  border-bottom: var(--border) !important;
+}
+
+/* Bouton d'un outil au survol ou actif*/
+.sceditor-button.active,
+.sceditor-button:active,
+.sceditor-button:hover,
+.sceditor-button.hover {
+  background: var(--neutral) !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: 1px solid var(--neutralDarker);
+}
+
+/* Conteneur de la zone de texte */
+.sceditor-container iframe,
+.sceditor-container textarea {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 5px !important;
+  /*ne pas supprimer*/
+  min-height: 250px !important;
+}
+
+.sceditor-container textarea:focus {
+  outline: none;
+}
+
+/*** ------------------------------- ***/
+/*** TEXTES, BALISES, ETC ---------- ***/
+/* Lien-tag des utilisateurs (règle réservée : aucun style appliqué actuellement) */
+/* .mentiontag {} */
+/* BALISES DE MESSAGE : spoiler, code, quote... */
+/* Balise code, spoiler et hide*/
+.codebox {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  position: relative;
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  background: rgba(18, 40, 63, 0.4);
+  border-radius: 8px;
+}
+
+/* Contenu code, spoiler et hide*/
+.codebox dd {
+  background: transparent;
+  border-radius: 0;
+  padding: 10px;
+  color: #d8d4f2;
+  font-family: "Karla", sans-serif;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+/* Nom de balise "code, spoiler" */
+.codebox dt {
+  font-weight: 700;
+  font-size: 10px;
+  font-family: "Karla", sans-serif;
+  text-transform: uppercase;
+  color: #c4b2bc;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  padding: 5px;
+  background: rgba(46, 26, 71, 0.3);
+  border-radius: 8px 8px 0 0;
+}
+
+/*retire la mention "code" du bloc*/
+#codeBox dt {
+  height: 0;
+  font-size: 0;
+}
+
+/* Spoiler (règle réservée : aucun style appliqué actuellement) */
+/* .hidebox.spoiler {} */
+/* spoiler fermé */
+.spoiler_content {
+  display: none;
+}
+
+/* spoiler ouvert */
+.spoiler_content.hidden {
+  display: block;
+}
+
+/* Hide */
+.codebox.hidecode dd {
+  background: transparent;
+  opacity: 0.8;
+}
+
+/****** ------------------------------------------------------------------------------ 
+ ****** PAGE DE PRÉVISUALISATION / ENVOI DE MP ----------------------------------------
+ ****** Styles pour la page d'envoi et de prévisualisation de messages privés --------- ******/
+/* ============================
+   1. BLOC DE PRÉVISUALISATION
+   ============================ */
+/* Titre "Prévisualisation"
+   NOTE : ce sélecteur était `.h3` (générique), il écrasait le style global du forum.
+   Il est maintenant restreint au conteneur de prévisualisation MP. */
+#preview .h3,
+.posting-block .h3 {
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--neutral);
+  padding: 12px 20px;
+  margin: 15px 0 0;
+  background: rgba(18, 40, 63, 0.45);
+  border: var(--border);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: 5px 5px 0 0;
+}
+
+/* ============================
+   2. FORMULAIRE D'ENVOI (.container, #postingbox)
+   ============================ */
+/* Titre de la page "Envoyer un nouveau message privé" */
+/* Panneau d'édition */
+#postingbox {
+  background: rgba(18, 40, 63, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+}
+
+#postingbox h3 {
+  font-family: "Karla", sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c4b2bc;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+}
+
+/* Labels des champs */
+#postingbox .fields1 dt label {
+  font-family: "Karla", sans-serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #c4b2bc;
+  font-weight: 600;
+}
+
+/* Champs de saisie */
+#postingbox .inputbox {
+  background: rgba(18, 40, 63, 0.45);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 4px;
+  color: #d8d4f2;
+  padding: 8px 12px;
+  font-family: "Karla", sans-serif;
+  font-size: 0.8rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#postingbox .inputbox:focus {
+  outline: none;
+  border-color: rgba(216, 212, 242, 0.4);
+  box-shadow: 0 0 8px rgba(216, 212, 242, 0.1);
+}
+
+/* Bouton "Trouver un nom d'utilisateur" */
+#postingbox .button2 {
+  font-family: "Karla", sans-serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #a29587;
+  background: rgba(46, 26, 71, 0.3);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.75;
+}
+
+#postingbox .button2:hover {
+  color: #d8d4f2;
+  border-color: rgba(216, 212, 242, 0.3);
+  opacity: 1;
+}
+
+/* ============================
+   3. BOUTONS POSTER (Prévisualisation, Envoyer)
+   ============================ */
+.posting-buttons .button1,
+.posting-buttons .button2 {
+  font-family: "Karla", sans-serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #a29587;
+  background: rgba(46, 26, 71, 0.3);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 4px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.posting-buttons .button1:hover,
+.posting-buttons .button2:hover {
+  color: #d8d4f2;
+  border-color: rgba(216, 212, 242, 0.4);
+  opacity: 1;
+  text-shadow: 0 0 6px rgba(216, 212, 242, 0.2);
+}
+
+/* Le bouton Envoyer — accent plus fort */
+.posting-buttons .button1 {
+  border-color: rgba(216, 212, 242, 0.35);
+  color: #d8d4f2;
+  background: rgba(46, 26, 71, 0.5);
+  opacity: 1;
+}
+
+/* ============================
+   4. PANNEAU OPTIONS
+   ============================ */
+.container + br + .panel,
+#postingbox ~ .panel {
+  background: rgba(18, 40, 63, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin-top: 10px;
+}
+
+.container + br + .panel h3,
+#postingbox ~ .panel h3 {
+  font-family: "Karla", sans-serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c4b2bc;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+}
+
+.container + br + .panel label,
+#postingbox ~ .panel label {
+  font-family: "Karla", sans-serif;
+  font-size: 0.75rem;
+  color: #d8d4f2;
+  opacity: 0.8;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+
+.container + br + .panel input[type="checkbox"],
+#postingbox ~ .panel input[type="checkbox"] {
+  accent-color: #d8d4f2;
+}
+
+/* ============================
+   5. SCEditor & Jumpbox (Velvet Sin Theme)
+   ============================ */
+/* Conteneur principal de l'éditeur */
+.sceditor-container {
+  background: rgba(18, 40, 63, 0.45) !important;
+  backdrop-filter: blur(12px) saturate(140%) !important;
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  /* border-radius: 8px; */
+}
+
+/* Barre d'outils */
+.sceditor-toolbar {
+  background: rgba(46, 26, 71, 0.3) !important;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.1) !important;
+  padding: 6px !important;
+}
+
+.sceditor-group {
+  background: transparent !important;
+  border-color: rgba(216, 212, 242, 0.1) !important;
+}
+
+.sceditor-button {
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.sceditor-button:hover {
+  opacity: 1;
+  background: rgba(216, 212, 242, 0.05) !important;
+}
+
+/* Positions des icônes spécifiques Forumactif */
+.sceditor-button-flash div {
+  background-position: 0 -628px;
+}
+
+.sceditor-button-servimg div {
+  background-position: 0 -644px;
+}
+
+.sceditor-button-dailymotion div {
+  background-position: 0 -660px;
+}
+
+.sceditor-button-faspoiler div {
+  background-position: 0 -676px;
+}
+
+.sceditor-button-fahide div {
+  background-position: 0 -692px;
+}
+
+.sceditor-button-fascroll div {
+  background-position: 0 -708px;
+}
+
+.sceditor-button-faupdown div {
+  background-position: 0 -724px;
+}
+
+.sceditor-button-farand div {
+  background-position: 0 -756px;
+}
+
+.sceditor-button-faroll div {
+  background-position: 0 -772px;
+}
+
+.sceditor-button-more div {
+  background-position: 0 -788px;
+}
+
+.sceditor-button-emoticon div {
+  background-position: 0 -804px;
+}
+
+.sceditor-button-embed div {
+  background-image: url("https://2img.net/i//fa/icon_embed.png");
+}
+
+.sceditor-button-twemojifa div {
+  background: url("https://2img.net/i/fa/icon_twemoji.png") !important;
+}
+
+.sceditor-button-mention div {
+  background: url("https://2img.net/i//fa/icon_at.png") !important;
+}
+
+.sceditor-button-giphy div {
+  background-image: url("https://2img.net/i//fa/icon_gif.png");
+}
+
+/* Dropdowns (mentions, couleurs, smileys) & Popups jqModal */
+.sceditor-dropdown,
+.sceditor-color-picker-modern,
+.sceditor-twemojifa,
+#sceditor-mention-div,
+.jqmWindow {
+  background: #12283f !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(216, 212, 242, 0.2) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+  color: #d8d4f2 !important;
+  border-radius: 10px !important;
+}
+
+/* Mentions */
+.sceditor-mention-user {
+  background: rgba(46, 26, 71, 0.5) !important;
+  border: 1px solid rgba(216, 212, 242, 0.1) !important;
+  color: #d8d4f2 !important;
+  padding: 4px 8px !important;
+  margin-bottom: 5px !important;
+  border-radius: 4px !important;
+}
+
+.sceditor-mention-user:hover {
+  background: rgba(216, 212, 242, 0.1) !important;
+}

@@ -1,0 +1,151 @@
+/* Last Post Box (Middle) */
+.forum_lastpost {
+  position: absolute;
+  display: flex;
+  font-size: 11px;
+  width: 160px;
+  justify-content: center;
+}
+
+.forum_lastpost a.lastpost_link {
+  display: block;
+  color: var(--gold-accent);
+  text-transform: lowercase;
+  font-size: 13px;
+  margin-bottom: 2px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.forum_lastpost .gensmall a {
+  color: var(--gold-accent);
+  text-transform: lowercase;
+  font-weight: 700;
+}
+
+/* Avatar */
+.topicslist-avatar-lastpost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topicslist-avatar-lastpost img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(216, 212, 242, 0.1);
+  filter: grayscale(60%) contrast(110%);
+  transition: all 0.4s ease;
+}
+
+.topicslist_row:hover .topicslist-avatar-lastpost img {
+  filter: grayscale(0%) contrast(120%);
+  border-color: rgba(255, 48, 64, 0.5);
+  box-shadow: 0 0 15px rgba(255, 48, 64, 0.2);
+}
+
+.topictitle {
+  font-family: "Cormorant Garamond", "Cormorant", "Playfair Display", serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: #d8d4f2;
+  text-decoration: none;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin: 0 0 5px 0;
+}
+
+.topicslist_row:hover .topictitle {
+  color: #ffffff;
+  text-shadow:
+    -2px 0 rgba(255, 48, 64, 0.6),
+    2px 0 rgba(0, 229, 255, 0.6);
+}
+
+/* Lastpost */
+.topicslist-lastpost {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 10px;
+  color: rgba(216, 212, 242, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-left: 1px solid rgba(216, 212, 242, 0.1);
+  padding-left: 20px;
+  height: 100%;
+  justify-content: center;
+}
+
+.topicslist-lastpost .lastpost-date {
+  color: #c4b2bc;
+  margin-bottom: 5px;
+  font-size: 11px;
+}
+
+.topicslist-lastpost a {
+  color: #d8d4f2;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.topicslist-lastpost a.gensmall {
+  font-size: 12px;
+}
+
+.topicslist-lastpost a:hover {
+  color: #ffffff;
+}
+
+/* L'icône de la flèche du dernier message */
+.topicslist-lastpost a[href*="#"] img {
+  margin-left: 8px;
+  vertical-align: middle;
+  filter: invert(70%) sepia(50%) saturate(3000%) hue-rotate(150deg)
+    brightness(100%) contrast(90%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.topicslist_row:hover .topicslist-lastpost a[href*="#"] img {
+  filter: invert(40%) sepia(90%) saturate(4000%) hue-rotate(330deg)
+    brightness(100%) contrast(100%);
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+/* On cible le LIEN (a) au hover, pas l'image */
+#main-content
+  > .container
+  > .topicslist_row
+  .topicslist-lastpost
+  .lastpost-author
+  > a:hover {
+  text-decoration: none !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.forum .forumtitle {
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--fond-category);
+  padding-bottom: 5px;
+  position: relative;
+  color: var(--neutral);
+}
+
+.forum_desc .cat-icon {
+  display: block;
+  width: 80px;
+  height: 47px;
+  border: 1px solid rgba(var(--gold-rgb, 218, 165, 32), 0.25);
+  padding: 3px;
+  background: rgba(0, 0, 0, 0.4);
+}

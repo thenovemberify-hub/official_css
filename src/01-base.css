@@ -1,0 +1,542 @@
+/* ============================================================================
+ * STYLES D'IMPRESSION (utiles pour imprimer une fiche, un sujet…)
+ * ============================================================================ */
+/* (Ancien sélecteur universel `*` — fusionné dans @layer reset ci-dessus) */
+/*** ------------------------------- ***/
+/*** TOUTES LES PAGES --------------- ***/
+/* FOND DU FORUM ---
+ * Background fixe + font-feature-settings pour ligatures de qualité,
+ * font-smoothing pour un rendu macOS impeccable. */
+body {
+  background: var(--bg-img);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: var(--neutral);
+  font-family: var(--font);
+  font-size: var(--normal-size);
+  font-feature-settings: "kern", "liga", "calt";
+  color: var(--textColor);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  --top-offset: var(--offset-to-main);
+  /* Évite l'auto-zoom horizontal sur mobile */
+  overflow-x: hidden;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** GÉNÉRALITÉS ------------------------------------------------------------------ 
+ ****** Sélecteurs généraux s'appliquant à plusieurs reprises sur tout le forum ******/
+/*** ----------------------------------- ***/
+/*** LIENS ET TEXTE -------------------- ***/
+/* LIENS DU FORUM ---
+ * Underline animée moderne (background-size 0→100% sur hover).
+ * Plus élégant qu'un text-decoration: underline brutal. */
+a {
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--textColorAccent);
+  /* Underline animée : un dégradé qui s'étire au survol */
+  background-image: linear-gradient(var(--neutral), var(--neutral));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    color var(--transition-fast),
+    background-size var(--transition-base);
+}
+
+/* Liens au survol — couleur or + underline qui se révèle */
+a:hover {
+  color: var(--neutral);
+  background-size: 100% 1px;
+}
+
+/* TITRES DES PAGES --- ***/
+/* Utilisé pour des titres de pages
+ * Typo fluide + text-wrap balance pour des sauts de ligne harmonieux. */
+h1,
+h1.page-title {
+  color: var(--contrastLight);
+  margin: -6px 0 var(--space-lg);
+  font-size: var(--fluid-xl);
+  font-weight: 700;
+  text-transform: lowercase;
+  font-family: "Cinzel", serif;
+  text-align: center;
+  text-wrap: balance;
+  /* CSS Text 4 — répartition équilibrée des lignes */
+  line-height: 1.2;
+}
+
+/* Utilisé pour des titres de sujets, blogs... */
+h2,
+.h2 {
+  margin: 0;
+  font-size: var(--large-size);
+  font-weight: 700;
+}
+
+/* Utilisé pour des titres de sous-sections, petit encadré, ...*/
+h3,
+.h3 {
+  color: var(--contrastLight);
+  padding-bottom: 10px;
+  margin: 0;
+  font-size: var(--medium-size);
+  font-weight: bold;
+}
+
+/* CHAMPS DE TEXTE ---
+ * Refonte moderne : focus-visible, transitions douces, autofill thématisé,
+ * placeholder lisible, taille de police ≥16px sur mobile pour éviter le zoom iOS. */
+input:is(
+  [type="text"],
+  [type="password"],
+  [type="email"],
+  [type="search"],
+  [type="url"],
+  [type="tel"],
+  [type="number"],
+  .inputbox
+),
+textarea {
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: rgba(18, 40, 63, 0.45);
+  font-family: inherit;
+  font-size: max(16px, var(--normal-size));
+  /* iOS : pas de zoom intempestif */
+  color: var(--contrastLight) !important;
+  padding: var(--space-xs) var(--space-sm);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+/* Placeholder plus lisible (rgba pour ne pas dépendre du theme) */
+input::placeholder,
+textarea::placeholder {
+  color: color-mix(in srgb, var(--textColor) 60%, transparent);
+  font-style: italic;
+}
+
+/* Focus moderne : anneau lumineux doré au lieu d'une simple bordure */
+input:is(
+    [type="text"],
+    [type="password"],
+    [type="email"],
+    [type="search"],
+    [type="url"],
+    [type="tel"],
+    [type="number"],
+    .inputbox
+  ):focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--midnight-purple);
+  box-shadow: 0 0 0 3px var(--accent-100, rgba(var(--gold-rgb), 0.25));
+  background: rgba(18, 40, 63, 0.45);
+}
+
+/* Autofill (Chrome/Safari) — thématise les champs auto-remplis */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--subcategory-dark) inset;
+  caret-color: var(--accentClr);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Champ invalide (HTML5 validation native) */
+input:user-invalid,
+textarea:user-invalid {
+  border-color: var(--red-muted);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--red-muted) 25%, transparent);
+}
+
+/* BOUTONS D'INTERACTION ---
+ * Envoyer, prévisualiser, sauvegarder, aller…
+ * Refonte avec :focus-visible accessible, :active feedback, et active scale. */
+input:is([type="submit"], [type="button"], [type="reset"]),
+.button,
+button {
+  font-family: inherit;
+  font-size: var(--normal-size);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
+  background: rgba(18, 40, 63, 0.45);
+  color: var(--contrastLight);
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  /* Évite la sélection accidentelle du label au double-clic */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* MENUS DEROULANTS ---
+ * Custom chevron via background-image SVG inline (zéro requête réseau,
+ * couleur réutilise --textColor via currentColor). */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(18, 40, 63, 0.45);
+  /* Chevron SVG (currentColor) — la couleur suit color: ci-dessous */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c7c5cd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right var(--space-sm) center;
+  background-size: 14px;
+  border: 1px solid color-mix(in srgb, var(--accentClr) 25%, transparent);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--normal-size);
+  padding: var(--space-xs) var(--space-xl) var(--space-xs) var(--space-sm);
+  color: var(--textColor);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+select:hover {
+  border-color: color-mix(in srgb, var(--accentClr) 50%, transparent);
+}
+
+select:focus-visible {
+  outline: none;
+  border-color: var(--accentClr);
+  box-shadow: 0 0 0 3px var(--accent-100, rgba(var(--gold-rgb), 0.25));
+}
+
+/* Bouton d'un outil */
+a.sceditor-button {
+  height: 26px !important;
+  width: 26px !important;
+  /*ne pas retirer*/
+}
+
+/*Boîte Smiley*/
+html#sceditor_smilies,
+body#sce_smilies_body {
+  background: transparent !important;
+}
+
+/* Suppression des liens peu utilisés*/
+/* liens de navigation */
+a.mainmenu {
+  font-family: var(--font2);
+  font-size: var(--medium-size);
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Lien navigation au survol*/
+a.mainmenu:hover,
+.nav-welcome:hover,
+.nav-notifs:hover {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+}
+
+/* Image des liens */
+a.mainmenu img {
+  display: none;
+}
+
+/* Section 2: Main Info Column (Title & Desc) */
+a.forumtitle {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-title, "Times New Roman", serif);
+  text-transform: uppercase;
+  text-align: end;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+  background: rgba(18, 10, 10, 0.4);
+  /* Frosted glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+  padding: 5px 15px 5px 15px;
+  align-items: center;
+  line-height: normal;
+  margin: 0;
+  height: 32px;
+  font-weight: 400;
+  box-shadow: none;
+}
+
+/* BOUTONS D'EDITION DU MESSAGE --- */
+/* Conteneur boutons d'édition */
+ul.profile-icons {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  gap: 15px;
+}
+
+/*UN SEUL bouton d'édition */
+ul.profile-icons li {
+  padding: 2px 4px;
+  border-radius: 5px;
+}
+
+/*hover d'un bouton d'édition*/
+ul.profile-icons li:hover {
+  background: transparent;
+}
+
+button.rep-button .like_text {
+  font-family: "Karla", sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--contrastLight);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+button.rep-button .rep-nb {
+  font-family: "Karla", sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--contrastLight);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  margin-left: 6px;
+}
+
+/* Lien "@" de mention */
+a.fa-mention {
+  cursor: pointer;
+}
+
+/* Post Control Buttons (Citer, Editer, etc.) */
+ul.profile-icons li a,
+.i_icon_quote,
+.i_icon_edit,
+.i_icon_delete,
+.i_icon_ip {
+  font-family: "Karla", sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #d8d4f2;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+ul.profile-icons li a:hover,
+.i_icon_quote:hover,
+.i_icon_edit:hover,
+.i_icon_delete:hover,
+.i_icon_ip:hover {
+  color: #c4b2bc;
+  border-bottom-color: #c4b2bc;
+  text-shadow: none;
+}
+
+/* Lien de réponse au MP */
+a.replypm_button {
+  font-family: "Cinzel", serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  padding: 8px 18px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+a.replypm_button:hover {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: var(--gold-accent);
+  text-shadow: 0 0 6px rgba(var(--gold-rgb), 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — SONDAGE (Poll) END
+   ═══════════════════════════════════════════════════════════════════ */
+/* BROUILLON START */
+a.button[href*="mode=editpostdraft"] {
+  display: none !important;
+}
+
+/* ─── COLONNE GAUCHE (Éléments Fixes) ─── */
+h1.page-title {
+  position: relative;
+  /* ─── width: 220px; ─── */
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+h1.profile-title-override {
+  width: 220px;
+}
+
+@media (max-width: 768px) {
+  #wombat {
+    height: auto;
+    /* Désactive la hauteur fixe sur mobile */
+    min-height: 800px;
+  }
+
+  h1.page-title,
+  .profile_infos > strong,
+  .profile_avatar,
+  form.profile_contact,
+  #alltopics,
+  #allposts,
+  .profile_content,
+  .profile_admin {
+    position: static;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .profile_avatar {
+    height: 400px;
+  }
+
+  .profile_content {
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  form.profile_contact,
+  #alltopics,
+  #allposts {
+    display: inline-flex;
+    margin-right: 10px;
+  }
+}
+
+@media only screen {
+  /* Override body .navbar */
+  body .navbar {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    width: 100% !important;
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    padding: 10px 40px !important;
+
+    margin-bottom: 20px !important;
+    border-radius: 5px !important;
+    border: 2px solid var(--contrastLighter) !important;
+    border-left: 2px solid var(--contrastLighter) !important;
+    border-right: 2px solid var(--contrastLighter) !important;
+
+    transform: none !important;
+    overflow-y: visible !important;
+    box-shadow: none !important;
+  }
+
+  .navbar::before {
+    display: none !important;
+  }
+
+  .navbar li {
+    margin: 0 !important;
+    width: auto !important;
+    background: transparent !important;
+    display: inline-block !important;
+  }
+
+  .navbar li a.mainmenu {
+    border-bottom: none !important;
+    padding: 2px !important;
+    text-align: center !important;
+    display: inline !important;
+    width: auto !important;
+  }
+
+  .navbar li a.mainmenu:hover {
+    background: transparent !important;
+    padding-left: 2px !important;
+  }
+}
+
+@media print {
+  /* Fond et vidéos inutiles à l'impression */
+  body,
+  .body__background,
+  .velvet-header,
+  .video-bg,
+  .sidebar,
+  #notiffi_panel,
+  #notiffi_button {
+    background: white !important;
+    color: black !important;
+  }
+
+  .body__background,
+  .video-bg,
+  .sidebar,
+  #notiffi_panel,
+  #notiffi_button {
+    display: none !important;
+  }
+
+  a {
+    color: black !important;
+    text-decoration: underline;
+  }
+
+  /* Évite les coupures malheureuses */
+  h1,
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+
+  img,
+  table,
+  blockquote {
+    break-inside: avoid;
+  }
+}

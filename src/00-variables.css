@@ -1,0 +1,1013 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:ital@0;1&family=Crimson+Text:wght@400;700&family=Cinzel:wght@700&family=DM+Serif+Display:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Special+Elite&display=swap");
+
+/* ============================================================================
+ * @LAYER — ORDRE DE LA CASCADE (réduit drastiquement le besoin de !important)
+ * ----------------------------------------------------------------------------
+ * Plus une couche est déclarée tard, plus elle a de priorité (toujours en
+ * dessous des règles `!important` et des styles inline).
+ *   reset      : remise à zéro, box-sizing, accessibilité globale
+ *   tokens     : variables CSS dérivées (color-mix, etc.)
+ *   base       : éléments HTML de base (a, h1, p, input…)
+ *   components : composants nommés (.panel, .button, .card…)
+ *   layout     : structure (.main_forum, sidebar, header)
+ *   pages      : styles spécifiques aux pages forum (index, viewtopic…)
+ *   utilities  : helpers atomiques (.sr-only, .stack…)  — toujours dernier
+ * ============================================================================ */
+@layer reset, tokens, base, components, layout, pages, utilities;
+
+/* ============================================================================
+ * VELVET SIN — FEUILLE DE STYLE PRINCIPALE
+ * ----------------------------------------------------------------------------
+ * Forum  : Velvet Sin (Forumactif)
+ * Base   : Blank Theme RPG (variables CSS)
+ * Doc    : https://blankthemerpg.forumactif.com/t139-utiliser-les-variables-css
+ *
+ * ----------------------------------------------------------------------------
+ * COMMENT MODIFIER LE THÈME SANS RIEN CASSER ?
+ *   1. Modifier en priorité les variables du bloc :root ci-dessous.
+ *      Toutes les couleurs, polices, tailles et effets clés y sont centralisés.
+ *   2. Pour ajouter une nouvelle couleur récurrente : créer une variable dans
+ *      :root, puis l'utiliser via `var(--ma-variable)` dans les règles.
+ *   3. Pour ajouter une section : suivre le format des bannières et l'ajouter à la table des matières ci-dessous.
+ * 4. Ne PAS supprimer les commentaires "ne pas retirer" ni les sélecteurs * Forumactif natifs (.forumline, .row1, .module, etc.). *============================================================================* * TABLE DES MATIÈRES * ---------------------------------------------------------------------------- * 1. STRUCTURE DU FORUM ........................ ligne~88 * - :root (variables globales) * - body,
+.main_forum,
+bannière,
+sidebar * - bouton de changement de thème * * 2. GÉNÉRALITÉS ............................... ligne~380 * - liens,
+titres (h1/h2/h3) * - inputs,
+boutons,
+selects * - éditeur de texte (sceditor) * - paginations,
+séparateurs,
+helpers * * 3. ENTÊTE DU FORUM ........................... ligne~720 * - notifications (notiffi) * - switcheroo (multi-comptes) * - navbar * * 4. PAGE PRINCIPALE / INDEX ................... ligne~1470 * - catégories,
+sous-forums,
+dernier message * * 5. LISTE DES SUJETS .......................... ligne~2255 * * 6. AFFICHAGE D'UN SUJET ...................... ligne ~2565
+ * - participants,
+messages,
+profil * * 7. MEMBRES ................................... ligne~2920 * * 8. MESSAGES PRIVÉS ........................... ligne~3260 * * 9. PAGES ANNEXES ............................. ligne~3325 * - profil,
+recherche,
+code de triche,
+etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PAGE DE PRÉVISUALISATION / ENVOI DE MP .... ligne~8980 * * 12. SONDAGES & DIVERS (poll, brouillon) ....... fin de fichier *============================================================================*/
+/****** STRUCTURE DU FORUM ----------------------------------------------------------- 
+ ****** Elements du forum qui définissent sa structure et sa hiérachie sur toutes les pages 
+ ****** (ne les RENOMMEZ PAS, ils sont généraux aux pages Web ou à Forumactif) ------- ******/
+/*** ROOT — VARIABLES GLOBALES DU THÈME
+ *** ----------------------------------------------------------------------
+ *** C'est ICI qu'on règle l'ensemble de l'apparence du forum.
+ *** Modifier une variable répercute le changement sur toutes les pages.
+ ***
+ *** Tutoriel : https://blankthemerpg.forumactif.com/t139-utiliser-les-variables-css
+ ***/
+:root {
+    --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+    --bg-img: url("https://imagesend.fr/uploads/20260501/ac66a5fe38faf9e4d9ee58a63fc5143461c20f58.jpg");
+    --bg-blur: none;
+    --fond-category: #12283f;
+    --midnight-purple: #2e1a47;
+    --taupe: #a29587;
+    --neutral: #efefef;
+    --thistle: #c4b2bc;
+    --neutralDark: #f2f2f2;
+    --neutralDarker: #d9d9d9;
+    --dark: #b3b3b3;
+    --subcategory-dark: #e6e6e6;
+    --bg-soft: #4d6f92;
+    --bg-dim: #345272;
+    --bg-darker: #1a3b60;
+    --bg-black: #0d2241;
+    --bg-warm-deep: #120a0a;
+    --bg-warm-soft: #2d1b1b;
+    --textColor: #c7c5cd;
+    --textColorAccent: #e5e5f0;
+    --text-soft: #c5c5c5;
+    --text-muted: #6a6560;
+    --text-cream: #faf6ed;
+
+    --contrast: #e5e5f0;
+    --contrastLight: #f4f4f4;
+    --contrastLighter: #40485e;
+    --white: #ffffff;
+    --accentClr: #d4af37;
+    --accentClrDark: #d4af37;
+    --gold-rgb: 212, 175, 55;
+    --borderGold: #d4af37;
+
+    --gold-accent: #eaba6b;
+    --gold-light: #cfc09f;
+    --gold-medium: #c5a059;
+    --gold-warm: #b8b0a0;
+    --gold-bronze: #8a6e36;
+    --gold-dark: #634f2c;
+    --gold-darker: #3a2c0f;
+    --gold-cream: #ffecb3;
+    --gold-mid: #8a7a30;
+
+    --qeel-dark: #0a0e14;
+    --qeel-surface: #12283f;
+    --qeel-border: rgba(196, 178, 188, 0.15);
+    --qeel-lavender: #d8d4f2;
+    --qeel-mauve: #c4b2bc;
+    --qeel-taupe: #a29587;
+    --qeel-purple: #2e1a47;
+    --qeel-purple-light: #4a2d6e;
+    --qeel-purple-dim: rgba(46, 26, 71, 0.5);
+    --qeel-text-bright: #eae8f5;
+    --qeel-glass: rgba(18, 40, 63, 0.45);
+    --qeel-glass-deep: rgba(8, 16, 28, 0.35);
+
+    --qeel-emperor: #b71c1c;
+    --qeel-star: #d63384;
+    --qeel-devil: #e67e22;
+    --qeel-fool: #00b0f0;
+
+    --qeel-font-cinzel: "Cinzel", serif;
+    --qeel-font-serif: "Playfair Display", serif;
+    --qeel-font-condensed: "Roboto Condensed", sans-serif;
+    --qeel-font-body: "Inter", sans-serif;
+    --red-deep: #8a0303;
+    --red-muted: #8b3a3a;
+    --green-deep: #2d5a2d;
+    --gold-gradient: linear-gradient(45deg,
+            var(--gold-light),
+            var(--gold-dark),
+            var(--gold-light),
+            var(--gold-cream),
+            var(--gold-darker));
+    --gold-text-gradient: linear-gradient(to bottom,
+            var(--gold-light) 22%,
+            var(--gold-dark) 24%,
+            var(--gold-light) 26%,
+            var(--gold-light) 27%,
+            var(--gold-cream) 40%,
+            var(--gold-darker) 78%);
+    --font: "Inter", sans-serif;
+    --font2: "Cinzel", serif;
+    --font3: "Roboto", sans-serif;
+    --font-4: "Roboto Condensed", sans-serif;
+    --font-title: "Playfair Display";
+    --font-cinzel: "Cinzel", serif;
+    --font-millgary: "Millgary", serif;
+    --little-size: 0.7rem;
+    --normal-size: 0.8rem;
+    --medium-size: 0.92rem;
+    --large-size: 1.1rem;
+    --title-size: 1.4rem;
+    --border: 1px solid #363636;
+    --border-gold-soft: 1px solid rgba(var(--gold-rgb), 0.3);
+    --border-gold-faint: 1px solid rgba(var(--gold-rgb), 0.15);
+
+    --radius-xs: 3px;
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --radius-pill: 100px;
+
+    --shadowBox: 0 0 20px var(--neutralDark);
+    --shadow-deep: 0 2px 10px rgba(0, 0, 0, 0.5);
+    --shadow-soft: 0 0 10px rgba(0, 0, 0, 0.3);
+    --shadow-strong: 0 0 20px rgba(0, 0, 0, 0.8);
+    --shadow-gold-glow: 0 0 15px rgba(234, 186, 107, 0.5);
+    --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --elevation-2: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --elevation-3: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    --elevation-4: 0 10px 20px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.35);
+    --elevation-5: 0 20px 40px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.4);
+    --elevation-gold-focus:
+        0 0 0 2px rgba(var(--gold-rgb), 0.5), 0 0 0 4px rgba(var(--gold-rgb), 0.18);
+    --space-3xs: 0.125rem;
+    --space-2xs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --fluid-xs: clamp(0.7rem, 0.66rem + 0.18vw, 0.8rem);
+    --fluid-sm: clamp(0.8rem, 0.76rem + 0.18vw, 0.92rem);
+    --fluid-base: clamp(0.92rem, 0.86rem + 0.27vw, 1.05rem);
+    --fluid-lg: clamp(1.05rem, 0.95rem + 0.45vw, 1.25rem);
+    --fluid-xl: clamp(1.25rem, 1.05rem + 0.9vw, 1.6rem);
+    --fluid-2xl: clamp(1.6rem, 1.25rem + 1.6vw, 2.4rem);
+    --fluid-display: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+    --content-narrow: 800px;
+    --content-base: 900px;
+    --content-wide: 1000px;
+    --main-width: 1060px;
+    --transition-fast: 150ms var(--ease, cubic-bezier(0.4, 0, 0.2, 1));
+    --transition-base: 250ms var(--ease, cubic-bezier(0.4, 0, 0.2, 1));
+    --transition-slow: 400ms var(--ease, cubic-bezier(0.4, 0, 0.2, 1));
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
+    --ease-emphasize: cubic-bezier(0.2, 0, 0, 1);
+    --z-base: 1;
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-overlay: 500;
+    --z-modal: 900;
+    --z-toast: 950;
+    --z-tooltip: 1000;
+    --envelope-width: 550px;
+    --envelope-height: 320px;
+    --letter-bg: #faf6ed;
+    --envelope-dark: #0d0d0d;
+    --seal-bordeaux: #5c1a1a;
+    --seal-bordeaux-light: #7d2828;
+    --seal-bordeaux-dark: #3a0f0f;
+    --gold-accent: #d4af37;
+    --paper-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    --vs-dark: #0a0a0a;
+    --vs-darker: #050505;
+    --vs-gold: #d4af37;
+    --vs-gold-light: #e8c560;
+    --vs-gold-dim: rgba(var(--gold-rgb), 0.3);
+    --vs-bordeaux: #8b3a3a;
+    --vs-bordeaux-light: #a94a4a;
+    --vs-cream: #faf6ed;
+    --vs-text: #c7c5cd;
+    --vs-text-dim: #8a8890;
+    --dossier-max-width: 750px;
+    --dossier-bg: #0a0a0a;
+    --dossier-surface: #111111;
+    --dossier-border: #1a1a1a;
+    --dossier-gold: #d4af37;
+    --dossier-gold-dim: rgba(var(--gold-rgb), 0.3);
+    --dossier-text: #c5c5c5;
+    --dossier-text-muted: #666666;
+    --dossier-accent: #2a2a2a;
+    --fl-width: 750px;
+    --fl-black: #111111;
+    --fl-dark: #222222;
+    --fl-gold: #d4af37;
+    --fl-gold-dim: rgba(var(--gold-rgb), 0.3);
+    --fl-text: #c5c5c5;
+    --fl-text-muted: #888888;
+    --comfort-max-width: 680px;
+    --comfort-bg: #1a1a1a;
+    --comfort-surface: #0d0d0d;
+    --comfort-border: #2a2a2a;
+    --comfort-text: #b8b0a0;
+    --comfort-text-muted: #6a6560;
+    --comfort-gold: #a39060;
+    --comfort-gold-dim: rgba(163, 144, 96, 0.25);
+    --comfort-blood: #8a0303;
+    --comfort-blood-dim: rgba(138, 3, 3, 0.3);
+    --comfort-green: #2d5a2d;
+    --comfort-yellow: #8a7a30;
+    --comfort-red: #8a0303;
+    --vs-w-bg-deep: #0a0a0a;
+    --vs-w-bg-main: #0a0a0a;
+    --vs-w-bg-card: #111111;
+    --vs-w-bg-subtle: rgba(0, 0, 0, 0.4);
+    --vs-w-border: #1a1a1a;
+    --vs-w-border-accent: #2a2a2a;
+
+    --vs-w-text-primary: #c5c5c5;
+    --vs-w-text-secondary: #a0a0a0;
+    --vs-w-text-muted: #666666;
+    --vs-w-accent: #d4af37;
+    --vs-w-accent-dim: rgba(var(--gold-rgb), 0.3);
+    --vs-w-accent-glow: rgba(var(--gold-rgb), 0.15);
+    --vs-w-velvet: #8b3a3a;
+    --vs-w-velvet-dim: rgba(139, 58, 58, 0.3);
+    --vs-w-status-libre: #4a7c59;
+    --vs-w-status-pris: #7c4a4a;
+    --vs-w-status-reserve: #7c6a4a;
+
+    --vs-w-font-title: "Cinzel", "Times New Roman", serif;
+    --vs-w-font-body: "Segoe UI", Tahoma, Geneva, sans-serif;
+
+    --vs-w-radius: 0;
+    --vs-w-transition: 0.3s ease;
+    --vs-mb-bg-deep: #0a0a0a;
+    --vs-mb-bg-main: #0a0a0a;
+    --vs-mb-border: #1a1a1a;
+
+    --vs-mb-text-primary: #c5c5c5;
+    --vs-mb-text-muted: #666666;
+    --vs-mb-accent: #d8d4f2;
+    --vs-mb-accent-dim: rgba(216, 212, 242, 0.15);
+
+    /* Gradient Linéaire (subtil) */
+    --vs-mb-gold-gradient: linear-gradient(90deg,
+            transparent,
+            rgba(216, 212, 242, 0.3),
+            transparent);
+
+    --vs-mb-font-title: "Cormorant Garamond", serif;
+    --vs-mb-font-body: "Karla", sans-serif;
+
+    --vs-mb-transition: 0.3s ease;
+    --vs-mb-columns: 3;
+    --hp-dark: #0a0e14;
+    --hp-darker: #060a10;
+    --hp-surface: #12283f;
+    --hp-border: rgba(196, 178, 188, 0.15);
+    --hp-lavender: #d8d4f2;
+    --hp-mauve: #c4b2bc;
+    --hp-taupe: #a29587;
+    --hp-purple: #2e1a47;
+    --hp-purple-light: #4a2d6e;
+    --hp-purple-dim: rgba(46, 26, 71, 0.5);
+    --hp-text: #d8d4f2;
+    --hp-text-dim: #a29587;
+    --hp-text-bright: #eae8f5;
+    --hp-font-body: "Inter", sans-serif;
+    --hp-font-serif: "Playfair Display", serif;
+    --hp-font-cinzel: "Cinzel", serif;
+    --hp-font-condensed: "Roboto Condensed", sans-serif;
+}
+
+/* ============================================================================
+ * TOKENS DÉRIVÉS — couleurs calculées dynamiquement via color-mix()
+ * ----------------------------------------------------------------------------
+ * Ces variables se mettent à jour automatiquement si on change --accentClr,
+ * --textColor, etc. dans :root. Ça évite de dupliquer les nuances à la main.
+ *
+ * Compatibilité : color-mix() est supporté par tous les navigateurs modernes
+ * depuis 2023 (Chrome 111+, Firefox 113+, Safari 16.2+).
+ * ============================================================================ */
+@layer tokens {
+    :root {
+        --accent-50: color-mix(in srgb, var(--accentClr) 12%, transparent);
+        --accent-100: color-mix(in srgb, var(--accentClr) 25%, transparent);
+        --accent-200: color-mix(in srgb, var(--accentClr) 40%, transparent);
+        --accent-soft: color-mix(in srgb, var(--accentClr) 70%, var(--neutral));
+        --accent-bright: color-mix(in srgb, var(--accentClr) 80%, white);
+        --accent-shadow: color-mix(in srgb, var(--accentClr) 30%, transparent);
+        --surface-hover: color-mix(in srgb, var(--accentClr) 8%, transparent);
+        --surface-active: color-mix(in srgb, var(--accentClr) 14%, transparent);
+
+        /* Texte secondaire dérivé */
+        --text-dim: color-mix(in srgb, var(--textColor) 65%, transparent);
+    }
+}
+
+/* ============================================================================
+ * FONDATIONS MODERNES — Reset, accessibilité, scrollbar, focus-visible
+ * ----------------------------------------------------------------------------
+ * Tout ce qui suit est dans la couche @layer reset (priorité la plus basse) :
+ * les composants pourront facilement écraser sans recourir à !important.
+ * ============================================================================ */
+@layer reset {
+
+    /* Box-sizing global + reset des marges natives sur les pseudos */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* SCROLLBAR — Firefox */
+    * {
+        scrollbar-width: thin;
+    }
+
+    /* SCROLLBAR — WebKit/Chromium (plus fine + couleur d'accent) */
+    *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, var(--accentClr) 35%, transparent);
+        border-radius: 999px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: var(--accentClr);
+    }
+
+    /* Médias responsives par défaut (évite les débordements) */
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Hauteur de ligne plus lisible sur le texte courant */
+    p,
+    li,
+    dd {
+        line-height: 1.55;
+    }
+
+    /* Cassure de mots intelligente sur les longs contenus */
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        overflow-wrap: break-word;
+    }
+
+    /* Décale les ancres pour qu'elles n'arrivent pas collées au bord
+     supérieur (utile si un élément sticky vient se superposer). */
+    :target,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        scroll-margin-top: var(--space-xl);
+    }
+
+    /* Focus accessible UNIQUEMENT au clavier (pas au clic) */
+    :focus:not(:focus-visible) {
+        outline: none;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--accentClr);
+        outline-offset: 2px;
+        border-radius: var(--radius-xs, 3px);
+    }
+
+    /* Sélection de texte aux couleurs du thème */
+    ::selection {
+        background: color-mix(in srgb, var(--accentClr) 50%, transparent);
+        color: var(--contrastLight);
+    }
+
+    /* Curseur "main" sur tous les éléments interactifs */
+    button,
+    [role="button"],
+    summary,
+    label[for],
+    select {
+        cursor: pointer;
+    }
+
+    /* Désactive les animations pour les utilisateurs qui les désactivent
+     (paramètre OS). Crucial pour l'accessibilité et le confort. */
+
+    /* Scroll fluide par défaut (override par reduced-motion ci-dessus) */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* ============================================================================
+ * UTILITAIRES — classes atomiques réutilisables
+ * ============================================================================ */
+@layer utilities {
+
+    /* Caché visuellement mais lu par les lecteurs d'écran (accessibilité) */
+    .sr-only,
+    .visually-hidden {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+
+    /* Pile verticale avec espacement cohérent (Every Layout — Heydon Pickering) */
+    .stack>*+* {
+        margin-top: var(--stack-gap, var(--space-md));
+    }
+
+    /* Groupe horizontal avec wrapping automatique */
+    .cluster {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--cluster-gap, var(--space-sm));
+        align-items: center;
+    }
+
+    /* Centre un contenu horizontalement avec une largeur max */
+    .center-content {
+        max-width: var(--center-max, var(--content-base));
+        margin-inline: auto;
+        padding-inline: var(--space-md);
+    }
+
+    /* Effet "verre" — utilisable sur les panneaux qui le souhaitent */
+    .glass {
+        background: color-mix(in srgb, var(--neutral) 60%, transparent);
+        backdrop-filter: blur(8px) saturate(140%);
+        -webkit-backdrop-filter: blur(8px) saturate(140%);
+        border: 1px solid color-mix(in srgb, var(--accentClr) 18%, transparent);
+    }
+
+    /* Texte à dégradé doré (utilisé partout dans le forum) */
+    .gold-text {
+        background: var(--gold-text-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: var(--accentClr);
+        /* fallback */
+    }
+
+    /* Animation flottante minuscule pour micro-interactions */
+    .lift-on-hover {
+        transition:
+            transform var(--transition-base),
+            box-shadow var(--transition-base);
+    }
+
+    .lift-on-hover:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--elevation-3);
+    }
+}
+
+@keyframes scan-sweep {
+    0% {
+        top: -5%;
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    92% {
+        opacity: 0.7;
+    }
+
+    100% {
+        top: 115%;
+        opacity: 0;
+    }
+}
+
+@keyframes title-shimmer {
+
+    0%,
+    100% {
+        background-position: 0% 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes title-glitch {
+    0% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+
+    12% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 62% 0);
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) hue-rotate(80deg);
+    }
+
+    24% {
+        transform: translateX(-4px);
+        clip-path: inset(58% 0 0 0);
+    }
+
+    38% {
+        transform: translateX(3px);
+        clip-path: inset(22% 0 35% 0);
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) hue-rotate(-40deg);
+    }
+
+    52% {
+        transform: translateX(-2px);
+        clip-path: none;
+    }
+
+    70% {
+        transform: translateX(1px);
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(46, 26, 71, 0.3));
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(46, 26, 71, 0.3));
+    }
+}
+
+@keyframes gh-intrude {
+    0% {
+        opacity: 0;
+        transform: translateX(10px);
+        clip-path: inset(0 100% 0 0);
+        text-shadow: none;
+    }
+
+    12% {
+        opacity: 1;
+        transform: translateX(-5px);
+        clip-path: inset(0 70% 0 0);
+        text-shadow:
+            -3px 0 var(--taupe),
+            3px 0 #00e5ff;
+    }
+
+    25% {
+        transform: translateX(4px);
+        clip-path: inset(0 40% 0 0);
+        text-shadow:
+            -2px 0 var(--taupe),
+            2px 0 #00e5ff;
+    }
+
+    40% {
+        transform: translateX(-2px);
+        clip-path: inset(0 12% 0 0);
+    }
+
+    56% {
+        transform: translateX(1px);
+        clip-path: inset(0 3% 0 0);
+        text-shadow:
+            -1px 0 rgba(255, 48, 64, 0.6),
+            1px 0 rgba(0, 229, 255, 0.6);
+    }
+
+    72% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(255, 48, 64, 0.45),
+            1px 0 rgba(0, 229, 255, 0.45);
+        opacity: 1;
+    }
+}
+
+@keyframes gh-hold-tick {
+
+    0%,
+    85%,
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(255, 48, 64, 0.45),
+            1px 0 rgba(0, 229, 255, 0.45);
+    }
+
+    86% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 0 20%);
+        text-shadow:
+            -4px 0 var(--taupe),
+            4px 0 #00e5ff;
+    }
+
+    87% {
+        transform: translateX(-4px);
+        clip-path: inset(50% 0 0 0);
+    }
+
+    88% {
+        transform: translateX(2px);
+        clip-path: none;
+    }
+
+    92% {
+        transform: translateX(-2px);
+        clip-path: inset(0 0 60% 0);
+        text-shadow:
+            -3px 0 var(--taupe),
+            3px 0 #00e5ff;
+    }
+
+    93% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+}
+
+@keyframes gh-corrupt {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(255, 48, 64, 0.45),
+            1px 0 rgba(0, 229, 255, 0.45);
+    }
+
+    10% {
+        transform: translateX(7px);
+        clip-path: inset(0 0 45% 0);
+        text-shadow:
+            -5px 0 var(--taupe),
+            5px 0 #00e5ff;
+    }
+
+    22% {
+        transform: translateX(-6px);
+        clip-path: inset(55% 0 0 0);
+        opacity: 0.85;
+    }
+
+    35% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 0 30%);
+        filter: hue-rotate(50deg);
+    }
+
+    48% {
+        transform: translateX(-4px);
+        clip-path: inset(25% 20% 30% 0);
+        opacity: 0.6;
+    }
+
+    60% {
+        transform: translateX(4px);
+        clip-path: inset(0 60% 0 0);
+        filter: hue-rotate(-30deg);
+        opacity: 0.4;
+    }
+
+    75% {
+        transform: translateX(-3px);
+        clip-path: inset(0 80% 0 0);
+        opacity: 0.2;
+    }
+
+    90% {
+        transform: translateX(2px);
+        clip-path: inset(0 95% 0 0);
+        opacity: 0.08;
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+}
+
+/* Animation d'apparition des notifications */
+@keyframes notiffiFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** PAGE PRINCIPALE, INDEX ------------------------------------------------------- ******/
+/*** ------------------------------- ***/
+/*** CATEGORIES -------------------- ***/
+
+@keyframes qeel-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes fadeContent {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes breakSeal {
+    0% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        opacity: 1;
+        filter: brightness(1);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) scale(1.15) rotate(-3deg);
+        filter: brightness(1.4);
+    }
+
+    40% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(5deg);
+        filter: brightness(1.6);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0.1) rotate(180deg);
+        opacity: 0;
+        filter: blur(4px);
+    }
+}
+
+@keyframes slideUpThenOver {
+    0% {
+        opacity: 1;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(0.85);
+        z-index: 5;
+    }
+
+    30% {
+        opacity: 1;
+        top: -30px;
+        transform: translateX(-50%) translateY(-100%) scale(0.9);
+        z-index: 25;
+    }
+
+    40% {
+        opacity: 1;
+        top: -30px;
+        transform: translateX(-50%) translateY(-100%) scale(0.95);
+        z-index: 25;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+        transform: translateX(-50%) translateY(0) scale(1);
+        z-index: 25;
+        pointer-events: auto;
+    }
+}
+
+@keyframes slideBackIn {
+    0% {
+        opacity: 1;
+        top: 0;
+        transform: translateX(-50%) translateY(0) scale(1);
+        z-index: 25;
+    }
+
+    30% {
+        opacity: 1;
+        top: -30px;
+        transform: translateX(-50%) translateY(-100%) scale(0.95);
+        z-index: 25;
+    }
+
+    50% {
+        opacity: 1;
+        top: -30px;
+        transform: translateX(-50%) translateY(-100%) scale(0.9);
+        z-index: 5;
+    }
+
+    100% {
+        opacity: 0;
+        top: 50%;
+        transform: translateX(-50%) translateY(-50%) scale(0.8);
+        z-index: 5;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ========================================
+   VELVET SIN - FIN FICHE DE LIENS V2
+   Style élégant, minimaliste, dark mode
+   ======================================== */
+/* ========================================
+   VELVET SIN - FICHE DE PRÉFÉRENCES RP
+   Style document confidentiel / contrat
+   ======================================== */
+
+@keyframes hp-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .vs-hd-title {
+        font-size: 38px;
+        letter-spacing: 8px;
+    }
+
+    .vs-hd-subtitle {
+        font-size: 10px;
+        letter-spacing: 3px;
+    }
+
+    .vs-scenario-card {
+        width: 100%;
+    }
+
+    .vs-hooks-grid {
+        grid-template-columns: 1fr;
+    }
+
+    :root {
+        --envelope-width: 340px;
+        --envelope-height: 200px;
+    }
+
+    .vs-letter-paper {
+        min-height: 400px;
+    }
+
+    .vs-letter-content {
+        padding: 35px 30px;
+        font-size: 13px;
+    }
+
+    .vs-envelope-address .name {
+        font-size: 24px;
+    }
+
+    .vs-wax-seal {
+        width: 90px;
+        height: 90px;
+    }
+
+    .vs-hp-title {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .vs-hp-vertical-title {
+        font-size: 8px;
+    }
+
+    .vs-hp-quote p {
+        font-size: 6px;
+    }
+
+    .vs-hp-right {
+        flex-direction: column;
+    }
+}

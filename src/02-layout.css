@@ -1,0 +1,979 @@
+/* STRUCTURE PRINCIPALE ---
+ * Logical properties (margin-inline) + token de largeur. */
+.main_forum {
+  width: min(var(--main-width), 100% - 2 * var(--space-md));
+  margin-inline: auto;
+  margin-block: var(--space-lg);
+  padding: var(--space-lg);
+  background: transparent;
+  border-radius: var(--radius-sm);
+}
+
+/* BANNIERE ---
+ * Refonte : utilisation de `aspect-ratio` pour que la hauteur s'adapte à la
+ * largeur (vs hauteur fixe en pixels). Tokens réutilisés. */
+.velvet-header {
+  position: relative;
+  width: 100%;
+  /* Hauteur ≃ 500px à 1000px de large, mais fluide */
+  aspect-ratio: 2 / 1;
+  max-height: 70vh;
+  min-height: 320px;
+  overflow: hidden;
+  place-items: center;
+  isolation: isolate;
+  padding-top: 20px;
+}
+
+/* Bordure extérieure fine (or) */
+.velvet-header::before,
+.velvet-header::after {
+  content: "";
+  position: absolute;
+  border-image: var(--gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.5));
+  z-index: 10;
+  pointer-events: none;
+}
+
+.velvet-header::before {
+  inset: 0;
+}
+
+.velvet-header::after {
+  inset: 4px;
+  border-width: 2px;
+}
+
+/*** TITRE VELVET ***/
+/* ========================================
+   WRAPPER
+   ======================================== */
+.vs-hd-wrapper {
+  width: 100%;
+  max-width: 1010px;
+  padding: 36px 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+.sidebar {
+  position: fixed;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  inset: 0;
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xs);
+  z-index: var(--z-sticky);
+}
+
+/* Conteneur de switcheroo */
+.sidebar_top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Conteneur de l'ascenseur
+ * Placé en bas à droite de la page */
+.sidebar_bottom {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-xs);
+  width: 45px;
+  z-index: var(--z-sticky);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Lien de renvoi haut/bas — modernisé avec hover élégant */
+.sidebar_bottom > a {
+  padding: var(--space-2xs) var(--space-xs);
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  text-align: center;
+  color: var(--textColor);
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sidebar_bottom > a:hover {
+  background: color-mix(in srgb, var(--neutralDark) 70%, var(--accentClr));
+  border-color: var(--accentClr);
+  color: var(--accentClr);
+  transform: translateY(-2px);
+}
+
+.sidebar_bottom > a:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Désactive l'underline animée sur les éléments structurels où elle serait
+   inappropriée (boutons-liens, navigation, avatars, pagination, etc.).
+   :where() a une spécificité de 0 — n'écrase pas un éventuel style ciblé. */
+:where(
+    .navbar,
+    .sidebar,
+    .links_bar,
+    .specials_links,
+    .switcheroo,
+    #notiffi_button,
+    #notiffi_panel,
+    .pagination,
+    .topictitle,
+    .forumtitle,
+    .lastpost,
+    .userlink,
+    .profile-icons,
+    .post-options,
+    .post_options,
+    .vs-flip-card,
+    .vs-scenario-card,
+    .vs-fl-lien-back,
+    .vs-w-card,
+    .vs-mb-item,
+    .preview_content
+  )
+  a,
+:where(.button, button, a.button) {
+  background-image: none;
+}
+
+/*** ------------------------------- ***/
+/*** PAGINATIONS -------------------- ***/
+/* .pagination {} - Removed empty rule */
+/*lien unique vers les pages numérotées*/
+.pagination span a {
+  font-size: var(--little-size);
+}
+
+/*survol des liens uniques des pages*/
+.pagination span a:hover {
+  font-weight: 600;
+}
+
+/*lien actif : page sur laquelle vous vous trouvez */
+.pagination span strong {
+  background-color: var(--neutralDark);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/* Conteneur moins large (les historiques des messages essentiellement) */
+.wrapped {
+  width: min(var(--content-narrow), 80%);
+  margin-inline: auto;
+  margin-block: var(--space-xs);
+  width: 1018px;
+  max-width: 100%;
+  margin: 30px auto 15px;
+  clear: both;
+}
+
+/*** ------------------------------- ***/
+/*** BARRE DE NAVIGATION ----------- ***/
+/* Conteneur de la barre de nav */
+.navbar {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--neutral), 0.8);
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  padding: 15px 60px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 15px;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  transform: translateX(-50%);
+  right: auto;
+  width: 100%;
+  height: auto;
+  z-index: 999;
+  font-family: "Karla", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  box-sizing: border-box;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+  /* Ombre pour le détacher */
+  justify-content: center;
+}
+
+/* Hide entire li if its anchor is one of the 'suppressed' links so it doesn't occupy space.
+   Uses :has() (supported in modern browsers). Keep explicit selectors for clarity.
+*/
+.navbar > li:has(a[href^="/faq"]),
+.navbar > li:has(a[href^="/calendar"]),
+.navbar > li:has(a[href^="/groups"]),
+.navbar > li:has(a[href^="/images"]) {
+  display: none !important;
+}
+
+/* Also handle inline-hidden anchors (style="display:none") if present */
+.navbar > li:has(a[style*="display:none"]) {
+  display: none !important;
+}
+
+/* Fallback for browsers without :has(): remove whitespace nodes by collapsing font-size
+   of anchors that are hidden and remove non-breaking space effect. This is less ideal
+   but prevents visible gaps when :has() isn't available.
+*/
+.navbar a[href^="/faq"],
+.navbar a[href^="/calendar"],
+.navbar a[href^="/groups"],
+.navbar a[href^="/images"] {
+  display: none;
+}
+
+/* If HTML contains literal non-breaking spaces after links, set the li's font-size to 0
+   only for li whose anchors are hidden — use a conservative selector so it doesn't
+   affect all nav items. This uses attribute presence on the anchor as a hint.
+   Note: this is intentionally broad but scoped under .navbar.
+*/
+.navbar > li > a[style="display:none"] {
+  font-size: 0;
+}
+
+/* Home button: show text, hide icon */
+.navbar a[href="/"] {
+  color: var(--white);
+  background-image: none;
+  padding: 0;
+  width: auto;
+  height: auto;
+  display: inline;
+}
+
+/* (Règle vide retirée : .navbar a[href="/"]:hover — était vide. Le pseudo-élément
+   ::after ci-dessous se charge de l'état de survol.) */
+.navbar a[href="/"]:hover::after {
+  display: none;
+}
+
+.navbar a[href="/"] img {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** QUI EST EN LIGNE -------------- ***/
+/*** ------------------------------- ***/
+/* ========================================
+   FORUMACTIF OVERRIDES (scope strict)
+   ======================================== */
+.qeel-footer-links {
+  display: none;
+}
+
+.vs-qeel-wrapper br {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-qeel-wrapper,
+.vs-qeel-wrapper * {
+  box-sizing: border-box !important;
+  word-spacing: normal !important;
+  white-space: normal !important;
+}
+
+/* ========================================
+   WRAPPER — Miroir de .vs-hp-wrapper
+   ======================================== */
+.vs-qeel-wrapper {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  gap: 0;
+  width: 100%;
+  /* Glassmorphisme identique à la homepage */
+  background: var(--qeel-glass);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--qeel-border);
+  border-radius: 10px;
+  font-family: var(--qeel-font-body);
+  color: var(--qeel-mauve);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Lueur intérieure subtile — miroir de la homepage */
+.vs-qeel-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(216, 212, 242, 0.07);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* En-tête de bloc */
+.vs-qeel-header {
+  font-family: var(--qeel-font-condensed);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--qeel-taupe);
+  margin-bottom: 4px;
+}
+
+#main-content
+  > div.container
+  > div.forum-page_desc
+  > div.cat-icon-wrapper
+  > img {
+  width: 140px;
+}
+
+.topicslist-pagination a {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-right: 3px;
+  background: var(--neutralDark);
+  border-radius: 3px;
+  font-size: 11px;
+  text-decoration: none;
+  color: #c4b2bc;
+  transition: all 0.3s ease;
+}
+
+.topicslist-pagination a:hover {
+  background: rgba(255, 48, 64, 0.2);
+  color: #ffffff;
+  box-shadow: 0 0 5px rgba(255, 48, 64, 0.3);
+}
+
+#main-content
+  > form:nth-child(4)
+  > div.container.wrap-mp-main-container
+  > div.mp_row
+  > div.mp_img
+  > img {
+  display: none;
+}
+
+.wrap-mp-main-container {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+/* Old Navbar Styles Deleted */
+/* Move "Associate Character" icon to the start (left/top) */
+.sidebar_top a[href*="associ"] {
+  order: -1 !important;
+  align-self: flex-start;
+  /* If container is column, allows specific alignment */
+}
+
+/* La Signature en bas */
+.vs-admin-footer {
+  margin-top: 50px;
+  text-align: right;
+  font-family: "Karla", sans-serif;
+  font-size: 10px;
+  color: #a29587;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.vs-reg-header {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  font-weight: 300;
+  text-align: center;
+  text-transform: uppercase;
+  color: #d8d4f2;
+  background: none;
+  -webkit-text-fill-color: initial;
+  filter: drop-shadow(0 0 10px rgba(216, 212, 242, 0.2));
+}
+
+/* ========================================
+   PAGE DESTINS (SCENARIOS & HOOKS) - START
+   ======================================== */
+/* Conteneur principal */
+.vs-destiny-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  font-family: "Playfair Display", serif;
+  color: #ccc;
+}
+
+/* Responsive Mobile */
+/* ========================================
+   PAGE DESTINS (SCENARIOS & HOOKS) - END
+   ======================================== */
+/* ========================================
+   PAGE FAQ - START
+   ======================================== */
+/* --- CONFIGURATION GLOBALE --- */
+.vs-faq-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Playfair Display", serif;
+  background: #050505;
+  border: 1px solid var(--bg-dim);
+  padding: 20px;
+}
+
+/* La Lettre (A, B, C...) */
+.vs-letter-header {
+  font-size: 40px;
+  color: var(--accentClr);
+  border-bottom: 1px dotted #554411;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-bottom: 2px;
+}
+
+/* Photo avec trombone image */
+.vs-dossier-photo-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ========================================
+   PIED DE PAGE - POISON & LIMITE
+   ======================================== */
+.vs-dossier-footer {
+  display: flex;
+  justify-content: center;
+  padding: 12px 25px 15px;
+  background: linear-gradient(0deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+  gap: 2px;
+}
+
+.vs-comfort-header {
+  padding: 35px 30px 25px;
+  border-bottom: 1px solid var(--bg-soft);
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 10, 0.8) 0%,
+    transparent 100%
+  );
+  position: relative;
+}
+
+.vs-comfort-header::after {
+  content: "— DOCUMENT CONFIDENTIEL —";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  font-family: "Special Elite", monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--red-deep);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.vs-comfort-footer {
+  padding: 25px 30px;
+  background: linear-gradient(0deg, rgba(10, 10, 10, 0.8) 0%, transparent 100%);
+  border-top: 1px solid var(--bg-soft);
+}
+
+/* ─── En-tête ─── */
+.vs-wanted-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 30px 20px;
+  background: linear-gradient(180deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+  border-bottom: 1px solid var(--vs-w-border);
+}
+
+/* ============================
+   4. HISTORIQUE DES MESSAGES PRIVÉS (.wrapped)
+   ============================ */
+.wrapped h2 {
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-accent);
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  position: relative;
+  font-weight: 600;
+}
+
+/* Filet doré décoratif sous le titre */
+.wrapped h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--gold-accent),
+    transparent
+  );
+}
+
+/* --- Conteneur d'un message dans l'historique --- */
+.wrapped .panel {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  margin: 0 0 12px;
+  padding: 14px 18px;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.wrapped .panel:hover {
+  border-color: rgba(var(--gold-rgb), 0.2);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Message courant dans l'historique — plus visible */
+.wrapped .panel.curr_privmsg {
+  border-left: 3px solid var(--gold-accent);
+  background: rgba(18, 10, 10, 0.7);
+  box-shadow: inset 3px 0 12px -4px rgba(var(--gold-rgb), 0.08);
+}
+
+/* Layout : avatar + auteur/date en ligne */
+.wrapped .panel > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.5);
+}
+
+/* Avatar dans l'historique */
+.wrapped .panel .mini_img {
+  float: none !important;
+}
+
+.wrapped .panel .mini_img img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  margin-right: 0;
+}
+
+/* Auteur + date */
+.wrapped .panel .author {
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+/* Contenu du message dans l'historique */
+.wrapped .panel > .content {
+  padding: 4px 0 4px 56px;
+  line-height: 1.65;
+  color: var(--textColor);
+  font-size: var(--normal-size);
+  border-left: 2px solid rgba(var(--gold-rgb), 0.08);
+  margin-left: 22px;
+}
+
+/* Pagination de l'historique */
+.wrapped .pagination {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ============================
+   5. NETTOYAGE VISUEL
+   ============================ */
+/* On masque le sélecteur "sauter vers un forum" pour alléger la page MP */
+.wrapped + form[name="jumpbox"] {
+  display: none;
+}
+
+.sceditor-button-headers div {
+  background-position: 0 -820px;
+}
+
+/* ─── Footer / Signature ─── */
+.vs-moodboard-footer {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--vs-mb-accent-dim);
+  text-align: center;
+  font-size: 10px;
+  color: var(--vs-mb-text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* BROUILLON END */
+/* ========================================
+   VELVET SIN — PAGE D'ACCUEIL (HOMEPAGE)
+   Layout : image | (texte+titre vertical | staff empilé) | sidebar
+   Max-width: 980px — Compact ~220px
+   ======================================== */
+/* ─── Variables locales ─────────────────────────────────────────── */
+/* ========================================
+   FORUMACTIF OVERRIDES
+   ======================================== */
+/* Override global : masque les br injectés par Forumactif */
+.vs-hp-wrapper br {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-hp-wrapper {
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  white-space: normal !important;
+  display: grid;
+  grid-template-columns: 220px 1fr 210px;
+  gap: 0;
+  width: 100%;
+  height: 220px;
+  /* Glassmorphisme : fond semi-transparent + flou de l'arrière-plan */
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--hp-border);
+  border-radius: 10px;
+  font-family: var(--hp-font-body);
+  color: var(--hp-text);
+  position: relative;
+  overflow: hidden;
+}
+
+.vs-hp-wrapper,
+.vs-hp-wrapper * {
+  box-sizing: border-box !important;
+}
+
+/* ========================================
+   WRAPPER PRINCIPAL — Layout 3 colonnes
+   ======================================== */
+/* Bordure subtile lavande */
+.vs-hp-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(216, 212, 242, 0.08);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.forum_desc .cat-icon-wrapper {
+  float: left;
+  margin-top: 15px;
+  margin-left: 10px;
+  margin-right: 15px;
+  margin-bottom: 8px;
+}
+
+.cat-icon-wrapper {
+  float: left;
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .vs-hp-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .vs-hp-left {
+    border-right: none;
+    border-bottom: 1px solid var(--hp-border);
+    height: 150px;
+  }
+
+  .vs-hp-center {
+    grid-template-columns: 1fr;
+    border-right: none;
+    border-bottom: 1px solid var(--hp-border);
+  }
+
+  .vs-hp-staff {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--hp-border);
+  }
+
+  .vs-hp-staff-avatars {
+    flex-direction: row;
+  }
+
+  .vs-hp-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .vs-hp-nav {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .vs-hp-capsules {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .vs-hp-socials {
+    width: 100%;
+  }
+}
+
+@media (max-width: 860px) {
+  .vs-qeel-wrapper {
+    grid-template-columns: 1fr;
+    border-radius: 10px;
+  }
+
+  .vs-qeel-left {
+    border-radius: 10px 10px 0 0;
+    flex-direction: column;
+  }
+
+  .vs-qeel-vertical-title {
+    writing-mode: horizontal-tb;
+    transform: none;
+    border-right: none;
+    border-bottom: 1px solid var(--qeel-border);
+    padding: 8px 14px;
+  }
+
+  .vs-qeel-left-content {
+    padding: 12px 14px;
+  }
+
+  .vs-qeel-col + .vs-qeel-col {
+    border-left: none;
+    border-top: 1px solid var(--qeel-border);
+  }
+
+  .vs-qeel-right {
+    border-radius: 0 0 10px 10px;
+  }
+
+  .vs-qeel-groups {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .vs-qeel-group-desc--active {
+    position: relative;
+    inset: auto;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .vs-wanted {
+    margin: 20px 10px;
+  }
+
+  .vs-wanted-header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 50px 20px 20px;
+  }
+
+  .vs-wanted-title {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .vs-wanted-body {
+    grid-template-columns: 1fr;
+    /* Une seule colonne */
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .vs-wanted-avatar {
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: center;
+  }
+
+  .vs-wanted-avatar img {
+    width: 140px;
+    height: 210px;
+  }
+
+  .vs-wanted-details {
+    grid-row: 2;
+    grid-column: 1;
+    width: 100%;
+    /* S'assurer que les tags prennent la largeur */
+    justify-content: center;
+  }
+
+  .vs-wanted-tag {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .vs-wanted-story {
+    grid-row: 3;
+    grid-column: 1;
+  }
+
+  .vs-wanted-story-text {
+    max-height: none;
+    text-align: left;
+  }
+
+  .vs-wanted-links {
+    padding: 20px;
+  }
+
+  .vs-wanted-link-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .vs-wanted-link-desc {
+    text-align: left;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .vs-comfort {
+    margin: 20px 10px;
+  }
+
+  .vs-comfort-header,
+  .vs-comfort-section,
+  .vs-comfort-footer {
+    padding: 20px;
+  }
+
+  .vs-comfort-name {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .vs-comfort-rhythm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-comfort-legend {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .vs-comfort-topic {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .vs-comfort-indicator {
+    margin-top: 0;
+  }
+
+  .vs-comfort-signature-line {
+    width: 150px;
+  }
+}
+
+@media (max-width: 520px) {
+  .vs-dossier {
+    margin: 20px 10px;
+  }
+
+  .vs-dossier-identity {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px 25px;
+  }
+
+  .vs-dossier-info {
+    align-items: center;
+  }
+
+  .vs-dossier-field {
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .vs-dossier-label {
+    min-width: auto;
+  }
+
+  .vs-dossier-rorschach,
+  .vs-dossier-archives {
+    padding: 20px;
+  }
+
+  .vs-dossier-symbols {
+    gap: 12px;
+  }
+
+  .vs-dossier-symbol-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .vs-dossier-footer {
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .vs-dossier-trait {
+    max-width: 48%;
+  }
+}

@@ -1,0 +1,2847 @@
+/* ============================================================================
+ * @PROPERTY — typage de custom properties pour animation/interpolation
+ * ----------------------------------------------------------------------------
+ * Permet d'animer des variables CSS (impossible sans @property).
+ * Ex : transition: --gold-angle 1s linear; animera réellement.
+ * Compat : Chrome 85+, Safari 16.4+, Firefox 128+.
+ * ============================================================================ */
+@property --gold-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --shimmer-pos {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.body__background {
+  --top-offset: var(--offset-to-main);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--neutral);
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+  /* Optimisation perf : informe le compositor */
+  will-change: transform;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/*** FIN TITRE VELVET ***/
+/* Conteneur de toutes les sous-sections
+ * comme les encadrés d'options, de rappel, etc... */
+.panel {
+  backdrop-filter: blur(10px);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--elevation-4);
+  margin-bottom: 30px;
+  margin-top: 42px;
+}
+
+/* BOUTON CHANGEMENT DE THEME ---*/
+.color-scheme-toggle,
+[data-color-scheme="light"] .color-scheme-toggle .dark,
+[data-color-scheme="dark"] .color-scheme-toggle .light {
+  display: block;
+  width: 100%;
+}
+
+[data-color-scheme="dark"] .color-scheme-toggle .dark,
+[data-color-scheme="light"] .color-scheme-toggle .light {
+  display: none;
+}
+
+.color-scheme-toggle {
+  background-color: transparent;
+  padding: 10px;
+  font-family: var(--font2);
+  font-size: 14px;
+  /* Slightly larger for icon */
+  text-align: center;
+  border-radius: 5px;
+  color: var(--white);
+  cursor: pointer;
+  border: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-scheme-toggle i {
+  font-size: 24px;
+  /* Increased size */
+}
+
+.color-scheme-toggle:hover {
+  color: var(--accentClr);
+}
+
+/* Emoji mis par défaut de FA
+ * Les réduire les rend moins horribles à voir */
+.emojione {
+  width: 19px !important;
+}
+
+.page-title {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-title);
+  color: var(--gold-accent);
+  display: block;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: var(--fluid-lg);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  border: none;
+  padding: var(--space-md) var(--space-xs) var(--space-3xs) var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: normal;
+  margin: 0;
+  height: 80px;
+  box-shadow: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #d8d4f2;
+  text-align: center;
+  margin: 25px 0 20px;
+  font-weight: 300;
+}
+
+/* Hover : voile doré + léger uplift */
+:hover:is(
+    input:is([type="submit"], [type="button"], [type="reset"]),
+    .button,
+    button
+  ):not(:disabled) {
+  background: color-mix(
+    in srgb,
+    var(--subcategory-dark) 80%,
+    var(--fond-category)
+  );
+  border-color: color-mix(in srgb, var(--fond-category) 30%, transparent);
+}
+
+/* Focus clavier : anneau accessible */
+:focus-visible:is(
+  input:is([type="submit"], [type="button"], [type="reset"]),
+  .button,
+  button
+) {
+  outline: none;
+  box-shadow: var(--fond-category);
+}
+
+/* Active : enfoncement micro pour feedback tactile */
+:active:is(
+    input:is([type="submit"], [type="button"], [type="reset"]),
+    .button,
+    button
+  ):not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Boutons désactivés */
+:disabled:is(
+  input:is([type="submit"], [type="button"], [type="reset"]),
+  .button,
+  button
+) {
+  opacity: 0.5;
+  filter: saturate(0.6);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-buttons {
+  text-align: center;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+.quickmod {
+  margin-bottom: 20px;
+}
+
+/*suppression de l'image-lien "aller à la page suivante" */
+.page-topic span a:last-child,
+.pag-img {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** ELEMENTS ESTHETIQUES ---------- ***/
+/* Contenur général qui sert généralement de fond et/ou de contour*/
+.container {
+  /*background: var(--neutralDark);*/
+  border-radius: 5px;
+}
+
+/* Barre de séparation */
+.separator {
+  padding-bottom: var(--space-2xs);
+  margin-bottom: var(--space-2xs);
+  border-bottom: 1px solid var(--neutralDark);
+  clear: both;
+  height: 1px;
+  width: 100%;
+}
+
+/* Filet horizontal — modernisé en dégradé doré subtil avec
+   fade aux extrémités (look "élégant" pour un thème RPG). */
+hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--accentClr) 30%, transparent) 20%,
+    color-mix(in srgb, var(--accentClr) 30%, transparent) 80%,
+    transparent
+  );
+  margin-block: var(--space-md);
+}
+
+/* Titre d'un toggle (details/summary) */
+summary {
+  cursor: pointer;
+  /* Indicateur visuel au focus clavier */
+  border-radius: var(--radius-xs);
+}
+
+summary:focus-visible {
+  outline: 2px solid var(--accentClr);
+  outline-offset: 2px;
+}
+
+/* Image/avatar réduit */
+.mini_img img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+  margin-right: 10px;
+  background: var(--neutralDark);
+}
+
+/* Permet d'aligner un élément à droite ou à gauche */
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+/* Barre de gestion 
+ * Contient des boutons ou des liens spéciaux */
+.links_bar {
+  padding: 10px;
+  border: var(--border);
+  margin: 25px 0;
+  clear: both;
+  width: 1000px;
+  margin: 10px auto;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 5px;
+  background: rgba(18, 40, 63, 0.45);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* supprime si vide */
+.links_bar:empty {
+  display: none;
+}
+
+/* Dernière barre de liens à 15px en dessous */
+.links_bar:last-of-type {
+  margin-top: 15px;
+}
+
+/* Lien spécial mis en avant */
+.specials_links a,
+a.specials_links {
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+/* Suppression des liens vides */
+.specials_links a:empty,
+a.specials_links:empty {
+  display: none;
+}
+
+/****** ------------------------------------------------------------------------------ 
+ ****** ENTETE DU FORUM --------------------------------------------------------------
+ ****** Tous les éléments qui s'affichent en tête de toutes les pages ---------------- ******/
+/* Notiffi CSS */
+/* Cache la toolbar défaut */
+#fa_toolbar {
+  display: none;
+}
+
+/* Bouton de notification */
+/* Bouton de notification */
+#notiffi_button {
+  background: transparent;
+  gap: 5px;
+  padding: 10px;
+  position: relative;
+  z-index: auto;
+  top: auto;
+  right: auto;
+  height: auto;
+  font-family: var(--font2);
+  font-size: var(--little-size);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  font-weight: 400;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--fond-category) !important;
+  /* Même fond que le body */
+  border: 1px solid rgba(var(--thistle), 0.4);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+#notiffi_button:hover {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  transition: 0.3s;
+  background: #2d1b1b;
+  border-color: var(--thistle);
+  box-shadow: 0 0 15px rgba(18, 40, 63, 0.45);
+}
+
+/* Conteneur du nombre de notification non lues REMPLI */
+.unread_count {
+  position: relative;
+  background: var(--neutralDarker);
+  border-radius: 5px;
+  width: 25px;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  scale: 1;
+  opacity: 1;
+  aspect-ratio: 1;
+  transition: scale ease-out 0.2s;
+}
+
+/* Conteneur du nombre de notification non lues VIDE */
+.unread_count:empty {
+  position: absolute;
+  scale: 0;
+  opacity: 0;
+  transition: all ease-out 0.2s;
+}
+
+/* Menu des notifications FERMÉ */
+#notiffi_panel {
+  --menuSize: 500px;
+  width: var(--menuSize);
+  position: fixed;
+  z-index: 98;
+  top: 0;
+  height: 100%;
+  right: calc(var(--menuSize) * -1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  background: var(--neutral);
+  border-left: 1px solid var(--neutralDark);
+  padding: 15px;
+  padding-top: 80px;
+  /* Increased to avoid navbar overlap */
+  opacity: 0;
+  visibility: hidden;
+  transition: all ease 0.7s;
+}
+
+/* Menu des notifications OUVERT */
+#notiffi_panel.open {
+  right: 0;
+  visibility: visible;
+  opacity: 1;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+/* Conteneur des notifications */
+.all_notifications {
+  width: 100%;
+  overflow: auto;
+  max-height: 100%;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 10px;
+  border: 2px solid var(--contrastLighter) !important;
+  padding: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Conteneur des notifications VIDE */
+.no_notification {
+  text-align: center;
+  font-style: italic;
+}
+
+/* Conteneur du footer du menu
+  (voir toutes les notifications, marquer comme lu, tout supprimer) */
+.notiffi_manage {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Conteneur des bouton d'action des notifications */
+.notiffi_actions {
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+  button {
+    padding: 2px 10px;
+    background: rgba(18, 40, 63, 0.45);
+    backdrop-filter: blur(12px) saturate(140%);
+    border-radius: 5px !important;
+    border: 2px solid var(--contrastLighter) !important;
+
+    &:hover {
+      color: var(--accentClr);
+      border-color: var(--neutralDarker);
+    }
+  }
+}
+
+/* Apparence d'une notification */
+.notification {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: border 0.2s;
+  animation: notiffiFadeIn 0.3s ease-in-out;
+}
+
+/* Conteneur des détails de la notification (avatar, icone) */
+.notif_details {
+  position: relative;
+  align-self: start;
+}
+
+/* Icone du type de la notification */
+.notif_icon {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: var(--neutral);
+  width: 18px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+  font-size: 10px;
+}
+
+/* Icone lorsque la notification est non lue */
+.notification.unread .notif_icon {
+  color: var(--neutral);
+  background: var(--accentClr);
+}
+
+/* Conteneur du texte et la date de la notification */
+.notif_content {
+  width: 100%;
+}
+
+/* Date de la notification */
+.notif_time {
+  font-size: var(--little-size);
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Bouton de suppression de la notification */
+.notif_close {
+  background: transparent;
+  align-self: start;
+  font-size: 18px;
+  line-height: 0;
+  opacity: 0;
+  border-radius: 100px;
+  aspect-ratio: 1;
+  padding: 2px;
+  transition: all 0.3s;
+}
+
+/* Affiche le bouton de suppression au survol de la notification */
+.notification:hover .notif_close {
+  opacity: 1;
+}
+
+/* Alerte d'une notification */
+.notification.alert {
+  position: fixed;
+  width: 400px;
+  align-items: center;
+  z-index: 99;
+  bottom: 10px;
+  right: 10px;
+  background: var(--neutralDarker);
+  transform: translateY(100%);
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 0.5s ease-in-out;
+}
+
+.notification.alert.up {
+  transform: translateY(0%);
+  opacity: 1;
+  filter: blur(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.alert_close {
+  background: var(--neutral);
+  font-size: 18px;
+  line-height: 0;
+  border-radius: 100px;
+  aspect-ratio: 1;
+  padding: 2px;
+}
+
+/* MODAL : FENETRE DE CONNEXION --- */
+/* Fond de l'affichage de connexion */
+.monomer-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s opacity ease;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Boîte de connexion */
+.monomer-modal {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  width: 94%;
+  padding: 30px;
+  transition: 0.2s opacity ease;
+  transform: translate(-50%, -50%);
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 10px;
+  border: 2px solid var(--contrastLighter) !important;
+  padding: 50px;
+  box-shadow: var(--shadowBox);
+}
+
+.monomer-modal.monomer-open,
+.monomer-overlay.monomer-open {
+  opacity: 1;
+}
+
+/* Fermer la boîte de connexion */
+.monomer-close {
+  font-size: 16px;
+  line-height: 12px;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: var(--textColor);
+  border: 0;
+  outline: none;
+  background: rgba(var(--gold-rgb), 0.3);
+  border-radius: 4px;
+  padding: 0;
+  padding-left: 1px;
+}
+
+.monomer-close:hover {
+  background: var(--contrastLight);
+}
+
+/*** ------------------------------- ***/
+/*** ANNONCES DEFILANTES ----------- ***/
+/* Barre défilante */
+.module {
+  border-radius: 5px;
+  border: var(--border);
+  margin: 10px auto;
+  padding: 4px 8px;
+  width: 1000px;
+  box-sizing: border-box;
+}
+
+/* Barre de liens utilitaires (Messages depuis...) */
+.links_bar a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.links_bar a:hover {
+  color: var(--gold-accent);
+}
+
+.category {
+  margin-bottom: 20px;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 1000px;
+  margin: 0 auto 20px auto;
+  padding: 0;
+  border: 2px solid var(--contrastLighter);
+}
+
+/* Ensure no wrapper borders on list container */
+.forums {
+  backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--hp-border);
+  border-radius: 10px;
+  border: none !important;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  /* Reset to fit parent (.category) */
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(10px);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  margin-block: var(--space-lg);
+  box-shadow: var(--elevation-4);
+}
+
+.cate_title {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(10px);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  margin-block: var(--space-lg);
+  box-shadow: var(--elevation-4);
+}
+
+/* Titre d'une catégorie */
+.cate_title h2 {
+  padding: 15px;
+  margin: 0;
+  font-family: var(--font-cinzel);
+  font-size: 20px;
+  letter-spacing: 8px;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  color: var(--neutral);
+  /* Fallback */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+}
+
+.cate_quote {
+  color: var(--accent2);
+  margin-top: 42px;
+  position: absolute;
+  letter-spacing: 1px;
+  filter: brightness(0.9);
+}
+
+/* conteneur d'un forum*/
+.forum {
+  display: grid;
+  grid-template-areas: "left right";
+  grid-template-columns: 1fr 175px;
+  grid-template-rows: 30px 0px auto;
+  gap: 0 4px;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 5px;
+  align-items: stretch;
+  transition: 0.3s ease;
+  width: 100%;
+  margin: 0 auto 5px auto;
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Important pour padding inclus */
+}
+
+.forum:last-child {
+  margin-bottom: 25px;
+}
+
+/* Reordering nested elements */
+.forum_content,
+.forum_details {
+  display: contents;
+}
+
+/* Section 1: Vertical Decoration Bar */
+.forum-img {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  width: 32px;
+  height: 100%;
+  background: #2d1b1b;
+  border: 0px solid var(--gold-accent);
+  padding: 0;
+  object-fit: none;
+  display: block;
+  box-shadow:
+    inset -1px 0 3px rgba(0, 0, 0, 0.05),
+    inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.cat_new .forum-img {
+  background: #fff8dc;
+}
+
+.forum_desc {
+  grid-column: 1;
+  grid-row: 3;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.3);
+  padding: 0;
+  height: 120px;
+  font-size: 14px;
+  color: var(--textColor);
+  box-shadow: none;
+  font-family: var(--font);
+  scrollbar-width: thin !important;
+  margin: 8px 0 0 0px;
+}
+
+.forum_bloc_last_response {
+  grid-area: right;
+  height: 159px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+/* Custom Scrollbar for Description */
+/* On cible la zone de scroll de forum_desc */
+.forum_desc::-webkit-scrollbar {
+  width: 3px !important;
+  /* Largeur ultra-fine */
+  background-color: transparent !important;
+}
+
+/* Le "curseur" qui bouge */
+.forum_desc::-webkit-scrollbar-thumb {
+  background-color: var(--accentClr) !important;
+  border-radius: 0px !important;
+  /* Garde un look droit et tranchant comme tes bordures */
+}
+
+/* On cache les boutons fléchés en haut et en bas pour un look plus moderne */
+.forum_desc::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+.forum_desc .txt {
+  padding: 8px 12px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.forum_desc bb3 {
+  display: inline;
+  color: var(--thistle);
+  font-family: var(--font-title);
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-right: 8px;
+  letter-spacing: 2px;
+  font-size: 1em;
+  /* border-bottom: none; */
+  background: var(--fond-category);
+}
+
+.forum_desc .sublink {
+  font-style: italic;
+  font-family: "Cinzel", serif;
+  text-decoration: none;
+  color: inherit;
+  /* Ou une couleur par défaut si nécessaire */
+  transition: 0.3s;
+  cursor: pointer;
+  margin-top: 5px;
+  justify-content: center;
+}
+
+.forum_desc .sublink::before {
+  content: "";
+  height: 1px;
+  position: relative;
+  width: 100%;
+  display: block;
+  background: var(--fond-category);
+}
+
+.forum_desc .sublink:hover {
+  color: var(--neutral);
+  /* Légère couleur dorée */
+  text-shadow: 0 0 15px var(--midnight-purple);
+}
+
+/* Section 3: Links List Box (Symmetrical width with Stats) */
+#subforum {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px 15px;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral);
+  border-top: none;
+  border-bottom: none;
+  padding: 8px 10px;
+  overflow: visible;
+  font-size: 0;
+  /* Hide commas */
+  height: auto;
+  min-height: 40px;
+  box-shadow: none;
+}
+
+#subforum a {
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--textColorAccent);
+  margin-bottom: 0;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: block;
+  line-height: normal;
+  transition: 0.2s ease;
+  text-align: center;
+  font-family: var(--font);
+  background: transparent;
+  padding: 2px 5px;
+  border-radius: 0;
+  opacity: 0.8;
+  position: relative;
+}
+
+#subforum a:hover {
+  opacity: 1;
+  text-decoration: none;
+  color: var(--neutral);
+}
+
+/* Section 5: Stats & Last Post Column (Symmetrical width with Links) */
+/* Subjects Box (Top) */
+/* Subjects Box (Top) */
+.forum_sujets {
+  grid-column: 3;
+  grid-row: 1;
+  background: rgba(18, 10, 10, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  color: rgba(255, 255, 255, 0.7);
+  /* Blanc 0.7 opacité */
+  text-transform: uppercase;
+  font-size: 9px;
+  padding: 6px 4px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  box-shadow: none;
+}
+
+/* Messages Box (Bottom) */
+.forum_messages {
+  grid-column: 3;
+  grid-row: 3;
+  color: rgba(255, 255, 255, 0.7);
+  /* Blanc 0.7 opacité */
+  text-transform: uppercase;
+  font-size: 9px;
+  padding: 6px 4px;
+  text-align: center;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/*** ------------------------------- ***/
+/*** FIN QUI EST EN LIGNE -------------- ***/
+/*** ------------------------------- ***/
+/****** ------------------------------------------------------------------------------
+ ****** LISTE DES SUJETS ------------------------------------------------------------- ******/
+/*** ------------------------------- ***/
+/*** ENTETE ET FOOTER DE LA LISTE DES SUJETS ***/
+/* Chaîne de navigation et pagination
+ * (réutilisé dans l'affichage d'un sujet (viewtopic_body)) */
+.navigation_links {
+  margin: 10px 0;
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 11px;
+  color: #c4b2bc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* chaîne de lien de navigation : catégorie > forum > sous-fo */
+.navigation_chain {
+  font-size: 0;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+.navigation_chain a {
+  font-size: initial;
+  /*rétablit la taille des liens*/
+  margin-right: 8px;
+}
+
+.navigation_chain a:before {
+  content: "›";
+  /*symbole ou texte modifiable*/
+  font-size: var(--normal-size);
+  margin-right: 3px;
+}
+
+/* BOUTONS DE MESSAGE : Répondre, Nouveau,... ---*
+ * (réutilisé dans l'affichage d'un sujet (viewtopic_body) et les MP (privmsgs_body) */
+.buttons {
+  background: var(--neutralDark);
+  padding: 1px 8px;
+  margin-right: 5px;
+  border-radius: 5px;
+  opacity: 1;
+}
+
+.buttons:hover {
+  opacity: 0.7;
+}
+
+/* BOUTONS : modérer les sujets de ce forum */
+#moderation_forum_tools,
+#moderation_forum_tools strong {
+  font-size: 0px;
+}
+
+#moderation_forum_tools a {
+  background: var(--neutralDark);
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: var(--normal-size);
+}
+
+/*** ------------------------------- ***/
+/*** LISTE DES SUJETS -------------- ***/
+.container .page-title {
+  font-family: "Cormorant Garamond", "Cormorant", "Playfair Display", serif;
+  font-size: 42px;
+  color: #d8d4f2;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+  text-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(46, 26, 71, 0.3);
+  justify-content: center;
+}
+
+.forum-page_desc {
+  background: rgba(13, 21, 32, 0.6);
+  border: 1px solid rgba(216, 212, 242, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  text-align: left;
+  margin-bottom: 40px;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.forum-page_desc::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(216, 212, 242, 0.05);
+  pointer-events: none;
+}
+
+.forum-page_desc .sublink {
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.forum-page_desc .sublink a {
+  font-family: var(--font-title);
+  font-size: 11px;
+  color: var(--neutral);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 1px solid transparent;
+}
+
+.forum-page_desc .sublink a:hover {
+  color: var(--neutral);
+  border-bottom-color: var(--neutral);
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.forum-page_desc .txt {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: rgba(216, 212, 242, 0.8);
+  line-height: 1.8;
+  max-width: 800px;
+}
+
+.forum-page_desc .txt bb3 {
+  font-family: "Cormorant Garamond", "Cormorant", serif;
+  font-size: 18px;
+  color: #ffffff;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+/* ─── Navigation & Actions ─── */
+.navigation_links a.nav {
+  color: #d8d4f2;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navigation_links a.nav:hover {
+  color: var(--taupe);
+  text-shadow: 0 0 5px rgba(255, 48, 64, 0.4);
+}
+
+.links_bar .buttons {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: #ffffff;
+  background: rgba(18, 40, 63, 0.45);
+  border: 1px solid var(--contrastLighter);
+  padding: 8px 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.links_bar .buttons:hover {
+  background: rgba(25, 45, 68, 0.45);
+  border-color: var(--taupe);
+  text-shadow: 0 0 5px var(--taupe);
+}
+
+.links_bar .right a {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 10px;
+  color: rgba(216, 212, 242, 0.5);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s;
+  letter-spacing: 1px;
+}
+
+.links_bar .right a:hover {
+  color: var(--neutral);
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);
+}
+
+/* ─── Structure des lignes ─── */
+.topicslist_row {
+  display: grid;
+  grid-template-columns: 60px 100px 1fr 200px;
+  align-items: center;
+  gap: 25px;
+  background: rgba(13, 21, 32, 0.6);
+  border: 1px solid rgba(216, 212, 242, 0.05);
+  border-radius: 4px;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Différenciation des statuts (Annonce vs Normal) */
+.topicslist_row.folder_announce {
+  background: rgba(13, 21, 32, 0.8);
+  border-left: 2px solid rgba(255, 48, 64, 0.3);
+}
+
+.topicslist_row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--taupe), #00e5ff);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.topicslist_row:hover {
+  background: rgba(13, 21, 32, 0.95);
+  border-color: rgba(216, 212, 242, 0.2);
+  box-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(0, 229, 255, 0.03);
+  transform: translateY(-2px);
+}
+
+.topicslist_row:hover::before {
+  opacity: 1;
+}
+
+/* Stats */
+.topicslist-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid rgba(216, 212, 242, 0.1);
+  padding: 0 30px 0 15px;
+  height: 100%;
+}
+
+.topicslist-stats span {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(196, 178, 188, 0.7);
+}
+
+.topicslist-stats .stat-replies {
+  color: #d8d4f2;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.topicslist_row:hover .topicslist-stats .stat-replies {
+  color: var(--neutral);
+  text-shadow: 0 0 5px rgba(0, 229, 255, 0.3);
+}
+
+/* Infos (Titre + Meta) */
+.topicslist_infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Icon participe */
+.topicslist_infos > img {
+  filter: invert(80%) sepia(10%) saturate(400%) hue-rotate(200deg);
+  width: 14px;
+  height: auto;
+  margin-left: 8px;
+  opacity: 0.5;
+  vertical-align: super;
+}
+
+/* Description du sujet */
+.topicslist-description {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12px;
+  color: var(--textColor);
+  opacity: 0.7;
+}
+
+/* Séparateur entre annonces et sujets normaux */
+.topic_separator {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(234, 186, 107, 0.3),
+    transparent
+  );
+  margin: 15px 0;
+  border-radius: 0;
+}
+
+/* Bouton "trier les sujets" */
+#sort-topics {
+  position: relative;
+  display: inline;
+  background: var(--neutralDark);
+  margin: 10px 0;
+}
+
+.sort-form {
+  width: max-content;
+  background: var(--neutral);
+  border: 1px solid var(--neutralDarker);
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  display: none;
+}
+
+.expanded ~ .sort-form {
+  display: block;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** AFFICHAGE D'UN SUJET --------------------------------------------------------- ******/
+/* PARTICIPANTS DU SUJET ---*/
+/* Conteneur de la liste des participants au sujet */
+.poster-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+/* Avatar du participant*/
+.poster {
+  background: var(--poster-avatar);
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  margin-left: -8px;
+  border: 2px solid var(--neutralDark);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Lien de renvoi vers son profil */
+.poster a {
+  display: block;
+  height: 100%;
+}
+
+/* Nombre de participants */
+.poster-count {
+  margin-left: 8px;
+}
+
+.poster-more-list {
+  display: none;
+}
+
+.poster-more {
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.poster-more:hover .poster-more-list {
+  display: block;
+  position: absolute;
+  top: 29px;
+  width: 150px;
+  background: var(--neutralDarker);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/*** ------------------------------- ***/
+/*** SUJET ------------------------- ***/
+.post_row {
+  background: rgba(18, 40, 63, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: grid;
+  grid-template-rows: max-content auto;
+  grid-template-columns: min-content 1fr;
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 8px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+div.post_row:nth-of-type(2) {
+  border-radius: 8px;
+}
+
+.post_details {
+  grid-column: 1 / span 2;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  background: rgba(46, 26, 71, 0.3);
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  order: -1;
+}
+
+.post_date {
+  flex-grow: 100;
+  text-transform: none;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #d8d4f2;
+}
+
+/* BOUTON LIKE --- */
+/* Conteneur du bouton like */
+.like_button {
+  float: right;
+  margin-left: 10px;
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+/* Bouton like */
+.rep-button,
+.rep-button:active,
+.rep-button:focus {
+  color: var(--neutral);
+  border: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+/*Bouton au survol*/
+.rep-button:hover {
+  background: var(--contrastLighter);
+}
+
+.post_pseudo {
+  font-weight: bold;
+  text-transform: lowercase;
+  font-family: "April Fatface", serif;
+  font-size: var(--large-size);
+  font-weight: 700;
+}
+
+/* Mention "en ligne" */
+.presence {
+  display: none;
+}
+
+.presence.online {
+  display: inline-block;
+  position: relative;
+  background-color: var(--neutralDarker);
+  border-radius: 5px;
+  padding: 0 5px;
+  margin: 0 auto;
+}
+
+/* RECOMPENSES --- */
+/* Conteneur des récompenses */
+#list_awards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Récompense */
+.award {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  background-image: var(--award-image);
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.award:hover .award_tooltiptext {
+  display: block;
+}
+
+/* Bloc description de la récompenses */
+.award_tooltiptext {
+  width: max-content;
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 25px;
+  background-color: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 11px;
+}
+
+/* titre de la récompenses*/
+.award_tooltiptext_title {
+  font-weight: 600;
+}
+
+.online:empty {
+  display: none;
+}
+
+.post_message {
+  padding: 25px;
+  border-left: 1px solid rgba(216, 212, 242, 0.15);
+}
+
+/* SONDAGE : styles déplacés en fin de fichier (section Velvet Sin) */
+.votes-users-list {
+  justify-content: start;
+  margin: 20px 0 0;
+}
+
+/* bouton "copier" */
+.copyCode {
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  top: 5px;
+  right: 13px;
+  font-family: monospace;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+div.cont_code {
+  clear: right;
+}
+
+/* Citation générale */
+blockquote {
+  background: rgba(46, 26, 71, 0.2);
+  border-left: 2px solid #c4b2bc;
+  padding: 10px 15px;
+  margin: 10px 0;
+  color: #d8d4f2;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Citation contenu */
+blockquote div {
+  padding-left: 10px;
+}
+
+/* Citation mention "... a écrit" */
+blockquote cite {
+  display: block;
+  margin-left: -10px;
+  font-style: normal;
+  font-family: "Karla", sans-serif;
+  color: #a29587;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  padding-bottom: 5px;
+}
+
+/* Citation pseudo */
+blockquote cite a {
+  text-decoration: none !important;
+  color: #c4b2bc;
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** MEMBRES ------------------------------------------------------ ******/
+/*** ------------------------------- ***/
+/*** PAGE DE PROFIL ---------------- ***/
+/* L'ancien CSS du profil a été supprimé pour éviter les conflits avec la nouvelle version. */
+/* Bouton "suivre le membre" */
+.followBtn {
+  background: var(--neutral);
+  border: 1px solid var(--neutralDark);
+  border-radius: 5px;
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+}
+
+.followBtn::before {
+  top: 1px;
+  position: relative;
+  color: var(--accentClr);
+  margin-right: 5px;
+}
+
+/* Bouton édition d'un champ de profil */
+.ajax-profil_edit {
+  left: 0px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: -15px;
+}
+
+/* Bouton édition d'un champ de profil */
+/* Bouton validation des modifications */
+.ajax-profil_valid {
+  cursor: pointer;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/*** ------------------------------- ***/
+/*** WOMBAT PROFILS EN POP UP ---- ***/
+/* Fond atténué */
+.wombat-overlay {
+  position: fixed;
+  z-index: 990;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s opacity ease;
+  background: var(--neutral);
+}
+
+/* effet de transition du fond atténué */
+.wombat-overlay.open {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+/* Fenêtre du popup */
+.wombat-aside {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  z-index: 999;
+  transition: 0.2s all ease;
+  visibility: hidden;
+  opacity: 0;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: var(--shadowBox);
+  border-radius: 10px;
+  height: max-content;
+  transform: translateX(-20%);
+}
+
+/* effet de transition pour la fenêtre */
+.wombat-aside.open {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/*** ------------------------------- ***/
+/*** PROFILS SIMPLIFIÉS DES TAGS ---- ***/
+/* Suppression de la flèche peu esthétique
+   (règles vides retirées : .tooltipster-arrow {} et .tooltipster-default {} —
+   elles n'avaient aucun effet. Si le besoin se confirme, ajouter `display: none`.) */
+.preview_content {
+  display: flex;
+}
+
+.preview_infos {
+  width: 100%;
+  padding-top: 3px;
+}
+
+.preview_pseudo,
+.preview_pseudo strong {
+  font-size: var(--medium-size);
+}
+
+.preview_contacts {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.preview_contacts a {
+  margin-left: 5px;
+}
+
+.tooltipster-arrow {
+  display: none;
+}
+
+/*** ------------------------------- ***/
+/*** LISTE DES MEMBRES ------------- ***/
+/* Galerie des membres */
+.userlist {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  padding: 10px 0;
+}
+
+/* Carte de membre */
+.userlist_profil {
+  position: relative;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.userlist_profil:hover {
+  transform: scale(1.02);
+}
+
+/* Pseudo en bas par default */
+.userlist_pseudo {
+  font-size: var(--large-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: left;
+}
+
+.userlist_pseudo a {
+  color: var(--white);
+  text-decoration: none;
+  font-family: "Playfair Display";
+}
+
+/* Détails (date, messages) cachés par défaut */
+.userlist_details {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  opacity: 1;
+  z-index: 3;
+  /* Removed padding transition which was fighting flexbox */
+}
+
+/* Background overlay via pseudo-element for smooth transition */
+.userlist_details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+  z-index: -1;
+  transition: background 0.8s ease;
+}
+
+/* Infos visibles au survol */
+.userlist_infos {
+  color: #c7c5cd;
+  font-size: var(--little-size);
+  line-height: 1.6;
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.userlist_infos br {
+  display: block;
+  content: "";
+  margin: 5px 0;
+}
+
+/* Boutons de contact */
+.userlist_contact {
+  margin-top: 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.userlist_contact img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.userlist_contact img:hover {
+  opacity: 1;
+}
+
+.userlist_contact.right a {
+  display: none !important;
+}
+
+/* Affichage d'un MP dans la liste */
+.mp_row {
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 55px auto;
+  grid-gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+/*** ------------------------------- ***/
+/*** AFFICHAGE D'UN MESSAGE PRIVÉ -- ***/
+.message {
+  background: var(--neutral);
+  grid-template-rows: max-content auto;
+  grid-template-columns: 220px minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.message_infos {
+  grid-column: 1 / span 2;
+  border-bottom: 1px solid var(--neutralDark);
+  padding: 10px;
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: rgba(18, 40, 63, 0.45);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+.mp-icons {
+  float: right;
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.message_profil {
+  padding: 10px;
+  border-right: 1px solid var(--neutralDark);
+  text-align: center;
+  grid-column: 1;
+  grid-row: 2;
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-right: 1px solid rgba(var(--gold-rgb), 0.1);
+  background: rgba(14, 8, 8, 0.4);
+}
+
+.message_content {
+  padding: 25px;
+  grid-column: 2;
+  grid-row: 2;
+  padding: 20px 24px;
+  line-height: 1.75;
+  color: var(--textColor);
+  font-size: var(--normal-size);
+  border-left: 2px solid rgba(var(--gold-rgb), 0.12);
+}
+
+/****** ------------------------------------------------------------------------------
+ ****** PAGES ANNEXES ---------------------------------------------------------- ******/
+/*** ------------------------------- ***/
+/*** PAGE D'ENVOI D'UN MESSAGE ----- ***/
+.message-edition {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  /*espace entre la zone de texte et la boîte à smileys*/
+}
+
+/* Prévisualisation d'un message */
+#preview {
+  background: rgba(18, 40, 63, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #d8d4f2;
+}
+
+/*** ------------------------------- ***/
+/*** EDITION DE PROFIL ------------- ***/
+/* Onglets dans la modification de profil */
+#tabs ul {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(18, 40, 63, 0.45);
+  border-radius: 5px !important;
+  margin: 20px 0 10px;
+}
+
+/*onglet*/
+#tabs li {
+  padding: 5px 10px;
+  border: 1px solid transparent;
+}
+
+/* Onglet selectionné */
+#tabs li.activetab {
+  background: var(--fond-category);
+  border: var(--border);
+  border-radius: 5px;
+}
+
+/* onglet au survol */
+#tabs li:hover {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+/* Suppression de l'onglet "amis et ignorés" */
+div#tabs li:nth-child(5) {
+  display: none;
+}
+
+.profil_preferences .italic {
+  font-size: var(--little-size);
+}
+
+/* EDITER SIGNATURE ---*/
+#parent_editor_simple > #smiley-box {
+  float: left;
+  /* float: right; -- pour smileys à droite */
+}
+
+#parent_editor_simple #message-box {
+  margin-left: 240px;
+  /* margin-right: XXXpx -- pour smileys à droite */
+}
+
+#parent_editor_simple #message-box > br {
+  display: none;
+}
+
+#parent_editor_simple #message-box > #textarea_content {
+  width: 100% !important;
+}
+
+.panel.row2.sig {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#textarea_content > div > textarea {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  color: #c4b2bc !important;
+}
+
+/*** ------------------------------- ***/
+/*** PAGES DE RECHERCHES ----------- ***/
+/* RECHERCHE DE MESSAGE -----*/
+/* Conteneur d'un message*/
+.post_search {
+  display: grid;
+  grid-template-columns: 200px auto;
+  margin: 10px 0;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+.post_search > div {
+  padding: 10px;
+}
+
+/* Colonne d'information du message */
+.postsearch_infos {
+  border-right: var(--border);
+  font-size: var(--little-size);
+}
+
+/* RECHERCHE DE SUJET -----*/
+/* Même CSS que la liste des sujets dans un forum */
+/*** ------------------------------- ***/
+/*** PAGE DE CONNEXION ------------- ***/
+/* Centrer les pages de connexion */
+form[name="form_login"],
+form[name="form_login"] ~ .panel {
+  text-align: center;
+}
+
+form[name="form_login"] .content {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+}
+
+/*** ------------------------------- ***/
+/*** ELEMENTS FLOTTANTS ------------ ***/
+/* Fenêtre popup "recherche" */
+.overview {
+  background: rgba(18, 40, 63, 0.45);
+  border-radius: 5px;
+  border: var(--border);
+  padding: 10px;
+  position: fixed !important;
+  top: 50% !important;
+  margin-top: 22px;
+}
+
+/* Bouton rechercher */
+.overview button[type="submit"] {
+  width: 26px;
+  height: 26px;
+  margin-left: 5px;
+}
+
+.overview div {
+  margin-bottom: 5px;
+}
+
+.overview a {
+  float: right;
+}
+
+/* Boîte "recherche un utilisateur" */
+#find_username {
+  display: none;
+  position: fixed;
+  left: 50%;
+  width: 450px;
+  margin-left: -225px;
+  top: 50%;
+  margin-top: -125px;
+  background-color: var(--neutral);
+  padding: 10px;
+  border: var(--border);
+  border-radius: 5px;
+}
+
+velvetify {
+  display: inline;
+  color: var(--thistle);
+  font-family: var(--font-title);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1em;
+  background: var(--fond-category);
+}
+
+/* Added for The Crimson Codex links centering */
+.sublink {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  gap: 10px 30px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.sublink br {
+  display: none;
+}
+
+/* Fix spacing for ALL forums - Grid Approach */
+.forum .forum_desc {
+  align-self: start;
+  /* Preserved user preference */
+  border-top: none;
+  z-index: 5;
+  height: auto;
+}
+
+/*** RESPONSIVE NAVBAR: Back to top on small screens ***/
+/* Top Sites - Mini Box */
+#top_sites {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: var(--neutral);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 3px;
+  /* Leger arrondi pour 'mini case' effect */
+}
+
+/* Logos Top Sites */
+.ts-link {
+  width: 50px;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+
+.ts-link:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Disclaimer Styles - Harmonisé avec les popups admin */
+title_disclaimer {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--gold-accent);
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* Même que staff_name */
+}
+
+#disclaimer .survol {
+  text-align: left;
+  display: block;
+  padding-top: 5px;
+  height: 100%;
+  line-height: 2;
+  /* Espacement vertical pour lisibilité */
+}
+
+/* Tags - Style similaire au texte descriptif du popup */
+tag {
+  display: inline;
+  font-family: var(--font);
+  font-size: 0.95em;
+  font-weight: 400;
+  text-transform: none;
+  color: var(--gold-accent);
+  /* Or pour ressembler aux liens du popup */
+  padding: 0;
+  border: none;
+  background: transparent;
+  transition: all 0.3s ease;
+  letter-spacing: 0;
+  cursor: default;
+  margin: 0;
+}
+
+tag::after {
+  content: " \00B7 ";
+  /* Middle Dot */
+  color: var(--bg-darker);
+  margin: 0 4px;
+}
+
+tag:last-child::after {
+  content: none;
+}
+
+tag:hover {
+  text-shadow: 0 0 5px var(--gold-accent);
+  color: var(--white);
+  background: transparent;
+}
+
+/* Navigation Droite - Links Column */
+#navdroite {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around !important;
+  height: 100% !important;
+}
+
+.pa-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: link-counter;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 25px;
+  /* Ajoute de l'espacement entre les éléments pour éviter le chevauchement */
+}
+
+.pa-li-link {
+  margin-bottom: 0;
+  display: flex;
+  /* Pour bien aligner le contenu */
+  align-items: center;
+}
+
+.pa-link {
+  font-family: "Cinzel", serif !important;
+  font-size: 2.8em !important;
+  font-weight: 300 !important;
+  color: var(--white) !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  transition: all 0.3s ease;
+  padding-left: 0;
+  background: transparent !important;
+  border: none !important;
+  letter-spacing: 3px !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  width: 100%;
+  /* Prendre toute la largeur */
+}
+
+.pa-link::before {
+  counter-increment: link-counter;
+  content: "0" counter(link-counter) ".";
+  font-family: "Cinzel", serif;
+  color: var(--gold-accent);
+  margin-right: 20px;
+  font-size: 0.9em;
+  font-weight: 400;
+  opacity: 0.8;
+  min-width: 60px;
+  text-align: left;
+  flex-shrink: 0;
+  /* Empêche le numéro de se rétrécir */
+}
+
+.pa-link:hover {
+  text-shadow: 0 0 15px rgba(234, 186, 107, 0.6);
+  color: var(--gold-accent) !important;
+  /* Or au hover */
+  transform: translateX(10px);
+}
+
+.pa-link:hover::before {
+  color: var(--white) !important;
+  /* Chiffre en blanc au hover */
+  opacity: 1;
+}
+
+/* Top Sites Integration in PA Links */
+.pa-link-topsites {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  /* Espacement entre les icônes */
+  cursor: default !important;
+  width: 85%;
+}
+
+.pa-link-topsites::before {
+  content: "0" counter(link-counter) ".";
+  font-family: "Cinzel", serif;
+  color: var(--gold-accent);
+  margin-right: 20px;
+  font-size: 0.9em;
+  font-weight: 400;
+  opacity: 0.8;
+  min-width: 60px;
+  text-align: left;
+  flex-shrink: 0;
+  /* Empêche le numéro de se rétrécir */
+}
+
+.pa-link-topsites a {
+  display: inline-flex;
+  transition: all 0.3s ease;
+}
+
+.pa-link-topsites .ts-link {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.pa-link-topsites a:hover .ts-link {
+  opacity: 1;
+  border-color: var(--gold-accent);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--midnight-purple);
+}
+
+/* ========================================= */
+/* NOTIFICATION ICON (Fixed, Top-Right of Page) */
+/* ========================================= */
+/* Bell Icon (Font Awesome) */
+#notiffi_button i {
+  font-size: 18px;
+  color: var(--thistle);
+  transition: all 0.3s ease;
+}
+
+#notiffi_button:hover i {
+  color: var(--white);
+  transform: rotate(15deg);
+}
+
+/* SVG Bell Icon Fallback (si Font Awesome non chargé) */
+#notiffi_button svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--gold-accent);
+  transition: all 0.3s ease;
+}
+
+#notiffi_button:hover svg {
+  fill: var(--white);
+  transform: rotate(15deg);
+}
+
+/* Hide the text "Notifications" */
+#notiffi_button .ntf_button-text {
+  display: none;
+}
+
+/* Unread Count Badge */
+#notiffi_button .unread_count,
+#notiffi_button [data-name="unread_notifs"] {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #c41e3a;
+  /* Rouge vif */
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border: 2px solid #120a0a;
+}
+
+/* Hide badge if empty or shows [count] placeholder */
+#notiffi_button .unread_count:empty,
+#notiffi_button [data-name="unread_notifs"]:empty {
+  display: none;
+}
+
+/* ============================
+   2. MESSAGE AFFICHÉ (.message)
+   ============================ */
+/* --- Barre d'informations du message --- */
+.message_infos > span {
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--textColor);
+  opacity: 0.85;
+}
+
+/* --- Boutons Citer/Éditer --- */
+.mp-icons li a {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: "Cinzel", serif;
+  color: var(--textColor);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  padding: 3px 8px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.mp-icons li a:hover {
+  color: var(--gold-accent);
+  opacity: 1;
+  border-color: rgba(var(--gold-rgb), 0.3);
+}
+
+/* --- Profil de l'expéditeur --- */
+.message_profil img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 5px;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.message_profil br {
+  display: none;
+}
+
+.message_from {
+  font-family: "Cinzel", serif;
+  font-size: 0.75rem;
+  color: var(--gold-accent);
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.message_from a {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.message_from a img {
+  width: 14px !important;
+  height: 14px !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.message_from a img:hover {
+  opacity: 1;
+}
+
+/* --- Contenu du MP --- */
+/* ============================
+   3. BOUTONS DE GESTION
+   ============================ */
+.message + br {
+  display: none;
+}
+
+/* Supprime les br disgracieux autour du formulaire de gestion */
+.container > br,
+.links_bar + form > br {
+  display: none;
+}
+
+.fieldset {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+}
+
+/* --- Boutons submit (répondre, supprimer, etc.) --- */
+.submit-buttons input[type="submit"],
+.submit-buttons button {
+  font-family: "Cinzel", serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--textColor);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 6px 14px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.submit-buttons input[type="submit"]:hover,
+.submit-buttons button:hover {
+  opacity: 1;
+  border-color: rgba(18, 40, 63, 0.9);
+}
+
+/* Overlay des popups */
+.jqmOverlay {
+  background-color: #000 !important;
+  opacity: 0.8 !important;
+}
+
+/* Jumpbox (Sauter vers...) */
+form[name="jumpbox"] {
+  margin-top: 30px;
+  padding: 15px;
+  border-top: 1px solid rgba(216, 212, 242, 0.1);
+  text-align: right;
+  display: none;
+}
+
+form[name="jumpbox"] p {
+  font-family: "Karla", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #a29587;
+}
+
+form[name="jumpbox"] select {
+  background: rgba(46, 26, 71, 0.4);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  color: #d8d4f2;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: "Karla", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form[name="jumpbox"] select:hover {
+  border-color: rgba(216, 212, 242, 0.3);
+}
+
+/* ============================
+   5. NETTOYAGE VISUEL
+   ============================ */
+/* Masque le formulaire "Sauter vers un forum" sur les pages de posting */
+/* Masque les <br> parasites dans le container */
+.container > br {
+  display: none;
+}
+
+/* ============================
+   BOUTON LOGOUT — Texte "Quitter"
+   Reprend le style a.mainmenu
+   ============================ */
+#logout {
+  font-size: 0 !important;
+  letter-spacing: normal !important;
+}
+
+#logout::after {
+  content: "Quitter";
+  font-family: var(--font2);
+  font-size: var(--medium-size);
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 10px;
+  color: var(--white, #ffffff);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+#logout:hover::after {
+  color: transparent;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+/* Tablette → 2 colonnes */
+/* Mobile → 1 colonne */
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — SONDAGE (Poll)
+   ═══════════════════════════════════════════════════════════════════ */
+.poll {
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  border-radius: 5px !important;
+  border: 2px solid var(--contrastLighter) !important;
+  margin: 0 0 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(var(--gold-rgb), 0.08);
+}
+
+.poll::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold-gradient);
+  opacity: 0.6;
+}
+
+/* En-tête */
+.head_poll {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.12);
+}
+
+.head_poll h2 {
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold-accent, var(--gold-accent));
+  margin: 0;
+  line-height: 1.4;
+}
+
+.head_poll .right a {
+  font-family: "Cinzel", serif;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--textColor, var(--text-soft));
+  opacity: 0.5;
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-radius: 3px;
+  padding: 4px 10px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.head_poll .right a:hover {
+  color: var(--gold-accent, var(--gold-accent));
+  opacity: 1;
+  border-color: rgba(var(--gold-rgb), 0.4);
+}
+
+/* Grille des options : radio à gauche, texte à droite */
+.poll_list {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: center;
+  padding: 4px 0;
+  grid-auto-flow: dense;
+  /* Placement dense pour combler les trous sans sauter de ligne */
+}
+
+.poll_option {
+  grid-column: 2;
+  font-family: "Playfair Display", serif;
+  font-size: 0.8rem;
+  color: var(--textColor, var(--text-soft));
+  padding: 8px 16px 8px 0;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.25);
+  transition: color 0.3s ease;
+  margin-left: 20px;
+}
+
+.poll_vote {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.25);
+}
+
+.poll_option:last-of-type,
+.poll_vote:last-of-type {
+  border-bottom: none;
+}
+
+.poll_option:hover {
+  color: var(--gold-accent, var(--gold-accent));
+}
+
+/* Radio custom doré */
+.poll_vote input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.poll_vote input[type="radio"]:hover {
+  border-color: var(--gold-accent, var(--gold-accent));
+  box-shadow: 0 0 6px rgba(var(--gold-rgb), 0.2);
+}
+
+.poll_vote input[type="radio"]:checked {
+  border-color: var(--gold-accent, var(--gold-accent));
+  box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.3);
+}
+
+.poll_vote input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-accent, var(--gold-accent));
+}
+
+/* Zone d'envoi */
+.poll_send {
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.1);
+  font-size: 0.72rem;
+  color: var(--textColor, var(--text-soft));
+  line-height: 1.6;
+}
+
+.poll_send input[type="submit"].button1 {
+  font-family: "Cinzel", serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold-accent, var(--gold-accent));
+  background: transparent;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  border-radius: 3px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.poll_send input[type="submit"].button1:hover {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: var(--gold-accent, var(--gold-accent));
+}
+
+.poll_send a {
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--textColor, var(--text-soft));
+  opacity: 0.55;
+  transition: all 0.3s ease;
+}
+
+.poll_send a:hover {
+  color: var(--gold-accent, var(--gold-accent));
+  opacity: 1;
+}
+
+.poll_send i {
+  font-size: 0.68rem;
+  opacity: 0.45;
+  font-style: italic;
+}
+
+.poll_send b {
+  color: var(--gold-accent, var(--gold-accent));
+  font-weight: 600;
+}
+
+div.posts input[type="checkbox"] {
+  display: none !important;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/* ========================================
+   FIN VELVET SIN — PAGE D'ACCUEIL (HOMEPAGE)
+   Layout : image | (texte+titre vertical | staff empilé) | sidebar
+   Max-width: 980px — Compact ~220px
+   ======================================== */
+/* ========================================
+   FORUM DESCRIPTION
+   ======================================== */
+.forum_desc::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.forum_desc > br {
+  display: none;
+}
+
+/* ========================================
+   VELVET SIN — PROFIL (actual.html)
+   ======================================== */
+#wombat {
+  height: 600px;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 30px;
+  position: relative;
+  box-sizing: border-box;
+  background: rgba(18, 40, 63, 0.45);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid rgba(196, 178, 188, 0.15);
+  border-radius: 4px;
+
+  /* Effet double bordure */
+  box-shadow:
+    inset 0 0 0 5px rgba(18, 40, 63, 0.6),
+    inset 0 0 0 6px rgba(197, 160, 89, 0.25),
+    /* Touche gold */ 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#field_id-10 {
+  display: none;
+  /* Cache le petit icône site web */
+}
+
+#alltopics,
+#allposts {
+  position: absolute;
+  bottom: 35px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 20, 35, 0.6);
+  border: 1px solid rgba(196, 178, 188, 0.2);
+  color: #d8d4f2;
+  font-family: "Cinzel", serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 12px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+#alltopics {
+  left: 75px;
+}
+
+#allposts {
+  left: 155px;
+  /* Décalé pour suivre MP et Sujets */
+}
+
+#opentopics {
+  display: none;
+}
+
+#field_id-6 field br {
+  display: none;
+}
+
+#field_id-6 field {
+  font-size: 0;
+}
+
+#field_id-6 field .field_uneditable {
+  font-size: 13px;
+  /* Restaure la taille pour Messages: X */
+}
+
+@media (prefers-color-scheme: dark) {
+  .color-scheme-toggle .dark {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .color-scheme-toggle .light {
+    display: none;
+  }
+}

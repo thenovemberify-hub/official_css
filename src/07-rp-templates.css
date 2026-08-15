@@ -1,0 +1,4491 @@
+/* ========================================
+   STAGE — colonne centrée
+   isolation: isolate pour la scanline difference
+   ======================================== */
+.vs-hd-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  isolation: isolate;
+}
+
+/* ========================================
+   SCAN LINE
+   Balayage vertical qui traverse titre + subtitle
+   mix-blend-mode: difference = coupe en blanc sur fond sombre
+   ======================================== */
+.vs-hd-scanline {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(216, 212, 242, 0) 5%,
+    rgba(216, 212, 242, 0.8) 30%,
+    #ffffff 50%,
+    rgba(216, 212, 242, 0.8) 70%,
+    rgba(216, 212, 242, 0) 95%,
+    transparent 100%
+  );
+  mix-blend-mode: difference;
+  opacity: 0;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.vs-hd-scanline.scan--sweep {
+  animation: scan-sweep 0.55s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+/* ========================================
+   TITRE — VELVET SIN
+   Cormorant Garamond Light, très grand
+   ======================================== */
+.vs-hd-title {
+  font-family:
+    "Cormorant Garamond", "Cormorant", "Playfair Display", Georgia, serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(52px, 9vw, 110px);
+  letter-spacing: clamp(12px, 2.5vw, 28px);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  padding: 0 clamp(12px, 2vw, 28px);
+  user-select: none;
+  background: linear-gradient(
+    100deg,
+    #a29587 0%,
+    #c4b2bc 18%,
+    #d8d4f2 30%,
+    #f7f5ff 40%,
+    /* point de brillance — quasi blanc */ #ffffff 50%,
+    /* flash central */ #f7f5ff 60%,
+    #d8d4f2 72%,
+    #c4b2bc 82%,
+    #a29587 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #d8d4f2;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 0 30px rgba(46, 26, 71, 0.3));
+  animation: title-shimmer 9s ease-in-out infinite;
+
+  /* Glitch sur le titre au moment du scan */
+  transition: filter 0.1s ease;
+}
+
+/* Glitch appliqué au titre pendant l'intrusion */
+.vs-hd-title.title--glitch {
+  animation:
+    title-shimmer 9s ease-in-out infinite,
+    title-glitch 0.55s steps(1) forwards;
+}
+
+/* ========================================
+   ZONE CONFESSION — dessous du titre
+   ======================================== */
+.vs-hd-confession {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  /* hauteur fixe = réserve l'espace même quand vide */
+  position: relative;
+}
+
+/* ========================================
+   SUBTITLE GLITCH
+   ======================================== */
+.vs-hd-subtitle {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: clamp(10px, 1.3vw, 14px);
+  font-weight: 400;
+  letter-spacing: clamp(4px, 1vw, 10px);
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+
+  /* Pas de mix-blend-mode ici : le texte est sous le titre, pas dessus */
+  color: #d8d4f2;
+
+  opacity: 0;
+  will-change: transform, opacity, clip-path, filter;
+}
+
+/* ─── Phase 1 : INTRUSION ─── */
+.vs-hd-subtitle.gh--intrude {
+  opacity: 1;
+  animation: gh-intrude 0.65s steps(1) forwards;
+}
+
+/* ─── Phase 2 : HOLD ─── */
+.vs-hd-subtitle.gh--hold {
+  opacity: 1;
+  clip-path: none;
+  transform: translateX(0);
+  text-shadow:
+    -1px 0 rgba(255, 48, 64, 0.45),
+    1px 0 rgba(0, 229, 255, 0.45);
+  animation: gh-hold-tick 4s steps(1) infinite;
+}
+
+/* ─── Phase 3 : CORRUPTION ─── */
+.vs-hd-subtitle.gh--corrupt {
+  animation: gh-corrupt 0.75s steps(1) forwards;
+}
+
+/* ========================================
+   COLONNES
+   ======================================== */
+.vs-qeel-col {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+/* Séparations verticales — cohérentes avec la homepage */
+.vs-qeel-col + .vs-qeel-col {
+  border-left: 1px solid var(--qeel-border);
+}
+
+/* ─── Colonne gauche ─── */
+.vs-qeel-left {
+  border-radius: 10px 0 0 10px;
+  /* Flex row pour le titre vertical + contenu (comme homepage) */
+  flex-direction: row;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* Titre vertical "VELVET SIN" — réplique exacte de .vs-hp-vertical-title */
+.vs-qeel-vertical-title {
+  font-family: var(--qeel-font-cinzel);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--qeel-mauve);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  padding: 0 8px 0 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--qeel-border);
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Contenu à droite du titre vertical */
+.vs-qeel-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px 12px;
+  flex: 1;
+}
+
+/* ─── Colonne centre ─── */
+.vs-qeel-center {
+  padding: 14px 20px;
+  justify-content: center;
+  background: var(--qeel-glass-deep);
+}
+
+/* ─── Colonne droite ─── */
+.vs-qeel-right {
+  border-radius: 0 10px 10px 0;
+  background: var(--qeel-glass-deep);
+  justify-content: space-between;
+}
+
+/* ========================================
+   ÉLÉMENTS COMMUNS
+   ======================================== */
+/* Label de section (ex: "NOUVELLE SIGNATURE") */
+.vs-qeel-label {
+  font-family: var(--qeel-font-condensed);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--qeel-taupe);
+  display: block;
+}
+
+/* Contenu texte */
+.vs-qeel-content {
+  font-family: var(--qeel-font-body);
+  font-size: 10px;
+  color: var(--qeel-lavender);
+  line-height: 1.55;
+  text-align: justify;
+}
+
+.vs-qeel-content a {
+  color: var(--qeel-lavender);
+  text-decoration: none !important;
+  background-image: none !important;
+  transition: color 0.25s ease;
+}
+
+.vs-qeel-content a:hover {
+  color: var(--qeel-text-bright);
+}
+
+/* Section = label + content */
+.vs-qeel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Diviseur horizontal */
+.vs-qeel-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--qeel-border);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   COLONNE GAUCHE — Bienvenue
+   ======================================== */
+.vs-qeel-bienvenue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vs-qeel-bienvenue-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Nom du dernier inscrit — même police que le titre homepage */
+.vs-qeel-newest-name {
+  font-family: var(--qeel-font-cinzel);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--qeel-lavender);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vs-qeel-newest-name a {
+  color: inherit;
+  text-decoration: none !important;
+  background-image: none !important;
+  transition: color 0.25s ease;
+}
+
+.vs-qeel-newest-name a:hover {
+  color: var(--qeel-text-bright);
+}
+
+/* ========================================
+   COLONNE CENTRE — 72H + Stats
+   ======================================== */
+/* Bloc 72h — prend l'espace disponible */
+.vs-qeel-72h {
+  flex: 1;
+}
+
+.vs-qeel-72h-list {
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--qeel-lavender);
+  /* Petit scroll si beaucoup de noms */
+  overflow-y: auto;
+  max-height: 120px;
+  scrollbar-width: thin;
+}
+
+/* Stats — compactes, en bas */
+.vs-qeel-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.vs-qeel-stats-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--qeel-font-condensed);
+}
+
+.vs-qeel-stat-chunk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+/* Chiffres iridescents — même animation shimmer que la homepage */
+.vs-qeel-stat-number {
+  font-family: var(--qeel-font-cinzel);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--qeel-mauve) 0%,
+    var(--qeel-lavender) 25%,
+    #b8b0d8 50%,
+    var(--qeel-lavender) 75%,
+    var(--qeel-mauve) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: qeel-shimmer 7s ease-in-out infinite;
+}
+
+.vs-qeel-stat-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--qeel-taupe);
+}
+
+.vs-qeel-stat-sep {
+  font-size: 16px;
+  color: var(--qeel-border);
+  padding-bottom: 10px;
+  align-self: center;
+}
+
+.vs-qeel-stats-secondary {
+  font-family: var(--qeel-font-body);
+  font-size: 12px;
+  color: var(--qeel-taupe);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-align: center;
+}
+
+.vs-qeel-stats-secondary strong {
+  color: var(--qeel-mauve);
+}
+
+/* ========================================
+   COLONNE DROITE — Groupes + Texte dynamique
+   ======================================== */
+/* Grille 2×2 des groupes */
+.vs-qeel-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+/* Boutons de groupe — stylisés comme les nav-links de la homepage */
+.vs-qeel-group {
+  display: block;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background: rgba(18, 40, 63, 0.6);
+  border: 1px solid rgba(196, 178, 188, 0.1);
+  border-left-width: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+  /* Reset bouton */
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  font-family: var(--qeel-font-condensed);
+}
+
+.vs-qeel-group:hover {
+  background: rgba(18, 40, 63, 0.9);
+  transform: translateX(2px);
+}
+
+/* Couleurs par groupe */
+.vs-qeel-group--emperor {
+  color: var(--qeel-emperor);
+  border-left-color: var(--qeel-emperor);
+}
+
+.vs-qeel-group--emperor:hover,
+.vs-qeel-group--emperor.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(183, 28, 28, 0.3);
+}
+
+.vs-qeel-group--star {
+  color: var(--qeel-star);
+  border-left-color: var(--qeel-star);
+}
+
+.vs-qeel-group--star:hover,
+.vs-qeel-group--star.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(214, 51, 132, 0.3);
+}
+
+.vs-qeel-group--devil {
+  color: var(--qeel-devil);
+  border-left-color: var(--qeel-devil);
+}
+
+.vs-qeel-group--devil:hover,
+.vs-qeel-group--devil.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(230, 126, 34, 0.3);
+}
+
+.vs-qeel-group--fool {
+  color: var(--qeel-fool);
+  border-left-color: var(--qeel-fool);
+}
+
+.vs-qeel-group--fool:hover,
+.vs-qeel-group--fool.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(0, 176, 240, 0.3);
+}
+
+/* État actif : plus lumineux, fond légèrement teinté */
+.vs-qeel-group--active {
+  background: rgba(46, 26, 71, 0.45) !important;
+}
+
+/* Zone texte dynamique */
+.vs-qeel-group-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 6px 0 2px;
+  min-height: 0;
+  position: relative;
+}
+
+/* Tous les textes masqués par défaut */
+.vs-qeel-group-desc {
+  font-family: var(--qeel-font-serif);
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--qeel-taupe);
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+  position: absolute;
+  inset: 6px 0 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.vs-qeel-group-desc em {
+  color: var(--qeel-mauve);
+  font-style: italic;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* Texte actif visible */
+.vs-qeel-group-desc--active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+  inset: auto;
+}
+
+/* Copyright */
+.vs-qeel-copyright {
+  font-family: var(--qeel-font-body);
+  font-size: 7px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(162, 149, 135, 0.45);
+  text-align: right;
+  border-top: 1px solid rgba(196, 178, 188, 0.08);
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+/* Harmonisation des bordures catégories (comme QEEL) */
+/* --- REGULATION PAGE STYLES --- */
+/* --- TEMPLATE ADMINISTRATIF VELVET SIN --- */
+/* Le Conteneur Principal */
+/* Le Conteneur Principal */
+.vs-admin-card {
+  max-width: 750px;
+  margin: 40px auto;
+  background: rgba(18, 40, 63, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.15);
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: #d8d4f2;
+  font-family: "Karla", sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* Le Titre Principal */
+.vs-admin-title {
+  font-family: "Cormorant Garamond", serif;
+  color: #d8d4f2;
+  font-size: 28px;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+/* Le Titre de Section */
+.vs-reg-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #c4b2bc;
+  margin: 35px 0 20px 0;
+  font-family: "Karla", sans-serif;
+  text-transform: uppercase;
+  font-size: 19px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.vs-reg-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, #c4b2bc, transparent);
+  opacity: 0.6;
+}
+
+/* Le Sous-titre / Date */
+.vs-admin-subtitle {
+  display: block;
+  text-align: center;
+  font-family: "Karla", sans-serif;
+  font-size: 11px;
+  color: #a29587;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.1);
+  padding-bottom: 20px;
+}
+
+/* Texte mis en valeur (Gras/Doré) */
+.vs-gold {
+  color: #d8d4f2;
+  font-weight: bold;
+}
+
+/* --- STYLE ELITE --- */
+.vs-reg-container {
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.vs-text-elite {
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  color: var(--neutral);
+  line-height: 1.7;
+  text-align: justify;
+  display: block;
+}
+
+.vs-reg-intro {
+  margin-bottom: 30px;
+  font-style: italic;
+  text-align: center;
+  font-size: 16px;
+  font-family: "Cormorant Garamond", serif;
+  color: #c4b2bc;
+}
+
+.vs-reg-content ul {
+  list-style: none;
+  /* We can add custom bullets if needed */
+  padding: 0;
+  margin: 0;
+}
+
+.vs-reg-content li {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.vs-reg-content li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--contrastLighter);
+}
+
+.vs-reg-content strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.vs-reg-content ins {
+  text-decoration: none;
+  border-bottom: 1px solid var(--contrastLighter);
+}
+
+/* Profile Fields - Inline Label and Content */
+.vs-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 5px;
+  margin-bottom: 6px;
+}
+
+/* Profile Field Images */
+.vs-tab-content .vs-field img {
+  max-width: 180px;
+  height: auto;
+}
+
+/* ========================================= */
+/* CUSTOM PM ICON (Feather) */
+/* ========================================= */
+/* Hide the default PM image */
+.vs-contact .i_icon_pm {
+  display: none;
+}
+
+/* Add the FontAwesome icon to the link */
+.vs-contact a[href*="/privmsg"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--contrastLight);
+  /* Default color */
+  transition: all 0.3s ease;
+}
+
+.vs-contact a[href*="/privmsg"]::before {
+  content: "\f56b";
+  /* feather-alt / feather-pointed */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.vs-contact a[href*="/privmsg"]:hover {
+  color: var(--accentClr);
+  transform: scale(1.1);
+}
+
+/* CUSTOM WEBSITE ICON (ID Card) */
+/* Hide the default WWW image */
+.vs-contact a[title="Visiter le site web de l'utilisateur"] img {
+  display: none;
+}
+
+/* Add the FontAwesome icon to the link */
+.vs-contact a[title="Visiter le site web de l'utilisateur"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: var(--contrastLight);
+  transition: all 0.3s ease;
+  margin-left: 5px;
+  /* Spacing between icons */
+}
+
+.vs-contact a[title="Visiter le site web de l'utilisateur"]::before {
+  content: "\f2c2";
+  /* id-card */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.vs-contact a[title="Visiter le site web de l'utilisateur"]:hover {
+  color: var(--accentClr);
+  transform: scale(1.1);
+}
+
+/* Titres de section (Scénarios / Amorces) */
+.vs-section-title {
+  font-family: "Cinzel", serif;
+  font-size: 24px;
+  color: #e6c888;
+  border-bottom: 1px solid var(--gold-bronze);
+  padding-bottom: 10px;
+  margin: 40px 0 20px 0;
+  letter-spacing: 3px;
+  font-size: 36px !important;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 28px;
+  color: var(--vs-gold);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+/* --- STYLE 1 : LES SCENARIOS (Grosses cartes avec image) --- */
+.vs-scenario-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.vs-scenario-card {
+  width: 48%;
+  /* 2 par ligne */
+  background: #0c0c0c;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: 0.3s;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+}
+
+.vs-scenario-card:hover {
+  border-color: var(--gold-bronze);
+  transform: translateY(-2px);
+}
+
+.vs-scen-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 2px solid var(--gold-bronze);
+  flex-shrink: 0;
+}
+
+.vs-scen-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.vs-scen-name {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  color: #e6c888;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.vs-scen-desc {
+  font-size: 11px;
+  color: #999;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.vs-scen-link {
+  display: block;
+  margin-top: 8px;
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--gold-bronze);
+  text-decoration: none;
+  text-align: right;
+}
+
+/* --- STYLE 2 : LES HOOKS (Petites notes compactes) --- */
+.vs-hooks-grid {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* Grille auto-ajustable */
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.vs-hook-box {
+  background: #111;
+  border-left: 3px solid var(--gold-bronze);
+  /* Barre dorée à gauche */
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.vs-hook-title {
+  font-size: 13px;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  color: var(--vs-gold-light);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 3;
+  transition: opacity 0.4s ease;
+}
+
+.vs-hook-text {
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.vs-hook-meta {
+  font-size: 9px;
+  color: #666;
+  text-transform: uppercase;
+  border-top: 1px solid #222;
+  padding-top: 5px;
+  text-align: right;
+}
+
+/* --- LE BLOC QUESTION --- */
+details.vs-faq-item {
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--bg-dim);
+  transition: all 0.3s ease;
+}
+
+details.vs-faq-item:last-child {
+  border-bottom: none;
+}
+
+/* --- LE TITRE (SUMMARY) --- */
+summary.vs-faq-title {
+  position: relative;
+  display: block;
+  padding: 15px 40px 15px 10px;
+  cursor: pointer;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  /* Un peu plus fin */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  list-style: none;
+  transition:
+    color 0.3s ease,
+    padding 0.3s ease;
+}
+
+/* Cache le marqueur par défaut */
+summary.vs-faq-title::-webkit-details-marker {
+  display: none;
+}
+
+/* --- L'ICÔNE DESSINÉE EN CSS (Barres fines) --- */
+/* La barre horizontale (toujours visible) */
+summary.vs-faq-title::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background-color: #555;
+  /* Gris au repos */
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease;
+}
+
+/* La barre verticale (qui va disparaître/tourner) */
+summary.vs-faq-title::before {
+  content: "";
+  position: absolute;
+  right: 15.5px;
+  top: 50%;
+  width: 1px;
+  height: 12px;
+  /* Hauteur */
+  background-color: #555;
+  transform: translateY(-50%);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* --- ETAT SURVOL (HOVER) --- */
+summary.vs-faq-title:hover {
+  color: var(--gold-medium);
+  padding-left: 18px;
+}
+
+summary.vs-faq-title:hover::after,
+summary.vs-faq-title:hover::before {
+  background-color: var(--gold-medium);
+  /* Les barres deviennent dorées */
+}
+
+/* --- ETAT OUVERT (OPEN) --- */
+details.vs-faq-item[open] summary.vs-faq-title {
+  color: var(--gold-medium);
+  padding-left: 18px;
+}
+
+details.vs-faq-item[open] summary.vs-faq-title::after {
+  background-color: var(--gold-medium);
+}
+
+/* La magie : on tourne la barre verticale de 90deg, elle se fond dans l'horizontale */
+details.vs-faq-item[open] summary.vs-faq-title::before {
+  transform: translateY(-50%) rotate(90deg);
+  background-color: var(--gold-medium);
+}
+
+/* --- LE CONTENU --- */
+.vs-faq-content {
+  padding: 5px 20px 20px 20px;
+  color: var(--textColor);
+  font-size: 14px;
+  line-height: 1.7;
+  animation: fadeContent 0.5s ease;
+}
+
+.vs-faq-content a {
+  color: var(--gold-medium);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--gold-medium);
+}
+
+/* ========================================
+   PAGE FAQ - END
+   ======================================== */
+/* ========================================
+   PAGE CARTE - START
+   ======================================== */
+/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
+.vs-flip-card {
+  background-color: transparent;
+  width: 300px;
+  height: 500px;
+  perspective: 1000px;
+  margin: 20px auto;
+  cursor: pointer;
+  /* Indique qu'on peut interagir */
+}
+
+/* --- L'INTERIEUR QUI BOUGE --- */
+.vs-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  /* Durée de l'animation (0.8s est fluide) */
+  transform-style: preserve-3d;
+}
+
+/* L'ACTION : Quand on survole, on tourne */
+.vs-flip-card:hover .vs-flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* --- LES DEUX FACES (RECTO / VERSO) --- */
+.vs-flip-front,
+.vs-flip-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  /* Ombre portée */
+}
+
+/* --- RECTO : L'IMAGE --- */
+.vs-flip-front {
+  background-color: #000;
+  overflow: hidden;
+  line-height: 0;
+  border-radius: 5px;
+  /* On garde les coins ronds */
+}
+
+.vs-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  /* Sécurité supplémentaire */
+  border-radius: 5px;
+}
+
+/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
+.vs-flip-back {
+  background-color: #050505;
+  border: 1px solid var(--gold-medium);
+  color: #e0e0e0;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  /* Important pour que le padding ne casse pas la taille */
+}
+
+/* TYPOGRAPHIE DU DOS */
+.vs-back-title {
+  font-family: "Playfair Display", serif;
+  color: var(--gold-medium);
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  width: 100%;
+  /* La ligne prend toute la largeur */
+}
+
+.vs-back-desc {
+  font-family: "Playfair Display", serif;
+  /* Ou ta police de corps */
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* ========================================
+   PAGE CARTE - END
+   ======================================== */
+/* GROUPES */
+/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
+/* --- L'INTERIEUR QUI BOUGE --- */
+/* L'ACTION : Quand on survole, on tourne */
+/* --- LES DEUX FACES (RECTO / VERSO) --- */
+/* --- RECTO : L'IMAGE --- */
+/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
+/* TYPOGRAPHIE DU DOS */
+/* FIN GROUPES */
+/* BOTTIN */
+/* --- BOTTIN VELVET SIN (Version Or & Lignes Fines) --- */
+.vs-bottin-container {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #121212;
+  color: #bfbfbf;
+  font-family: "Courier New", Courier, monospace;
+  padding: 40px;
+  border: 1px solid var(--accentClr);
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.1);
+  /* Lueur dorée très subtile */
+  line-height: 1.6em;
+  font-size: 13px;
+}
+
+.vs-bottin-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  border-bottom: 1px solid var(--accentClr);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: normal;
+  /* Pas de gras, on reste fin */
+}
+
+/* Une ligne de célébrité */
+.vs-entry {
+  display: block;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #1f1f1f;
+  /* Séparation très sombre */
+  padding: 3px 0;
+  transition: 0.3s;
+}
+
+.vs-celeb {
+  font-weight: bold;
+  color: #e5c15d;
+  /* Nom de la star en or pâle */
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+
+.vs-sep {
+  color: #666;
+  /* Le tiret de séparation discret */
+  margin-right: 8px;
+}
+
+.vs-player {
+  color: #999;
+  /* Nom du joueur en gris */
+  font-style: normal;
+}
+
+/* Effet au survol : une petite barre dorée apparaît à gauche */
+.vs-entry:hover {
+  padding-left: 10px;
+  border-left: 2px solid var(--accentClr);
+  background-color: #191919;
+}
+
+/* ========================================
+   VELVET SIN - OPENING LETTER EFFECT
+   Format enveloppe paysage - Noir Élégant
+   ======================================== */
+/* Variables */
+/* Container principal */
+.vs-letter-scene {
+  perspective: 1500px;
+  width: var(--envelope-width);
+  height: var(--envelope-height);
+  margin: 20px auto 30px;
+  position: relative;
+  /* Transition fluide pour pousser le contenu en dessous */
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quand la lettre est ouverte, agrandir le conteneur pour la lettre */
+.vs-letter-scene.letter-opened {
+  height: 1400px;
+  /* Ajuster selon la longueur de votre lettre */
+}
+
+/* L'enveloppe complète */
+.vs-envelope {
+  width: 100%;
+  height: var(--envelope-height);
+  /* Hauteur FIXE pour ne pas déformer */
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.vs-envelope.flipped {
+  transform: rotateY(180deg);
+}
+
+.vs-envelope.opened {
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+/* Désactiver les clics sur la face avant quand l'enveloppe est retournée */
+.vs-envelope.flipped .vs-envelope-front,
+.vs-envelope.flipped .vs-envelope-front * {
+  pointer-events: none;
+}
+
+/* ========================================
+   FACE AVANT DE L'ENVELOPPE
+   ======================================== */
+.vs-envelope-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: linear-gradient(
+    145deg,
+    var(--bg-dim) 0%,
+    var(--bg-darker) 50%,
+    var(--bg-black) 100%
+  );
+  border-radius: 5px;
+  box-shadow: var(--paper-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+}
+
+.vs-envelope-front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(30, 30, 30, 0.5) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 80%,
+      rgba(25, 25, 25, 0.4) 0%,
+      transparent 45%
+    );
+  pointer-events: none;
+}
+
+.vs-envelope-front::after {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid rgba(var(--gold-rgb), 0.12);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.vs-envelope-address {
+  font-family: "Playfair Display", serif;
+  color: var(--gold-accent);
+  text-align: center;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vs-envelope-address .to {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 10px;
+  color: #777;
+}
+
+.vs-envelope-address .name {
+  font-size: 30px;
+  font-style: italic;
+}
+
+.vs-envelope-hint {
+  position: absolute;
+  bottom: 25px;
+  font-size: 10px;
+  color: var(--gold-accent);
+  opacity: 0.4;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: pulse 2s infinite;
+}
+
+/* ========================================
+   FACE ARRIÈRE DE L'ENVELOPPE
+   ======================================== */
+.vs-envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background: linear-gradient(180deg, #151515 0%, var(--bg-darker) 100%);
+  border-radius: 5px;
+  box-shadow: var(--paper-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+}
+
+.vs-envelope-back::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 30%,
+    rgba(30, 30, 30, 0.4) 0%,
+    transparent 40%
+  );
+  pointer-events: none;
+  border-radius: 5px;
+}
+
+.vs-envelope-flap {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 130px;
+  background: linear-gradient(180deg, #1c1c1c 0%, #101010 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s ease;
+  z-index: 3;
+}
+
+.vs-envelope.opened .vs-envelope-flap {
+  transform: rotateX(180deg);
+}
+
+/* ========================================
+   CACHET DE CIRE BORDEAUX - TOUT CLIQUABLE
+   ======================================== */
+.vs-wax-seal {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 15;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.vs-wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+  filter: brightness(1.15);
+}
+
+/* Overlay cliquable couvrant tout le cachet */
+.vs-seal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 100;
+  /* Invisible mais cliquable */
+  background: transparent;
+}
+
+/* SVG entièrement cliquable */
+.vs-seal-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8));
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Image du cachet (version ForumActif) */
+.vs-seal-img {
+  width: 140%;
+  height: 140%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Masquer les br ajoutés par ForumActif */
+.vs-letter-paper br,
+.vs-letter-body br {
+  display: none;
+}
+
+/* Tous les éléments SVG sont cliquables */
+.vs-seal-svg * {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Animation du cachet */
+.vs-wax-seal.breaking {
+  animation: breakSeal 0.7s forwards;
+}
+
+/* ========================================
+   LE PAPIER DE LA LETTRE - PRESTIGIEUX
+   ======================================== */
+.vs-letter-paper {
+  position: absolute;
+  width: calc(var(--envelope-width) - 30px);
+  height: auto;
+  min-height: 450px;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+  overflow: hidden;
+  opacity: 0;
+  z-index: 5;
+  border-radius: 2px;
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    #fcf9f0 0%,
+    #f8f3e6 20%,
+    var(--text-cream) 50%,
+    #f5efe0 80%,
+    #f0e8d5 100%
+  );
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 5px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.vs-letter-paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.vs-letter-paper::after {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(180, 150, 80, 0.15);
+  pointer-events: none;
+}
+
+.vs-letter-watermark {
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 0 0 100px rgba(200, 180, 140, 0.1),
+    inset 0 0 30px rgba(160, 140, 100, 0.05);
+  pointer-events: none;
+}
+
+.vs-letter-paper.sliding-out {
+  animation: slideUpThenOver 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.vs-letter-paper.unfolded {
+  opacity: 1;
+  top: 0;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 25;
+  cursor: pointer;
+}
+
+/* Animation de retour dans l'enveloppe */
+.vs-letter-paper.sliding-in {
+  animation: slideBackIn 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+/* Contenu de la lettre */
+.vs-letter-content {
+  position: relative;
+  padding: 50px 60px;
+  font-family: "Playfair Display", serif;
+  color: #2a1f15;
+  font-size: 15px;
+  line-height: 2;
+  z-index: 2;
+}
+
+.vs-letter-greeting {
+  font-size: 19px;
+  margin-bottom: 28px;
+  color: #3a2a1a;
+  font-weight: 500;
+}
+
+.vs-letter-body {
+  text-align: justify;
+  margin-bottom: 25px;
+}
+
+.vs-letter-body p {
+  margin-bottom: 20px;
+  text-indent: 35px;
+}
+
+.vs-letter-body em {
+  color: #5a4030;
+  font-style: italic;
+}
+
+/* Bouton fermer */
+.vs-letter-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  background: transparent;
+  border: 1px solid rgba(100, 80, 60, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #8a7a6a;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.vs-letter-close:hover {
+  background: rgba(100, 80, 60, 0.08);
+  border-color: rgba(100, 80, 60, 0.3);
+  color: #5a4a3a;
+}
+
+/* ========================================
+   EFFETS GÉNÉRAUX
+   ======================================== */
+.vs-letter-scene:hover .vs-envelope:not(.flipped):not(.opened) {
+  transform: translateY(-5px);
+}
+
+/* --- Système d'onglets CSS pur --- */
+/* Cacher les inputs radio */
+.vs-tab-input {
+  display: none;
+}
+
+/* Conteneur des onglets */
+.vs-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  text-align: left;
+  width: 200px;
+}
+
+/* Labels des onglets (boutons) */
+.vs-tab-label {
+  font-family: "Karla", sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 5px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(46, 26, 71, 0.2);
+  border: 1px solid rgba(216, 212, 242, 0.1);
+  color: #a29587;
+  transition: all 0.3s ease;
+}
+
+.vs-tab-label:first-of-type {
+  border-right: none;
+}
+
+.vs-tab-label:hover {
+  color: #d8d4f2;
+  background: rgba(46, 26, 71, 0.4);
+}
+
+/* Contenu des onglets */
+.vs-tab-content {
+  grid-column: 1 / -1;
+  padding: 12px 8px;
+  background: rgba(18, 40, 63, 0.3);
+  border: 1px solid rgba(216, 212, 242, 0.1);
+  border-top: none;
+  display: none;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #d8d4f2;
+  max-height: 250px;
+  overflow-y: auto;
+  font-family: "Karla", sans-serif;
+  scrollbar-color: #5b595e #1a1a1a;
+  scrollbar-width: thin;
+  /* Rend la barre plus discrète */
+}
+
+/* Afficher l'onglet actif */
+.vs-tab-input:nth-of-type(1):checked ~ .vs-tab1 {
+  display: block;
+}
+
+.vs-tab-input:nth-of-type(2):checked ~ .vs-tab2 {
+  display: block;
+}
+
+/* Style du label actif */
+.vs-tab-input:nth-of-type(1):checked + .vs-tab-label {
+  background: rgba(18, 40, 63, 0.5);
+  color: #d8d4f2;
+  border-bottom-color: transparent;
+}
+
+.vs-tab-input:nth-of-type(2):checked + .vs-tab-label {
+  background: rgba(18, 40, 63, 0.5);
+  color: #d8d4f2;
+  border-bottom-color: transparent;
+}
+
+/* Champs dans les onglets */
+.vs-field-label {
+  color: #c4b2bc;
+  text-transform: uppercase;
+  font-size: 9px;
+  display: block;
+  font-family: "Karla", sans-serif;
+  letter-spacing: 1px;
+}
+
+.vs-field-content {
+  color: #a29587;
+}
+
+/* Statut en ligne */
+.vs-online-status {
+  display: none;
+}
+
+.vs-online-status.online {
+  display: block;
+  color: #5a5;
+  font-size: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Récompenses */
+.vs-awards {
+  margin-top: 10px;
+}
+
+/* Contact */
+.vs-contact {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #333;
+  text-align: center;
+}
+
+.vs-contact a {
+  margin: 0 3px;
+}
+
+.vs-contact a img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.vs-contact a:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Scrollbar personnalisée */
+.vs-tab-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.vs-tab-content::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.vs-tab-content::-webkit-scrollbar-thumb {
+  background: var(--gold-medium);
+}
+
+/* ========================================
+   FIN PROFIL À ONGLETS
+   ======================================== */
+/* ========================================
+   VELVET SIN - HOOKS, POSTES VACANTS & SCÉNARIOS
+   Design élégant noir et or
+   ======================================== */
+/* Variables */
+/* ========================================
+   FORUMACTIF OVERRIDES - BULLETPROOF
+   Handles br, nbsp, and all injected garbage
+   ======================================== */
+/* NUCLEAR OPTION: Hide ALL br elements inside our component */
+.vs-hooks-page br {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+
+/* Neutralize   effects - reset word-spacing and letter-spacing */
+.vs-hooks-page {
+  word-spacing: normal !important;
+  letter-spacing: normal !important;
+  white-space: normal !important;
+  width: 100%;
+  max-width: 890px;
+  padding: 0 10px;
+  font-family: "Inter", sans-serif;
+  color: var(--vs-text);
+  background: transparent;
+}
+
+/* Force our styles over ForumActif defaults */
+.vs-hooks-page,
+.vs-hooks-page * {
+  box-sizing: border-box !important;
+}
+
+/* Protect grid and flex layouts from text nodes */
+.vs-hooks-nav,
+.vs-hooks-grid,
+.vs-vacants-grid,
+.vs-hooks-content {
+  font-size: 0 !important;
+  word-spacing: -9999px !important;
+  /* Collapse nbsp spaces */
+}
+
+/* Restore font-size in actual content elements */
+.vs-hooks-nav > *,
+.vs-hooks-grid > *,
+.vs-vacants-grid > *,
+.vs-hooks-content > * {
+  font-size: 12px !important;
+  word-spacing: normal !important;
+}
+
+/* Navigation tabs fix */
+.vs-hooks-page button.vs-nav-tab {
+  background: transparent !important;
+  border: none !important;
+  font-family: "Cinzel", serif !important;
+  font-size: 12px !important;
+  word-spacing: normal !important;
+}
+
+/* Hook cards */
+.vs-hook-card {
+  font-size: 12px !important;
+  word-spacing: normal !important;
+  background: linear-gradient(145deg, #0f0f0f 0%, #080808 100%);
+  border: 1px solid var(--vs-gold-dim);
+  border-radius: 3px;
+  padding: 30px 25px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  min-height: 280px;
+}
+
+/* Hide broken text nodes from corrupted data attributes */
+.vs-vacant-portrait {
+  font-size: 0 !important;
+  color: transparent !important;
+  overflow: hidden !important;
+  word-spacing: -9999px !important;
+  position: relative;
+  cursor: pointer;
+}
+
+/* But show text in proper child elements */
+.vs-vacant-portrait > * {
+  font-size: 12px !important;
+  word-spacing: normal !important;
+}
+
+.vs-portrait-frame,
+.vs-portrait-overlay {
+  font-size: 12px !important;
+  word-spacing: normal !important;
+}
+
+.vs-vacant-name {
+  font-size: 14px !important;
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  color: var(--vs-gold);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.vs-vacant-role {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--vs-text-dim);
+}
+
+.vs-vacant-status {
+  font-size: 10px !important;
+  word-spacing: normal !important;
+  position: absolute;
+  top: -4px;
+  right: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  z-index: 5;
+}
+
+/* Section titles */
+.vs-section-title,
+.vs-section-subtitle {
+  font-size: 1em !important;
+  word-spacing: normal !important;
+}
+
+.vs-section-subtitle {
+  font-family: "Playfair Display", serif;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--vs-text-dim);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* ========================================
+   CONTAINER PRINCIPAL
+   ======================================== */
+/* ========================================
+   NAVIGATION PAR ONGLETS
+   ======================================== */
+.vs-hooks-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.vs-hooks-nav::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--vs-gold-dim) 20%,
+    var(--vs-gold-dim) 80%,
+    transparent 100%
+  );
+}
+
+.vs-nav-tab {
+  background: transparent;
+  border: none;
+  padding: 20px 40px;
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--vs-text-dim);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.vs-nav-tab::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--vs-gold);
+  transform: translateX(-50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px var(--vs-gold);
+}
+
+.vs-nav-tab:hover {
+  color: var(--vs-gold-light);
+}
+
+.vs-nav-tab.active {
+  color: var(--vs-gold);
+}
+
+.vs-nav-tab.active::before {
+  width: 100%;
+}
+
+/* ========================================
+   SECTIONS DE CONTENU
+   ======================================== */
+.vs-hooks-content {
+  position: relative;
+  min-height: 500px;
+}
+
+.vs-section {
+  display: none;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.vs-section.active {
+  display: block;
+}
+
+/* Titres de section */
+/* ========================================
+   SEGMENT 1: HOOKS (MOTIVATIONS)
+   Effet brume qui se dissipe
+   ======================================== */
+.vs-hook-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 10, 10, 0.95) 0%,
+    rgba(10, 10, 10, 0.6) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 2;
+}
+
+.vs-hook-card:hover::before {
+  opacity: 0;
+}
+
+.vs-hook-card:hover {
+  border-color: var(--vs-gold);
+  box-shadow:
+    0 0 30px rgba(var(--gold-rgb), 0.15),
+    inset 0 0 30px rgba(var(--gold-rgb), 0.03);
+  transform: translateY(-5px);
+}
+
+/* Particules dorées */
+.vs-hook-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, var(--vs-gold) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 70%, var(--vs-gold) 50%, transparent 50%),
+    radial-gradient(1px 1px at 80% 20%, var(--vs-gold) 50%, transparent 50%),
+    radial-gradient(1px 1px at 40% 80%, var(--vs-gold) 50%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  animation: sparkle 3s infinite;
+}
+
+.vs-hook-card:hover::after {
+  opacity: 0.6;
+}
+
+.vs-hook-icon {
+  font-size: 32px;
+  color: var(--vs-gold);
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(0 0 10px rgba(var(--gold-rgb), 0.5));
+  transition: opacity 0.4s ease;
+}
+
+.vs-hook-preview {
+  font-family: "Playfair Display", serif;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--vs-text-dim);
+  text-align: center;
+  line-height: 1.8;
+  position: relative;
+  z-index: 3;
+  transition: opacity 0.4s ease;
+}
+
+/* Cacher les éléments visibles au hover */
+.vs-hook-card:hover .vs-hook-icon,
+.vs-hook-card:hover .vs-hook-title,
+.vs-hook-card:hover .vs-hook-preview {
+  opacity: 0;
+}
+
+.vs-hook-reveal {
+  position: absolute;
+  inset: 0;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 4;
+  background: rgba(8, 8, 8, 0.95);
+}
+
+.vs-hook-card:hover .vs-hook-reveal {
+  opacity: 1;
+}
+
+.vs-hook-reveal p {
+  font-family: "Playfair Display", serif;
+  font-size: 13px;
+  color: var(--vs-cream);
+  line-height: 1.9;
+  text-align: justify;
+  margin: 0;
+}
+
+/* ========================================
+   SEGMENT 2: POSTES VACANTS
+   Galerie de portraits avec cadres dorés
+   ======================================== */
+.vs-vacants-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.vs-portrait-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 200 / 320;
+  overflow: hidden;
+  border: 2px solid var(--vs-gold-dim);
+  transition: all 0.4s ease;
+}
+
+/* Cadre ornemental */
+.vs-portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--vs-gold-dim);
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.vs-portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 rgba(var(--gold-rgb), 0);
+  pointer-events: none;
+  z-index: 3;
+  transition: all 0.4s ease;
+}
+
+.vs-vacant-portrait:hover .vs-portrait-frame {
+  border-color: var(--vs-gold);
+  box-shadow:
+    0 0 25px rgba(var(--gold-rgb), 0.3),
+    0 0 50px rgba(var(--gold-rgb), 0.1);
+}
+
+.vs-vacant-portrait:hover .vs-portrait-frame::before {
+  border-color: var(--vs-gold-light);
+}
+
+.vs-vacant-portrait:hover .vs-portrait-frame::after {
+  box-shadow: 0 0 30px rgba(var(--gold-rgb), 0.4);
+}
+
+.vs-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s ease;
+  filter: grayscale(30%);
+}
+
+.vs-vacant-portrait:hover .vs-portrait-frame img {
+  transform: scale(1.08);
+  filter: grayscale(0%);
+}
+
+/* Overlay avec nom et rôle */
+.vs-portrait-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 5, 5, 0.95) 0%,
+    rgba(5, 5, 5, 0.7) 60%,
+    transparent 100%
+  );
+  padding: 40px 15px 15px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.vs-vacant-portrait:hover .vs-portrait-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Badge de statut */
+.vs-vacant-portrait[data-status="libre"] .vs-vacant-status {
+  background: linear-gradient(135deg, #2a5a3a 0%, #1a3a2a 100%);
+  color: #7fd4a0;
+  border: 1px solid #3a7a4a;
+}
+
+.vs-vacant-portrait[data-status="reserve"] .vs-vacant-status {
+  background: linear-gradient(135deg, #5a4a2a 0%, #3a3a1a 100%);
+  color: var(--vs-gold);
+  border: 1px solid #6a5a3a;
+}
+
+.vs-vacant-portrait[data-status="pris"] .vs-vacant-status {
+  background: linear-gradient(135deg, #5a2a2a 0%, #3a1a1a 100%);
+  color: #d07070;
+  border: 1px solid #6a3a3a;
+}
+
+/* Fiche déployée */
+.vs-vacant-details {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 5, 5, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.vs-vacant-details.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.vs-vacant-sheet {
+  width: 700px;
+  max-height: 80vh;
+  background: linear-gradient(145deg, #0f0f0f 0%, #080808 100%);
+  border: 1px solid var(--vs-gold-dim);
+  padding: 40px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.vs-vacant-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--vs-gold-dim);
+  color: var(--vs-gold);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-vacant-close:hover {
+  background: var(--vs-gold);
+  color: var(--vs-dark);
+}
+
+/* ========================================
+   SEGMENT 3: SCÉNARIOS
+   Galerie de portraits style Postes Vacants
+   avec variations visuelles (accent bordeaux)
+   ======================================== */
+.vs-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.vs-scenario-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 200 / 320;
+  overflow: hidden;
+  border: 2px solid var(--vs-bordeaux);
+  transition: all 0.4s ease;
+}
+
+/* Cadre ornemental bordeaux */
+.vs-scenario-frame::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(139, 58, 58, 0.4);
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.4s ease;
+}
+
+.vs-scenario-frame::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 rgba(139, 58, 58, 0);
+  pointer-events: none;
+  z-index: 3;
+  transition: all 0.4s ease;
+}
+
+.vs-scenario-card:hover .vs-scenario-frame {
+  border-color: var(--vs-bordeaux-light);
+  box-shadow:
+    0 0 25px rgba(139, 58, 58, 0.4),
+    0 0 50px rgba(139, 58, 58, 0.15);
+}
+
+.vs-scenario-card:hover .vs-scenario-frame::before {
+  border-color: rgba(169, 74, 74, 0.6);
+}
+
+.vs-scenario-card:hover .vs-scenario-frame::after {
+  box-shadow: 0 0 30px rgba(139, 58, 58, 0.5);
+}
+
+.vs-scenario-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition:
+    transform 0.6s ease,
+    filter 0.4s ease;
+  filter: sepia(20%) contrast(1.1);
+}
+
+.vs-scenario-card:hover .vs-scenario-frame img {
+  transform: scale(1.08);
+  filter: sepia(0%) contrast(1);
+}
+
+/* Overlay avec titre et rôle */
+.vs-scenario-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30, 15, 15, 0.98) 0%,
+    rgba(30, 15, 15, 0.8) 60%,
+    transparent 100%
+  );
+  padding: 40px 15px 15px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.vs-scenario-card:hover .vs-scenario-overlay {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.vs-scenario-name {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  color: var(--vs-gold);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.vs-scenario-tagline {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--vs-text-dim);
+}
+
+/* Badge type scénario */
+.vs-scenario-type {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  z-index: 5;
+  background: linear-gradient(135deg, #5a2a2a 0%, #3a1a1a 100%);
+  color: #d07070;
+  border: 1px solid #6a3a3a;
+}
+
+/* ========================================
+   MODAL PARTAGÉ - Lien vers la fiche
+   ======================================== */
+.vs-modal-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--vs-gold);
+  text-decoration: none;
+  border: 1px solid var(--vs-gold-dim);
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.vs-modal-link:hover {
+  background: var(--vs-gold);
+  color: var(--vs-dark);
+  border-color: var(--vs-gold);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/* ========================================
+   VELVET SIN - DOSSIER CONFIDENTIEL
+   Fiche de présentation style noir & or
+   ======================================== */
+/* Variables */
+/* Container principal */
+.vs-dossier {
+  max-width: var(--dossier-max-width);
+  margin: 40px auto;
+  background: var(--dossier-bg);
+  border: 1px solid var(--dossier-border);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
+  color: var(--dossier-text);
+}
+
+/* Bande supérieure "CONFIDENTIEL" */
+.vs-dossier::before {
+  content: "DOSSIER CONFIDENTIEL";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--gold-rgb), 0.08),
+    transparent
+  );
+  color: var(--dossier-gold);
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 10px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--dossier-border);
+  text-transform: uppercase;
+}
+
+/* ========================================
+   BLOC IDENTITÉ
+   ======================================== */
+.vs-dossier-identity {
+  display: flex;
+  gap: 25px;
+  padding: 40px 30px 20px;
+  border-bottom: 1px solid var(--dossier-border);
+  background: linear-gradient(180deg, rgba(15, 15, 15, 1) 0%, transparent 100%);
+}
+
+/* Trombone doré (image PNG) */
+/* Trombone doré (image PNG) */
+.vs-dossier-clip {
+  position: absolute;
+  top: -5px;
+  left: -75px;
+  width: 140px;
+  height: auto;
+  z-index: 10;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.9)) contrast(1.4)
+    brightness(1.1);
+  transform: rotate(60deg);
+  pointer-events: none;
+}
+
+.vs-dossier-photo {
+  width: 250px;
+  height: 400px;
+  object-fit: cover;
+  border: 3px solid var(--dossier-accent);
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  filter: contrast(1.05) brightness(0.95);
+  position: relative;
+  z-index: 1;
+}
+
+/* Infos d'identité */
+.vs-dossier-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 0;
+  align-items: center;
+  text-align: center;
+}
+
+.vs-dossier-name {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 26px;
+  color: var(--dossier-gold);
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 100%;
+}
+
+/* Nom de la personnalité choisie */
+.vs-dossier-celebrity {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--dossier-text-muted);
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.vs-dossier-field {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 6px;
+  font-size: 13px;
+  width: 100%;
+  gap: 12px;
+}
+
+.vs-dossier-label {
+  color: var(--dossier-gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 9px;
+  min-width: 120px;
+  text-align: right;
+  padding-top: 0;
+}
+
+.vs-dossier-value {
+  color: var(--dossier-text);
+  font-size: 14px;
+  text-align: left;
+  min-width: 150px;
+}
+
+/* ========================================
+   SECTION RORSCHACH
+   ======================================== */
+.vs-dossier-rorschach {
+  padding: 15px 25px;
+  border-bottom: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-section-title {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 11px;
+  color: var(--dossier-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--dossier-gold-dim);
+  text-align: center;
+}
+
+/* Grille d'images symboles */
+.vs-dossier-symbols {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.vs-dossier-symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-dossier-symbol-img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border: 2px solid var(--dossier-accent);
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  filter: grayscale(30%) contrast(1.1);
+  transition:
+    filter 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.vs-dossier-symbol-img:hover {
+  filter: grayscale(0%) contrast(1.2);
+  border-color: var(--dossier-gold-dim);
+}
+
+.vs-dossier-symbol-keyword {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dossier-text-muted);
+  text-align: center;
+}
+
+/* ========================================
+   ZONE ARCHIVES
+   ======================================== */
+.vs-dossier-archives {
+  padding: 15px 25px;
+  border-bottom: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-archives-content {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px 15px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--dossier-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--dossier-text);
+}
+
+/* Scrollbar personnalisée */
+.vs-dossier-archives-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-track {
+  background: var(--dossier-bg);
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-thumb {
+  background: var(--dossier-gold-dim);
+  border-radius: 3px;
+}
+
+.vs-dossier-archives-content::-webkit-scrollbar-thumb:hover {
+  background: var(--dossier-gold);
+}
+
+/* Style pour les paragraphes */
+.vs-dossier-archives-content p {
+  margin: 0 0 15px 0;
+  text-align: justify;
+}
+
+.vs-dossier-archives-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Style pour les listes */
+.vs-dossier-archives-content ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
+}
+
+.vs-dossier-archives-content ul li {
+  position: relative;
+  margin-bottom: 10px;
+  padding-left: 15px;
+}
+
+.vs-dossier-archives-content ul li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--dossier-gold);
+}
+
+.vs-dossier-trait {
+  flex: 1;
+  max-width: 50%;
+}
+
+.vs-dossier-trait-label {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.vs-dossier-trait--poison .vs-dossier-trait-label {
+  color: var(--red-muted);
+  text-align: left;
+}
+
+.vs-dossier-trait--arme .vs-dossier-trait-label {
+  color: #5a6a8a;
+  text-align: right;
+}
+
+.vs-dossier-trait-value {
+  font-size: 13px;
+  font-style: italic;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--dossier-border);
+}
+
+.vs-dossier-trait--poison .vs-dossier-trait-value {
+  text-align: left;
+  border-left: 2px solid var(--red-muted);
+}
+
+.vs-dossier-trait--arme .vs-dossier-trait-value {
+  text-align: right;
+  border-right: 2px solid #5a6a8a;
+}
+
+/* ========================================
+   BANDE INFÉRIEURE
+   ======================================== */
+/* ========================================
+   BANDE INFÉRIEURE (ID DOSSIER)
+   ======================================== */
+.vs-dossier-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--gold-rgb), 0.05),
+    transparent
+  );
+  color: var(--dossier-text-muted);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--dossier-border);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/* ========================================
+   VELVET SIN - DOSSIER CONFIDENTIEL
+   FIN Fiche de présentation style noir & or
+   ======================================== */
+/* ========================================
+   VELVET SIN - FICHE DE LIENS V2
+   Style élégant, minimaliste, dark mode
+   ======================================== */
+/* Variables */
+/* Container Principal */
+.vs-fiche-liens {
+  max-width: var(--fl-width);
+  margin: 40px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
+  color: var(--fl-text);
+}
+
+/* Titre de Section */
+.vs-fl-section-title {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 14px;
+  color: var(--fl-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--fl-gold-dim);
+}
+
+/* ========================================
+   BLOC 1 : RECHERCHES (CASTING)
+   ======================================== */
+.vs-fl-recherches {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-recherches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.vs-fl-recherche-card {
+  background: var(--fl-dark);
+  border: 1px solid var(--fl-gold-dim);
+  padding: 25px 20px;
+  text-align: center;
+  transition: border-color 0.3s ease;
+}
+
+.vs-fl-recherche-card:hover {
+  border-color: var(--fl-gold);
+}
+
+.vs-fl-recherche-titre {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 13px;
+  color: var(--fl-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.vs-fl-recherche-desc {
+  font-size: 12px;
+  color: var(--fl-text-muted);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+/* ========================================
+   BLOC 2 : SCÉNARIOS (INTRIGUES)
+   ======================================== */
+.vs-fl-scenarios {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-scenarios-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vs-fl-scenarios-list li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.vs-fl-scenarios-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.vs-fl-scenarios-list li::before {
+  content: "◆";
+  color: var(--fl-gold);
+  margin-right: 12px;
+  font-size: 8px;
+  vertical-align: middle;
+}
+
+/* ========================================
+   BLOC 3 : LES LIENS (GALERIE FLIP)
+   ======================================== */
+.vs-fl-liens {
+  background: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.vs-fl-liens-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Carte avec effet Fade (Image disparaît au survol) */
+.vs-fl-lien-card {
+  width: 200px;
+  height: 320px;
+  position: relative;
+  border: 1px solid var(--fl-gold-dim);
+}
+
+.vs-fl-lien-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.vs-fl-lien-front,
+.vs-fl-lien-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease;
+}
+
+/* Face Avant : Avatar (Au-dessus) */
+.vs-fl-lien-front {
+  z-index: 2;
+  opacity: 1;
+  background: var(--fl-dark);
+}
+
+.vs-fl-lien-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Face Arrière : Texte (En dessous) */
+.vs-fl-lien-back {
+  z-index: 1;
+  opacity: 1;
+  /* Toujours visible, mais caché par l'image */
+  background: var(--fl-dark);
+  padding: 20px 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Au survol : l'image disparaît */
+.vs-fl-lien-card:hover .vs-fl-lien-front {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vs-fl-lien-back::-webkit-scrollbar {
+  width: 4px;
+}
+
+.vs-fl-lien-back::-webkit-scrollbar-track {
+  background: var(--fl-black);
+}
+
+.vs-fl-lien-back::-webkit-scrollbar-thumb {
+  background: var(--fl-gold-dim);
+  border-radius: 2px;
+}
+
+.vs-fl-lien-nom {
+  font-family: "Cinzel", "Times New Roman", serif;
+  font-size: 13px;
+  color: var(--fl-gold);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.vs-fl-lien-type {
+  font-size: 10px;
+  color: var(--fl-text-muted);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fl-gold-dim);
+}
+
+.vs-fl-lien-texte {
+  font-size: 11px;
+  color: var(--fl-text);
+  line-height: 1.7;
+  text-align: justify;
+  flex: 1;
+}
+
+/* ========================================
+   BLOC 4 : HORS-CHAMP (MÉTA)
+   ======================================== */
+.vs-fl-horschamp {
+  background: var(--fl-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+}
+
+.vs-fl-horschamp .vs-fl-section-title {
+  color: var(--fl-text-muted);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.vs-fl-horschamp-content {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--fl-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+/* FIX FORUMACTIF : Masquer les sauts de lignes automatiques qui cassent la grille */
+.vs-fl-recherches br,
+.vs-fl-liens br {
+  display: none;
+}
+
+/* Variables */
+/* Container principal */
+.vs-comfort {
+  max-width: 680px;
+  margin: 40px auto;
+  background: var(--bg-dim);
+  border: 1px solid var(--bg-soft);
+  box-shadow:
+    0 0 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 100px rgba(0, 0, 0, 0.3);
+  position: relative;
+  font-family: "Special Elite", "Courier New", monospace;
+  color: var(--gold-warm);
+  line-height: 1.6;
+}
+
+.vs-comfort br {
+  display: none !important;
+}
+
+.vs-comfort::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      transparent 5%,
+      transparent 95%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.05) 0%,
+      transparent 10%,
+      transparent 90%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vs-comfort-name {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #a39060;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vs-comfort-tagline {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  border-top: 1px solid var(--bg-soft);
+  border-bottom: 1px solid var(--bg-soft);
+  padding: 8px 0;
+  margin-top: 15px;
+}
+
+.vs-comfort-section {
+  padding: 25px 30px;
+  border-bottom: 1px solid var(--bg-soft);
+}
+
+.vs-comfort-section:last-of-type {
+  border-bottom: none;
+}
+
+.vs-comfort-section-title {
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a39060;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(163, 144, 96, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vs-comfort-section-title::before {
+  content: "§";
+  color: var(--red-deep);
+  font-size: 16px;
+}
+
+.vs-comfort-section-subtitle {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-left: auto;
+  font-family: "Special Elite", monospace;
+}
+
+.vs-comfort-rhythm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  font-size: 0;
+}
+
+.vs-comfort-rhythm-item {
+  background: var(--bg-black);
+  border: 1px solid var(--bg-soft);
+  padding: 15px;
+  font-size: 14px;
+}
+
+.vs-comfort-rhythm-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.vs-comfort-rhythm-value {
+  font-size: 14px;
+  color: var(--gold-warm);
+}
+
+.vs-comfort-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: var(--bg-black);
+  border: 1px solid var(--bg-soft);
+  font-size: 0;
+}
+
+.vs-comfort-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.vs-comfort-topics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0;
+}
+
+.vs-comfort-topic {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 12px 15px;
+  background: var(--bg-black);
+  border: 1px solid var(--bg-soft);
+  border-left: 3px solid var(--bg-soft);
+  font-size: 13px;
+}
+
+.vs-comfort-topic--green {
+  border-left-color: var(--green-deep);
+}
+
+.vs-comfort-topic--yellow {
+  border-left-color: var(--gold-mid);
+}
+
+.vs-comfort-topic--red {
+  border-left-color: var(--red-deep);
+}
+
+.vs-comfort-indicator {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  min-height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.vs-comfort-indicator--green {
+  background: radial-gradient(circle at 30% 30%, #4a8a4a, var(--green-deep));
+  box-shadow: 0 0 8px rgba(45, 90, 45, 0.4);
+}
+
+.vs-comfort-indicator--yellow {
+  background: radial-gradient(circle at 30% 30%, #b8a840, var(--gold-mid));
+  box-shadow: 0 0 8px rgba(138, 122, 48, 0.4);
+}
+
+.vs-comfort-indicator--red {
+  background: radial-gradient(circle at 30% 30%, #c01010, var(--red-deep));
+  box-shadow: 0 0 8px rgba(138, 3, 3, 0.4);
+}
+
+.vs-comfort-topic-content {
+  flex: 1;
+}
+
+.vs-comfort-topic-title {
+  font-size: 13px;
+  color: var(--gold-warm);
+  margin-bottom: 4px;
+}
+
+.vs-comfort-topic-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.vs-comfort-mastery-block {
+  background: var(--bg-black);
+  border: 1px solid var(--bg-soft);
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.vs-comfort-mastery-block:last-child {
+  margin-bottom: 0;
+}
+
+.vs-comfort-mastery-question {
+  font-size: 15px;
+  color: var(--textColor);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.vs-comfort-mastery-answer {
+  font-size: 13px;
+  color: var(--gold-warm);
+  line-height: 1.7;
+}
+
+.vs-comfort-notes-title {
+  font-size: 10px;
+  color: var(--red-deep);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.vs-comfort-notes-content {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  padding: 12px 15px;
+  background: var(--bg-black);
+  border: 1px solid var(--bg-soft);
+  border-left: 2px solid var(--red-deep);
+  min-height: 50px;
+}
+
+.vs-comfort-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(138, 3, 3, 0.08),
+    transparent
+  );
+  color: var(--text-muted);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--bg-soft);
+  z-index: 2;
+}
+
+/* ========================================
+   VELVET SIN - FICHE DE PRÉFÉRENCES RP
+   FIN
+   ======================================== */
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — FICHE SCÉNARIO (WANTED)
+   Aligné sur le style dossier.css (noir & or)
+   ═══════════════════════════════════════════════════════════════════ */
+/* ─── Variables ─── */
+/* ─── Container Principal ─── */
+.vs-wanted {
+  max-width: 750px;
+  margin: 40px auto;
+  background: var(--vs-w-bg-main);
+  border: 1px solid var(--vs-w-border);
+  font-family: var(--vs-w-font-body);
+  color: var(--vs-w-text-primary);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* Bande supérieure */
+.vs-wanted::before {
+  content: "SCÉNARIO RECHERCHÉ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--gold-rgb), 0.08),
+    transparent
+  );
+  color: var(--vs-w-accent);
+  font-family: var(--vs-w-font-title);
+  font-size: 10px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--vs-w-border);
+  text-transform: uppercase;
+}
+
+.vs-wanted-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vs-wanted-status {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.vs-status-libre {
+  background: rgba(74, 124, 89, 0.15);
+  border-color: var(--vs-w-status-libre);
+  color: #7cb88a;
+}
+
+.vs-status-pris {
+  background: rgba(124, 74, 74, 0.15);
+  border-color: var(--vs-w-status-pris);
+  color: #b87c7c;
+}
+
+.vs-status-reserve {
+  background: rgba(124, 106, 74, 0.15);
+  border-color: var(--vs-w-status-reserve);
+  color: #b8a67c;
+}
+
+/* ─── Corps Principal ─── */
+.vs-wanted-body {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto auto;
+  gap: 15px 25px;
+  /* row-gap column-gap */
+  padding: 20px 30px 10px 30px;
+  border-bottom: none;
+  align-items: start;
+  align-content: start;
+}
+
+/* Masquer les <br> parasites de Forumactif dans les zones grid/flex */
+.vs-wanted-body > br,
+.vs-wanted-content > br,
+.vs-wanted-details > br,
+.vs-wanted-story > br,
+.vs-wanted-links > br,
+.vs-wanted-link-row > br,
+.vs-wanted-link-visual > br {
+  display: none;
+}
+
+.vs-wanted-feat {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--vs-w-font-body);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--vs-w-accent);
+  opacity: 0.7;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+/* ─── Zone Contenu ─── */
+.vs-wanted-content {
+  display: contents;
+}
+
+/* ─── Détails Rapides (Tags) ─── */
+.vs-wanted-details {
+  grid-row: 1;
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-self: center;
+  /* Centrer verticalement face à l'avatar si souhaité, ou 'start' */
+}
+
+.vs-wanted-tag {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 12px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  border-left: 2px solid var(--vs-w-accent-dim);
+  box-sizing: border-box;
+}
+
+.vs-tag-label {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--vs-w-accent);
+  margin-bottom: 4px;
+}
+
+.vs-tag-value {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--vs-w-text-primary);
+  word-break: break-word;
+}
+
+.vs-tag-value.vs-negotiable {
+  color: var(--vs-w-accent);
+}
+
+.vs-tag-value.vs-fixed {
+  color: var(--vs-w-velvet);
+}
+
+/* ─── Zone Histoire ─── */
+.vs-wanted-story {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  /* Titre + zone texte scrollable */
+  overflow: hidden;
+}
+
+.vs-wanted-story-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-accent-dim);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.vs-wanted-story-text {
+  flex: 1;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 12px 15px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-primary);
+}
+
+.vs-wanted-story-text p {
+  margin: 0 0 15px 0;
+  text-align: justify;
+}
+
+.vs-wanted-story-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* Scrollbar personnalisée (style dossier) */
+.vs-wanted-story-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-track {
+  background: var(--vs-w-bg-deep);
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-thumb {
+  background: var(--vs-w-accent-dim);
+  border-radius: 3px;
+}
+
+.vs-wanted-story-text::-webkit-scrollbar-thumb:hover {
+  background: var(--vs-w-accent);
+}
+
+/* ─── Section Liens ─── */
+.vs-wanted-links {
+  padding: 5px 25px 20px 25px;
+  /* Padding haut réduit à 5px */
+  border-top: 1px solid var(--vs-w-border);
+}
+
+.vs-wanted-links-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-accent-dim);
+  text-align: center;
+}
+
+.vs-wanted-link-row {
+  display: flex;
+  gap: 15px;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  background: var(--vs-w-bg-subtle);
+  border: 1px solid var(--vs-w-border);
+  border-left: 2px solid var(--vs-w-accent-dim);
+}
+
+.vs-wanted-link-row:last-child {
+  margin-bottom: 0;
+}
+
+.vs-wanted-link-visual {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 150px;
+}
+
+.vs-wanted-link-visual img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid var(--vs-w-border-accent);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  filter: grayscale(30%) contrast(1.1);
+  transition:
+    filter var(--vs-w-transition),
+    border-color var(--vs-w-transition);
+}
+
+.vs-wanted-link-visual img:hover {
+  filter: grayscale(0%) contrast(1.2);
+  border-color: var(--vs-w-accent-dim);
+}
+
+.vs-wanted-link-name {
+  font-family: var(--vs-w-font-title);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--vs-w-accent);
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.vs-wanted-link-desc {
+  flex: 1;
+  min-width: 0;
+  max-height: 210px;
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-primary);
+}
+
+.vs-wanted-link-desc p {
+  margin: 0 0 10px 0;
+}
+
+.vs-wanted-link-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Scrollbar liens */
+.vs-wanted-link-desc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-track {
+  background: var(--vs-w-bg-deep);
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-thumb {
+  background: var(--vs-w-accent-dim);
+  border-radius: 3px;
+}
+
+.vs-wanted-link-desc::-webkit-scrollbar-thumb:hover {
+  background: var(--vs-w-accent);
+}
+
+/* ─── Bande Inférieure (ID) ─── */
+.vs-wanted-id {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--gold-rgb), 0.05),
+    transparent
+  );
+  color: var(--vs-w-text-muted);
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-align: center;
+  padding: 6px 0;
+  border-top: 1px solid var(--vs-w-border);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   VARIANTE : Texte extensible (sans scroll)
+   Ajouter la classe .vs-wanted-expand au container principal
+   ═══════════════════════════════════════════════════════════════════ */
+.vs-wanted.vs-wanted-expand .vs-wanted-story-text {
+  max-height: none;
+  overflow-y: visible;
+}
+
+/* ─── Note d'Intention / Envies (Nouveau) ─── */
+.vs-wanted-notes {
+  background: var(--vs-w-bg-card);
+  border-top: 1px solid var(--vs-w-border);
+  padding: 25px 30px;
+}
+
+.vs-wanted-notes-title {
+  font-family: var(--vs-w-font-title);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--vs-w-text-muted);
+  /* Plus discret que les titres dorés */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vs-w-border-accent);
+}
+
+.vs-wanted-notes-content {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--vs-w-text-secondary);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — FICHE SCÉNARIO (WANTED)
+   Fin
+   ═══════════════════════════════════════════════════════════════════ */
+/*** FICHE DE LIENS - EXCLUSIF ***/
+/* BLOC : EXCLUSIF / PRIVATE */
+.vs-fl-exclusif {
+  position: relative;
+  background-color: var(--fl-black);
+  border: 1px solid var(--fl-dark);
+  height: 180px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* Variables locales pour garantir le rendu même si non définies globalement */
+  --fl-black: #111111;
+  --fl-dark: #222222;
+  --fl-gold: #d4af37;
+  --fl-text: #c5c5c5;
+  --fl-text-muted: #888888;
+}
+
+.vs-fl-exclusif::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Utilisation d'un SVG pour garantir que les lignes partent bien des angles */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 100'%3E%3Cpath d='M0 0 L100 100 M100 0 L0 100' stroke='rgba(var(--gold-rgb), 0.3)' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  z-index: 1;
+  opacity: 1;
+}
+
+.vs-fl-exclusif-content {
+  position: relative;
+  z-index: 2;
+  background: var(--fl-black);
+  padding: 15px 30px;
+  border: 1px solid var(--fl-gold);
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.vs-fl-exclusif-title {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  color: var(--fl-gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.vs-fl-exclusif-subtitle {
+  font-size: 11px;
+  color: var(--fl-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   VELVET SIN — MOODBOARD (Style Pinterest)
+   Aligné sur le thème Velvet Sin (noir & or)
+   ═══════════════════════════════════════════════════════════════════ */
+/* ─── Variables ─── */
+/* ─── Conteneur Principal ─── */
+.vs-moodboard {
+  max-width: 850px;
+  margin: 40px auto;
+  background: var(--vs-mb-bg-main);
+  border: 1px solid var(--vs-mb-border);
+  font-family: var(--vs-mb-font-body);
+  color: var(--vs-mb-text-primary);
+  box-shadow:
+    0 0 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  position: relative;
+  padding: 30px;
+}
+
+/* Bande supérieure décorative */
+.vs-moodboard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--vs-mb-gold-gradient);
+  opacity: 0.6;
+}
+
+/* ─── Titre du Moodboard ─── */
+.vs-moodboard-title {
+  font-family: var(--vs-mb-font-title);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--vs-mb-accent);
+  margin: 0 0 8px 0;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Sous-titre / description optionnelle */
+.vs-moodboard-subtitle {
+  font-size: 12px;
+  color: var(--vs-mb-text-muted);
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 25px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--vs-mb-accent-dim);
+}
+
+/* ─── Grille Masonry (CSS Columns) ─── */
+.vs-moodboard-grid {
+  column-count: var(--vs-mb-columns);
+  column-gap: 6px;
+}
+
+/* Ignorer les retours à la ligne générés automatiquement par le forum */
+.vs-moodboard-grid br {
+  display: none;
+}
+
+/* ─── Item / Image individuelle ─── */
+.vs-mood-item {
+  break-inside: avoid;
+  margin-bottom: 6px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+/* — Cadre doré extérieur (bordure fine) — */
+.vs-mood-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-image: var(--vs-mb-gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.4));
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity var(--vs-mb-transition);
+}
+
+/* — Cadre doré intérieur (bordure plus épaisse) — */
+.vs-mood-item::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border: 1px solid transparent;
+  border-image: var(--vs-mb-gold-gradient) 1;
+  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.3));
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity var(--vs-mb-transition);
+}
+
+/* Au survol : cadre doré plus visible */
+.vs-mood-item:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(207, 192, 159, 0.6));
+}
+
+.vs-mood-item:hover::after {
+  opacity: 0.8;
+  filter: drop-shadow(0 0 5px rgba(207, 192, 159, 0.5));
+}
+
+/* — Image — */
+.vs-mood-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(0.85) contrast(1.05) saturate(0.9);
+  transition: filter var(--vs-mb-transition);
+}
+
+/* Au survol : image en pleine luminosité (pas de zoom) */
+.vs-mood-item:hover img {
+  filter: brightness(1) contrast(1.1) saturate(1);
+}
+
+/* ─── Légende optionnelle ─── */
+.vs-mood-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  padding: 20px 10px 8px;
+  font-family: var(--vs-mb-font-title);
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--vs-mb-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity var(--vs-mb-transition),
+    transform var(--vs-mb-transition);
+}
+
+/* Afficher la légende au survol */
+.vs-mood-item:hover .vs-mood-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Exception : les br dans le bloc texte sont autorisés */
+.vs-hp-intro p br {
+  display: block !important;
+  height: auto !important;
+  margin: 0.4em 0 0 !important;
+  line-height: normal !important;
+  font-size: inherit !important;
+}
+
+/* ========================================
+   COLONNE GAUCHE — Visuel atmosphérique
+   ======================================== */
+.vs-hp-left {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--hp-border);
+}
+
+.vs-hp-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #0d1520 0%,
+    var(--hp-surface) 50%,
+    #0a0e18 100%
+  );
+}
+
+.vs-hp-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.1) saturate(0.85);
+  border-radius: 10px 0 0 10px;
+  z-index: 1;
+}
+
+/* Cercle décoratif (mauve) */
+.vs-hp-circle {
+  position: absolute;
+  bottom: 10px;
+  right: -25px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid var(--hp-mauve);
+  opacity: 0.2;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 0 0 15px rgba(196, 178, 188, 0.06);
+}
+
+/* Citation en overlay */
+.vs-hp-quote {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  z-index: 4;
+  margin: 0;
+}
+
+.vs-hp-quote p {
+  font-family: var(--hp-font-condensed);
+  font-size: 7.5px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(216, 212, 242, 0.75);
+  margin: 0;
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   COLONNE CENTRALE — Deux sous-colonnes
+   Gauche : titre vertical + texte
+   Droite : staff empilé
+   ======================================== */
+.vs-hp-center {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+  border-right: 1px solid var(--hp-border);
+  overflow: hidden;
+}
+
+/* ─── Sous-colonne gauche : titre vertical + texte ─── */
+.vs-hp-center-text {
+  display: flex;
+  gap: 0;
+  padding: 12px 14px 10px 0;
+  overflow: hidden;
+}
+
+/* Titre "VELVET SIN" en vertical */
+.vs-hp-vertical-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--hp-mauve);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  padding: 0 8px 0 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--hp-border);
+  opacity: 0.7;
+}
+
+/* Contenu texte */
+.vs-hp-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 12px;
+  justify-content: center;
+}
+
+/* ─── Titre principal ─── */
+.vs-hp-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
+  /* Effet iridescent lavande/mauve */
+  background: linear-gradient(
+    90deg,
+    var(--hp-mauve) 0%,
+    var(--hp-lavender) 20%,
+    #b8b0d8 35%,
+    var(--hp-lavender) 50%,
+    var(--hp-mauve) 65%,
+    var(--hp-lavender) 80%,
+    var(--hp-mauve) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hp-shimmer 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(216, 212, 242, 0.1));
+}
+
+/* ─── Bloc d'introduction ─── */
+.vs-hp-intro {
+  margin: 0;
+}
+
+.vs-hp-intro p {
+  font-family: var(--hp-font-body);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--hp-mauve);
+  margin: 0;
+  text-align: justify;
+  /* Préserve les retours à la ligne via <br> */
+  white-space: normal;
+}
+
+/* ========================================
+   Sous-colonne droite : STAFF empilé
+   ======================================== */
+.vs-hp-staff {
+  text-align: center;
+  padding: 10px 12px;
+  border-left: 1px solid var(--hp-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+}
+
+.vs-hp-staff-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--hp-lavender);
+  margin: 0 0 2px;
+}
+
+.vs-hp-staff-subtitle {
+  font-family: var(--hp-font-serif);
+  font-size: 7px;
+  font-style: italic;
+  color: var(--hp-taupe);
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.vs-hp-staff-subtitle a {
+  color: var(--hp-taupe);
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 178, 188, 0.3);
+  transition: color 0.3s ease;
+  background-image: none !important;
+}
+
+.vs-hp-staff-subtitle a:hover {
+  color: var(--hp-lavender);
+}
+
+.vs-hp-overlay-name {
+  font-family: var(--hp-font-cinzel);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+  color: var(--hp-lavender);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.vs-hp-overlay-role {
+  font-family: var(--hp-font-condensed);
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--hp-purple-light);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ========================================
+   COLONNE DROITE — Navigation & Capsules & Socials
+   ======================================== */
+.vs-hp-right {
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Légèrement plus opaque que le wrapper pour donner de la profondeur */
+  background: rgba(10, 20, 35, 0.35);
+  border-left: 1px solid rgba(196, 178, 188, 0.1);
+  border-radius: 0 10px 10px 0;
+  overflow: hidden;
+}
+
+/* ─── Navigation ─── */
+.vs-hp-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vs-hp-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-family: var(--hp-font-condensed);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--hp-lavender);
+  text-decoration: none !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--hp-border);
+  border-radius: 4px;
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    padding-left 0.3s ease;
+}
+
+.vs-hp-nav-link:first-child {
+  border-top: 1px solid var(--hp-border);
+}
+
+.vs-hp-nav-link:hover {
+  color: #fff;
+  background: rgba(216, 212, 242, 0.05);
+  padding-left: 14px;
+}
+
+.vs-hp-nav-marker {
+  font-family: var(--hp-font-body);
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--hp-mauve);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.vs-hp-nav-link:hover .vs-hp-nav-marker {
+  opacity: 1;
+}
+
+/* ─── Capsules d'infos ─── */
+.vs-hp-capsules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  flex: 1;
+  align-content: flex-start;
+}
+
+.vs-hp-capsule {
+  padding: 2px 8px;
+  font-family: var(--hp-font-condensed);
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(216, 212, 242, 0.75);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: default;
+  background: linear-gradient(
+    135deg,
+    var(--hp-purple) 0%,
+    rgba(46, 26, 71, 0.6) 40%,
+    rgba(18, 40, 63, 0.8) 100%
+  );
+  border: 1px solid rgba(74, 45, 110, 0.25);
+}
+
+.vs-hp-capsule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 20% 50%,
+    rgba(74, 45, 110, 0.35) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.vs-hp-capsule:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 10px rgba(46, 26, 71, 0.35),
+    0 0 14px rgba(46, 26, 71, 0.12);
+  border-color: var(--hp-purple-light);
+}
+
+.vs-hp-capsule:hover::before {
+  opacity: 1;
+}
+
+.vs-hp-capsule span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Variantes de fond par capsule */
+.vs-hp-capsule:nth-child(1) {
+  background: linear-gradient(
+    135deg,
+    #1a0e2e 0%,
+    var(--hp-purple) 50%,
+    #0f1825 100%
+  );
+}
+
+.vs-hp-capsule:nth-child(2) {
+  background: linear-gradient(
+    135deg,
+    var(--hp-purple) 0%,
+    #1f1235 50%,
+    #0e1520 100%
+  );
+}
+
+.vs-hp-capsule:nth-child(3) {
+  background: linear-gradient(135deg, #150d28 0%, #2a1845 50%, #101a28 100%);
+}
+
+.vs-hp-capsule:nth-child(4) {
+  background: linear-gradient(
+    135deg,
+    #1d1038 0%,
+    var(--hp-purple) 50%,
+    #0d1520 100%
+  );
+}
+
+.vs-hp-capsule:nth-child(5) {
+  background: linear-gradient(135deg, #231540 0%, #1a0e30 50%, #0e1420 100%);
+}
+
+/* ─── Liens sociaux ─── */
+.vs-hp-socials {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.vs-hp-social-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  padding: 4px 6px;
+  text-decoration: none !important;
+  background-image: none !important;
+  border: 1px solid var(--hp-border);
+  border-radius: 6px;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.vs-hp-social-link:hover {
+  border-color: rgba(196, 178, 188, 0.3);
+  background: rgba(216, 212, 242, 0.04);
+}
+
+.vs-hp-social-icon {
+  font-size: 12px;
+  color: var(--hp-mauve);
+  flex-shrink: 0;
+}
+
+.vs-hp-social-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vs-hp-social-name {
+  font-family: var(--hp-font-condensed);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--hp-lavender);
+}
+
+.vs-hp-social-sub {
+  font-family: var(--hp-font-body);
+  font-size: 7px;
+  color: var(--hp-taupe);
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  .vs-hooks-page {
+    width: 95%;
+    padding: 0 15px;
+  }
+
+  .vs-hooks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vs-vacants-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 780px) {
+  .vs-fiche-liens {
+    margin: 20px 10px;
+  }
+
+  .vs-fl-recherches-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .vs-fl-liens-grid {
+    grid-template-columns: repeat(2, 200px);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .vs-moodboard {
+    margin: 20px 10px;
+    padding: 20px;
+  }
+
+  .vs-moodboard-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .vs-nav-tab {
+    padding: 15px 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .vs-hooks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vs-vacants-grid,
+  .vs-scenarios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vs-scenario-card {
+    width: 100%;
+  }
+
+  .vs-scenario-content {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .vs-qeel-groups {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vs-qeel-stat-number {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vs-fl-liens-grid {
+    grid-template-columns: 200px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .vs-moodboard-grid {
+    column-count: 1;
+  }
+
+  .vs-moodboard-title {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+}

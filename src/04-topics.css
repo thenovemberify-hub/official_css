@@ -1,0 +1,167 @@
+.topicslist_infos .topic-type {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.topicslist_infos .topic-type strong {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 10px;
+  color: var(--taupe);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: rgba(255, 48, 64, 0.08);
+  padding: 3px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 48, 64, 0.2);
+  font-weight: normal;
+}
+
+.topic-meta {
+  font-family: "Share Tech Mono", "Courier New", monospace;
+  font-size: 11px;
+  color: rgba(216, 212, 242, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topic-meta a {
+  color: #c4b2bc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.topic-meta a:hover {
+  color: var(--taupe);
+}
+
+/* REPONSE RAPIDE --- */
+/*supression de la mention "réponse rapide" */
+.quickreply div.h3 {
+  display: none;
+}
+
+/*centrer la réponse rapide*/
+.quickreply {
+  display: flex;
+  justify-content: center;
+}
+
+/* Retire le cadre de la réponse rapide pour les invités */
+#quickreply_content:empty {
+  display: none;
+}
+
+/* ========================================
+   POST LAYOUT & STICKY PROFILE
+   ======================================== */
+/* Post Row Layout (for sticky profile) */
+.post.post_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  /* Critical for sticky to work */
+  gap: 0px 20px;
+  max-width: 980px;
+}
+
+/* Post Message - Fills remaining space */
+.post_message.postbody.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.vs-letter-signature {
+  text-align: right;
+  font-style: italic;
+  margin-top: 45px;
+  font-size: 16px;
+  color: #4a3a2a;
+}
+
+.vs-letter-signature .name {
+  font-family: "Mr De Haviland", cursive;
+  font-size: 55px;
+  color: #3a2a1a;
+  margin-top: 15px;
+  display: inline-block;
+  transform: rotate(-5deg);
+  /* Légère rotation pour effet naturel */
+  opacity: 0.9;
+}
+
+.vs-comfort-signature {
+  margin-top: 25px;
+  text-align: right;
+}
+
+.vs-comfort-signature-line {
+  display: inline-block;
+  width: 200px;
+  border-bottom: 1px solid var(--text-muted);
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.vs-comfort-signature-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Bloc contenant le message prévisualisé */
+.post.row2 {
+  background: rgba(18, 40, 63, 0.45);
+  border: 2px solid var(--contrastLighter) !important;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.post.row2 .inner {
+  padding: 0;
+}
+
+/* Titre du sujet dans la prévisualisation */
+.postbody h3 {
+  font-family: "Cinzel", serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  padding: 14px 20px 6px;
+  margin: 0;
+}
+
+/* Auteur & date */
+.postbody .author {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--textColor);
+  opacity: 0.55;
+  padding: 0 20px 12px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.1);
+  margin: 0;
+}
+
+/* Contenu du message prévisualisé */
+.postbody .content {
+  padding: 18px 20px;
+  line-height: 1.65;
+  color: var(--textColor);
+  font-size: 0.82rem;
+}
+
+/* Signature — séparateur doré subtil */
+.signature_div {
+  border-top: 1px solid rgba(216, 212, 242, 0.15);
+  margin-top: 15px;
+  padding-top: 12px;
+  opacity: 0.7;
+}
+
+/* Masque les <br> disgracieux autour de la prévisualisation */
+.post.row2 + br {
+  display: none;
+}

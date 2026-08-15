@@ -1,0 +1,26 @@
+{
+  "name": "official_css",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build:test": "postcss src/index.css -o test.css",
+    "build:prod": "postcss src/index.css -o main.css",
+    "build": "npm run build:test && npm run build:prod",
+    "watch": "postcss src/index.css -o test.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^8.0.5",
+    "cssnano-preset-advanced": "^8.0.5",
+    "postcss": "^8.5.26",
+    "postcss-cli": "^11.0.1",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-import": "^17.0.0",
+    "postcss-sort-media-queries": "^6.7.1",
+    "prettier": "^3.9.6"
+  }
+}
