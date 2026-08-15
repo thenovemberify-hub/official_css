@@ -1,0 +1,51 @@
+/* ============================================================================
+ * SÉLECTEUR DE THÈMES (VELVET THEME SWITCHER)
+ * ============================================================================ */
+.velvet-theme-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: var(--radius-pill, 100px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.velvet-theme {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    position: relative;
+    transition: transform var(--transition-fast, 150ms ease),
+                border-color var(--transition-fast, 150ms ease),
+                box-shadow var(--transition-fast, 150ms ease);
+}
+
+.velvet-theme:hover {
+    transform: scale(1.15);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.velvet-theme.active {
+    border-color: var(--accentClr, #d4af37);
+    box-shadow: 0 0 10px var(--accentClr, rgba(212, 175, 55, 0.7));
+    transform: scale(1.1);
+}
+
+/* Couleurs par défaut des pastilles de thème si non stylées en inline */
+.velvet-theme[data-t="bleu_nuit"],
+.velvet-theme[data-theme="bleu_nuit"] {
+    background: #12283f;
+}
+
+.velvet-theme[data-t="vert_foret"],
+.velvet-theme[data-theme="vert_foret"] {
+    background: #0f281e;
+}

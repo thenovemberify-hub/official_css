@@ -1,0 +1,75 @@
+/* ============================================================================
+ * THÈME 1 : BLEU NUIT (Thème par défaut)
+ * ============================================================================ */
+:root,
+[data-theme="bleu_nuit"] {
+    --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
+    --bg-img: url("https://imagesend.fr/uploads/20260501/ac66a5fe38faf9e4d9ee58a63fc5143461c20f58.jpg");
+    --bg-blur: none;
+    --fond-category: #12283f;
+    --midnight-purple: #2e1a47;
+    --taupe: #a29587;
+    --neutral: #efefef;
+    --thistle: #c4b2bc;
+    --neutralDark: #f2f2f2;
+    --neutralDarker: #d9d9d9;
+    --dark: #b3b3b3;
+    --subcategory-dark: #e6e6e6;
+    --bg-soft: #4d6f92;
+    --bg-dim: #345272;
+    --bg-darker: #1a3b60;
+    --bg-black: #0d2241;
+    --bg-warm-deep: #120a0a;
+    --bg-warm-soft: #2d1b1b;
+    --textColor: #c7c5cd;
+    --textColorAccent: #e5e5f0;
+    --text-soft: #c5c5c5;
+    --text-muted: #6a6560;
+    --text-cream: #faf6ed;
+
+    --contrast: #e5e5f0;
+    --contrastLight: #f4f4f4;
+    --contrastLighter: #40485e;
+    --white: #ffffff;
+    --accentClr: #d4af37;
+    --accentClrDark: #d4af37;
+    --gold-rgb: 212, 175, 55;
+    --borderGold: #d4af37;
+
+    --gold-accent: #eaba6b;
+    --gold-light: #cfc09f;
+    --gold-medium: #c5a059;
+    --gold-warm: #b8b0a0;
+    --gold-bronze: #8a6e36;
+    --gold-dark: #634f2c;
+    --gold-darker: #3a2c0f;
+    --gold-cream: #ffecb3;
+    --gold-mid: #8a7a30;
+
+    --qeel-dark: #0a0e14;
+    --qeel-surface: #12283f;
+    --qeel-border: rgba(196, 178, 188, 0.15);
+    --qeel-lavender: #d8d4f2;
+    --qeel-mauve: #c4b2bc;
+    --qeel-taupe: #a29587;
+    --qeel-purple: #2e1a47;
+    --qeel-purple-light: #4a2d6e;
+    --qeel-purple-dim: rgba(46, 26, 71, 0.5);
+    --qeel-text-bright: #eae8f5;
+    --qeel-glass: rgba(18, 40, 63, 0.45);
+    --qeel-glass-deep: rgba(8, 16, 28, 0.35);
+
+    --hp-dark: #0a0e14;
+    --hp-darker: #060a10;
+    --hp-surface: #12283f;
+    --hp-border: rgba(196, 178, 188, 0.15);
+    --hp-lavender: #d8d4f2;
+    --hp-mauve: #c4b2bc;
+    --hp-taupe: #a29587;
+    --hp-purple: #2e1a47;
+    --hp-purple-light: #4a2d6e;
+    --hp-purple-dim: rgba(46, 26, 71, 0.5);
+    --hp-text: #d8d4f2;
+    --hp-text-dim: #a29587;
+    --hp-text-bright: #eae8f5;
+}

@@ -1,6 +1,20 @@
-/* Fichier généré automatiquement — Velvet Sin */
+/* ============================================================================
+ * VELVET SIN — INDEX CSS
+ * ============================================================================ */
 
+/* 1. Imports de polices externes */
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:ital@0;1&family=Crimson+Text:wght@400;700&family=Cinzel:wght@700&family=DM+Serif+Display:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Special+Elite&display=swap");
+
+/* 2. Variables & Thèmes */
 @import "./00-variables.css";
+@import "./themes/bleu_nuit.css";
+@import "./themes/vert_foret.css";
+@import "./themes/theme-switcher.css";
+
+/* 3. Structure & Composants */
 @import "./01-base.css";
 @import "./02-layout.css";
 @import "./03-categories.css";

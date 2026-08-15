@@ -7,7 +7,6 @@
   "scripts": {
     "build:test": "postcss src/index.css -o test.css",
     "build:prod": "postcss src/index.css -o main.css",
-    "build": "npm run build:test && npm run build:prod",
     "watch": "postcss src/index.css -o test.css --watch"
   },
   "keywords": [],
