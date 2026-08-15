@@ -4,6 +4,7 @@
   height: 35px;
   border-radius: 5px;
   aspect-ratio: 1;
+
   & img {
     width: 100%;
     aspect-ratio: 1;
@@ -236,7 +237,7 @@
 /* Section 4: Portrait Image Box */
 .forum_avatar {
   width: 180px;
-  height: 100%;
+  height: 115%;
 }
 
 .forum_avatar img {
@@ -506,19 +507,17 @@
    1. MENU DE LA BOÎTE (#privmsgs-menu)
    ============================ */
 /* Séparateur doré entre les éléments */
-#privmsgs-menu li + li::before {
+#privmsgs-menu li+li::before {
   content: "";
   position: absolute;
   left: 0;
   top: 15%;
   height: 70%;
   width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--gold-accent),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      transparent,
+      var(--gold-accent),
+      transparent);
 }
 
 /* Masque les icônes par défaut de Forumactif */
@@ -624,7 +623,7 @@
   /* Cache le texte brut comme "Hors ligne" */
 }
 
-.profile_infos > strong {
+.profile_infos>strong {
   position: absolute;
   text-align: center;
   top: 65px;
