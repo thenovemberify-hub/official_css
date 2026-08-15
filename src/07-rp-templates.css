@@ -3987,9 +3987,18 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   bottom: 8px;
   z-index: 4;
   margin: 0;
+  pointer-events: none;
 }
 
 .vs-hp-quote p {
+  font-size: 0 !important;
+  margin: 0;
+  line-height: 0;
+}
+
+.vs-hp-quote p::before {
+  content: var(--hp-quote-text);
+  display: block;
   font-family: var(--hp-font-condensed);
   font-size: 7.5px;
   font-weight: 700;
@@ -3998,7 +4007,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--hp-text);
-  margin: 0;
+  white-space: pre-line;
   text-shadow:
     0 1px 4px rgba(0, 0, 0, 0.9),
     0 0 12px rgba(0, 0, 0, 0.5);
