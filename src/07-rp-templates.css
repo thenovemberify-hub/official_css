@@ -1133,16 +1133,33 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    GROUPES DU FORUM (THE DEALER'S HAND)
    Inspiré du Mystic Swan & Adapté Velvet Sin
    ======================================== */
+/* ========================================
+   GROUPES DU FORUM (THE DEALER'S HAND)
+   Inspiré du Mystic Swan & Adapté Velvet Sin
+   ======================================== */
+.vs-group-card br,
+.vs-group-tarot br,
+.vs-group-info br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
 .vs-group-card {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 22px;
-  margin: 25px 0;
-  padding: 16px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: stretch;
+  margin: 20px 0;
+  padding: 14px 16px;
   background: var(--surface-glass-dim);
   border: 1px solid var(--contrastLighter);
   border-radius: 6px;
   position: relative;
+  box-sizing: border-box;
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -1155,20 +1172,23 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 /* ─── Colonne Gauche : Carte de Tarot ─── */
 .vs-group-tarot {
+  width: 175px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .vs-group-tarot .vs-flip-card,
 .vs-flip-card {
-  width: 185px;
-  height: 275px;
+  width: 175px;
+  height: 260px;
   margin: 0 auto;
   perspective: 1000px;
   cursor: pointer;
   background: transparent;
+  flex-shrink: 0;
 }
 
 .vs-flip-inner {
@@ -1215,7 +1235,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 10px;
   box-sizing: border-box;
   color: var(--contrastLight);
 }
@@ -1228,14 +1248,14 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 8px;
   box-sizing: border-box;
-  gap: 8px;
+  gap: 6px;
 }
 
 .vs-tarot-num {
   font-family: "Cinzel", serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--accentClr);
   letter-spacing: 2px;
@@ -1243,7 +1263,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-tarot-name {
   font-family: "Cinzel", serif;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1253,10 +1273,10 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 .vs-tarot-motto {
   font-family: "Playfair Display", serif;
   font-style: italic;
-  font-size: 10.5px;
+  font-size: 10px;
   color: var(--taupe);
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 /* Citation sous le tarot */
@@ -1269,44 +1289,46 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-group-tarot-quote span {
   font-family: "Cinzel", serif;
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   color: var(--accentClr);
 }
 
 .vs-group-tarot-quote em {
   font-family: "Playfair Display", serif;
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--taupe);
 }
 
 /* ─── Colonne Droite : Lore & Bandeau ─── */
 .vs-group-info {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
-  min-height: 275px;
+  gap: 10px;
 }
 
 .vs-group-desc {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(var(--gold-rgb), 0.12);
   border-radius: 4px;
-  padding: 16px 20px;
+  padding: 14px 16px;
   flex: 1;
-  overflow-y: auto;
-  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .vs-group-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -1314,9 +1336,9 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   font-family: "Cinzel", serif;
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  padding: 2px 6px;
+  padding: 2px 5px;
   border-radius: 2px;
   background: var(--surface-glass);
   border: 1px solid rgba(var(--gold-rgb), 0.25);
@@ -1325,24 +1347,24 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-group-role {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--taupe);
 }
 
 .vs-group-desc p {
   margin: 0;
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 12.5px;
+  line-height: 1.6;
   color: var(--textColor);
   text-align: justify;
 }
 
 /* Bandeau Titre de Groupe */
 .vs-group-banner {
-  padding: 12px 18px;
+  padding: 10px 16px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--contrastLighter);
@@ -1359,7 +1381,7 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-group-title {
   font-family: "Cinzel", serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1368,9 +1390,9 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
 
 .vs-group-subtitle {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   opacity: 0.8;
 }
