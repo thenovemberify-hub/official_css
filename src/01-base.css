@@ -9,6 +9,7 @@
  * font-smoothing pour un rendu macOS impeccable. */
 body {
   background: var(--bg-img);
+  background-position: var(--bg-position, center top);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

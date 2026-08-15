@@ -58,6 +58,7 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
 :root {
     --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
     --bg-img: url("https://imagesend.fr/uploads/20260501/ac66a5fe38faf9e4d9ee58a63fc5143461c20f58.jpg");
+    --bg-position: center top;
     --bg-blur: none;
     --fond-category: #12283f;
     --midnight-purple: #2e1a47;

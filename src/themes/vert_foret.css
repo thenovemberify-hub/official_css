@@ -4,6 +4,7 @@
 [data-theme="vert_foret"] {
     --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
     --bg-img: url("https://imagesend.fr/uploads/20260815/14cbb47cf4fb88a45b945ea8e543df6683d610db.jpg");
+    --bg-position: center 25%;
     --bg-blur: none;
     --fond-category: #0f281e;
     --midnight-purple: #143d2b;
