@@ -1130,57 +1130,75 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
    PAGE FAQ - END
    ======================================== */
 /* ========================================
-   PAGE CARTE - START
+   GROUPES DU FORUM (THE DEALER'S HAND)
+   Inspiré du Mystic Swan & Adapté Velvet Sin
    ======================================== */
-/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
-.vs-flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 500px;
-  perspective: 1000px;
-  margin: 20px auto;
-  cursor: pointer;
-  /* Indique qu'on peut interagir */
+.vs-group-card {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 22px;
+  margin: 25px 0;
+  padding: 16px 20px;
+  background: var(--surface-glass-dim);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 6px;
+  position: relative;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* --- L'INTERIEUR QUI BOUGE --- */
+.vs-group-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Colonne Gauche : Carte de Tarot ─── */
+.vs-group-tarot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.vs-group-tarot .vs-flip-card,
+.vs-flip-card {
+  width: 185px;
+  height: 275px;
+  margin: 0 auto;
+  perspective: 1000px;
+  cursor: pointer;
+  background: transparent;
+}
+
 .vs-flip-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  /* Durée de l'animation (0.8s est fluide) */
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
 
-/* L'ACTION : Quand on survole, on tourne */
-.vs-flip-card:hover .vs-flip-inner {
+.vs-flip-card:hover .vs-flip-inner,
+.vs-flip-card.is-flipped .vs-flip-inner {
   transform: rotateY(180deg);
 }
 
-/* --- LES DEUX FACES (RECTO / VERSO) --- */
 .vs-flip-front,
 .vs-flip-back {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+  border-radius: 4px;
+  overflow: hidden;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  /* Ombre portée */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
 }
 
-/* --- RECTO : L'IMAGE --- */
+/* Recto (Illustration) */
 .vs-flip-front {
   background-color: #000;
-  overflow: hidden;
-  line-height: 0;
-  border-radius: 5px;
-  /* On garde les coins ronds */
 }
 
 .vs-flip-front img {
@@ -1188,59 +1206,242 @@ details.vs-faq-item[open] summary.vs-faq-title::before {
   height: 100%;
   object-fit: cover;
   display: block;
-  margin: 0;
-  /* Sécurité supplémentaire */
-  border-radius: 5px;
 }
 
-/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
+/* Verso (Sceau / Citation / Fond texturé) */
 .vs-flip-back {
-  background-color: #050505;
-  border: 1px solid var(--gold-medium);
-  color: #e0e0e0;
   transform: rotateY(180deg);
+  background: radial-gradient(circle at 50% 50%, #16161f 0%, #08080c 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  color: var(--contrastLight);
+}
+
+.vs-tarot-back-inner {
+  border: 1px dashed rgba(var(--gold-rgb), 0.3);
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 30px;
+  justify-content: center;
+  padding: 10px;
   box-sizing: border-box;
-  /* Important pour que le padding ne casse pas la taille */
+  gap: 8px;
 }
 
-/* TYPOGRAPHIE DU DOS */
-.vs-back-title {
-  font-family: "Playfair Display", serif;
-  color: var(--gold-medium);
-  font-size: 24px;
+.vs-tarot-num {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accentClr);
+  letter-spacing: 2px;
+}
+
+.vs-tarot-name {
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-  width: 100%;
-  /* La ligne prend toute la largeur */
+  letter-spacing: 2px;
+  color: var(--contrastLight);
 }
 
-.vs-back-desc {
+.vs-tarot-motto {
   font-family: "Playfair Display", serif;
-  /* Ou ta police de corps */
-  font-size: 14px;
-  line-height: 1.6;
+  font-style: italic;
+  font-size: 10.5px;
+  color: var(--taupe);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Citation sous le tarot */
+.vs-group-tarot-quote {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-group-tarot-quote span {
+  font-family: "Cinzel", serif;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accentClr);
+}
+
+.vs-group-tarot-quote em {
+  font-family: "Playfair Display", serif;
+  font-size: 10px;
+  color: var(--taupe);
+}
+
+/* ─── Colonne Droite : Lore & Bandeau ─── */
+.vs-group-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 275px;
+}
+
+.vs-group-desc {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(var(--gold-rgb), 0.12);
+  border-radius: 4px;
+  padding: 16px 20px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+.vs-group-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.vs-group-tag {
+  font-family: "Cinzel", serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--surface-glass);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  color: var(--accentClr);
+}
+
+.vs-group-role {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.vs-group-desc p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--textColor);
   text-align: justify;
 }
 
-/* ========================================
-   PAGE CARTE - END
-   ======================================== */
-/* GROUPES */
-/* --- LE CONTENEUR DE LA CARTE (La scène 3D) --- */
-/* --- L'INTERIEUR QUI BOUGE --- */
-/* L'ACTION : Quand on survole, on tourne */
-/* --- LES DEUX FACES (RECTO / VERSO) --- */
-/* --- RECTO : L'IMAGE --- */
-/* --- VERSO : LE TEXTE (Style "Velvet Sin") --- */
-/* TYPOGRAPHIE DU DOS */
-/* FIN GROUPES */
+/* Bandeau Titre de Groupe */
+.vs-group-banner {
+  padding: 12px 18px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--contrastLighter);
+  border-left-width: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: transform 0.2s ease;
+}
+
+.vs-group-banner:hover {
+  transform: translateX(3px);
+}
+
+.vs-group-title {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.vs-group-subtitle {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ─── Couleurs Signature par Groupe ─── */
+.vs-group--emperor .vs-group-banner {
+  border-left-color: #b71c1c;
+}
+.vs-group--emperor .vs-group-title {
+  color: #e57373;
+}
+
+.vs-group--star .vs-group-banner {
+  border-left-color: #d63384;
+}
+.vs-group--star .vs-group-title {
+  color: #f06292;
+}
+
+.vs-group--devil .vs-group-banner {
+  border-left-color: #e67e22;
+}
+.vs-group--devil .vs-group-title {
+  color: #ffb74d;
+}
+
+.vs-group--fool .vs-group-banner {
+  border-left-color: #00b0f0;
+}
+.vs-group--fool .vs-group-title {
+  color: #81d4fa;
+}
+
+.vs-group--magician .vs-group-banner {
+  border-left-color: #9c27b0;
+}
+.vs-group--magician .vs-group-title {
+  color: #ce93d8;
+}
+
+.vs-group--world .vs-group-banner {
+  border-left-color: #d4af37;
+}
+.vs-group--world .vs-group-title {
+  color: #ffd54f;
+}
+
+/* Rétro-compatibilité pour l'ancien verso .vs-back-title */
+.vs-back-title {
+  font-family: "Cinzel", serif;
+  color: var(--accentClr);
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.3);
+}
+
+.vs-back-desc {
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .vs-group-card {
+    grid-template-columns: 1fr;
+  }
+}
 /* BOTTIN */
 /* --- BOTTIN VELVET SIN (Version Or & Lignes Fines) --- */
 .vs-bottin-container {
