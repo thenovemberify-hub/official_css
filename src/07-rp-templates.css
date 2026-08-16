@@ -5981,11 +5981,14 @@ speech {
 
 /* Zone de code à copier pour les membres (Optionnel dans le post admin) */
 .vs-blueprint-codebox {
-  background: #09080c;
-  border: 1px solid rgba(var(--gold-rgb), 0.2);
-  border-radius: 6px;
+  background: var(--surface-glass-deep, rgba(0, 0, 0, 0.6));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  border-radius: 8px;
   padding: 12px;
   margin-top: 15px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .vs-blueprint-codebox-header {
@@ -6005,11 +6008,11 @@ speech {
 .vs-blueprint-codebox pre {
   width: 100%;
   box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--surface-glass-dim, rgba(0, 0, 0, 0.45));
   border: 1px solid var(--contrastLighter);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 10px;
-  color: var(--accentClr);
+  color: var(--contrastLight);
   font-family: "Courier New", monospace;
   font-size: 11px;
   line-height: 1.4;
@@ -6017,6 +6020,15 @@ speech {
   height: 80px;
   overflow: auto;
   white-space: pre;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.vs-blueprint-codebox textarea:focus {
+  outline: none;
+  border-color: var(--accentClr);
+  background: var(--surface-glass, rgba(0, 0, 0, 0.55));
 }
 
 /* Pied de page du Blueprint */
@@ -6039,6 +6051,57 @@ speech {
 
 .vs-blueprint-footer strong {
   color: var(--accentClr);
+}
+
+/* Options / Choix à cocher (Recensement / Choix binaire) */
+.vs-blueprint-choices {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.vs-blueprint-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 20px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--taupe);
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.vs-blueprint-choice.vs-selected {
+  background: rgba(var(--gold-rgb), 0.15);
+  border-color: var(--accentClr);
+  color: var(--accentClr);
+  box-shadow: 0 0 12px rgba(var(--gold-rgb), 0.2);
+}
+
+.vs-blueprint-choice.vs-danger.vs-selected {
+  background: rgba(229, 57, 53, 0.15);
+  border-color: #e57373;
+  color: #e57373;
+}
+
+.vs-blueprint-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid currentColor;
+  font-size: 8px;
+  line-height: 1;
 }
 
 @media (max-width: 600px) {
