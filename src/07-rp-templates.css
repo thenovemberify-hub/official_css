@@ -4446,8 +4446,8 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-wanted-field {
   display: flex;
-  align-items: baseline;
-  padding: 4px 0;
+  align-items: center;
+  padding: 5px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   gap: 12px;
 }
@@ -4467,6 +4467,12 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: var(--textColor);
   font-size: 13px;
   flex: 1;
+}
+
+.vs-pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .vs-negotiable {
@@ -4529,6 +4535,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-wanted-link-card {
   display: flex;
+  flex-direction: row;
   gap: 18px;
   padding: 14px 16px;
   margin-bottom: 14px;
@@ -4537,6 +4544,19 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   border-left: 3px solid var(--accentClr);
   border-radius: 4px;
   align-items: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.vs-wanted-link-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--gold-rgb), 0.4);
+}
+
+/* Alternance automatique des liens (gauche / droite) */
+.vs-wanted-link-card:nth-of-type(even) {
+  flex-direction: row-reverse;
+  border-left: 1px solid var(--contrastLighter);
+  border-right: 3px solid var(--accentClr);
 }
 
 .vs-wanted-link-card:last-child {
