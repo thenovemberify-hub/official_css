@@ -3713,257 +3713,250 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
    FIN Fiche de présentation style noir & or
    ======================================== */
 /* ========================================
-   VELVET SIN - FICHE DE LIENS V2
-   Style élégant, minimaliste, dark mode
+   VELVET SIN - FICHE DE RELATIONS & RECHERCHES (THE SOCIAL WEB)
+   Cartes 3D interactives & alternance gauche/droite
    ======================================== */
-/* Variables */
-/* Container Principal */
-.vs-fiche-liens {
-  max-width: var(--fl-width);
-  margin: 40px auto;
-  font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
-  color: var(--fl-text);
+.vs-relations-wrapper {
+  max-width: 800px;
+  margin: 35px auto;
 }
 
-/* Titre de Section */
-.vs-fl-section-title {
-  font-family: "Cinzel", "Times New Roman", serif;
-  font-size: 14px;
-  color: var(--fl-gold);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  text-align: center;
+.vs-relations-wrapper br,
+.vs-relation-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+/* Carte de Relation Individuelle */
+.vs-relation-card {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 8px;
+  padding: 22px 26px;
   margin-bottom: 25px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--fl-gold-dim);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.1);
+  box-sizing: border-box;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* ========================================
-   BLOC 1 : RECHERCHES (CASTING)
-   ======================================== */
-.vs-fl-recherches {
-  background: var(--fl-black);
-  border: 1px solid var(--fl-dark);
-  padding: 30px;
-  margin-bottom: 20px;
+.vs-relation-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--gold-rgb), 0.35);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
 }
 
-.vs-fl-recherches-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* Alternance automatique : cartes paires inversées */
+.vs-relation-card:nth-of-type(even) {
+  flex-direction: row-reverse;
 }
 
-.vs-fl-recherche-card {
-  background: var(--fl-dark);
-  border: 1px solid var(--fl-gold-dim);
-  padding: 25px 20px;
-  text-align: center;
-  transition: border-color 0.3s ease;
+/* ─── Avatar 3D Flip Card ─── */
+.vs-rel-avatar-3d {
+  width: 170px;
+  height: 255px;
+  flex-shrink: 0;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.vs-fl-recherche-card:hover {
-  border-color: var(--fl-gold);
-}
-
-.vs-fl-recherche-titre {
-  font-family: "Cinzel", "Times New Roman", serif;
-  font-size: 13px;
-  color: var(--fl-gold);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.vs-fl-recherche-desc {
-  font-size: 12px;
-  color: var(--fl-text-muted);
-  line-height: 1.7;
-  font-style: italic;
-}
-
-/* ========================================
-   BLOC 2 : SCÉNARIOS (INTRIGUES)
-   ======================================== */
-.vs-fl-scenarios {
-  background: var(--fl-black);
-  border: 1px solid var(--fl-dark);
-  padding: 30px;
-  margin-bottom: 20px;
-}
-
-.vs-fl-scenarios-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.vs-fl-scenarios-list li {
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 13px;
-  line-height: 1.8;
-}
-
-.vs-fl-scenarios-list li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.vs-fl-scenarios-list li::before {
-  content: "◆";
-  color: var(--fl-gold);
-  margin-right: 12px;
-  font-size: 8px;
-  vertical-align: middle;
-}
-
-/* ========================================
-   BLOC 3 : LES LIENS (GALERIE FLIP)
-   ======================================== */
-.vs-fl-liens {
-  background: var(--fl-black);
-  border: 1px solid var(--fl-dark);
-  padding: 30px;
-  margin-bottom: 20px;
-}
-
-.vs-fl-liens-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 200px);
-  gap: 25px;
-  justify-content: center;
-}
-
-/* Carte avec effet Fade (Image disparaît au survol) */
-.vs-fl-lien-card {
-  width: 200px;
-  height: 320px;
+.vs-rel-avatar-inner {
   position: relative;
-  border: 1px solid var(--fl-gold-dim);
-}
-
-.vs-fl-lien-inner {
   width: 100%;
   height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
-.vs-fl-lien-front,
-.vs-fl-lien-back {
+.vs-rel-avatar-3d:hover .vs-rel-avatar-inner,
+.vs-rel-avatar-3d.is-flipped .vs-rel-avatar-inner {
+  transform: rotateY(180deg);
+}
+
+.vs-rel-avatar-front,
+.vs-rel-avatar-back {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  transition: opacity 0.4s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Face Avant : Avatar (Au-dessus) */
-.vs-fl-lien-front {
-  z-index: 2;
-  opacity: 1;
-  background: var(--fl-dark);
+.vs-rel-avatar-front {
+  border: 2px solid rgba(var(--gold-rgb), 0.35);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  background: #000;
 }
 
-.vs-fl-lien-front img {
+.vs-rel-avatar-front img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Face Arrière : Texte (En dessous) */
-.vs-fl-lien-back {
-  z-index: 1;
-  opacity: 1;
-  /* Toujours visible, mais caché par l'image */
-  background: var(--fl-dark);
-  padding: 20px 15px;
-  overflow-y: auto;
+.vs-rel-avatar-back {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(var(--gold-rgb), 0.15) 0%,
+    #06090e 100%
+  );
+  border: 2px solid var(--accentClr);
+  transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
-}
-
-/* Au survol : l'image disparaît */
-.vs-fl-lien-card:hover .vs-fl-lien-front {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.vs-fl-lien-back::-webkit-scrollbar {
-  width: 4px;
-}
-
-.vs-fl-lien-back::-webkit-scrollbar-track {
-  background: var(--fl-black);
-}
-
-.vs-fl-lien-back::-webkit-scrollbar-thumb {
-  background: var(--fl-gold-dim);
-  border-radius: 2px;
-}
-
-.vs-fl-lien-nom {
-  font-family: "Cinzel", "Times New Roman", serif;
-  font-size: 13px;
-  color: var(--fl-gold);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   text-align: center;
-  margin-bottom: 8px;
-  letter-spacing: 1px;
-  font-weight: 600;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-.vs-fl-lien-type {
-  font-size: 10px;
-  color: var(--fl-text-muted);
-  text-align: center;
-  text-transform: uppercase;
+.vs-rel-back-seal {
+  font-size: 18px;
+  color: var(--accentClr);
+  margin-bottom: 6px;
+}
+
+.vs-rel-back-status {
+  font-family: "Cinzel", serif;
+  font-size: 9.5px;
+  font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--fl-gold-dim);
+  text-transform: uppercase;
+  color: var(--contrastLight);
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.25);
+  padding-bottom: 6px;
+  width: 85%;
 }
 
-.vs-fl-lien-texte {
-  font-size: 11px;
-  color: var(--fl-text);
-  line-height: 1.7;
-  text-align: justify;
-  flex: 1;
-}
-
-/* ========================================
-   BLOC 4 : HORS-CHAMP (MÉTA)
-   ======================================== */
-.vs-fl-horschamp {
-  background: var(--fl-dark);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 30px;
-}
-
-.vs-fl-horschamp .vs-fl-section-title {
-  color: var(--fl-text-muted);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  font-size: 12px;
-  letter-spacing: 3px;
-}
-
-.vs-fl-horschamp-content {
-  font-size: 12px;
-  line-height: 1.9;
-  color: var(--fl-text-muted);
+.vs-rel-back-quote {
+  font-family: "Playfair Display", serif;
   font-style: italic;
-  text-align: center;
+  font-size: 11.5px;
+  color: var(--taupe);
+  line-height: 1.4;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-/* FIX FORUMACTIF : Masquer les sauts de lignes automatiques qui cassent la grille */
-.vs-fl-recherches br,
-.vs-fl-liens br {
-  display: none;
+/* ─── Contenu / Description de la Relation ─── */
+.vs-rel-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vs-rel-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vs-rel-badge {
+  font-family: "Cinzel", serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--surface-glass);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  color: var(--accentClr);
+}
+
+.vs-rel-celeb {
+  font-family: "Playfair Display", serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--taupe);
+}
+
+.vs-rel-name {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--contrastLight);
+  margin: 2px 0 4px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+.vs-rel-sub {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--accentClr);
+  margin-bottom: 10px;
+}
+
+.vs-rel-text {
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--textColor);
+  text-align: justify;
+  margin: 0 0 12px;
+}
+
+.vs-rel-footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.12);
+  padding-top: 8px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.vs-rel-footer span strong {
+  color: var(--accentClr);
+}
+
+@media (max-width: 680px) {
+  .vs-relation-card,
+  .vs-relation-card:nth-of-type(even) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .vs-rel-text {
+    text-align: justify;
+  }
+  .vs-rel-meta,
+  .vs-rel-footer {
+    justify-content: center;
+  }
 }
 
 /* Variables */
