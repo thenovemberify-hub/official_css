@@ -438,12 +438,12 @@
    ======================================== */
 /* --- CONFIGURATION GLOBALE --- */
 .vs-faq-wrapper {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
-  font-family: "Playfair Display", serif;
-  background: #050505;
-  border: 1px solid var(--bg-dim);
-  padding: 20px;
+  font-family: var(--font, "Inter", sans-serif);
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 /* La Lettre (A, B, C...) */
