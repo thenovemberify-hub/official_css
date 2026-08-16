@@ -2907,12 +2907,42 @@ div.posts input[type="checkbox"] {
 .vs-sms-signal {
   color: var(--accentClr);
   font-size: 8px;
+  letter-spacing: 1px;
 }
 
 .vs-sms-battery {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.vs-battery-icon {
+  display: inline-block;
+  width: 14px;
+  height: 7px;
+  border: 1px solid var(--taupe);
+  border-radius: 2px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.vs-battery-icon::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 1.5px;
+  width: 1.5px;
+  height: 3px;
+  background: var(--taupe);
+  border-radius: 0 1px 1px 0;
+}
+
+.vs-battery-level {
+  display: block;
+  height: 100%;
+  width: 75%;
+  background: var(--accentClr);
+  border-radius: 1px;
 }
 
 /* ─── En-tête Contact ─── */
@@ -2981,9 +3011,21 @@ div.posts input[type="checkbox"] {
 
 .vs-sms-actions {
   display: flex;
-  gap: 12px;
-  color: var(--taupe);
-  font-size: 13px;
+  align-items: center;
+  gap: 8px;
+}
+
+.vs-sms-badge-secure {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(var(--gold-rgb), 0.08);
 }
 
 /* ─── Fil de discussion (Thread) ─── */
