@@ -1309,111 +1309,187 @@
   text-align: right;
 }
 
-/* --- LE BLOC QUESTION --- */
+/* ========================================
+   PAGE FAQ (THE BRIEFING / ACCORDÉONS PRESTIGE)
+   ======================================== */
+.vs-faq-wrapper {
+  margin: 20px 0;
+}
+
+.vs-faq-wrapper br,
+.vs-faq-item br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+/* Bloc Question / Accordéon */
 details.vs-faq-item {
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--bg-dim);
-  transition: all 0.3s ease;
+  background: var(--surface-glass-dim);
+  border: 1px solid var(--contrastLighter);
+  border-left: 3px solid rgba(var(--gold-rgb), 0.25);
+  border-radius: 5px;
+  margin: 10px 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-details.vs-faq-item:last-child {
-  border-bottom: none;
+details.vs-faq-item:hover {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  border-left-color: var(--accentClr);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* --- LE TITRE (SUMMARY) --- */
+details.vs-faq-item[open] {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  border-left-color: var(--accentClr);
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* En-tête de la Question */
 summary.vs-faq-title {
   position: relative;
-  display: block;
-  padding: 15px 40px 15px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 45px 14px 18px;
   cursor: pointer;
   font-family: "Cinzel", serif;
-  font-size: 13px;
-  /* Un peu plus fin */
-  letter-spacing: 1px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+  color: var(--contrastLight);
   list-style: none;
+  user-select: none;
   transition:
     color 0.3s ease,
     padding 0.3s ease;
 }
 
-/* Cache le marqueur par défaut */
 summary.vs-faq-title::-webkit-details-marker {
   display: none;
 }
 
-/* --- L'ICÔNE DESSINÉE EN CSS (Barres fines) --- */
-/* La barre horizontale (toujours visible) */
+/* Icône plus / moins dorée animée */
 summary.vs-faq-title::after {
   content: "";
   position: absolute;
-  right: 10px;
+  right: 18px;
   top: 50%;
   width: 12px;
-  height: 1px;
-  background-color: #555;
-  /* Gris au repos */
+  height: 1.5px;
+  background-color: var(--accentClr);
   transform: translateY(-50%);
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
-/* La barre verticale (qui va disparaître/tourner) */
 summary.vs-faq-title::before {
   content: "";
   position: absolute;
-  right: 15.5px;
+  right: 23.25px;
   top: 50%;
-  width: 1px;
+  width: 1.5px;
   height: 12px;
-  /* Hauteur */
-  background-color: #555;
+  background-color: var(--accentClr);
   transform: translateY(-50%);
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.7;
 }
 
-/* --- ETAT SURVOL (HOVER) --- */
 summary.vs-faq-title:hover {
-  color: var(--gold-medium);
-  padding-left: 18px;
+  color: var(--accentClr);
+  padding-left: 22px;
 }
 
 summary.vs-faq-title:hover::after,
 summary.vs-faq-title:hover::before {
-  background-color: var(--gold-medium);
-  /* Les barres deviennent dorées */
+  opacity: 1;
+  box-shadow: 0 0 6px rgba(var(--gold-rgb), 0.5);
 }
 
-/* --- ETAT OUVERT (OPEN) --- */
+/* État ouvert : rotation de la barre verticale pour former un tiret */
 details.vs-faq-item[open] summary.vs-faq-title {
-  color: var(--gold-medium);
-  padding-left: 18px;
+  color: var(--accentClr);
+  padding-left: 20px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+details.vs-faq-item[open] summary.vs-faq-title::before {
+  transform: translateY(-50%) rotate(90deg);
+  opacity: 0;
 }
 
 details.vs-faq-item[open] summary.vs-faq-title::after {
-  background-color: var(--gold-medium);
+  opacity: 1;
 }
 
-/* La magie : on tourne la barre verticale de 90deg, elle se fond dans l'horizontale */
-details.vs-faq-item[open] summary.vs-faq-title::before {
-  transform: translateY(-50%) rotate(90deg);
-  background-color: var(--gold-medium);
-}
-
-/* --- LE CONTENU --- */
+/* Contenu de la réponse */
 .vs-faq-content {
-  padding: 5px 20px 20px 20px;
+  padding: 16px 20px;
   color: var(--textColor);
-  font-size: 14px;
-  line-height: 1.7;
-  animation: fadeContent 0.5s ease;
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 13px;
+  line-height: 1.75;
+  text-align: justify;
+  background: rgba(0, 0, 0, 0.18);
+  animation: vsFadeIn 0.3s ease;
+}
+
+@keyframes vsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vs-faq-content strong,
+.vs-faq-content b {
+  color: var(--contrastLight);
 }
 
 .vs-faq-content a {
-  color: var(--gold-medium);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--gold-medium);
+  color: var(--accentClr);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+
+.vs-faq-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vs-faq-content ul li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.vs-faq-content ul li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 8px;
+  color: var(--accentClr);
 }
 
 /* ========================================
