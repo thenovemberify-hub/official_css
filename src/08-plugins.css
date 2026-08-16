@@ -3219,9 +3219,143 @@ div.posts input[type="checkbox"] {
   box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.4);
 }
 
+/* ==========================================================================
+   FORMAT MODULAIRE PING-PONG : LA DISPATCH CARD SMS (1 POST = 1 TEXTO)
+   ========================================================================== */
+.vs-sms-dispatch br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sms-dispatch {
+  max-width: 540px;
+  margin: 25px auto;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-left: 3px solid var(--accentClr);
+  border-radius: 6px;
+  padding: 16px 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  font-family: var(--font, "Inter", sans-serif);
+  color: var(--textColor);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.vs-sms-dispatch:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--gold-rgb), 0.4);
+}
+
+.vs-dispatch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vs-dispatch-sender {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vs-dispatch-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--accentClr);
+  flex-shrink: 0;
+  background: #000;
+}
+
+.vs-dispatch-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vs-dispatch-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.vs-dispatch-from {
+  font-family: "Cinzel", serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--contrastLight);
+}
+
+.vs-dispatch-to {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9.5px;
+  color: var(--taupe);
+  letter-spacing: 0.5px;
+}
+
+.vs-dispatch-to strong {
+  color: var(--accentClr);
+}
+
+.vs-dispatch-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.vs-dispatch-time {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  color: var(--accentClr);
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.vs-dispatch-badge {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 7.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.7;
+}
+
+.vs-dispatch-bubble {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--textColor);
+  text-align: justify;
+}
+
+.vs-dispatch-bubble p {
+  margin: 0;
+}
+
+.vs-dispatch-bubble .vs-msg-photo {
+  margin-top: 8px;
+}
+
 @media (max-width: 500px) {
-  .vs-sms-device {
+  .vs-sms-device,
+  .vs-sms-dispatch {
     margin: 15px auto;
-    border-radius: 12px;
   }
 }
