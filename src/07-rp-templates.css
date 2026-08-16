@@ -4282,6 +4282,12 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   box-sizing: border-box;
 }
 
+.vs-wanted::before,
+.vs-wanted::after {
+  content: none !important;
+  display: none !important;
+}
+
 /* Bande supérieure avec Statut */
 .vs-wanted-topbar {
   display: flex;
@@ -4525,6 +4531,23 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-wanted-story-content p:last-child {
   margin-bottom: 0;
+}
+
+.vs-wanted-chapter {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accentClr);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 18px 0 6px;
+  padding-bottom: 3px;
+  border-bottom: 1px dashed rgba(var(--gold-rgb), 0.25);
+}
+
+.vs-wanted-story-content p:first-child .vs-wanted-chapter:first-child {
+  margin-top: 0;
 }
 
 /* Section Liens avec le Scénario */
