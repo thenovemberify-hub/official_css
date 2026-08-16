@@ -2586,658 +2586,299 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   background: var(--gold-medium);
 }
 
-/* ========================================
-   FIN PROFIL À ONGLETS
-   ======================================== */
-/* ========================================
-   VELVET SIN - HOOKS, POSTES VACANTS & SCÉNARIOS
-   Design élégant noir et or
-   ======================================== */
-/* Variables */
-/* ========================================
-   FORUMACTIF OVERRIDES - BULLETPROOF
-   Handles br, nbsp, and all injected garbage
-   ======================================== */
-/* NUCLEAR OPTION: Hide ALL br elements inside our component */
-.vs-hooks-page br {
-  display: none !important;
-  height: 0 !important;
-  width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-  font-size: 0 !important;
+/* ==========================================================================
+   RAISONS DE VENIR AU VELVET SIN & ANNUAIRE DES MÉTIERS
+   ========================================================================== */
+
+/* ─── 1. Raisons de Venir au Velvet Sin (Motivations) ─── */
+.vs-reasons-card {
+  max-width: 820px;
+  margin: 30px auto;
+  padding: 35px 38px;
+  background: var(--surface-glass, rgba(14, 18, 25, 0.9));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  color: var(--textColor, #c4b2bc);
+  font-family: var(--font, "Inter", sans-serif);
 }
 
-/* Neutralize   effects - reset word-spacing and letter-spacing */
-.vs-hooks-page {
-  word-spacing: normal !important;
-  letter-spacing: normal !important;
-  white-space: normal !important;
-  width: 100%;
-  max-width: 890px;
-  padding: 0 10px;
-  font-family: "Inter", sans-serif;
-  color: var(--vs-text);
-  background: transparent;
+.vs-reasons-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
 }
 
-/* Force our styles over ForumActif defaults */
-.vs-hooks-page,
-.vs-hooks-page * {
-  box-sizing: border-box !important;
+.vs-reasons-badge {
+  display: inline-block;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--accentClr);
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
-/* Protect grid and flex layouts from text nodes */
-.vs-hooks-nav,
-.vs-hooks-grid,
-.vs-vacants-grid,
-.vs-hooks-content {
-  font-size: 0 !important;
-  word-spacing: -9999px !important;
-  /* Collapse nbsp spaces */
+.vs-reasons-title {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+  color: var(--contrastLight, #ffffff);
+  line-height: 1.15;
+  margin: 0 0 8px;
+  letter-spacing: 1.5px;
 }
 
-/* Restore font-size in actual content elements */
-.vs-hooks-nav > *,
-.vs-hooks-grid > *,
-.vs-vacants-grid > *,
-.vs-hooks-content > * {
-  font-size: 12px !important;
-  word-spacing: normal !important;
+.vs-reasons-subtitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--taupe);
+  margin: 0;
+  opacity: 0.9;
 }
 
-/* Navigation tabs fix */
-.vs-hooks-page button.vs-nav-tab {
-  background: transparent !important;
-  border: none !important;
-  font-family: "Cinzel", serif !important;
-  font-size: 12px !important;
-  word-spacing: normal !important;
+/* Grille des raisons */
+.vs-reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
 
-/* Hook cards */
-.vs-hook-card {
-  font-size: 12px !important;
-  word-spacing: normal !important;
-  background: linear-gradient(145deg, #0f0f0f 0%, #080808 100%);
-  border: 1px solid var(--vs-gold-dim);
-  border-radius: 3px;
-  padding: 30px 25px;
+.vs-reason-box {
+  background: var(--surface-glass-dim, rgba(0, 0, 0, 0.3));
+  border: 1px solid rgba(var(--gold-rgb), 0.14);
+  border-radius: 6px;
+  padding: 22px 24px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  min-height: 280px;
 }
 
-/* Hide broken text nodes from corrupted data attributes */
-.vs-vacant-portrait {
-  font-size: 0 !important;
-  color: transparent !important;
-  overflow: hidden !important;
-  word-spacing: -9999px !important;
-  position: relative;
-  cursor: pointer;
-}
-
-/* But show text in proper child elements */
-.vs-vacant-portrait > * {
-  font-size: 12px !important;
-  word-spacing: normal !important;
-}
-
-.vs-portrait-frame,
-.vs-portrait-overlay {
-  font-size: 12px !important;
-  word-spacing: normal !important;
-}
-
-.vs-vacant-name {
-  font-size: 14px !important;
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 13px;
-  color: var(--vs-gold);
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-}
-
-.vs-vacant-role {
-  display: block;
-  font-family: "Playfair Display", serif;
-  font-size: 11px;
-  font-style: italic;
-  color: var(--vs-text-dim);
-}
-
-.vs-vacant-status {
-  font-size: 10px !important;
-  word-spacing: normal !important;
-  position: absolute;
-  top: -4px;
-  right: 10px;
-  font-family: "Inter", sans-serif;
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 5px 12px;
-  z-index: 5;
-}
-
-/* Section titles */
-.vs-section-title,
-.vs-section-subtitle {
-  font-size: 1em !important;
-  word-spacing: normal !important;
-}
-
-.vs-section-subtitle {
-  font-family: "Playfair Display", serif;
-  font-size: 14px;
-  font-style: italic;
-  color: var(--vs-text-dim);
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* ========================================
-   CONTAINER PRINCIPAL
-   ======================================== */
-/* ========================================
-   NAVIGATION PAR ONGLETS
-   ======================================== */
-.vs-hooks-nav {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.vs-hooks-nav::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--vs-gold-dim) 20%,
-    var(--vs-gold-dim) 80%,
-    transparent 100%
-  );
-}
-
-.vs-nav-tab {
-  background: transparent;
-  border: none;
-  padding: 20px 40px;
-  font-family: "Cinzel", serif;
-  font-size: 14px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--vs-text-dim);
-  cursor: pointer;
-  position: relative;
-  transition: all 0.4s ease;
-}
-
-.vs-nav-tab::before {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--vs-gold);
-  transform: translateX(-50%);
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 10px var(--vs-gold);
-}
-
-.vs-nav-tab:hover {
-  color: var(--vs-gold-light);
-}
-
-.vs-nav-tab.active {
-  color: var(--vs-gold);
-}
-
-.vs-nav-tab.active::before {
-  width: 100%;
-}
-
-/* ========================================
-   SECTIONS DE CONTENU
-   ======================================== */
-.vs-hooks-content {
-  position: relative;
-  min-height: 500px;
-}
-
-.vs-section {
-  display: none;
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.vs-section.active {
-  display: block;
-}
-
-/* Titres de section */
-/* ========================================
-   SEGMENT 1: HOOKS (MOTIVATIONS)
-   Effet brume qui se dissipe
-   ======================================== */
-.vs-hook-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(10, 10, 10, 0.95) 0%,
-    rgba(10, 10, 10, 0.6) 50%,
-    transparent 100%
-  );
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  z-index: 2;
-}
-
-.vs-hook-card:hover::before {
-  opacity: 0;
-}
-
-.vs-hook-card:hover {
-  border-color: var(--vs-gold);
-  box-shadow:
-    0 0 30px rgba(var(--gold-rgb), 0.15),
-    inset 0 0 30px rgba(var(--gold-rgb), 0.03);
-  transform: translateY(-5px);
-}
-
-/* Particules dorées */
-.vs-hook-card::after {
+.vs-reason-box::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, var(--vs-gold) 50%, transparent 50%),
-    radial-gradient(1px 1px at 60% 70%, var(--vs-gold) 50%, transparent 50%),
-    radial-gradient(1px 1px at 80% 20%, var(--vs-gold) 50%, transparent 50%),
-    radial-gradient(1px 1px at 40% 80%, var(--vs-gold) 50%, transparent 50%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  pointer-events: none;
-  animation: sparkle 3s infinite;
+  width: 3px;
+  height: 0;
+  background: var(--accentClr);
+  transition: height 0.3s ease;
 }
 
-.vs-hook-card:hover::after {
-  opacity: 0.6;
+.vs-reason-box:hover {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.vs-hook-icon {
-  font-size: 32px;
-  color: var(--vs-gold);
-  text-align: center;
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 3;
-  filter: drop-shadow(0 0 10px rgba(var(--gold-rgb), 0.5));
-  transition: opacity 0.4s ease;
+.vs-reason-box:hover::before {
+  height: 100%;
 }
 
-.vs-hook-preview {
-  font-family: "Playfair Display", serif;
-  font-size: 13px;
+.vs-reason-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.vs-reason-name {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accentClr);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.vs-reason-tag {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.75;
+}
+
+.vs-reason-quote {
+  font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  color: var(--vs-text-dim);
+  font-size: 12.5px;
+  color: var(--contrastLight, #ffffff);
+  margin: 0;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+
+.vs-reason-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--textColor);
+  margin: 0;
+  opacity: 0.85;
+}
+
+
+/* ─── 2. Annuaire des Métiers (Cabaret & Ville) ─── */
+.vs-jobs-card {
+  max-width: 860px;
+  margin: 30px auto;
+  padding: 35px 38px;
+  background: var(--surface-glass, rgba(14, 18, 25, 0.9));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  color: var(--textColor, #c4b2bc);
+  font-family: var(--font, "Inter", sans-serif);
+}
+
+.vs-jobs-header {
   text-align: center;
-  line-height: 1.8;
-  position: relative;
-  z-index: 3;
-  transition: opacity 0.4s ease;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
 }
 
-/* Cacher les éléments visibles au hover */
-.vs-hook-card:hover .vs-hook-icon,
-.vs-hook-card:hover .vs-hook-title,
-.vs-hook-card:hover .vs-hook-preview {
-  opacity: 0;
+.vs-jobs-badge {
+  display: inline-block;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--accentClr);
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
-.vs-hook-reveal {
-  position: absolute;
-  inset: 0;
-  padding: 30px 25px;
+.vs-jobs-title {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700;
+  color: var(--contrastLight, #ffffff);
+  line-height: 1.15;
+  margin: 0 0 8px;
+  letter-spacing: 1.5px;
+}
+
+.vs-jobs-subtitle {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--taupe);
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* 2 Colonnes : Cabaret vs Ville */
+.vs-jobs-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.vs-jobs-col {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  z-index: 4;
-  background: rgba(8, 8, 8, 0.95);
+  gap: 20px;
+  background: var(--surface-glass-dim, rgba(0, 0, 0, 0.25));
+  border: 1px solid rgba(var(--gold-rgb), 0.16);
+  border-radius: 6px;
+  padding: 24px;
 }
 
-.vs-hook-card:hover .vs-hook-reveal {
-  opacity: 1;
+.vs-jobs-col-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
 }
 
-.vs-hook-reveal p {
-  font-family: "Playfair Display", serif;
-  font-size: 13px;
-  color: var(--vs-cream);
-  line-height: 1.9;
-  text-align: justify;
+.vs-jobs-col-title {
+  font-family: "Cinzel", "Playfair Display", Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accentClr);
+  margin: 0;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Groupes de métiers */
+.vs-job-sector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vs-sector-title {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--contrastLight, #ffffff);
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin: 0;
 }
 
-/* ========================================
-   SEGMENT 2: POSTES VACANTS
-   Galerie de portraits avec cadres dorés
-   ======================================== */
-.vs-vacants-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.vs-portrait-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 200 / 320;
-  overflow: hidden;
-  border: 2px solid var(--vs-gold-dim);
-  transition: all 0.4s ease;
-}
-
-/* Cadre ornemental */
-.vs-portrait-frame::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px solid var(--vs-gold-dim);
-  pointer-events: none;
-  z-index: 2;
-  transition: all 0.4s ease;
-}
-
-.vs-portrait-frame::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 2px solid transparent;
-  box-shadow: 0 0 0 rgba(var(--gold-rgb), 0);
-  pointer-events: none;
-  z-index: 3;
-  transition: all 0.4s ease;
-}
-
-.vs-vacant-portrait:hover .vs-portrait-frame {
-  border-color: var(--vs-gold);
-  box-shadow:
-    0 0 25px rgba(var(--gold-rgb), 0.3),
-    0 0 50px rgba(var(--gold-rgb), 0.1);
-}
-
-.vs-vacant-portrait:hover .vs-portrait-frame::before {
-  border-color: var(--vs-gold-light);
-}
-
-.vs-vacant-portrait:hover .vs-portrait-frame::after {
-  box-shadow: 0 0 30px rgba(var(--gold-rgb), 0.4);
-}
-
-.vs-portrait-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.6s ease;
-  filter: grayscale(30%);
-}
-
-.vs-vacant-portrait:hover .vs-portrait-frame img {
-  transform: scale(1.08);
-  filter: grayscale(0%);
-}
-
-/* Overlay avec nom et rôle */
-.vs-portrait-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(
-    to top,
-    rgba(5, 5, 5, 0.95) 0%,
-    rgba(5, 5, 5, 0.7) 60%,
-    transparent 100%
-  );
-  padding: 40px 15px 15px;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.4s ease;
-  z-index: 2;
-}
-
-.vs-vacant-portrait:hover .vs-portrait-overlay {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Badge de statut */
-.vs-vacant-portrait[data-status="libre"] .vs-vacant-status {
-  background: linear-gradient(135deg, #2a5a3a 0%, #1a3a2a 100%);
-  color: #7fd4a0;
-  border: 1px solid #3a7a4a;
-}
-
-.vs-vacant-portrait[data-status="reserve"] .vs-vacant-status {
-  background: linear-gradient(135deg, #5a4a2a 0%, #3a3a1a 100%);
-  color: var(--vs-gold);
-  border: 1px solid #6a5a3a;
-}
-
-.vs-vacant-portrait[data-status="pris"] .vs-vacant-status {
-  background: linear-gradient(135deg, #5a2a2a 0%, #3a1a1a 100%);
-  color: #d07070;
-  border: 1px solid #6a3a3a;
-}
-
-/* Fiche déployée */
-.vs-vacant-details {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(5, 5, 5, 0.95);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.vs-vacant-details.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.vs-vacant-sheet {
-  width: 700px;
-  max-height: 80vh;
-  background: linear-gradient(145deg, #0f0f0f 0%, #080808 100%);
-  border: 1px solid var(--vs-gold-dim);
-  padding: 40px;
-  overflow-y: auto;
-  position: relative;
-}
-
-.vs-vacant-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border: 1px solid var(--vs-gold-dim);
-  color: var(--vs-gold);
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.vs-vacant-close:hover {
-  background: var(--vs-gold);
-  color: var(--vs-dark);
-}
-
-/* ========================================
-   SEGMENT 3: SCÉNARIOS
-   Galerie de portraits style Postes Vacants
-   avec variations visuelles (accent bordeaux)
-   ======================================== */
-.vs-scenarios-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.vs-scenario-frame {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 200 / 320;
-  overflow: hidden;
-  border: 2px solid var(--vs-bordeaux);
-  transition: all 0.4s ease;
-}
-
-/* Cadre ornemental bordeaux */
-.vs-scenario-frame::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(139, 58, 58, 0.4);
-  pointer-events: none;
-  z-index: 2;
-  transition: all 0.4s ease;
-}
-
-.vs-scenario-frame::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border: 2px solid transparent;
-  box-shadow: 0 0 0 rgba(139, 58, 58, 0);
-  pointer-events: none;
-  z-index: 3;
-  transition: all 0.4s ease;
-}
-
-.vs-scenario-card:hover .vs-scenario-frame {
-  border-color: var(--vs-bordeaux-light);
-  box-shadow:
-    0 0 25px rgba(139, 58, 58, 0.4),
-    0 0 50px rgba(139, 58, 58, 0.15);
-}
-
-.vs-scenario-card:hover .vs-scenario-frame::before {
-  border-color: rgba(169, 74, 74, 0.6);
-}
-
-.vs-scenario-card:hover .vs-scenario-frame::after {
-  box-shadow: 0 0 30px rgba(139, 58, 58, 0.5);
-}
-
-.vs-scenario-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition:
-    transform 0.6s ease,
-    filter 0.4s ease;
-  filter: sepia(20%) contrast(1.1);
-}
-
-.vs-scenario-card:hover .vs-scenario-frame img {
-  transform: scale(1.08);
-  filter: sepia(0%) contrast(1);
-}
-
-/* Overlay avec titre et rôle */
-.vs-scenario-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(
-    to top,
-    rgba(30, 15, 15, 0.98) 0%,
-    rgba(30, 15, 15, 0.8) 60%,
-    transparent 100%
-  );
-  padding: 40px 15px 15px;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: all 0.4s ease;
-  z-index: 2;
-}
-
-.vs-scenario-card:hover .vs-scenario-overlay {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.vs-scenario-name {
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 13px;
-  color: var(--vs-gold);
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-}
-
-.vs-scenario-tagline {
-  display: block;
-  font-family: "Playfair Display", serif;
-  font-size: 11px;
-  font-style: italic;
-  color: var(--vs-text-dim);
-}
-
-/* Badge type scénario */
-.vs-scenario-type {
-  position: absolute;
-  top: -8px;
-  right: 10px;
-  font-family: "Inter", sans-serif;
+.vs-sector-title::before {
+  content: "✦";
+  color: var(--accentClr);
   font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 5px 12px;
-  z-index: 5;
-  background: linear-gradient(135deg, #5a2a2a 0%, #3a1a1a 100%);
-  color: #d07070;
-  border: 1px solid #6a3a3a;
+}
+
+.vs-job-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.vs-job-tag {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--taupe);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.vs-job-tag:hover {
+  color: var(--contrastLight, #ffffff);
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: rgba(var(--gold-rgb), 0.25);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .vs-jobs-columns {
+    grid-template-columns: 1fr;
+  }
+  .vs-reasons-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========================================
@@ -5478,21 +5119,6 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 960px) {
-  .vs-hooks-page {
-    width: 95%;
-    padding: 0 15px;
-  }
-
-  .vs-hooks-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .vs-vacants-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media (max-width: 780px) {
   .vs-fiche-liens {
     margin: 20px 10px;
@@ -5517,31 +5143,6 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
   .vs-moodboard-grid {
     column-count: 2;
-  }
-}
-
-@media (max-width: 700px) {
-  .vs-nav-tab {
-    padding: 15px 20px;
-    font-size: 11px;
-    letter-spacing: 2px;
-  }
-
-  .vs-hooks-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .vs-vacants-grid,
-  .vs-scenarios-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .vs-scenario-card {
-    width: 100%;
-  }
-
-  .vs-scenario-content {
-    padding: 20px;
   }
 }
 
