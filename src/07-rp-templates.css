@@ -5763,3 +5763,297 @@ speech {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   VELVET SIN — BLUEPRINT : FORMULAIRES, DEMANDES & RECENSEMENTS
+   ========================================================================== */
+.vs-blueprint br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-blueprint {
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 12px;
+  max-width: 650px;
+  margin: 25px auto;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.1);
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.vs-blueprint:hover {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, 0.65),
+    0 0 25px rgba(var(--gold-rgb), 0.08);
+}
+
+/* En-tête Blueprint */
+.vs-blueprint-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.15);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.vs-blueprint-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vs-blueprint-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--accentClr);
+}
+
+.vs-blueprint-title {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--contrastLight);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.vs-blueprint-desc {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 11.5px;
+  color: var(--taupe);
+  margin: 2px 0 0;
+}
+
+/* Statuts / Tags d'état */
+.vs-blueprint-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid transparent;
+}
+
+.vs-bp-pending {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: rgba(255, 193, 7, 0.3);
+  color: #ffc107;
+}
+
+.vs-bp-approved {
+  background: rgba(76, 175, 80, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+  color: #81c784;
+}
+
+.vs-bp-rejected {
+  background: rgba(229, 57, 53, 0.1);
+  border-color: rgba(229, 57, 53, 0.3);
+  color: #e57373;
+}
+
+.vs-bp-active {
+  background: rgba(var(--gold-rgb), 0.12);
+  border-color: var(--accentClr);
+  color: var(--accentClr);
+}
+
+/* Corps du formulaire / Champs */
+.vs-blueprint-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Ligne de champ */
+.vs-blueprint-row {
+  display: flex;
+  align-items: baseline;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 6px;
+  padding: 8px 14px;
+  gap: 12px;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.vs-blueprint-row:hover {
+  border-color: rgba(var(--gold-rgb), 0.3);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.vs-blueprint-label {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accentClr);
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 110px;
+}
+
+.vs-blueprint-val {
+  font-family: var(--font, "Karla", sans-serif);
+  font-size: 12.5px;
+  color: var(--textColor);
+  flex-grow: 1;
+}
+
+.vs-blueprint-val strong {
+  color: var(--contrastLight);
+}
+
+.vs-blueprint-val a {
+  color: var(--accentClr);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(var(--gold-rgb), 0.5);
+  transition: color 0.3s ease;
+}
+
+.vs-blueprint-val a:hover {
+  color: var(--contrastLight);
+}
+
+/* Zone de texte / Description détaillée / Justification */
+.vs-blueprint-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: border-color 0.3s ease;
+}
+
+.vs-blueprint-box:hover {
+  border-color: rgba(var(--gold-rgb), 0.3);
+}
+
+.vs-blueprint-box-content {
+  font-family: "Playfair Display", serif;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--textColor);
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+}
+
+/* Zone de code à copier pour les membres (Optionnel dans le post admin) */
+.vs-blueprint-codebox {
+  background: #09080c;
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 15px;
+}
+
+.vs-blueprint-codebox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--taupe);
+}
+
+.vs-blueprint-codebox textarea,
+.vs-blueprint-codebox pre {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 4px;
+  padding: 10px;
+  color: var(--accentClr);
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  resize: vertical;
+  height: 80px;
+  overflow: auto;
+  white-space: pre;
+}
+
+/* Pied de page du Blueprint */
+.vs-blueprint-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.12);
+  padding-top: 12px;
+  margin-top: 16px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--taupe);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vs-blueprint-footer strong {
+  color: var(--accentClr);
+}
+
+@media (max-width: 600px) {
+  .vs-blueprint {
+    padding: 16px;
+    margin: 15px 8px;
+  }
+  .vs-blueprint-row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+  .vs-blueprint-header,
+  .vs-blueprint-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
