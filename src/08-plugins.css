@@ -3353,6 +3353,34 @@ div.posts input[type="checkbox"] {
   margin-top: 8px;
 }
 
+/* ─── VARIANTE MIROIR / JOUEUR B (RÉPONSE À DROITE) ─── */
+.vs-sms-dispatch.vs-sms-reply {
+  border-left: 1px solid var(--contrastLighter);
+  border-right: 3px solid var(--accentClr);
+}
+
+.vs-sms-dispatch.vs-sms-reply .vs-dispatch-header {
+  flex-direction: row-reverse;
+}
+
+.vs-sms-dispatch.vs-sms-reply .vs-dispatch-sender {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.vs-sms-dispatch.vs-sms-reply .vs-dispatch-meta {
+  align-items: flex-start;
+}
+
+.vs-sms-dispatch.vs-sms-reply .vs-dispatch-bubble {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--gold-rgb), 0.12) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  border-color: rgba(var(--gold-rgb), 0.3);
+}
+
 @media (max-width: 500px) {
   .vs-sms-device,
   .vs-sms-dispatch {
