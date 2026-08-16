@@ -5763,3 +5763,1126 @@ speech {
     text-align: center;
   }
 }
+
+/* ==========================================================================
+   VELVET SIN — SIGNATURE OFFICIELLE 1 : SOPHISTICATED CIRCLES
+   ========================================================================== */
+.vs-sig2-wrapper br,
+.vs-sig2-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sig2-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  padding: 5px;
+  background: transparent;
+}
+
+.vs-sig2-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 12px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.1);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vs-sig2-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(var(--gold-rgb), 0.1);
+  transform: translateY(-2px);
+}
+
+/* Top Row Layout: Circles on Left, Text on Right */
+.vs-sig2-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 12px;
+}
+
+/* Circles Composition Container */
+.vs-sig2-circles-area {
+  position: relative;
+  width: 165px;
+  height: 120px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* Main Portrait Circle */
+.vs-sig2-circle-main {
+  position: absolute;
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  top: 8px;
+  left: 8px;
+  z-index: 3;
+  overflow: hidden;
+  border: 1.5px solid rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  background: #000;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+}
+
+.vs-sig2-circle-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Secondary Portrait Circle (smaller, overlapping) */
+.vs-sig2-circle-sub {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  top: 32px;
+  left: 78px;
+  z-index: 4;
+  overflow: hidden;
+  border: 1.5px solid var(--accentClr);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+  background: #000;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+}
+
+.vs-sig2-circle-sub img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Interactive Hover Effects on Circles */
+.vs-sig2-card:hover .vs-sig2-circle-main {
+  transform: scale(1.04) translate(-2px, -1px);
+  border-color: rgba(var(--gold-rgb), 0.6);
+}
+
+.vs-sig2-card:hover .vs-sig2-circle-main img {
+  transform: scale(1.06);
+}
+
+.vs-sig2-card:hover .vs-sig2-circle-sub {
+  transform: scale(1.06) translate(2px, 1px);
+  border-color: #fff;
+}
+
+.vs-sig2-card:hover .vs-sig2-circle-sub img {
+  transform: scale(1.08);
+}
+
+/* Elegant Astronomical Rotating Rings */
+.vs-sig2-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.5s ease, opacity 0.5s ease;
+}
+
+.vs-sig2-ring-1 {
+  width: 121px;
+  height: 121px;
+  top: 0px;
+  left: 0px;
+  border: 1px dashed rgba(var(--gold-rgb), 0.25);
+  animation: vs-spin-clock 30s linear infinite;
+}
+
+.vs-sig2-ring-2 {
+  width: 87px;
+  height: 87px;
+  top: 26px;
+  left: 72px;
+  border: 1px dotted rgba(var(--gold-rgb), 0.35);
+  animation: vs-spin-counter 20s linear infinite;
+}
+
+.vs-sig2-ring-3 {
+  width: 150px;
+  height: 150px;
+  top: -15px;
+  left: -15px;
+  border: 1px solid rgba(var(--gold-rgb), 0.08);
+  z-index: 1;
+}
+
+.vs-sig2-card:hover .vs-sig2-ring-1 {
+  border-color: rgba(var(--gold-rgb), 0.5);
+}
+
+.vs-sig2-card:hover .vs-sig2-ring-2 {
+  border-color: var(--accentClr);
+}
+
+@keyframes vs-spin-clock {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes vs-spin-counter {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Right column: Typography Header */
+.vs-sig2-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  flex-grow: 1;
+}
+
+.vs-sig2-meta {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accentClr);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.vs-sig2-title {
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--contrastLight);
+  margin: 0;
+  padding: 0;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  transition: color 0.4s ease;
+}
+
+.vs-sig2-card:hover .vs-sig2-title {
+  color: var(--accentClr);
+}
+
+.vs-sig2-subtitle {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 11.5px;
+  color: var(--taupe);
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* Content Area: Horizontal Line & Elegant Blockquote below */
+.vs-sig2-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+.vs-sig2-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  opacity: 0.4;
+  transition: opacity 0.4s ease;
+}
+
+.vs-sig2-card:hover .vs-sig2-divider {
+  opacity: 0.7;
+}
+
+.vs-sig2-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accentClr), transparent);
+  flex-grow: 1;
+}
+
+.vs-sig2-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accentClr);
+  transform: rotate(45deg);
+  margin: 0 10px;
+}
+
+.vs-sig2-quote {
+  font-family: "Playfair Display", serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--textColor);
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+  padding: 0 10px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transition: color 0.4s ease;
+}
+
+.vs-sig2-card:hover .vs-sig2-quote {
+  color: var(--contrastLight);
+}
+
+/* Bottom: Footer / Capsules & Links (Optionnel) */
+.vs-sig2-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.12);
+  padding-top: 10px;
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.vs-sig2-capsule {
+  background: rgba(var(--gold-rgb), 0.08);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accentClr);
+  transition: all 0.4s ease;
+}
+
+.vs-sig2-card:hover .vs-sig2-capsule {
+  background: rgba(var(--gold-rgb), 0.15);
+  border-color: var(--accentClr);
+}
+
+.vs-sig2-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.vs-sig2-link {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--taupe);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.vs-sig2-link:hover {
+  color: var(--accentClr);
+}
+
+/* ==========================================================================
+   VELVET SIN — SIGNATURE OFFICIELLE 02 : SPLIT VIEWFINDER (CAMÉRA CINÉMA)
+   ========================================================================== */
+.vs-sig4-wrapper br,
+.vs-sig4-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sig4-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+  padding: 5px;
+  background: transparent;
+}
+
+.vs-sig4-card {
+  width: 100%;
+  max-width: 520px;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--contrastLighter);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vs-sig4-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(var(--gold-rgb), 0.1);
+  transform: translateY(-2px);
+}
+
+.vs-sig4-bg-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.vs-sig4-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.2) contrast(1.05);
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.5s ease;
+}
+
+.vs-sig4-card:hover .vs-sig4-bg-image {
+  transform: scale(1.05);
+  filter: saturate(1.3) contrast(1.08);
+}
+
+.vs-sig4-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 6, 11, 0.94) 0%,
+    rgba(7, 6, 11, 0.75) 30%,
+    rgba(7, 6, 11, 0.18) 50%,
+    transparent 100%
+  );
+  transition: background 0.4s ease;
+}
+
+.vs-sig4-bar {
+  position: relative;
+  z-index: 3;
+  height: 28px;
+  background: rgba(7, 6, 11, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--taupe);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.vs-sig4-bar-top {
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.15);
+}
+
+.vs-sig4-bar-bottom {
+  justify-content: space-between;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.15);
+}
+
+.vs-sig4-header-meta {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vs-sig4-rec {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  color: #e53935;
+  letter-spacing: 1px;
+}
+
+.vs-sig4-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #e53935;
+  border-radius: 50%;
+  margin-right: 5px;
+  animation: vs-sig4-blink 1s steps(2, start) infinite;
+}
+
+@keyframes vs-sig4-blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.vs-sig4-footer-meta {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vs-sig4-subtitles-text {
+  font-family: "Playfair Display", serif;
+  color: var(--gold-accent, #ffeb3b);
+  font-weight: 600;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.5px;
+  text-transform: none;
+}
+
+.vs-sig4-corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: 3;
+  pointer-events: none;
+  border-color: rgba(var(--gold-rgb), 0.35);
+  border-style: solid;
+  opacity: 0.6;
+  transition:
+    opacity 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.vs-sig4-card:hover .vs-sig4-corner {
+  opacity: 0.9;
+  border-color: var(--accentClr);
+}
+
+.vs-sig4-tl {
+  top: 36px;
+  left: 14px;
+  border-width: 1px 0 0 1px;
+}
+.vs-sig4-tr {
+  top: 36px;
+  right: 14px;
+  border-width: 1px 1px 0 0;
+}
+.vs-sig4-bl {
+  bottom: 36px;
+  left: 14px;
+  border-width: 0 0 1px 1px;
+}
+.vs-sig4-br {
+  bottom: 36px;
+  right: 14px;
+  border-width: 0 1px 1px 0;
+}
+
+.vs-sig4-crosshair {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.vs-sig4-crosshair::before,
+.vs-sig4-crosshair::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.vs-sig4-crosshair::before {
+  top: 6px;
+  left: 0;
+  width: 14px;
+  height: 1px;
+}
+.vs-sig4-crosshair::after {
+  top: 0;
+  left: 6px;
+  width: 1px;
+  height: 14px;
+}
+
+/* Left text block in Viewfinder */
+.vs-sig4-content-left {
+  position: relative;
+  z-index: 3;
+  padding: 0 25px;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vs-sig4-title {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--contrastLight);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.vs-sig4-subtitle {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--accentClr);
+  margin: 0;
+}
+
+/* ==========================================================================
+   VELVET SIN — SIGNATURE OFFICIELLE 03 : TRIPTYCH SLANTED PUZZLE
+   ========================================================================== */
+.vs-sig5-wrapper br,
+.vs-sig5-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sig5-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+  padding: 0;
+  background: transparent;
+}
+
+.vs-sig5-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.vs-sig5-triptych {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 14px;
+  padding: 5px 0;
+  user-select: none;
+}
+
+.vs-sig5-block {
+  width: 105px;
+  height: 135px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  transform: skewX(-12deg);
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  background: #000;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.vs-sig5-block:hover {
+  border-color: var(--accentClr);
+  transform: skewX(-12deg) translateY(-2px);
+}
+
+.vs-sig5-image-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.vs-sig5-image-wrap img {
+  width: 155%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: -27.5%;
+  transform: skewX(12deg) scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+.vs-sig5-block:hover .vs-sig5-image-wrap img {
+  transform: skewX(12deg) scale(1.12);
+}
+
+.vs-sig5-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.vs-sig5-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin-bottom: 10px;
+  opacity: 0.4;
+}
+
+.vs-sig5-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accentClr),
+    transparent
+  );
+  flex-grow: 1;
+}
+
+.vs-sig5-diamond {
+  width: 5px;
+  height: 5px;
+  background: var(--accentClr);
+  transform: rotate(45deg);
+  margin: 0 10px;
+}
+
+.vs-sig5-title {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--contrastLight);
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.vs-sig5-quote {
+  font-family: "Playfair Display", serif;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--taupe);
+  font-style: italic;
+  margin: 0;
+  padding: 0 15px;
+  max-width: 90%;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   VELVET SIN — SIGNATURE OFFICIELLE 04 : DIPTYCH FLOATING PLATE
+   ========================================================================== */
+.vs-sig6-wrapper br,
+.vs-sig6-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sig6-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+  padding: 5px;
+  background: transparent;
+}
+
+.vs-sig6-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  box-sizing: border-box;
+}
+
+.vs-sig6-diptych {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 25px;
+  user-select: none;
+}
+
+.vs-sig6-image-box {
+  position: relative;
+  width: 210px;
+  height: 175px;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--contrastLighter);
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.55),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  background: #000;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vs-sig6-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.1) brightness(0.95);
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease;
+}
+
+.vs-sig6-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 65%,
+    rgba(7, 6, 11, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+.vs-sig6-image-box:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.75);
+}
+
+.vs-sig6-image-box:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.2) brightness(1.02);
+}
+
+.vs-sig6-title-plate {
+  position: relative;
+  z-index: 5;
+  margin-top: -42px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 8px;
+  width: 320px;
+  padding: 8px 12px;
+  text-align: center;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.65),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.1);
+  box-sizing: border-box;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.vs-sig6-card:hover .vs-sig6-title-plate {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+}
+
+.vs-sig6-title {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--contrastLight);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  transition: color 0.4s ease;
+}
+
+.vs-sig6-card:hover .vs-sig6-title {
+  color: var(--accentClr);
+}
+
+.vs-sig6-subtitle {
+  font-family: "Playfair Display", serif;
+  font-size: 11.5px;
+  font-style: italic;
+  color: var(--taupe);
+  margin: 3px 0 0 0;
+  letter-spacing: 1px;
+}
+
+.vs-sig6-synopsis {
+  width: 100%;
+  max-width: 410px;
+  margin-top: 15px;
+  border-left: 2px solid rgba(var(--gold-rgb), 0.35);
+  padding-left: 15px;
+  box-sizing: border-box;
+  text-align: justify;
+  transition: border-color 0.4s ease;
+}
+
+.vs-sig6-card:hover .vs-sig6-synopsis {
+  border-color: var(--accentClr);
+}
+
+.vs-sig6-synopsis p {
+  font-family: "Playfair Display", serif;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--textColor);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ==========================================================================
+   VELVET SIN — SIGNATURE OFFICIELLE 05 : GLASSMORPHIQC BANDEAU
+   ========================================================================== */
+.vs-sig7-wrapper br,
+.vs-sig7-card br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sig7-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto;
+  padding: 5px;
+  background: transparent;
+}
+
+.vs-sig7-card {
+  width: 100%;
+  max-width: 480px;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--contrastLighter);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  background: #07060b;
+  box-sizing: border-box;
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vs-sig7-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(var(--gold-rgb), 0.12);
+  transform: translateY(-2px);
+}
+
+.vs-sig7-bg-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.vs-sig7-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-position: center 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: saturate(1.1) brightness(0.95);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vs-sig7-card:hover .vs-sig7-bg-image {
+  transform: scale(1.04);
+}
+
+.vs-sig7-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 45%,
+    rgba(7, 6, 11, 0.45) 70%,
+    rgba(7, 6, 11, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vs-sig7-glass-bandeau {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  height: 46px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 8px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.1);
+  z-index: 3;
+  overflow: hidden;
+  transition:
+    border-color 0.4s ease,
+    transform 0.4s ease;
+}
+
+.vs-sig7-card:hover .vs-sig7-glass-bandeau {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+.vs-sig7-quote-mark {
+  font-size: 34px;
+  font-family: "Cinzel", serif;
+  color: var(--accentClr);
+  line-height: 1;
+  margin-right: 10px;
+  margin-top: 8px;
+  text-shadow: 0 0 10px rgba(var(--gold-rgb), 0.45);
+  user-select: none;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.vs-sig7-card:hover .vs-sig7-quote-mark {
+  transform: scale(1.1);
+}
+
+.vs-sig7-quote-text {
+  font-family: "Playfair Display", serif;
+  font-size: 13.5px;
+  line-height: 1.2;
+  color: var(--contrastLight);
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  text-align: left;
+}
+
+.vs-sig7-author-span {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--taupe);
+  text-transform: uppercase;
+  margin-left: 10px;
+  font-style: normal;
+  display: inline-block;
+}
+
+.vs-sig7-author-span span {
+  color: var(--accentClr);
+}
