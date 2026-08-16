@@ -2587,20 +2587,32 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 /* ==========================================================================
-   RAISONS DE VENIR AU VELVET SIN & ANNUAIRE DES MÉTIERS
+   RAISONS DE VENIR AU VELVET SIN & ANNUAIRE DES MÉTIERS (COMPACT)
    ========================================================================== */
+
+/* Forumactif br override */
+.vs-reasons-card br,
+.vs-jobs-card br {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
 
 /* ─── 1. Raisons de Venir au Velvet Sin (Motivations) ─── */
 .vs-reasons-card {
-  max-width: 820px;
-  margin: 30px auto;
-  padding: 35px 38px;
+  max-width: 760px;
+  margin: 20px auto;
+  padding: 22px 25px;
   background: var(--surface-glass, rgba(14, 18, 25, 0.9));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(var(--gold-rgb), 0.22);
-  border-radius: 8px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: var(--textColor, #c4b2bc);
   font-family: var(--font, "Inter", sans-serif);
@@ -2608,59 +2620,62 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-reasons-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.18);
 }
 
 .vs-reasons-badge {
   display: inline-block;
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   color: var(--accentClr);
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .vs-reasons-title {
   font-family: "Cinzel", "Playfair Display", Georgia, serif;
-  font-size: clamp(22px, 4vw, 30px);
+  font-size: clamp(18px, 3.5vw, 24px);
   font-weight: 700;
   color: var(--contrastLight, #ffffff);
   line-height: 1.15;
-  margin: 0 0 8px;
-  letter-spacing: 1.5px;
+  margin: 0 0 4px;
+  letter-spacing: 1.2px;
 }
 
 .vs-reasons-subtitle {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--taupe);
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-/* Grille des raisons */
+/* Grille des raisons compacte */
 .vs-reasons-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .vs-reason-box {
   background: var(--surface-glass-dim, rgba(0, 0, 0, 0.3));
-  border: 1px solid rgba(var(--gold-rgb), 0.14);
-  border-radius: 6px;
-  padding: 22px 24px;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(var(--gold-rgb), 0.12);
+  border-radius: 4px;
+  padding: 12px 14px;
+  transition: all 0.2s ease;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .vs-reason-box::before {
@@ -2668,17 +2683,17 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   position: absolute;
   top: 0;
   left: 0;
-  width: 3px;
+  width: 2.5px;
   height: 0;
   background: var(--accentClr);
-  transition: height 0.3s ease;
+  transition: height 0.25s ease;
 }
 
 .vs-reason-box:hover {
   border-color: rgba(var(--gold-rgb), 0.35);
   background: rgba(255, 255, 255, 0.03);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 .vs-reason-box:hover::before {
@@ -2689,23 +2704,23 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .vs-reason-name {
   font-family: "Cinzel", "Playfair Display", Georgia, serif;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--accentClr);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
 }
 
 .vs-reason-tag {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--taupe);
   opacity: 0.75;
@@ -2714,16 +2729,16 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-reason-quote {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 12.5px;
+  font-size: 11px;
   color: var(--contrastLight, #ffffff);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.35;
   opacity: 0.95;
 }
 
 .vs-reason-text {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.45;
   color: var(--textColor);
   margin: 0;
   opacity: 0.85;
@@ -2732,15 +2747,15 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 /* ─── 2. Annuaire des Métiers (Cabaret & Ville) ─── */
 .vs-jobs-card {
-  max-width: 860px;
-  margin: 30px auto;
-  padding: 35px 38px;
+  max-width: 760px;
+  margin: 20px auto;
+  padding: 22px 25px;
   background: var(--surface-glass, rgba(14, 18, 25, 0.9));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(var(--gold-rgb), 0.22);
-  border-radius: 8px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   color: var(--textColor, #c4b2bc);
   font-family: var(--font, "Inter", sans-serif);
@@ -2748,73 +2763,75 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-jobs-header {
   text-align: center;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.18);
 }
 
 .vs-jobs-badge {
   display: inline-block;
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   color: var(--accentClr);
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .vs-jobs-title {
   font-family: "Cinzel", "Playfair Display", Georgia, serif;
-  font-size: clamp(22px, 4vw, 30px);
+  font-size: clamp(18px, 3.5vw, 24px);
   font-weight: 700;
   color: var(--contrastLight, #ffffff);
   line-height: 1.15;
-  margin: 0 0 8px;
-  letter-spacing: 1.5px;
+  margin: 0 0 4px;
+  letter-spacing: 1.2px;
 }
 
 .vs-jobs-subtitle {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 13px;
+  font-size: 11.5px;
   color: var(--taupe);
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
-/* 2 Colonnes : Cabaret vs Ville */
+/* 2 Colonnes : Cabaret vs Ville (Centrées et équilibrées) */
 .vs-jobs-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .vs-jobs-col {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   background: var(--surface-glass-dim, rgba(0, 0, 0, 0.25));
-  border: 1px solid rgba(var(--gold-rgb), 0.16);
-  border-radius: 6px;
-  padding: 24px;
+  border: 1px solid rgba(var(--gold-rgb), 0.14);
+  border-radius: 4px;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .vs-jobs-col-head {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.16);
 }
 
 .vs-jobs-col-title {
   font-family: "Cinzel", "Playfair Display", Georgia, serif;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--accentClr);
   margin: 0;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 
@@ -2822,26 +2839,26 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-job-sector {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 
 .vs-sector-title {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: var(--contrastLight, #ffffff);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   margin: 0;
 }
 
 .vs-sector-title::before {
   content: "✦";
   color: var(--accentClr);
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .vs-job-list {
@@ -2850,29 +2867,30 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
 }
 
 .vs-job-tag {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--taupe);
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 4px 10px;
-  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 2px 7px;
+  border-radius: 3px;
   transition: all 0.2s ease;
+  line-height: 1.35;
 }
 
 .vs-job-tag:hover {
   color: var(--contrastLight, #ffffff);
-  background: rgba(var(--gold-rgb), 0.08);
-  border-color: rgba(var(--gold-rgb), 0.25);
+  background: rgba(var(--gold-rgb), 0.1);
+  border-color: rgba(var(--gold-rgb), 0.3);
   transform: translateY(-1px);
 }
 
-@media (max-width: 720px) {
+@media (max-width: 680px) {
   .vs-jobs-columns {
     grid-template-columns: 1fr;
   }
