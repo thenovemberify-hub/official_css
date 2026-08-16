@@ -266,7 +266,7 @@
   color: #888888;
 }
 
-/* ─── 3. Section Épisodes (Header + Rangées Compressées) ─── */
+/* ─── 3. Section Épisodes (Header + Rangées Continues & Collées) ─── */
 .vs-nf-episodes-wrap {
   padding: 20px 32px 30px;
   box-sizing: border-box;
@@ -278,6 +278,8 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .vs-nf-ep-head h3 {
@@ -297,20 +299,22 @@
 .vs-nf-ep-list {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 0;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-/* Ligne d'un Épisode */
+/* Ligne d'un Épisode (Ordre strict : [1] Chiffre | [2] Image | [3] Texte) */
 .vs-nf-ep-row {
-  display: grid;
-  grid-template-columns: 24px 120px 1fr;
+  display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  border-radius: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  gap: 16px;
+  padding: 14px 16px;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   transition: background 0.15s ease;
   box-sizing: border-box;
+  margin: 0;
 }
 
 .vs-nf-ep-row:last-child {
@@ -319,14 +323,17 @@
 
 .vs-nf-ep-row:hover,
 .vs-nf-ep-row.vs-active {
-  background: #262626;
+  background: rgba(255, 255, 255, 0.06);
 }
 
+/* 1. Chiffre à gauche */
 .vs-nf-ep-num {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--nf-text-darkgray);
+  color: #777777;
+  width: 20px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .vs-nf-ep-row:hover .vs-nf-ep-num,
@@ -334,10 +341,10 @@
   color: #ffffff;
 }
 
-/* Miniature avec bouton Play au hover (Image 2) */
+/* 2. Miniature avec bouton Play au hover au milieu */
 .vs-nf-ep-thumb-wrap {
   position: relative;
-  width: 120px;
+  width: 130px;
   aspect-ratio: 16 / 9;
   border-radius: 4px;
   overflow: hidden;
@@ -377,8 +384,8 @@
 }
 
 .vs-nf-ep-play-circle {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 1.5px solid #ffffff;
   background: rgba(0, 0, 0, 0.6);
@@ -390,26 +397,28 @@
 
 .vs-nf-ep-thumb-wrap:hover .vs-nf-ep-play-circle {
   transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
 }
 
 .vs-nf-ep-play-circle svg {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   fill: #ffffff;
   margin-left: 2px;
 }
 
-/* Contenu texte de l'épisode */
+/* 3. Contenu texte de l'épisode à droite */
 .vs-nf-ep-content {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
   min-width: 0;
 }
 
 .vs-nf-ep-name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -417,8 +426,8 @@
 }
 
 .vs-nf-ep-synopsis {
-  font-size: 11.5px;
-  line-height: 1.4;
+  font-size: 12px;
+  line-height: 1.45;
   color: var(--nf-text-gray);
   margin: 0;
 }
@@ -441,11 +450,23 @@
     padding: 16px 18px;
   }
   .vs-nf-ep-row {
-    grid-template-columns: 20px 100px 1fr;
-    gap: 10px;
-    padding: 10px 6px;
+    gap: 12px;
+    padding: 10px 8px;
   }
   .vs-nf-ep-thumb-wrap {
     width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .vs-nf-ep-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .vs-nf-ep-num {
+    display: none;
+  }
+  .vs-nf-ep-thumb-wrap {
+    width: 100%;
   }
 }
