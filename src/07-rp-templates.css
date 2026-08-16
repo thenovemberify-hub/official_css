@@ -6526,64 +6526,68 @@ speech {
   color: var(--accentClr);
 }
 
-/* Liste des morceaux (très simple à éditer) */
+/* Liste des morceaux (très resserrée & fluide) */
 .vs-playlist-tracks {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 2px;
 }
 
 .vs-pl-track {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 8px 12px;
-  background: var(--surface-glass-dim, rgba(0, 0, 0, 0.22));
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  padding: 5px 8px;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+  transition: all 0.15s ease;
   box-sizing: border-box;
+  margin: 0;
+}
+
+.vs-pl-track:last-child {
+  border-bottom: none;
 }
 
 .vs-pl-track:hover {
-  background: rgba(var(--gold-rgb), 0.08);
-  border-color: rgba(var(--gold-rgb), 0.25);
+  background: rgba(255, 255, 255, 0.04);
   transform: translateX(2px);
 }
 
 .vs-pl-cover {
-  width: 38px;
-  height: 38px;
-  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
   object-fit: cover;
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 }
 
 .vs-pl-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   flex: 1;
   min-width: 0;
 }
 
 .vs-pl-title {
   font-family: var(--font, sans-serif);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--contrastLight, #ffffff);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .vs-pl-artist {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--taupe);
   opacity: 0.85;
@@ -6594,17 +6598,17 @@ speech {
 
 .vs-pl-duration {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 11px;
+  font-size: 10.5px;
   color: var(--taupe);
-  opacity: 0.8;
+  opacity: 0.75;
   flex-shrink: 0;
   margin: 0 4px;
 }
 
 /* Bouton lecture (Lien externe YouTube / Spotify) */
 .vs-pl-play {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: rgba(var(--gold-rgb), 0.15);
   border: 1px solid rgba(var(--gold-rgb), 0.35);
@@ -6621,13 +6625,13 @@ speech {
   background: var(--accentClr);
   color: #0b0c10;
   border-color: var(--accentClr);
-  transform: scale(1.12);
-  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.5);
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.5);
 }
 
 .vs-pl-play svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   fill: currentColor;
   margin-left: 2px;
 }
@@ -6641,7 +6645,134 @@ speech {
     text-align: center;
   }
   .vs-pl-track {
-    padding: 6px 8px;
+    padding: 4px 6px;
     gap: 8px;
+  }
+}
+
+/* ─── 3. Widget Now Playing / Écoute en cours (Image 2) ─── */
+.vs-now-playing {
+  max-width: 480px;
+  margin: 25px auto;
+  display: flex;
+  background: var(--surface-glass, rgba(14, 18, 25, 0.88));
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.vs-now-art-wrap {
+  width: 120px;
+  flex-shrink: 0;
+  position: relative;
+  background: #000;
+  display: flex;
+}
+
+.vs-now-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vs-now-side-tag {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #00d2ff;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.vs-now-body {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.vs-now-badge {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-now-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--contrastLight, #ffffff);
+  line-height: 1.25;
+  margin: 3px 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vs-now-artist {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.85;
+}
+
+/* Égaliseur animé */
+.vs-now-equalizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 12px;
+  margin-top: 8px;
+}
+
+.vs-now-eq-bar {
+  width: 2px;
+  background: var(--accentClr);
+  border-radius: 1px;
+  animation: vsEqPulse 1.2s ease-in-out infinite alternate;
+}
+
+.vs-now-eq-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.vs-now-eq-bar:nth-child(2) { height: 80%; animation-delay: 0.3s; }
+.vs-now-eq-bar:nth-child(3) { height: 50%; animation-delay: 0.5s; }
+.vs-now-eq-bar:nth-child(4) { height: 100%; animation-delay: 0.2s; }
+.vs-now-eq-bar:nth-child(5) { height: 30%; animation-delay: 0.4s; }
+
+@keyframes vsEqPulse {
+  0% { height: 20%; opacity: 0.6; }
+  50% { height: 100%; opacity: 1; }
+  100% { height: 35%; opacity: 0.7; }
+}
+
+@media (max-width: 480px) {
+  .vs-now-playing {
+    flex-direction: column;
+  }
+  .vs-now-art-wrap {
+    width: 100%;
+    height: 140px;
   }
 }
