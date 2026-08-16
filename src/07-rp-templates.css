@@ -726,6 +726,116 @@
   margin: 30px 0 16px;
 }
 
+/* Système d'onglets du règlement (4 boutons : I, II, III, IV) */
+.vs-tab-radio {
+  display: none !important;
+}
+
+.vs-rules-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0 25px;
+}
+
+.vs-rules-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  text-align: center;
+}
+
+.vs-rules-btn:hover {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: rgba(var(--gold-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+.vs-btn-num {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accentClr);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.vs-btn-name {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.85;
+}
+
+.vs-rules-panel {
+  display: none;
+}
+
+#vs-rule-tab-1:checked ~ .panel-1,
+#vs-rule-tab-2:checked ~ .panel-2,
+#vs-rule-tab-3:checked ~ .panel-3,
+#vs-rule-tab-4:checked ~ .panel-4 {
+  display: block;
+  animation: vsRulesFadeIn 0.35s ease forwards;
+}
+
+#vs-rule-tab-1:checked ~ .vs-rules-nav .tab-btn-1,
+#vs-rule-tab-2:checked ~ .vs-rules-nav .tab-btn-2,
+#vs-rule-tab-3:checked ~ .vs-rules-nav .tab-btn-3,
+#vs-rule-tab-4:checked ~ .vs-rules-nav .tab-btn-4 {
+  background: rgba(var(--gold-rgb), 0.12);
+  border-color: var(--accentClr);
+  box-shadow:
+    0 0 15px rgba(var(--gold-rgb), 0.2),
+    inset 0 0 8px rgba(var(--gold-rgb), 0.1);
+  transform: translateY(-1px);
+}
+
+#vs-rule-tab-1:checked ~ .vs-rules-nav .tab-btn-1 .vs-btn-num,
+#vs-rule-tab-2:checked ~ .vs-rules-nav .tab-btn-2 .vs-btn-num,
+#vs-rule-tab-3:checked ~ .vs-rules-nav .tab-btn-3 .vs-btn-num,
+#vs-rule-tab-4:checked ~ .vs-rules-nav .tab-btn-4 .vs-btn-num {
+  color: var(--contrastLight);
+  text-shadow: 0 0 10px rgba(var(--gold-rgb), 0.6);
+}
+
+#vs-rule-tab-1:checked ~ .vs-rules-nav .tab-btn-1 .vs-btn-name,
+#vs-rule-tab-2:checked ~ .vs-rules-nav .tab-btn-2 .vs-btn-name,
+#vs-rule-tab-3:checked ~ .vs-rules-nav .tab-btn-3 .vs-btn-name,
+#vs-rule-tab-4:checked ~ .vs-rules-nav .tab-btn-4 .vs-btn-name {
+  color: var(--accentClr);
+  opacity: 1;
+}
+
+@keyframes vsRulesFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .vs-rules-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Article individuel du règlement */
 .vs-rule-item {
   background: var(--surface-glass-dim);
