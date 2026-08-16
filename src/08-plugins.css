@@ -2845,3 +2845,341 @@ div.posts input[type="checkbox"] {
     display: none;
   }
 }
+
+/* ==========================================================================
+   VELVET SIN — SMARTPHONE RP / TEXTOS & CHAT CHIFFRÉ (SMS TEMPLATE)
+   ========================================================================== */
+.vs-sms-device br,
+.vs-sms-thread br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-sms-device {
+  max-width: 460px;
+  margin: 35px auto;
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 20px;
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.15);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--font, "Inter", sans-serif);
+  color: var(--textColor);
+  box-sizing: border-box;
+}
+
+/* Version large si besoin de discussions denses */
+.vs-sms-device.vs-sms--wide {
+  max-width: 580px;
+}
+
+/* ─── Barre de Statut Smartphone (Heure, Réseau, Batterie) ─── */
+.vs-sms-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 18px 4px;
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--taupe);
+  opacity: 0.8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.vs-sms-network {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.vs-sms-signal {
+  color: var(--accentClr);
+  font-size: 8px;
+}
+
+.vs-sms-battery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── En-tête Contact ─── */
+.vs-sms-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.15);
+}
+
+.vs-sms-contact-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vs-sms-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--accentClr);
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.3);
+  flex-shrink: 0;
+  background: #000;
+}
+
+.vs-sms-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vs-sms-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.vs-sms-name {
+  font-family: "Cinzel", serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--contrastLight);
+}
+
+.vs-sms-sub {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 9.5px;
+  color: var(--accentClr);
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vs-sms-sub::before {
+  content: "●";
+  font-size: 7px;
+  color: #5bb377;
+}
+
+.vs-sms-actions {
+  display: flex;
+  gap: 12px;
+  color: var(--taupe);
+  font-size: 13px;
+}
+
+/* ─── Fil de discussion (Thread) ─── */
+.vs-sms-thread {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+}
+
+/* Séparateur de date / heure */
+.vs-sms-date {
+  text-align: center;
+  margin: 6px 0 10px;
+}
+
+.vs-sms-date span {
+  font-family: "Cinzel", serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--taupe);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Bulle de message de base */
+.vs-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin-bottom: 2px;
+}
+
+.vs-msg-bubble {
+  padding: 10px 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  box-sizing: border-box;
+  word-break: break-word;
+  position: relative;
+}
+
+.vs-msg-bubble p {
+  margin: 0;
+}
+
+.vs-msg-time {
+  font-family: var(--font-4, "Roboto Condensed", sans-serif);
+  font-size: 8.5px;
+  color: var(--taupe);
+  margin-top: 3px;
+  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ─── Message Reçu (Gauche) ─── */
+.vs-msg-in {
+  align-self: flex-start;
+}
+
+.vs-msg-in .vs-msg-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 12px 12px 12px 2px;
+  color: var(--textColor);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.vs-msg-in .vs-msg-time {
+  align-self: flex-start;
+  padding-left: 4px;
+}
+
+/* ─── Message Envoyé (Droite) ─── */
+.vs-msg-out {
+  align-self: flex-end;
+}
+
+.vs-msg-out .vs-msg-bubble {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--gold-rgb), 0.22) 0%,
+    rgba(var(--gold-rgb), 0.1) 100%
+  );
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: 12px 12px 2px 12px;
+  color: var(--contrastLight);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.vs-msg-out .vs-msg-time {
+  align-self: flex-end;
+  padding-right: 4px;
+  color: var(--accentClr);
+}
+
+/* ─── Pièce jointe / Photo dans le message ─── */
+.vs-msg-photo {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 6px;
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  background: #000;
+}
+
+.vs-msg-photo img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ─── Note vocale / Audio ─── */
+.vs-msg-audio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+}
+
+.vs-audio-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accentClr);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.vs-audio-wave {
+  flex: 1;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--taupe);
+}
+
+.vs-audio-time {
+  font-size: 9px;
+  font-family: monospace;
+  color: var(--accentClr);
+}
+
+/* ─── Barre de Saisie / Footer Téléphone ─── */
+.vs-sms-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.15);
+}
+
+.vs-sms-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 18px;
+  padding: 7px 14px;
+  font-size: 11.5px;
+  color: var(--taupe);
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+.vs-sms-send {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-accent, #eaba6b), var(--accentClr, #d4af37));
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.4);
+}
+
+@media (max-width: 500px) {
+  .vs-sms-device {
+    margin: 15px auto;
+    border-radius: 12px;
+  }
+}
