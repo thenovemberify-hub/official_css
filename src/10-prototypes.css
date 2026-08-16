@@ -10,71 +10,45 @@
   --nf-text-white: #ffffff;
   --nf-text-gray: #a3a3a3;
   --nf-text-darkgray: #777777;
-  --nf-border-subtle: rgba(255, 255, 255, 0.12);
+  --nf-border-subtle: rgba(255, 255, 255, 0.1);
 }
 
 /* ─── Conteneur Principal Modal Netflix ─── */
 .vs-nf-modal {
-  max-width: 840px;
-  margin: 30px auto;
+  max-width: 800px;
+  margin: 25px auto;
   background: var(--nf-bg-modal);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
   font-family: var(--font, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
   color: var(--nf-text-white);
   box-sizing: border-box;
-  position: relative;
   padding: 0;
 }
 
-/* Bouton Fermer ✕ en haut à droite */
-.vs-nf-close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(24, 24, 24, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.vs-nf-close-btn:hover {
-  background: #ffffff;
-  color: #141414;
-  transform: scale(1.08);
-}
-
-/* ─── 1. Hero Banner avec Titre & Dégradé ─── */
+/* ─── 1. Hero Banner avec Titre & Dégradé (Tout en haut) ─── */
 .vs-nf-hero {
   position: relative;
   width: 100%;
-  min-height: 420px;
+  min-height: 340px;
   background-size: cover;
   background-position: center top;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 50px 40px 30px;
+  padding: 30px 32px 20px;
   box-sizing: border-box;
   margin: 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .vs-nf-hero-overlay {
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(to top, #181818 4%, rgba(24, 24, 24, 0.7) 25%, transparent 65%),
-    linear-gradient(to right, rgba(20, 20, 20, 0.92) 0%, rgba(20, 20, 20, 0.5) 45%, transparent 100%);
+    linear-gradient(to top, #181818 2%, rgba(24, 24, 24, 0.6) 25%, transparent 65%),
+    linear-gradient(to right, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.45) 50%, transparent 100%);
   pointer-events: none;
 }
 
@@ -83,18 +57,11 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 580px;
+  gap: 6px;
+  max-width: 540px;
 }
 
-/* Titre & Logo Velvet Sin / Limited Series */
-.vs-nf-brand-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 2px;
-}
-
+/* Logo Velvet Sin */
 .vs-nf-brand-name {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
   font-size: 13px;
@@ -105,29 +72,19 @@
   line-height: 1;
 }
 
-.vs-nf-brand-sub {
-  font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  color: #ffffff;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
 .vs-nf-show-title {
   font-family: "Impact", "Anton", "Cinzel", "Arial Black", sans-serif;
-  font-size: clamp(32px, 5.5vw, 46px);
+  font-size: clamp(28px, 5vw, 42px);
   font-weight: 900;
   color: #ffffff;
   line-height: 0.95;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 4px 0 12px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+  margin: 2px 0 10px;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
 }
 
-/* Barre d'action Hero (Play + Boutons ronds) */
+/* Barre d'action Hero (Play + Bouton Liste) */
 .vs-nf-hero-bar {
   display: flex;
   align-items: center;
@@ -144,32 +101,32 @@
 .vs-nf-play-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   background: #ffffff;
   color: #000000 !important;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
-  padding: 8px 24px;
+  padding: 7px 22px;
   border-radius: 4px;
   text-decoration: none !important;
   transition: background 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .vs-nf-play-btn:hover {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.85);
   transform: scale(1.03);
 }
 
 .vs-nf-play-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   fill: #000000;
 }
 
 .vs-nf-circle-btn {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: rgba(42, 42, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -189,8 +146,8 @@
 }
 
 .vs-nf-volume-btn {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: rgba(42, 42, 42, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -198,14 +155,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 13px;
 }
 
-/* ─── 2. Section Métadonnées & Synopsis (2 Colonnes Flex) ─── */
+/* ─── 2. Section Métadonnées & Synopsis (Compressée) ─── */
 .vs-nf-meta-grid {
   display: flex;
-  gap: 35px;
-  padding: 24px 40px 25px;
+  gap: 25px;
+  padding: 16px 32px 18px;
   box-sizing: border-box;
   border-bottom: 1px solid var(--nf-border-subtle);
   width: 100%;
@@ -216,7 +173,7 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .vs-nf-tags-row {
@@ -224,7 +181,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--nf-text-gray);
 }
 
@@ -236,7 +193,7 @@
 .vs-nf-badge-age {
   border: 1px solid rgba(255, 255, 255, 0.4);
   padding: 1px 5px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 600;
   color: #fff;
   border-radius: 2px;
@@ -245,7 +202,7 @@
 .vs-nf-badge-spec {
   border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 1px 4px;
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
   border-radius: 2px;
   color: #fff;
@@ -254,19 +211,18 @@
 .vs-nf-top10-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
+  gap: 7px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #ffffff;
-  margin-top: 2px;
 }
 
 .vs-nf-top10-icon {
   background: var(--nf-red);
   color: #ffffff;
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 900;
-  padding: 3px 4px;
+  padding: 2.5px 3.5px;
   border-radius: 2px;
   line-height: 1;
   text-align: center;
@@ -275,21 +231,21 @@
 }
 
 .vs-nf-plot {
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: #e5e5e5;
-  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #e0e0e0;
+  margin: 2px 0 0;
 }
 
 /* Colonne droite : Distribution & Genres */
 .vs-nf-meta-right {
-  width: 270px;
+  width: 250px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  font-size: 12px;
-  line-height: 1.45;
+  gap: 8px;
+  font-size: 11.5px;
+  line-height: 1.4;
 }
 
 .vs-nf-info-block {
@@ -302,7 +258,7 @@
 }
 
 .vs-nf-info-block span {
-  color: #e5e5e5;
+  color: #e0e0e0;
 }
 
 .vs-nf-info-block em {
@@ -310,9 +266,9 @@
   color: #888888;
 }
 
-/* ─── 3. Section Épisodes (Header + Rangées) ─── */
+/* ─── 3. Section Épisodes (Header + Rangées Compressées) ─── */
 .vs-nf-episodes-wrap {
-  padding: 28px 40px 40px;
+  padding: 20px 32px 30px;
   box-sizing: border-box;
   width: 100%;
 }
@@ -321,11 +277,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .vs-nf-ep-head h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -333,7 +289,7 @@
 }
 
 .vs-nf-ep-season-label {
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #ffffff;
 }
@@ -341,19 +297,19 @@
 .vs-nf-ep-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 /* Ligne d'un Épisode */
 .vs-nf-ep-row {
   display: grid;
-  grid-template-columns: 28px 135px 1fr;
+  grid-template-columns: 24px 120px 1fr;
   align-items: center;
-  gap: 18px;
-  padding: 16px 18px;
+  gap: 14px;
+  padding: 12px 14px;
   border-radius: 6px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  transition: background 0.15s ease;
   box-sizing: border-box;
 }
 
@@ -363,11 +319,11 @@
 
 .vs-nf-ep-row:hover,
 .vs-nf-ep-row.vs-active {
-  background: #2a2a2a;
+  background: #262626;
 }
 
 .vs-nf-ep-num {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--nf-text-darkgray);
   text-align: center;
@@ -381,14 +337,14 @@
 /* Miniature avec bouton Play au hover (Image 2) */
 .vs-nf-ep-thumb-wrap {
   position: relative;
-  width: 135px;
+  width: 120px;
   aspect-ratio: 16 / 9;
   border-radius: 4px;
   overflow: hidden;
   display: block;
   text-decoration: none !important;
   background: #000;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
 }
 
@@ -397,7 +353,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.25s ease;
+  transition: transform 0.2s ease;
 }
 
 .vs-nf-ep-thumb-wrap:hover .vs-nf-ep-thumb {
@@ -421,11 +377,11 @@
 }
 
 .vs-nf-ep-play-circle {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1.5px solid #ffffff;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -434,12 +390,12 @@
 
 .vs-nf-ep-thumb-wrap:hover .vs-nf-ep-play-circle {
   transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .vs-nf-ep-play-circle svg {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   fill: #ffffff;
   margin-left: 2px;
 }
@@ -448,12 +404,12 @@
 .vs-nf-ep-content {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   min-width: 0;
 }
 
 .vs-nf-ep-name {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
@@ -461,48 +417,35 @@
 }
 
 .vs-nf-ep-synopsis {
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 11.5px;
+  line-height: 1.4;
   color: var(--nf-text-gray);
   margin: 0;
 }
 
 /* ─── Responsive Netflix ─── */
-@media (max-width: 720px) {
+@media (max-width: 700px) {
   .vs-nf-hero {
-    padding: 40px 20px 20px;
-    min-height: 320px;
+    padding: 24px 18px 16px;
+    min-height: 280px;
   }
   .vs-nf-meta-grid {
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    gap: 16px;
+    padding: 16px 18px;
   }
   .vs-nf-meta-right {
     width: 100%;
   }
   .vs-nf-episodes-wrap {
-    padding: 20px;
+    padding: 16px 18px;
   }
   .vs-nf-ep-row {
-    grid-template-columns: 24px 110px 1fr;
-    gap: 12px;
-    padding: 12px 8px;
-  }
-  .vs-nf-ep-thumb-wrap {
-    width: 110px;
-  }
-}
-
-@media (max-width: 480px) {
-  .vs-nf-ep-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 20px 100px 1fr;
     gap: 10px;
-  }
-  .vs-nf-ep-num {
-    display: none;
+    padding: 10px 6px;
   }
   .vs-nf-ep-thumb-wrap {
-    width: 100%;
+    width: 100px;
   }
 }
