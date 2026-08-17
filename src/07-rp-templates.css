@@ -4501,66 +4501,73 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   VELVET SIN — MOODBOARD (Style Pinterest)
-   Aligné sur le thème Velvet Sin (noir & or)
+   VELVET SIN — MOODBOARD (Style Pinterest / Glassmorphism)
+   Adapté dynamiquement aux thèmes Velvet Sin (Bleu Nuit, Vert Forêt, etc.)
    ═══════════════════════════════════════════════════════════════════ */
-/* ─── Variables ─── */
 /* ─── Conteneur Principal ─── */
 .vs-moodboard {
   max-width: 850px;
   margin: 40px auto;
   background: var(--vs-mb-bg-main);
   border: 1px solid var(--vs-mb-border);
+  border-radius: 4px;
   font-family: var(--vs-mb-font-body);
   color: var(--vs-mb-text-primary);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow:
-    0 0 40px rgba(0, 0, 0, 0.8),
-    inset 0 0 80px rgba(0, 0, 0, 0.4);
+    0 15px 35px rgba(0, 0, 0, 0.45),
+    inset 0 0 30px rgba(var(--gold-rgb, 212, 175, 55), 0.03);
   position: relative;
-  padding: 30px;
+  padding: 35px 30px 30px 30px;
+  box-sizing: border-box;
 }
 
-/* Bande supérieure décorative */
+/* Ligne supérieure décorative */
 .vs-moodboard::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: 10%;
+  right: 10%;
   height: 1px;
   background: var(--vs-mb-gold-gradient);
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* ─── Titre du Moodboard ─── */
 .vs-moodboard-title {
   font-family: var(--vs-mb-font-title);
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--vs-mb-accent);
   margin: 0 0 8px 0;
   letter-spacing: 4px;
   text-transform: uppercase;
   text-align: center;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 12px rgba(var(--gold-rgb, 212, 175, 55), 0.3);
 }
 
-/* Sous-titre / description optionnelle */
+/* ─── Sous-titre / Description (masqué si vide) ─── */
+.vs-moodboard-subtitle:empty {
+  display: none;
+}
+
 .vs-moodboard-subtitle {
-  font-size: 12px;
-  color: var(--vs-mb-text-muted);
+  font-size: 11px;
+  color: var(--text-soft, #c5c5c5);
   text-align: center;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin: 0 0 25px 0;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--vs-mb-accent-dim);
 }
 
 /* ─── Grille Masonry (CSS Columns) ─── */
 .vs-moodboard-grid {
   column-count: var(--vs-mb-columns);
-  column-gap: 6px;
+  column-gap: 8px;
 }
 
 /* Ignorer les retours à la ligne générés automatiquement par le forum */
@@ -4571,65 +4578,54 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 /* ─── Item / Image individuelle ─── */
 .vs-mood-item {
   break-inside: avoid;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   position: relative;
   overflow: hidden;
-  background: transparent;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   line-height: 0;
+  transition: transform var(--vs-mb-transition), border-color var(--vs-mb-transition), box-shadow var(--vs-mb-transition);
 }
 
-/* — Cadre doré extérieur (bordure fine) — */
+/* Cadre doré extérieur fin */
 .vs-mood-item::before {
   content: "";
   position: absolute;
   inset: 0;
   border: 1px solid transparent;
   border-image: var(--vs-mb-gold-gradient) 1;
-  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.4));
   z-index: 2;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.5;
   transition: opacity var(--vs-mb-transition);
 }
 
-/* — Cadre doré intérieur (bordure plus épaisse) — */
-.vs-mood-item::after {
-  content: "";
-  position: absolute;
-  inset: 2px;
-  border: 1px solid transparent;
-  border-image: var(--vs-mb-gold-gradient) 1;
-  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.3));
-  z-index: 2;
-  pointer-events: none;
-  opacity: 0.4;
-  transition: opacity var(--vs-mb-transition);
-}
-
-/* Au survol : cadre doré plus visible */
-.vs-mood-item:hover::before {
-  opacity: 1;
-  filter: drop-shadow(0 0 6px rgba(207, 192, 159, 0.6));
-}
-
-.vs-mood-item:hover::after {
-  opacity: 0.8;
-  filter: drop-shadow(0 0 5px rgba(207, 192, 159, 0.5));
-}
-
-/* — Image — */
+/* Image */
 .vs-mood-item img {
   display: block;
   width: 100%;
   height: auto;
   object-fit: cover;
-  filter: brightness(0.85) contrast(1.05) saturate(0.9);
-  transition: filter var(--vs-mb-transition);
+  filter: brightness(0.88) contrast(1.05) saturate(0.92);
+  transition: filter var(--vs-mb-transition), transform var(--vs-mb-transition);
 }
 
-/* Au survol : image en pleine luminosité (pas de zoom) */
+/* Au survol de l'image */
+.vs-mood-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--gold-rgb, 212, 175, 55), 0.55);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(var(--gold-rgb, 212, 175, 55), 0.2);
+}
+
+.vs-mood-item:hover::before {
+  opacity: 1;
+}
+
 .vs-mood-item:hover img {
-  filter: brightness(1) contrast(1.1) saturate(1);
+  filter: brightness(1.03) contrast(1.08) saturate(1);
+  transform: scale(1.02);
 }
 
 /* ─── Légende optionnelle ─── */

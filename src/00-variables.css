@@ -284,25 +284,25 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
 
     --vs-w-radius: 0;
     --vs-w-transition: 0.3s ease;
-    --vs-mb-bg-deep: #0a0a0a;
-    --vs-mb-bg-main: #0a0a0a;
-    --vs-mb-border: #1a1a1a;
+    --vs-mb-bg-deep: var(--bg-darker, #0c1820);
+    --vs-mb-bg-main: var(--surface-glass, rgba(18, 40, 63, 0.45));
+    --vs-mb-border: rgba(var(--gold-rgb, 212, 175, 55), 0.25);
 
-    --vs-mb-text-primary: #c5c5c5;
-    --vs-mb-text-muted: #666666;
-    --vs-mb-accent: #d8d4f2;
-    --vs-mb-accent-dim: rgba(216, 212, 242, 0.15);
+    --vs-mb-text-primary: var(--textColor, #c7c5cd);
+    --vs-mb-text-muted: var(--text-muted, #6a6560);
+    --vs-mb-accent: var(--gold-light, #cfc09f);
+    --vs-mb-accent-dim: rgba(var(--gold-rgb, 212, 175, 55), 0.15);
 
     /* Gradient Linéaire (subtil) */
     --vs-mb-gold-gradient: linear-gradient(90deg,
             transparent,
-            rgba(216, 212, 242, 0.3),
+            rgba(var(--gold-rgb, 212, 175, 55), 0.5),
             transparent);
 
-    --vs-mb-font-title: "Cormorant Garamond", serif;
-    --vs-mb-font-body: "Karla", sans-serif;
+    --vs-mb-font-title: var(--font-cinzel, "Cinzel", serif);
+    --vs-mb-font-body: var(--font, "Inter", sans-serif);
 
-    --vs-mb-transition: 0.3s ease;
+    --vs-mb-transition: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     --vs-mb-columns: 3;
     --hp-dark: #0a0e14;
     --hp-darker: #060a10;
