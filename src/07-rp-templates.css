@@ -6431,6 +6431,7 @@ speech {
 
 /* ============================================================================
    VELVET SIN — GRAND PLANS (FICHE SCÉNARIO TANDEM & INTRIGUE DUO)
+   Style : City Dark / Glassmorphism / Chic Noir & Or
    ============================================================================ */
 .vs-gp-wrapper {
   --gp-bg: var(--surface-glass-deep, rgba(12, 24, 32, 0.85));
@@ -6452,6 +6453,17 @@ speech {
   width: 100%;
 }
 
+/* ─── Neutralisation des <br> parasites injectés par Forumactif (nl2br) ─── */
+.vs-gp-wrapper br {
+  display: none !important;
+}
+
+.vs-gp-scroll-text br,
+.vs-gp-extra-content br {
+  display: inline !important;
+}
+
+/* ─── Conteneur Principal ─── */
 .vs-gp-card {
   width: 100%;
   max-width: 680px;
@@ -6471,6 +6483,7 @@ speech {
   font-family: var(--gp-font-body);
 }
 
+/* Liseré supérieur lumineux */
 .vs-gp-card::before {
   content: "";
   position: absolute;
@@ -6482,6 +6495,7 @@ speech {
   opacity: 0.9;
 }
 
+/* ─── En-tête (Header) ─── */
 .vs-gp-header {
   text-align: center;
   margin-bottom: 25px;
@@ -6532,6 +6546,7 @@ speech {
   font-size: 12px;
 }
 
+/* ─── Structure Chassé-Croisé ─── */
 .vs-gp-grid {
   display: flex;
   flex-direction: column;
@@ -6545,6 +6560,28 @@ speech {
   min-height: 250px;
 }
 
+/* ─── Variante Alternée (Post pair / Disposition Inversée) ───
+   Active l'effet miroir pour les posts suivants :
+   - Ligne 1 : Description (gauche) / Image (droite)
+   - Ligne 2 : Image (gauche) / Notes & Idées (droite)
+   
+   DÉTECTION 100% AUTOMATIQUE :
+   1. Si plusieurs réponses/posts s'enchaînent dans un topic (.post, .post_row pair)
+   2. Si plusieurs fiches sont postées dans un même message (:nth-of-type(even))
+   3. Ou manuellement via la classe .vs-gp-wrapper--alt ─── */
+.post:nth-of-type(even) .vs-gp-row,
+.post:nth-child(even) .vs-gp-row,
+.post_row:nth-of-type(even) .vs-gp-row,
+.post_row:nth-child(even) .vs-gp-row,
+.vs-gp-wrapper:nth-of-type(even) .vs-gp-row,
+.vs-gp-wrapper--alt .vs-gp-row,
+.vs-gp-card--alt .vs-gp-row,
+.vs-gp-wrapper.is-alt .vs-gp-row,
+.vs-gp-card.is-alt .vs-gp-row {
+  flex-direction: row-reverse;
+}
+
+/* ─── Cellule Visuelle (Avatar / GIF) ─── */
 .vs-gp-visual-cell {
   flex: 0 0 190px;
   width: 190px;
@@ -6608,6 +6645,7 @@ speech {
   line-height: 1.2;
 }
 
+/* ─── Cellule Texte (Intrigue & Notes) ─── */
 .vs-gp-text-cell {
   flex: 1 1 0;
   min-width: 0;
@@ -6681,6 +6719,7 @@ speech {
   border-radius: 4px;
 }
 
+/* Puces stylisées pour les Notes & Idées */
 .vs-gp-note-list {
   list-style: none;
   padding: 0;
@@ -6709,6 +6748,7 @@ speech {
   font-size: 9px;
 }
 
+/* ─── Section Informations Complémentaires & Options (Pills) ─── */
 .vs-gp-extra-box {
   width: 100%;
   background: var(--gp-bg-cell);
@@ -6747,6 +6787,7 @@ speech {
   margin-bottom: 14px;
 }
 
+/* Lignes d'options / Options à cocher */
 .vs-gp-options-list {
   display: flex;
   flex-direction: column;
@@ -6779,6 +6820,7 @@ speech {
   align-items: center;
 }
 
+/* Pastille individuelle (Pill) */
 .vs-gp-pill {
   font-family: "Roboto Condensed", var(--gp-font-body), sans-serif;
   font-size: 11px;
@@ -6795,6 +6837,7 @@ speech {
   line-height: 1.3;
 }
 
+/* Pastille active / cochée */
 .vs-gp-pill.is-active,
 .vs-gp-pill--active {
   background: rgba(var(--gold-rgb, 212, 175, 55), 0.18);
@@ -6804,6 +6847,7 @@ speech {
   font-weight: 700;
 }
 
+/* ─── Footer Décoratif ─── */
 .vs-gp-footer {
   text-align: center;
   margin-top: 18px;
@@ -6816,15 +6860,34 @@ speech {
   color: var(--gp-text-muted);
 }
 
+/* ─── Responsive (Mobile & Tablettes) ─── */
 @media (max-width: 640px) {
   .vs-gp-card {
     padding: 20px 14px;
   }
-  .vs-gp-row {
+  .vs-gp-row,
+  .post:nth-of-type(even) .vs-gp-row,
+  .post:nth-child(even) .vs-gp-row,
+  .post_row:nth-of-type(even) .vs-gp-row,
+  .post_row:nth-child(even) .vs-gp-row,
+  .vs-gp-wrapper:nth-of-type(even) .vs-gp-row,
+  .vs-gp-wrapper--alt .vs-gp-row,
+  .vs-gp-card--alt .vs-gp-row,
+  .vs-gp-wrapper.is-alt .vs-gp-row,
+  .vs-gp-card.is-alt .vs-gp-row {
     flex-direction: column;
     min-height: auto;
   }
-  .vs-gp-row--reverse {
+  .vs-gp-row--reverse,
+  .post:nth-of-type(even) .vs-gp-row--reverse,
+  .post:nth-child(even) .vs-gp-row--reverse,
+  .post_row:nth-of-type(even) .vs-gp-row--reverse,
+  .post_row:nth-child(even) .vs-gp-row--reverse,
+  .vs-gp-wrapper:nth-of-type(even) .vs-gp-row--reverse,
+  .vs-gp-wrapper--alt .vs-gp-row--reverse,
+  .vs-gp-card--alt .vs-gp-row--reverse,
+  .vs-gp-wrapper.is-alt .vs-gp-row--reverse,
+  .vs-gp-card.is-alt .vs-gp-row--reverse {
     flex-direction: column-reverse;
   }
   .vs-gp-visual-cell {
