@@ -3740,8 +3740,36 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 .vs-comfort-preamble br,
-.vs-comfort br {
+.vs-comfort br,
+.vs-comfort-rhythm-grid > br,
+.vs-comfort-topics > br,
+.vs-comfort-choices > br,
+.vs-comfort-pills > br,
+.vs-comfort-legend > br,
+.vs-comfort-header > br,
+.vs-comfort-footer > br,
+.vs-comfort-section > br,
+.vs-comfort-mastery-block > br {
   display: none !important;
+}
+
+/* Neutralisation des wrappers <p> automatiques créés par Forumactif */
+.vs-comfort-rhythm-grid > p,
+.vs-comfort-topics > p,
+.vs-comfort-choices > p,
+.vs-comfort-pills > p,
+.vs-comfort-legend > p {
+  display: contents !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Préservation des sauts de ligne voulus dans les zones de texte libre */
+.vs-comfort-preamble-body br,
+.vs-comfort-notes-content br,
+.vs-comfort-custom-note p br,
+.vs-comfort-custom-note br {
+  display: inline !important;
 }
 
 .vs-comfort-details {
