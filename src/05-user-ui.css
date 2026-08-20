@@ -304,44 +304,7 @@
   margin-right: 10px;
 }
 
-/* Conteneur image et overlay */
-.userlist_avatar {
-  overflow: hidden;
-  background: #000;
-  width: 100%;
-  aspect-ratio: 3/4;
-  outline: 1px solid var(--fond-category);
-  outline-offset: 4px;
-}
-
-.userlist_avatar img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  top: 0;
-  left: 0;
-}
-
-/* (Règle vide retirée : .userlist_avatar:hover .userlist_details — le commentaire
-   indiquait "Removed padding-bottom lift - simply expanding content is safer".) */
-.userlist_avatar:hover .userlist_details::before {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.userlist_avatar:hover .userlist_infos {
-  max-height: 85px;
-  /* Tuned to content size for correct speed */
-  opacity: 1;
-  margin-top: 10px;
-}
-
-.userlist_avatar:hover .userlist_contact {
-  max-height: 50px;
-  opacity: 1;
-  /* removed margin-top: auto to prevent jump */
-}
+/* Note: Les styles de la galerie des membres (.userlist) sont centralisés dans 08-plugins.css */
 
 /****** ------------------------------------------------------------------------------
  ****** MESSAGES PRIVES -------------------------------------------------------------- ******/
