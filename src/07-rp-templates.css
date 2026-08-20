@@ -564,6 +564,29 @@
   text-align: justify;
 }
 
+/* Neutralisation des <br> parasites Forumactif dans vs-admin-card */
+.vs-admin-card br {
+  display: none !important;
+}
+
+.vs-admin-card p br,
+.vs-admin-body br,
+.vs-admin-callout br {
+  display: inline !important;
+}
+
+.vs-admin-card a {
+  color: var(--accentClr);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.3);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.vs-admin-card a:hover {
+  color: var(--contrastLight);
+  border-bottom-color: var(--contrastLight);
+}
+
 /* Badge supérieur institutionnel */
 .vs-admin-badge {
   text-align: center;
@@ -6063,6 +6086,28 @@ speech {
 
 
 /* ─── 2. Playlist Sobre & Élégante (Pochette, Titre, Durée, Bouton Lecture) ─── */
+.vs-playlist-card,
+.vs-music-profile,
+.vs-now-playing,
+.vs-profile-pl {
+  width: 100%;
+}
+
+/* Neutralisation des <br> parasites Forumactif dans les widgets musique & playlists */
+.vs-playlist-card br,
+.vs-music-profile br,
+.vs-now-playing br,
+.vs-profile-pl br {
+  display: none !important;
+}
+
+.vs-playlist-card p br,
+.vs-music-profile p br,
+.vs-now-playing p br,
+.vs-profile-pl p br {
+  display: inline !important;
+}
+
 .vs-playlist-card {
   max-width: 580px;
   margin: 30px auto;
@@ -6085,6 +6130,8 @@ speech {
   margin-bottom: 22px;
   padding-bottom: 18px;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.15);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .vs-playlist-cover {
@@ -6102,7 +6149,7 @@ speech {
   flex-direction: column;
   gap: 3px;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 auto;
 }
 
 .vs-playlist-badge {
