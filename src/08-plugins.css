@@ -1655,11 +1655,12 @@ blockquote cite a {
 
 /*** ------------------------------- ***/
 /*** LISTE DES MEMBRES (DESIGN SIGNATURE VELVET SIN / GRAND PLANS) ------------- ***/
-/* Galerie des membres */
+
+/* Grille de la galerie des membres */
 .userlist {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)) !important;
-  gap: 22px !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 24px !important;
   padding: 24px 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
@@ -1668,21 +1669,22 @@ blockquote cite a {
 /* Carte de membre */
 .userlist_profil {
   position: relative !important;
+  width: 100% !important;
+  max-width: 210px !important;
+  height: 320px !important;
+  margin: 0 auto !important;
   border-radius: 4px !important;
   overflow: hidden !important;
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.25) !important;
-  background: var(--surface-glass-deep, rgba(10, 20, 28, 0.95)) !important;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6) !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
-  aspect-ratio: 2 / 3 !important;
-  display: flex !important;
-  flex-direction: column !important;
+  background: #060b11 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease, border-color 0.6s ease !important;
   box-sizing: border-box !important;
 }
 
 .userlist_profil:hover {
-  transform: translateY(-6px) scale(1.02) !important;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(var(--gold-rgb, 212, 175, 55), 0.22) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 22px rgba(var(--gold-rgb, 212, 175, 55), 0.22) !important;
   border-color: rgba(var(--gold-rgb, 212, 175, 55), 0.65) !important;
 }
 
@@ -1696,7 +1698,7 @@ blockquote cite a {
   height: 1px !important;
   background: linear-gradient(90deg, transparent, var(--accentClr, #d4af37), transparent) !important;
   opacity: 0 !important;
-  transition: opacity 0.4s ease !important;
+  transition: opacity 0.6s ease !important;
   z-index: 10 !important;
 }
 
@@ -1704,38 +1706,47 @@ blockquote cite a {
   opacity: 1 !important;
 }
 
-/* Avatar Conteneur */
+/* Conteneur Avatar : Pleine largeur, préserve la visibilité de l'image */
 .userlist_avatar {
-  position: relative !important;
-  width: 100% !important;
-  height: 100% !important;
-  overflow: hidden !important;
-  background: #000 !important;
-}
-
-.userlist_avatar img {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
+  overflow: hidden !important;
+  background: #060b11 !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.userlist_avatar > img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
   object-fit: cover !important;
   object-position: center top !important;
-  filter: brightness(0.92) contrast(1.05) !important;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease !important;
+  filter: brightness(0.95) contrast(1.05) !important;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease !important;
   border: none !important;
 }
 
-.userlist_profil:hover .userlist_avatar img {
-  transform: scale(1.08) !important;
-  filter: brightness(0.4) contrast(1.2) blur(1px) !important;
+/* Au survol, l'avatar reste bien visible en arrière-plan avec un léger zoom doux */
+.userlist_profil:hover .userlist_avatar > img {
+  transform: scale(1.05) !important;
+  filter: brightness(0.55) contrast(1.08) !important;
 }
 
-/* Détails Overlay (Au repos: dégradé bas, Au survol: Glassmorphism avec cadre collector) */
+/* Détails Overlay : Voile translucide satiné avec animation fluide */
 .userlist_details {
   position: absolute !important;
   inset: 0 !important;
-  padding: 20px 16px !important;
+  padding: 20px 14px !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
@@ -1743,14 +1754,14 @@ blockquote cite a {
   align-items: center !important;
   text-align: center !important;
   z-index: 5 !important;
-  background: linear-gradient(180deg, transparent 40%, rgba(6, 12, 18, 0.75) 80%, rgba(6, 12, 18, 0.95) 100%) !important;
-  transition: background 0.4s ease, backdrop-filter 0.4s ease !important;
+  background: linear-gradient(180deg, transparent 40%, rgba(6, 11, 17, 0.7) 75%, rgba(6, 11, 17, 0.92) 100%) !important;
+  transition: background 0.65s cubic-bezier(0.22, 1, 0.36, 1), backdrop-filter 0.65s ease !important;
 }
 
 .userlist_profil:hover .userlist_details {
-  background: rgba(8, 16, 24, 0.9) !important;
-  backdrop-filter: blur(8px) saturate(130%) !important;
-  -webkit-backdrop-filter: blur(8px) saturate(130%) !important;
+  background: rgba(10, 22, 34, 0.58) !important;
+  backdrop-filter: blur(2.5px) saturate(125%) !important;
+  -webkit-backdrop-filter: blur(2.5px) saturate(125%) !important;
   justify-content: center !important;
 }
 
@@ -1762,21 +1773,23 @@ blockquote cite a {
 .userlist_pseudo {
   display: block !important;
   width: 100% !important;
-  margin-bottom: 2px !important;
+  margin: 0 !important;
   font-family: var(--font-cinzel, "Cinzel", serif) !important;
   font-size: 14px !important;
   font-weight: 700 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
   line-height: 1.3 !important;
-  transition: transform 0.4s ease, margin-bottom 0.4s ease !important;
+  text-decoration: none !important;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
 }
 
 .userlist_pseudo a {
   color: var(--gold-light, #dfc185) !important;
   text-decoration: none !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
-  transition: color 0.3s ease, text-shadow 0.3s ease !important;
+  transition: color 0.4s ease, text-shadow 0.4s ease !important;
+  border: none !important;
 }
 
 .userlist_pseudo a span,
@@ -1785,10 +1798,7 @@ blockquote cite a {
   font-size: inherit !important;
   letter-spacing: inherit !important;
   color: inherit !important;
-}
-
-.userlist_profil:hover .userlist_pseudo {
-  margin-bottom: 10px !important;
+  text-decoration: none !important;
 }
 
 .userlist_profil:hover .userlist_pseudo a {
@@ -1796,17 +1806,17 @@ blockquote cite a {
   text-shadow: 0 0 16px rgba(var(--gold-rgb, 212, 175, 55), 0.6) !important;
 }
 
-/* Ligne décorative dorée sous le pseudo */
+/* Séparateur or chic sous le pseudo */
 .userlist_pseudo::after {
   content: "" !important;
   display: block !important;
-  width: 32px !important;
+  width: 30px !important;
   height: 1px !important;
   background: var(--accentClr, #d4af37) !important;
   margin: 8px auto 0 auto !important;
   opacity: 0 !important;
   transform: scaleX(0) !important;
-  transition: transform 0.4s ease, opacity 0.4s ease !important;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease !important;
 }
 
 .userlist_profil:hover .userlist_pseudo::after {
@@ -1814,54 +1824,120 @@ blockquote cite a {
   transform: scaleX(1) !important;
 }
 
-/* Infos (Dernière visite & Messages) */
+/* Infos (Dernière visite & Messages) : Cartouche haute personnalité Velvet Sin */
 .userlist_infos {
-  font-family: var(--font, "Inter", sans-serif) !important;
-  font-size: 11.5px !important;
-  line-height: 1.65 !important;
-  color: var(--textColor, #c7c5cd) !important;
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
   opacity: 0 !important;
   max-height: 0 !important;
   overflow: hidden !important;
-  transform: translateY(12px) !important;
-  transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease, margin 0.4s ease !important;
-  margin-top: 0 !important;
+  transform: translateY(14px) !important;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.08s, max-height 0.65s ease, margin 0.65s ease !important;
+  margin: 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
 .userlist_profil:hover .userlist_infos {
   opacity: 1 !important;
-  max-height: 90px !important;
+  max-height: 120px !important;
   transform: translateY(0) !important;
-  margin-top: 6px !important;
-  margin-bottom: 12px !important;
+  margin: 8px 0 12px 0 !important;
 }
 
-.userlist_infos br {
-  display: block !important;
-  content: "" !important;
-  margin: 4px 0 !important;
+/* Bloc 1 : Dernière Visite (Badge or + Date) */
+.vs-ml-visit {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 3px !important;
+  width: 100% !important;
 }
 
-/* Boutons de Contact (MP & WWW) */
+.vs-ml-badge {
+  display: inline-block !important;
+  padding: 2.5px 9px !important;
+  background: linear-gradient(135deg, #7a5c1e 0%, #4a340a 100%) !important;
+  border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.55) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-family: var(--font-cinzel, "Cinzel", serif) !important;
+  font-size: 8.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5) !important;
+  line-height: 1.2 !important;
+}
+
+.vs-ml-date {
+  font-family: var(--font, "Inter", sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: var(--gold-light, #dfc185) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Bloc 2 : Compteur de Messages (Grand chiffre stylisé + Label) */
+.vs-ml-posts {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0px !important;
+  width: 100% !important;
+  margin-top: 2px !important;
+}
+
+.vs-ml-posts-count {
+  font-family: var(--font-cinzel, "Cinzel", serif) !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--accentClr, #d4af37) !important;
+  line-height: 1 !important;
+  text-shadow: 0 0 12px rgba(var(--gold-rgb, 212, 175, 55), 0.5), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
+}
+
+.vs-ml-posts-label {
+  font-family: var(--font, "Inter", sans-serif) !important;
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #a09d98 !important;
+  line-height: 1.2 !important;
+  margin-top: 1px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* ─── BOUTONS PILULES OR & NOIR (MP & FICHE) ─── */
 .userlist_contact {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 10px !important;
+  gap: 8px !important;
+  font-size: 0 !important;
   opacity: 0 !important;
   max-height: 0 !important;
   overflow: hidden !important;
-  transform: translateY(12px) !important;
-  transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s, max-height 0.4s ease !important;
+  transform: translateY(14px) !important;
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.16s, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.16s, max-height 0.65s ease !important;
   width: 100% !important;
   margin: 0 !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
 
 .userlist_profil:hover .userlist_contact {
   opacity: 1 !important;
-  max-height: 50px !important;
+  max-height: 55px !important;
+  overflow: visible !important;
   transform: translateY(0) !important;
 }
 
@@ -1869,52 +1945,76 @@ blockquote cite a {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 34px !important;
-  height: 34px !important;
-  background: rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.35) !important;
-  border-radius: 3px !important;
-  transition: all 0.25s ease !important;
+  gap: 5px !important;
+  padding: 5px 14px !important;
+  height: 28px !important;
+  background: rgba(6, 12, 18, 0.8) !important;
+  border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.45) !important;
+  border-radius: 20px !important;
+  color: var(--gold-light, #dfc185) !important;
+  font-family: var(--font-cinzel, "Cinzel", serif) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
   text-decoration: none !important;
   box-sizing: border-box !important;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  z-index: 10 !important;
 }
 
 .userlist_contact a:hover {
-  background: rgba(var(--gold-rgb, 212, 175, 55), 0.22) !important;
-  border-color: var(--accentClr, #d4af37) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
+  background: rgba(var(--gold-rgb, 212, 175, 55), 0.25) !important;
+  border-color: #f5e4bc !important;
+  color: #ffffff !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.8), 0 0 14px rgba(var(--gold-rgb, 212, 175, 55), 0.45) !important;
 }
 
-.userlist_contact img {
-  width: 16px !important;
-  height: 16px !important;
-  object-fit: contain !important;
-  filter: invert(85%) sepia(20%) saturate(400%) hue-rotate(5deg) brightness(95%) contrast(90%) !important;
-  transition: filter 0.25s ease, transform 0.25s ease !important;
+/* Masque les images d'icônes par défaut de Forumactif */
+.userlist_contact a img {
+  display: none !important;
 }
 
-.userlist_contact a:hover img {
-  filter: brightness(1.2) drop-shadow(0 0 4px var(--accentClr, #d4af37)) !important;
-  transform: scale(1.12) !important;
+/* Bouton MP */
+.userlist_contact a[href*="privmsg"]::before {
+  content: "✉ MP" !important;
+  font-size: 10px !important;
+  font-family: var(--font-cinzel, "Cinzel", serif) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  color: inherit !important;
+}
+
+/* Bouton FICHE (Lien vers la fiche ou site) */
+.userlist_contact a:not([href*="privmsg"])::before {
+  content: "✦ FICHE" !important;
+  font-size: 10px !important;
+  font-family: var(--font-cinzel, "Cinzel", serif) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  color: inherit !important;
 }
 
 /* ─── Adaptation Thème Clair ─── */
 [data-color-scheme="light"] .userlist_profil,
 html[data-color-scheme="light"] .userlist_profil {
-  background: rgba(245, 243, 238, 0.95) !important;
+  background: #f0ede6 !important;
   border-color: rgba(180, 140, 60, 0.35) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
 }
 
 [data-color-scheme="light"] .userlist_details,
 html[data-color-scheme="light"] .userlist_details {
-  background: linear-gradient(180deg, transparent 40%, rgba(245, 243, 238, 0.8) 80%, rgba(245, 243, 238, 0.96) 100%) !important;
+  background: linear-gradient(180deg, transparent 40%, rgba(245, 243, 238, 0.7) 75%, rgba(245, 243, 238, 0.94) 100%) !important;
 }
 
 [data-color-scheme="light"] .userlist_profil:hover .userlist_details,
 html[data-color-scheme="light"] .userlist_profil:hover .userlist_details {
-  background: rgba(248, 246, 240, 0.93) !important;
+  background: rgba(248, 246, 240, 0.65) !important;
 }
 
 [data-color-scheme="light"] .userlist_pseudo a,
@@ -1926,23 +2026,45 @@ html[data-color-scheme="light"] .userlist_pseudo a {
 [data-color-scheme="light"] .userlist_profil:hover .userlist_pseudo a,
 html[data-color-scheme="light"] .userlist_profil:hover .userlist_pseudo a {
   color: #3b2a05 !important;
+}
+
+[data-color-scheme="light"] .vs-ml-badge,
+html[data-color-scheme="light"] .vs-ml-badge {
+  background: linear-gradient(135deg, #c49a3c 0%, #9d751c 100%) !important;
+  border-color: rgba(180, 140, 60, 0.6) !important;
+  color: #ffffff !important;
+}
+
+[data-color-scheme="light"] .vs-ml-date,
+html[data-color-scheme="light"] .vs-ml-date {
+  color: #3b2a05 !important;
   text-shadow: none !important;
 }
 
-[data-color-scheme="light"] .userlist_infos,
-html[data-color-scheme="light"] .userlist_infos {
-  color: #3d3b38 !important;
+[data-color-scheme="light"] .vs-ml-posts-count,
+html[data-color-scheme="light"] .vs-ml-posts-count {
+  color: #78530d !important;
+  text-shadow: none !important;
+}
+
+[data-color-scheme="light"] .vs-ml-posts-label,
+html[data-color-scheme="light"] .vs-ml-posts-label {
+  color: #6b5832 !important;
+  text-shadow: none !important;
 }
 
 [data-color-scheme="light"] .userlist_contact a,
 html[data-color-scheme="light"] .userlist_contact a {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border-color: rgba(180, 140, 60, 0.45) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(180, 140, 60, 0.5) !important;
+  color: #5c4510 !important;
 }
 
-[data-color-scheme="light"] .userlist_contact img,
-html[data-color-scheme="light"] .userlist_contact img {
-  filter: brightness(0.25) sepia(1) hue-rotate(5deg) !important;
+[data-color-scheme="light"] .userlist_contact a:hover,
+html[data-color-scheme="light"] .userlist_contact a:hover {
+  background: rgba(180, 140, 60, 0.15) !important;
+  border-color: #5c4510 !important;
+  color: #000000 !important;
 }
 
 /* Affichage d'un MP dans la liste */
