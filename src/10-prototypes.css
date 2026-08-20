@@ -141,16 +141,18 @@ html[data-color-scheme="light"] #wombat {
   letter-spacing: inherit !important;
 }
 
-/* ─── Barre des 3 Statistiques Horizontales ─── */
+/* ─── Barre des 3 Statistiques Horizontales (Pleine Largeur 100%) ─── */
 #wombat .vs-profile-stats-bar {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 12px !important;
+  gap: 16px !important;
+  width: 100% !important;
   margin-bottom: 22px !important;
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
   border-radius: 3px !important;
-  padding: 10px 14px !important;
+  padding: 12px 16px !important;
+  box-sizing: border-box !important;
 }
 
 #wombat .vs-profile-stat-box {
@@ -160,11 +162,12 @@ html[data-color-scheme="light"] #wombat {
   justify-content: center !important;
   gap: 5px !important;
   text-align: center !important;
+  width: 100% !important;
 }
 
 #wombat .vs-profile-stat-label {
   font-family: var(--wombat-font-title) !important;
-  font-size: 9px !important;
+  font-size: 9.5px !important;
   font-weight: 600 !important;
   letter-spacing: 2px !important;
   text-transform: uppercase !important;
@@ -177,9 +180,14 @@ html[data-color-scheme="light"] #wombat {
 
 #wombat .vs-profile-stat-val {
   font-family: var(--wombat-font-body) !important;
-  font-size: 13px !important;
+  font-size: 13.5px !important;
   font-weight: 500 !important;
   color: var(--wombat-text) !important;
+}
+
+/* ─── Masquage du doublon Messages (field_id-6) dans la colonne d'infos ─── */
+#wombat .profile_content #field_id-6 {
+  display: none !important;
 }
 
 /* ─── Corps du Profil (Avatar Gauche + Colonne Droite Unique) ─── */
@@ -255,7 +263,7 @@ html[data-color-scheme="light"] #wombat {
   border-radius: 2px;
 }
 
-/* Blocs de Champs Profil (Silhouette, Messages, Fragment d'âme, etc.) */
+/* Blocs de Champs Profil (Silhouette, Fragment d'âme, Mécène, Poison...) */
 #wombat .profile_field {
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
@@ -348,6 +356,7 @@ html[data-color-scheme="light"] #wombat {
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
   padding: 10px 6px !important;
+  height: 38px !important;
   border-radius: 2px !important;
   text-decoration: none !important;
   text-align: center !important;
@@ -362,6 +371,31 @@ html[data-color-scheme="light"] #wombat {
   color: #ffffff !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ─── Neutralisation de l'icône Forumactif sur le bouton MP ─── */
+#wombat form.profile_contact #field_id a img,
+#wombat form.profile_contact #field_id a i {
+  display: none !important;
+}
+
+#wombat form.profile_contact #field_id a {
+  font-size: 0 !important;
+}
+
+#wombat form.profile_contact #field_id a::before {
+  content: "✉ Envoyer un MP" !important;
+  font-family: var(--wombat-font-title) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: var(--wombat-gold-light) !important;
+  display: inline-block !important;
+}
+
+#wombat form.profile_contact #field_id a:hover::before {
+  color: #ffffff !important;
 }
 
 /* Neutralisation des styles obsolètes */
