@@ -334,9 +334,7 @@ html[data-color-scheme="light"] #wombat {
 
 #wombat .vs-profile-actions .vs-profile-btn,
 #wombat .vs-profile-actions form.profile_contact,
-#wombat .vs-profile-actions form.profile_contact a,
-#wombat .vs-profile-actions form.profile_contact #field_id,
-#wombat .vs-profile-actions form.profile_contact #field_id a {
+#wombat .vs-profile-actions form.profile_contact #field_id {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -347,6 +345,9 @@ html[data-color-scheme="light"] #wombat {
 
 #wombat .vs-profile-actions .vs-profile-btn,
 #wombat .vs-profile-actions form.profile_contact #field_id a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   font-family: var(--wombat-font-title) !important;
   font-size: 10px !important;
   font-weight: 600 !important;
@@ -362,6 +363,8 @@ html[data-color-scheme="light"] #wombat {
   text-align: center !important;
   transition: all 0.25s ease !important;
   white-space: nowrap !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
 }
 
 #wombat .vs-profile-actions .vs-profile-btn:hover,
@@ -373,30 +376,34 @@ html[data-color-scheme="light"] #wombat {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* ─── Neutralisation complète de l'icône/texte natif Forumactif sur le bouton MP ─── */
-#wombat form.profile_contact #field_id a {
+/* ─── Masquage de tous les champs de contact additionnels (site web #field_id-10, etc.) ─── */
+#wombat .vs-profile-actions form.profile_contact > div:not(#field_id) {
+  display: none !important;
+}
+
+/* ─── Neutralisation complète de l'icône et du texte natif Forumactif dans le bouton MP ─── */
+#wombat .vs-profile-actions form.profile_contact #field_id a {
   font-size: 0 !important;
   color: transparent !important;
 }
 
-#wombat form.profile_contact #field_id a img,
-#wombat form.profile_contact #field_id a i,
-#wombat form.profile_contact #field_id a span {
+#wombat .vs-profile-actions form.profile_contact #field_id a * {
   display: none !important;
+  font-size: 0 !important;
 }
 
-#wombat form.profile_contact #field_id a::before {
+#wombat .vs-profile-actions form.profile_contact #field_id a::before {
   content: "✉ ENVOYER UN MP" !important;
-  font-family: var(--wombat-font-title) !important;
   font-size: 10px !important;
+  color: var(--wombat-gold-light) !important;
+  font-family: var(--wombat-font-title) !important;
   font-weight: 600 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  color: var(--wombat-gold-light) !important;
   display: inline-block !important;
 }
 
-#wombat form.profile_contact #field_id a:hover::before {
+#wombat .vs-profile-actions form.profile_contact #field_id a:hover::before {
   color: #ffffff !important;
 }
 
