@@ -6610,14 +6610,18 @@ speech {
 }
 
 /* ─── Variante Alternée (Post pair / Disposition Inversée) ───
-   Active l'effet miroir pour les posts suivants :
+   Active l'effet miroir pour les posts pairs & enchaînements :
    - Ligne 1 : Description (gauche) / Image (droite)
-   - Ligne 2 : Image (gauche) / Notes & Idées (droite)
-   
-   DÉTECTION 100% AUTOMATIQUE :
-   1. Si plusieurs réponses/posts s'enchaînent dans un topic (.post, .post_row pair)
-   2. Si plusieurs fiches sont postées dans un même message (:nth-of-type(even))
-   3. Ou manuellement via la classe .vs-gp-wrapper--alt ─── */
+   - Ligne 2 : Image (gauche) / Notes & Idées (droite) ─── */
+
+/* Étape A : Inversion pour tout 2e post / fiche suivante (CSS4 & Sibling) */
+:nth-child(even of .vs-gp-wrapper) .vs-gp-row,
+:nth-child(even of .post) .vs-gp-row,
+:nth-child(even of .post_row) .vs-gp-row,
+.vs-gp-wrapper ~ .vs-gp-wrapper .vs-gp-row,
+.post ~ .post .vs-gp-row,
+.post_row ~ .post_row .vs-gp-row,
+.post.bg2 .vs-gp-row,
 .post:nth-of-type(even) .vs-gp-row,
 .post:nth-child(even) .vs-gp-row,
 .post_row:nth-of-type(even) .vs-gp-row,
@@ -6626,7 +6630,39 @@ speech {
 .vs-gp-wrapper--alt .vs-gp-row,
 .vs-gp-card--alt .vs-gp-row,
 .vs-gp-wrapper.is-alt .vs-gp-row,
-.vs-gp-card.is-alt .vs-gp-row {
+.vs-gp-card.is-alt .vs-gp-row,
+.is-alt .vs-gp-row {
+  flex-direction: row-reverse;
+}
+
+/* Étape B : Réinitialisation pour le 3e post / fiche (Impair) */
+:nth-child(odd of .vs-gp-wrapper):not(:first-child) .vs-gp-row,
+:nth-child(odd of .post):not(:first-child) .vs-gp-row,
+:nth-child(odd of .post_row):not(:first-child) .vs-gp-row,
+.vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper .vs-gp-row,
+.post ~ .post ~ .post .vs-gp-row,
+.post_row ~ .post_row ~ .post_row .vs-gp-row {
+  flex-direction: row;
+}
+
+/* Étape C : Ré-inversion pour le 4e post / fiche (Pair) */
+.vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper .vs-gp-row,
+.post ~ .post ~ .post ~ .post .vs-gp-row,
+.post_row ~ .post_row ~ .post_row ~ .post_row .vs-gp-row {
+  flex-direction: row-reverse;
+}
+
+/* Étape D : Réinitialisation pour le 5e post / fiche (Impair) */
+.vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper .vs-gp-row,
+.post ~ .post ~ .post ~ .post ~ .post .vs-gp-row,
+.post_row ~ .post_row ~ .post_row ~ .post_row ~ .post_row .vs-gp-row {
+  flex-direction: row;
+}
+
+/* Étape E : Ré-inversion pour le 6e post / fiche (Pair) */
+.vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper ~ .vs-gp-wrapper .vs-gp-row,
+.post ~ .post ~ .post ~ .post ~ .post ~ .post .vs-gp-row,
+.post_row ~ .post_row ~ .post_row ~ .post_row ~ .post_row ~ .post_row .vs-gp-row {
   flex-direction: row-reverse;
 }
 
