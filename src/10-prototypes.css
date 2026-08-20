@@ -356,12 +356,6 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Cache les champs Silhouette (field_id8) et Messages (field_id-6) dans la colonne déroulante car affichés en haut */
-#wombat .profile_content #field_id8,
-#wombat .profile_content #field_id-6 {
-  display: none !important;
-}
-
 /* ─── BANDEAU D'ACTIONS INFÉRIEUR (4 BOUTONS ALIGNÉS EN GRILLE) ─── */
 #wombat .vs-profile-actions {
   display: grid !important;
