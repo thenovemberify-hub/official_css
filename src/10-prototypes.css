@@ -356,8 +356,9 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* Cache le champ Silhouette (field_id8) dans la colonne déroulante car présent dans la barre supérieure */
-#wombat .profile_content #field_id8 {
+/* Cache les champs Silhouette (field_id8) et Messages (field_id-6) dans la colonne déroulante car affichés en haut */
+#wombat .profile_content #field_id8,
+#wombat .profile_content #field_id-6 {
   display: none !important;
 }
 
