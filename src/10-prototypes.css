@@ -16,10 +16,10 @@
   --wombat-font-body: var(--font, "Inter", -apple-system, sans-serif);
 
   position: relative !important;
-  max-width: 680px !important;
+  max-width: 780px !important;
   width: 100% !important;
   margin: 30px auto !important;
-  padding: 32px 26px !important;
+  padding: 32px 30px !important;
   box-sizing: border-box !important;
   background-color: #0c1820;
   background: var(--wombat-bg) !important;
@@ -202,8 +202,8 @@ html[data-color-scheme="light"] #wombat {
 
 /* Avatar Gauche */
 #wombat .profile_avatar {
-  flex: 0 0 170px !important;
-  width: 170px !important;
+  flex: 0 0 200px !important;
+  width: 200px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -219,8 +219,8 @@ html[data-color-scheme="light"] #wombat {
 #wombat .profile_avatar img {
   width: 100% !important;
   height: 100% !important;
-  min-height: 260px !important;
-  max-height: 310px !important;
+  min-height: 270px !important;
+  max-height: 320px !important;
   object-fit: cover !important;
   border-radius: 2px !important;
   display: block !important;
@@ -245,7 +245,7 @@ html[data-color-scheme="light"] #wombat {
   display: flex !important;
   flex-direction: column !important;
   gap: 10px !important;
-  max-height: 310px !important;
+  max-height: 320px !important;
   overflow-y: auto !important;
   padding-right: 8px !important;
 }
@@ -326,8 +326,8 @@ html[data-color-scheme="light"] #wombat {
 #wombat .vs-profile-actions {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
-  gap: 10px !important;
-  margin-top: 4px !important;
+  gap: 12px !important;
+  margin-top: 6px !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
@@ -355,7 +355,7 @@ html[data-color-scheme="light"] #wombat {
   color: var(--wombat-gold-light) !important;
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
-  padding: 10px 6px !important;
+  padding: 10px 8px !important;
   height: 38px !important;
   border-radius: 2px !important;
   text-decoration: none !important;
@@ -373,18 +373,20 @@ html[data-color-scheme="light"] #wombat {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* ─── Neutralisation de l'icône Forumactif sur le bouton MP ─── */
+/* ─── Neutralisation complète de l'icône/texte natif Forumactif sur le bouton MP ─── */
+#wombat form.profile_contact #field_id a {
+  font-size: 0 !important;
+  color: transparent !important;
+}
+
 #wombat form.profile_contact #field_id a img,
-#wombat form.profile_contact #field_id a i {
+#wombat form.profile_contact #field_id a i,
+#wombat form.profile_contact #field_id a span {
   display: none !important;
 }
 
-#wombat form.profile_contact #field_id a {
-  font-size: 0 !important;
-}
-
 #wombat form.profile_contact #field_id a::before {
-  content: "✉ Envoyer un MP" !important;
+  content: "✉ ENVOYER UN MP" !important;
   font-family: var(--wombat-font-title) !important;
   font-size: 10px !important;
   font-weight: 600 !important;
