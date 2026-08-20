@@ -5649,7 +5649,7 @@ speech {
 /* Ligne de champ */
 .vs-blueprint-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--contrastLighter);
   border-radius: 6px;
@@ -5675,6 +5675,7 @@ speech {
   white-space: nowrap;
   flex-shrink: 0;
   min-width: 110px;
+  line-height: 1.3;
 }
 
 .vs-blueprint-val {
@@ -5682,6 +5683,7 @@ speech {
   font-size: 12.5px;
   color: var(--textColor);
   flex-grow: 1;
+  line-height: 1.3;
 }
 
 .vs-blueprint-val strong {
