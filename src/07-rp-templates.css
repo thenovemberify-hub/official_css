@@ -3928,15 +3928,14 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 8px;
 }
 
 .vs-comfort-section-title::before {
   content: "◈";
   color: var(--accentClr);
   font-size: 12px;
-  margin-right: 4px;
+  flex-shrink: 0;
 }
 
 .vs-comfort-section-subtitle {
@@ -3946,6 +3945,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: var(--taupe, #8a8275);
   letter-spacing: 2px;
   text-transform: uppercase;
+  margin-left: auto;
 }
 
 /* ─── Section 1 : Grille du Rythme (Modus Operandi) ─── */
@@ -3975,7 +3975,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: var(--accentClr);
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .vs-comfort-rhythm-value {
@@ -3984,6 +3984,40 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   font-weight: 500;
   color: var(--contrastLight, #ffffff);
   line-height: 1.4;
+}
+
+/* Pastilles à cocher (Pills) */
+.vs-comfort-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.vs-comfort-pill {
+  font-family: "Roboto Condensed", var(--font), sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--taupe, #a8a29e);
+  cursor: default;
+  transition: all 0.2s ease;
+  user-select: none;
+  line-height: 1.3;
+}
+
+.vs-comfort-pill.is-active,
+.vs-comfort-pill--active {
+  background: rgba(var(--gold-rgb), 0.2);
+  border: 1px solid var(--accentClr);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.35);
+  font-weight: 700;
 }
 
 /* ─── Section 2 : Seuils de Tolérance (Légende & Topics) ─── */
@@ -4093,13 +4127,13 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   line-height: 1.35;
 }
 
-/* ─── Section 3 : L'Emprise (Mastery Blocks) ─── */
+/* ─── Section 3 : L'Emprise (Mastery Blocks & Options) ─── */
 .vs-comfort-mastery-block {
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(var(--gold-rgb), 0.16);
   border-radius: 4px;
-  padding: 16px 20px;
-  margin-bottom: 12px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
   transition: border-color 0.25s ease;
 }
 
@@ -4117,10 +4151,127 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   font-size: 14px;
   font-weight: 600;
   color: var(--gold-light, #f0e2be);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.45;
 }
 
+/* Options / Choix cliquables ou cochables */
+.vs-comfort-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vs-comfort-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 12.5px;
+  color: var(--textColor, #d8d4cf);
+  line-height: 1.5;
+}
+
+.vs-comfort-choice:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(var(--gold-rgb), 0.25);
+}
+
+.vs-comfort-choice.is-selected,
+.vs-comfort-choice--selected {
+  background: rgba(var(--gold-rgb), 0.1);
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-left: 3px solid var(--accentClr);
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.vs-comfort-choice-check {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.vs-comfort-choice.is-selected .vs-comfort-choice-check,
+.vs-comfort-choice--selected .vs-comfort-choice-check {
+  background: var(--accentClr);
+  border-color: var(--accentClr);
+  color: #0c1820;
+  font-weight: 900;
+  box-shadow: 0 0 8px rgba(var(--gold-rgb), 0.5);
+}
+
+.vs-comfort-choice.is-selected .vs-comfort-choice-check::after,
+.vs-comfort-choice--selected .vs-comfort-choice-check::after {
+  content: "✓";
+}
+
+.vs-comfort-choice-text {
+  flex: 1;
+}
+
+.vs-comfort-choice-text strong {
+  font-family: "Roboto Condensed", var(--font), sans-serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  display: inline;
+  margin-right: 6px;
+}
+
+.vs-comfort-choice-text span {
+  color: var(--taupe, #a8a29e);
+}
+
+.vs-comfort-choice.is-selected .vs-comfort-choice-text span {
+  color: #e5e2dc;
+}
+
+/* Zone de Précisions Personnalisées */
+.vs-comfort-custom-note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(var(--gold-rgb), 0.4);
+  border-radius: 0 4px 4px 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.vs-comfort-custom-label {
+  font-family: "Roboto Condensed", var(--font), sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.vs-comfort-custom-note p {
+  margin: 0;
+  color: var(--taupe, #c5c0b6);
+  font-style: italic;
+}
+
+/* Fallback liste standard */
 .vs-comfort-mastery-answer {
   font-size: 12.5px;
   color: var(--textColor, #d8d4cf);
