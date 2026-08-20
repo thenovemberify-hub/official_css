@@ -4405,17 +4405,18 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 /* Section Notes & Attentes HRP */
 .vs-wanted-notes-box {
-  padding: 25px 35px 30px;
+  padding: 28px 35px 42px;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.12);
 }
 
 .vs-wanted-notes-callout {
-  padding: 16px 20px;
+  padding: 20px 24px;
+  margin: 18px 0 8px;
   background: radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.04) 0%, rgba(0, 0, 0, 0.3) 100%);
   border: 1px solid rgba(var(--gold-rgb), 0.2);
   border-radius: 4px;
   font-size: 12.5px;
-  line-height: 1.7;
+  line-height: 1.75;
   color: var(--taupe);
   font-style: italic;
   text-align: justify;
@@ -4426,10 +4427,10 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   background: rgba(0, 0, 0, 0.35);
   color: var(--taupe);
   font-family: "Cinzel", serif;
-  font-size: 9px;
-  letter-spacing: 3px;
+  font-size: 9.5px;
+  letter-spacing: 3.5px;
   text-align: center;
-  padding: 12px 0;
+  padding: 20px 24px;
   text-transform: uppercase;
   border-top: 1px solid rgba(var(--gold-rgb), 0.1);
 }
