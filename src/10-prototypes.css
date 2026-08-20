@@ -1,70 +1,72 @@
 /* ==========================================================================
-   10-PROTOTYPES.CSS — PROTOTYPE FICHE PROFIL POPUP (WOMBAT VELVET SIN)
+   10-PROTOTYPES.CSS — FICHE PROFIL POPUP WOMBAT (STYLE GRAND PLANS)
+   Velvet Sin — City Dark / Glassmorphism / Chic Noir & Or / Support Thème Clair
    ========================================================================== */
 
-/* ─── Conteneur Principal Modal Wombat ─── */
 #wombat {
-  max-width: 820px !important;
-  width: 100% !important;
-  background: rgba(10, 20, 28, 0.95) !important;
-  backdrop-filter: blur(20px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
-  border: 1px solid rgba(197, 160, 89, 0.3) !important;
-  border-radius: 4px !important;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 1px rgba(197, 160, 89, 0.15),
-    inset 0 0 40px rgba(0, 0, 0, 0.5) !important;
+  --wombat-bg: var(--surface-glass-deep, rgba(12, 24, 32, 0.92));
+  --wombat-card-bg: rgba(0, 0, 0, 0.35);
+  --wombat-border: rgba(var(--gold-rgb, 212, 175, 55), 0.25);
+  --wombat-border-light: rgba(var(--gold-rgb, 212, 175, 55), 0.5);
+  --wombat-accent: var(--accentClr, #d4af37);
+  --wombat-gold-light: var(--gold-light, #cfc09f);
+  --wombat-text: var(--textColor, #c7c5cd);
+  --wombat-text-muted: var(--text-muted, #8ea6b6);
+  --wombat-font-title: var(--font-cinzel, "Cinzel", serif);
+  --wombat-font-body: var(--font, "Inter", -apple-system, sans-serif);
+
   position: relative !important;
-  padding: 24px 28px 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 14px !important;
-  height: auto !important;
+  max-width: 680px !important;
+  width: 100% !important;
+  margin: 30px auto !important;
+  padding: 32px 26px !important;
   box-sizing: border-box !important;
-  margin: 20px auto !important;
+  background-color: #0c1820;
+  background: var(--wombat-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
+  border-radius: 4px !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.75),
+              inset 0 0 30px rgba(var(--gold-rgb, 212, 175, 55), 0.04) !important;
+  color: var(--wombat-text) !important;
+  font-family: var(--wombat-font-body) !important;
+  overflow: hidden !important;
 }
 
-/* Liseré or supérieur */
+/* Liseré supérieur lumineux façon Grand Plans */
 #wombat::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 10%;
-  right: 10%;
+  left: 8%;
+  right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #c5a059, transparent);
+  background: linear-gradient(90deg, transparent, var(--wombat-accent), transparent);
   opacity: 0.9;
+  z-index: 10;
 }
 
-/* ─── EN-TÊTE : NOM DU PERSONNAGE & ACTIONS EN HAUT À DROITE ─── */
-#wombat .profile-title-override {
-  margin: 0 !important;
-  text-align: center !important;
-  font-family: "Cinzel", Georgia, serif !important;
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  letter-spacing: 4px !important;
-  text-transform: uppercase !important;
-  color: #f0e2be !important;
-  text-shadow: 0 0 14px rgba(197, 160, 89, 0.4) !important;
-  line-height: 1.2 !important;
-  padding: 0 130px 2px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
+/* ─── Adaptation Thème Clair ─── */
+[data-color-scheme="light"] #wombat,
+html[data-color-scheme="light"] #wombat {
+  --wombat-bg: rgba(248, 246, 240, 0.94);
+  --wombat-card-bg: rgba(0, 0, 0, 0.04);
+  --wombat-border: rgba(180, 140, 60, 0.35);
+  --wombat-border-light: rgba(180, 140, 60, 0.6);
+  --wombat-accent: #9a721b;
+  --wombat-gold-light: #5c4510;
+  --wombat-text: #2c2b2b;
+  --wombat-text-muted: #5e6b75;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15),
+              inset 0 0 30px rgba(180, 140, 60, 0.06) !important;
 }
 
-#wombat .profile-title-override span,
-#wombat .profile-title-override strong {
-  color: inherit !important;
-  font-weight: 700 !important;
-}
-
-/* Bloc Top-Right : Statut + Bouton Admin */
-.vs-profile-top-actions {
+/* ─── Actions Haut Droite (Statut + Admin) ─── */
+#wombat .vs-profile-top-actions {
   position: absolute !important;
-  top: 18px !important;
-  right: 24px !important;
+  top: 20px !important;
+  right: 22px !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-end !important;
@@ -72,351 +74,297 @@
   z-index: 20 !important;
 }
 
-/* Badge Statut (En ligne / Hors ligne) */
-.vs-profile-status-badge {
-  font-family: "Roboto Condensed", sans-serif !important;
+#wombat .vs-profile-status-badge {
+  font-family: var(--wombat-font-title) !important;
   font-size: 9.5px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
+  letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  padding: 3px 10px !important;
+  color: var(--wombat-gold-light) !important;
+  background: var(--wombat-card-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
+  padding: 4px 10px !important;
   border-radius: 2px !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  background: rgba(0, 0, 0, 0.6) !important;
-  color: #8a8275 !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
-  line-height: 1 !important;
 }
 
-.vs-profile-status-badge::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #71717a;
+#wombat .vs-profile-status-badge::before {
+  content: "•";
+  color: var(--wombat-accent);
+  font-size: 13px;
+  line-height: 1;
 }
 
-.vs-profile-status-badge.is-online,
-.vs-profile-status-badge:has(.online) {
-  color: #22c55e !important;
-  border-color: rgba(34, 197, 94, 0.3) !important;
-}
-.vs-profile-status-badge.is-online::before,
-.vs-profile-status-badge:has(.online)::before {
-  background: #22c55e !important;
-  box-shadow: 0 0 8px #22c55e;
-}
-
-/* Bouton Admin sous le statut */
-.vs-profile-admin-btn,
-.vs-profile-admin-btn a {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  padding: 3px 8px !important;
-  background: rgba(239, 68, 68, 0.12) !important;
-  border: 1px solid rgba(239, 68, 68, 0.35) !important;
-  color: #fca5a5 !important;
-  font-family: "Cinzel", Georgia, serif !important;
-  font-size: 8.5px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1px !important;
+#wombat .vs-profile-admin-btn a,
+#wombat .vs-profile-admin-btn {
+  font-family: var(--wombat-font-title) !important;
+  font-size: 9px !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  text-decoration: none !important;
+  color: #d9777f !important;
+  background: rgba(160, 40, 50, 0.12) !important;
+  border: 1px solid rgba(180, 50, 60, 0.35) !important;
+  padding: 3px 8px !important;
   border-radius: 2px !important;
-  transition: all 0.2s ease !important;
-  cursor: pointer !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
 }
 
-.vs-profile-admin-btn a:hover,
-.vs-profile-admin-btn:hover {
-  background: rgba(239, 68, 68, 0.25) !important;
-  border-color: #f87171 !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4) !important;
+#wombat .vs-profile-admin-btn a:hover {
+  background: rgba(180, 50, 60, 0.25) !important;
+  border-color: rgba(220, 70, 80, 0.6) !important;
+  color: #ff9da6 !important;
 }
 
-/* ─── BARRE DES 4 STATISTIQUES HORIZONTALES (AGATHA STYLE) ─── */
-.vs-profile-stats-bar {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  background: rgba(0, 0, 0, 0.45) !important;
-  border: 1px solid rgba(197, 160, 89, 0.25) !important;
-  border-radius: 3px !important;
-  padding: 8px 12px !important;
+/* ─── Titre / Nom du Personnage ─── */
+#wombat .page-title,
+#wombat .profile-title-override {
+  font-family: var(--wombat-font-title) !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 4px !important;
+  color: var(--wombat-gold-light) !important;
+  text-shadow: 0 0 14px rgba(var(--gold-rgb, 212, 175, 55), 0.35) !important;
+  text-align: center !important;
+  margin: 0 auto 20px auto !important;
+  padding: 0 120px 2px !important;
+  width: 100% !important;
   box-sizing: border-box !important;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4) !important;
+  line-height: 1.2 !important;
 }
 
-.vs-profile-stat-box {
+#wombat .page-title * {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+}
+
+/* ─── Barre des 3 Statistiques Horizontales ─── */
+#wombat .vs-profile-stats-bar {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+  margin-bottom: 22px !important;
+  background: var(--wombat-card-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
+  border-radius: 3px !important;
+  padding: 10px 14px !important;
+}
+
+#wombat .vs-profile-stat-box {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 3px !important;
+  gap: 5px !important;
   text-align: center !important;
-  position: relative !important;
 }
 
-.vs-profile-stat-box:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 15%;
-  bottom: 15%;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(197, 160, 89, 0.3), transparent);
-}
-
-.vs-profile-stat-label {
-  font-family: "Roboto Condensed", sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
+#wombat .vs-profile-stat-label {
+  font-family: var(--wombat-font-title) !important;
+  font-size: 9px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: #111 !important;
-  background: linear-gradient(135deg, #c5a059, #dfc185) !important;
-  padding: 1px 8px !important;
+  color: var(--wombat-accent) !important;
+  background: rgba(var(--gold-rgb, 212, 175, 55), 0.08) !important;
+  border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.2) !important;
+  padding: 2px 10px !important;
   border-radius: 2px !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
-  display: inline-block !important;
 }
 
-.vs-profile-stat-val {
-  font-family: "Inter", sans-serif !important;
+#wombat .vs-profile-stat-val {
+  font-family: var(--wombat-font-body) !important;
   font-size: 13px !important;
   font-weight: 500 !important;
-  color: #e5e2dc !important;
-  letter-spacing: 0.5px !important;
+  color: var(--wombat-text) !important;
 }
 
-/* ─── CORPS DU PROFIL (AVATAR GAUCHE + COLONNE UNIQUE DROITE) ─── */
+/* ─── Corps du Profil (Avatar Gauche + Colonne Droite Unique) ─── */
 #wombat .user_profile {
   display: flex !important;
+  flex-direction: row !important;
   gap: 20px !important;
   align-items: stretch !important;
-  height: 350px !important;
-  position: relative !important;
-  box-sizing: border-box !important;
+  margin-bottom: 22px !important;
+  min-height: 280px !important;
 }
 
-/* Avatar */
+/* Avatar Gauche */
 #wombat .profile_avatar {
-  flex: 0 0 200px !important;
-  width: 200px !important;
-  height: 350px !important;
+  flex: 0 0 170px !important;
+  width: 170px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--wombat-card-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
   border-radius: 3px !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(197, 160, 89, 0.35) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
-  background: #000 !important;
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-  bottom: auto !important;
+  padding: 6px !important;
   box-sizing: border-box !important;
+  overflow: hidden !important;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5) !important;
 }
 
 #wombat .profile_avatar img {
   width: 100% !important;
   height: 100% !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
+  min-height: 260px !important;
+  max-height: 310px !important;
   object-fit: cover !important;
+  border-radius: 2px !important;
   display: block !important;
-  filter: contrast(1.05) brightness(0.95) !important;
-  transition: transform 0.5s ease, filter 0.5s ease !important;
-  border: none !important;
-  border-radius: 0 !important;
+  filter: brightness(0.95) contrast(1.05) !important;
+  transition: transform 0.4s ease, filter 0.4s ease !important;
 }
 
 #wombat .profile_avatar:hover img {
-  transform: scale(1.03) !important;
-  filter: contrast(1.08) brightness(1.02) !important;
+  transform: scale(1.02) !important;
+  filter: brightness(1.02) contrast(1.08) !important;
 }
 
 /* Colonne Droite Unique */
 #wombat .profile_infos {
-  flex: 1 !important;
+  flex: 1 1 auto !important;
   min-width: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  height: 350px !important;
-  background: rgba(0, 0, 0, 0.4) !important;
-  border: 1px solid rgba(197, 160, 89, 0.15) !important;
-  border-radius: 3px !important;
-  padding: 14px 16px !important;
-  overflow: hidden !important;
-  position: relative !important;
-  box-sizing: border-box !important;
-  font-size: 0 !important;
 }
 
 #wombat .profile_content {
   display: flex !important;
   flex-direction: column !important;
-  gap: 9px !important;
+  gap: 10px !important;
+  max-height: 310px !important;
   overflow-y: auto !important;
   padding-right: 8px !important;
-  height: 100% !important;
-  scrollbar-width: thin !important;
-  scrollbar-color: #c5a059 rgba(0, 0, 0, 0.3) !important;
-  position: static !important;
-  top: auto !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
 }
 
+/* Scrollbar fine or */
 #wombat .profile_content::-webkit-scrollbar {
   width: 4px;
 }
 #wombat .profile_content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 2px;
 }
 #wombat .profile_content::-webkit-scrollbar-thumb {
-  background: #c5a059;
+  background: var(--wombat-accent);
   border-radius: 2px;
 }
 
-/* ─── CHAMPS DU PROFIL (LIGNES & CARTES ÉLÉGANTES) ─── */
+/* Blocs de Champs Profil (Silhouette, Messages, Fragment d'âme, etc.) */
 #wombat .profile_field {
+  background: var(--wombat-card-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
+  border-left: 2px solid var(--wombat-accent) !important;
+  border-radius: 2px !important;
+  padding: 10px 14px !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 4px !important;
-  background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
-  border-left: 2px solid rgba(197, 160, 89, 0.4) !important;
-  border-radius: 2px !important;
-  padding: 8px 12px !important;
-  transition: all 0.2s ease !important;
-  box-sizing: border-box !important;
+  transition: border-color 0.25s ease, background 0.25s ease !important;
 }
 
 #wombat .profile_field:hover {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border-color: rgba(197, 160, 89, 0.25) !important;
-  border-left-color: #c5a059 !important;
+  border-color: var(--wombat-border-light) !important;
+  background: rgba(var(--gold-rgb, 212, 175, 55), 0.03) !important;
 }
 
 #wombat .profile_field label {
-  width: auto !important;
-  text-align: left !important;
-  font-family: "Roboto Condensed", sans-serif !important;
-  font-size: 10.5px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.5px !important;
+  font-family: var(--wombat-font-title) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
   text-transform: uppercase !important;
-  color: #c5a059 !important;
+  color: var(--wombat-accent) !important;
   display: flex !important;
   align-items: center !important;
   gap: 6px !important;
-  margin: 0 !important;
 }
 
 #wombat .profile_field label::before {
   content: "◈";
-  font-size: 9px;
-  opacity: 0.8;
+  font-size: 8px;
+  color: var(--wombat-accent);
 }
 
-#wombat .profile_field label span {
+#wombat .profile_field label * {
   color: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
 }
 
-#wombat .profile_field field {
-  font-family: "Inter", sans-serif !important;
+#wombat .profile_field field,
+#wombat .profile_field .field_uneditable {
+  font-family: var(--wombat-font-body) !important;
   font-size: 13px !important;
-  color: #d8d4cf !important;
   line-height: 1.5 !important;
-  display: block !important;
-  padding: 0 !important;
-  text-align: left !important;
+  color: var(--wombat-text) !important;
 }
 
-#wombat .profile_field field .field_uneditable {
-  color: #e5e2dc !important;
-  font-size: 13px !important;
-}
-
-#wombat .profile_field field img {
+#wombat .profile_field .field_uneditable img {
   max-width: 100% !important;
-  max-height: 190px !important;
-  object-fit: cover !important;
   border-radius: 2px !important;
-  border: 1px solid rgba(197, 160, 89, 0.25) !important;
-  margin-top: 6px !important;
+  border: 1px solid var(--wombat-border) !important;
+  margin-top: 4px !important;
   display: block !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* ─── BANDEAU D'ACTIONS INFÉRIEUR (4 BOUTONS ALIGNÉS EN GRILLE) ─── */
+/* ─── Bandeau d'Actions Inférieur (4 Boutons en Grille) ─── */
 #wombat .vs-profile-actions {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 10px !important;
+  margin-top: 4px !important;
   width: 100% !important;
-  padding-top: 14px !important;
-  border-top: 1px solid rgba(197, 160, 89, 0.18) !important;
-  margin-top: 2px !important;
   box-sizing: border-box !important;
-  position: static !important;
 }
 
-#wombat form.profile_contact,
-#wombat #field_id {
-  display: contents !important;
-  margin: 0 !important;
-  position: static !important;
-}
-
-#wombat .vs-profile-btn,
-#wombat #vs-topics-opened,
-#wombat #alltopics,
-#wombat #allposts,
-#wombat form.profile_contact #field_id a {
-  display: inline-flex !important;
+#wombat .vs-profile-actions .vs-profile-btn,
+#wombat .vs-profile-actions form.profile_contact,
+#wombat .vs-profile-actions form.profile_contact a,
+#wombat .vs-profile-actions form.profile_contact #field_id,
+#wombat .vs-profile-actions form.profile_contact #field_id a {
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
-  height: 34px !important;
   width: 100% !important;
-  padding: 0 8px !important;
-  background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid rgba(197, 160, 89, 0.3) !important;
-  color: #f0e2be !important;
-  font-family: "Cinzel", Georgia, serif !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: 1.2px !important;
-  text-transform: uppercase !important;
-  text-decoration: none !important;
-  border-radius: 2px !important;
-  transition: all 0.25s ease !important;
-  cursor: pointer !important;
-  white-space: nowrap !important;
   box-sizing: border-box !important;
-  position: static !important;
-  left: auto !important;
-  right: auto !important;
-  bottom: auto !important;
-  top: auto !important;
+  margin: 0 !important;
 }
 
-#wombat .vs-profile-btn:hover,
-#wombat #vs-topics-opened:hover,
-#wombat #alltopics:hover,
-#wombat #allposts:hover,
-#wombat form.profile_contact #field_id a:hover {
-  background: rgba(197, 160, 89, 0.2) !important;
-  border-color: #c5a059 !important;
+#wombat .vs-profile-actions .vs-profile-btn,
+#wombat .vs-profile-actions form.profile_contact #field_id a {
+  font-family: var(--wombat-font-title) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: var(--wombat-gold-light) !important;
+  background: var(--wombat-card-bg) !important;
+  border: 1px solid var(--wombat-border) !important;
+  padding: 10px 6px !important;
+  border-radius: 2px !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+#wombat .vs-profile-actions .vs-profile-btn:hover,
+#wombat .vs-profile-actions form.profile_contact #field_id a:hover {
+  border-color: var(--wombat-border-light) !important;
+  background: rgba(var(--gold-rgb, 212, 175, 55), 0.12) !important;
   color: #ffffff !important;
-  box-shadow: 0 0 12px rgba(197, 160, 89, 0.4) !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Neutralisation des styles obsolètes */
+#wombat .profile_admin {
+  display: none !important;
 }
