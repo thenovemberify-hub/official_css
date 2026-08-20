@@ -3793,11 +3793,11 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   outline: none;
   background: linear-gradient(90deg, rgba(var(--gold-rgb), 0.12) 0%, rgba(0, 0, 0, 0.4) 100%);
   border-left: 3px solid var(--accentClr);
-  padding: 10px 18px;
+  padding: 11px 18px;
   font-family: "Cinzel", Georgia, serif;
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2.5px;
   color: var(--gold-light, #e8d8b0);
   text-transform: uppercase;
   display: flex;
@@ -3817,7 +3817,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 .vs-comfort-summary-icon {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accentClr);
   transition: transform 0.3s ease;
 }
@@ -3832,7 +3832,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   padding: 18px 22px;
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--taupe, #c5c0b6);
   line-height: 1.7;
   text-align: justify;
@@ -3849,7 +3849,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   text-align: right;
   margin-top: 12px;
   font-family: "Cinzel", Georgia, serif;
-  font-size: 9.5px;
+  font-size: 10.5px;
   letter-spacing: 2px;
   color: var(--accentClr);
   text-transform: uppercase;
@@ -3857,9 +3857,8 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 /* ─── Conteneur Principal du Contrat ─── */
-/* ─── Conteneur Principal du Contrat ─── */
 .vs-comfort {
-  max-width: 620px;
+  max-width: 640px;
   margin: 15px auto 35px;
   background: var(--surface-glass, rgba(12, 24, 32, 0.92));
   backdrop-filter: blur(16px);
@@ -3893,7 +3892,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 /* ─── En-tête du Contrat ─── */
 .vs-comfort-header {
   text-align: center;
-  padding: 24px 20px 18px;
+  padding: 26px 22px 20px;
   position: relative;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.12);
   background: radial-gradient(circle at 50% 0%, rgba(var(--gold-rgb), 0.08) 0%, transparent 70%);
@@ -3902,21 +3901,21 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-badge {
   display: inline-block;
   font-family: "Cinzel", Georgia, serif;
-  font-size: 8.5px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--accentClr);
   border: 1px solid rgba(var(--gold-rgb), 0.35);
   background: rgba(0, 0, 0, 0.45);
-  padding: 3px 12px;
+  padding: 4px 12px;
   border-radius: 2px;
   margin-bottom: 10px;
 }
 
 .vs-comfort-name {
   font-family: "Cinzel", Georgia, serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   letter-spacing: 3.5px;
   color: var(--gold-light, #f0e2be);
@@ -3928,32 +3927,32 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-tagline {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 12px;
+  font-size: 13px;
   font-style: italic;
   color: var(--taupe, #a8a29e);
   letter-spacing: 0.5px;
-  margin: 6px auto 0;
-  max-width: 460px;
-  padding: 4px 0;
+  margin: 8px auto 0;
+  max-width: 480px;
+  padding: 5px 0;
   border-top: 1px solid rgba(var(--gold-rgb), 0.1);
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.1);
 }
 
 /* ─── Sections du Contrat ─── */
 .vs-comfort-section {
-  padding: 18px 22px;
+  padding: 20px 24px;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.12);
 }
 
 .vs-comfort-section-title {
   font-family: "Cinzel", Georgia, serif;
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 2.5px;
   color: var(--gold-light, #e8d8b0);
   text-transform: uppercase;
-  margin: 0 0 12px 0;
-  padding-bottom: 7px;
+  margin: 0 0 14px 0;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
   display: flex;
   align-items: center;
@@ -3963,13 +3962,13 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-section-title::before {
   content: "◈";
   color: var(--accentClr);
-  font-size: 11px;
+  font-size: 12px;
   flex-shrink: 0;
 }
 
 .vs-comfort-section-subtitle {
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   color: var(--taupe, #8a8275);
   letter-spacing: 1.5px;
@@ -3981,7 +3980,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-options-box {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .vs-comfort-option-row {
@@ -3989,7 +3988,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 7px 12px;
+  padding: 8px 14px;
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(var(--gold-rgb), 0.12);
   border-radius: 3px;
@@ -3998,7 +3997,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-option-label {
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 9.5px;
+  font-size: 11.5px;
   font-weight: 700;
   color: var(--accentClr);
   text-transform: uppercase;
@@ -4008,25 +4007,25 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-pills {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   align-items: center;
   flex-wrap: wrap;
 }
 
 .vs-comfort-pill {
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  padding: 3px 8px;
-  border-radius: 2px;
+  padding: 4px 10px;
+  border-radius: 3px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--taupe, #a8a29e);
   cursor: default;
   transition: all 0.2s ease;
   user-select: none;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .vs-comfort-pill.is-active,
@@ -4043,8 +4042,8 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 10px;
-  padding: 6px 12px;
+  margin-bottom: 12px;
+  padding: 7px 14px;
   background: rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(var(--gold-rgb), 0.14);
   border-radius: 3px;
@@ -4056,7 +4055,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   align-items: center;
   gap: 6px;
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -4066,14 +4065,14 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-topics {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
 .vs-comfort-topic {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 12px;
+  padding: 8px 14px;
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(var(--gold-rgb), 0.12);
   border-left: 3px solid rgba(var(--gold-rgb), 0.3);
@@ -4100,10 +4099,10 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 .vs-comfort-indicator {
-  width: 9px;
-  height: 9px;
-  min-width: 9px;
-  min-height: 9px;
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  min-height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -4125,7 +4124,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-topic-title {
   font-family: "Cinzel", Georgia, serif;
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--contrastLight, #ffffff);
@@ -4136,16 +4135,16 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-topic-sep {
   color: var(--accentClr);
-  font-size: 8px;
+  font-size: 9px;
   opacity: 0.6;
 }
 
 .vs-comfort-topic-desc {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 11.5px;
+  font-size: 13px;
   font-style: italic;
   color: var(--taupe, #a8a29e);
-  line-height: 1.2;
+  line-height: 1.25;
   margin-left: auto;
   text-align: right;
   white-space: nowrap;
@@ -4158,8 +4157,8 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(var(--gold-rgb), 0.14);
   border-radius: 3px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
+  padding: 13px 16px;
+  margin-bottom: 9px;
   transition: border-color 0.25s ease;
   box-sizing: border-box;
 }
@@ -4175,31 +4174,31 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-mastery-question {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--gold-light, #f0e2be);
-  margin-bottom: 8px;
-  line-height: 1.35;
+  margin-bottom: 9px;
+  line-height: 1.4;
 }
 
 .vs-comfort-choices {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .vs-comfort-choice {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 9px;
+  gap: 9px;
+  padding: 6px 11px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 3px;
   transition: all 0.2s ease;
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--textColor, #d8d4cf);
-  line-height: 1.35;
+  line-height: 1.4;
   box-sizing: border-box;
 }
 
@@ -4212,14 +4211,14 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 .vs-comfort-choice--selected {
   background: rgba(var(--gold-rgb), 0.12);
   border: 1px solid rgba(var(--gold-rgb), 0.35);
-  border-left: 2px solid var(--accentClr);
+  border-left: 3px solid var(--accentClr);
   color: #ffffff;
 }
 
 .vs-comfort-choice-check {
-  width: 12px;
-  height: 12px;
-  min-width: 12px;
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
   border-radius: 50%;
   border: 1px solid rgba(var(--gold-rgb), 0.35);
   background: rgba(0, 0, 0, 0.5);
@@ -4227,7 +4226,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 8px;
+  font-size: 9px;
   color: transparent;
   transition: all 0.2s ease;
 }
@@ -4250,13 +4249,13 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   flex: 1;
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .vs-comfort-choice-text strong {
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 10px;
+  font-size: 11.5px;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--accentClr);
@@ -4265,7 +4264,7 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-choice-text span {
   color: var(--taupe, #a8a29e);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .vs-comfort-choice.is-selected .vs-comfort-choice-text span {
@@ -4274,46 +4273,47 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 /* Zone de Précisions Personnalisées */
 .vs-comfort-custom-note {
-  margin-top: 6px;
-  padding: 6px 10px;
+  margin-top: 8px;
+  padding: 8px 12px;
   background: rgba(0, 0, 0, 0.35);
   border-left: 2px solid var(--accentClr);
   border-radius: 0 3px 3px 0;
-  font-size: 11px;
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 .vs-comfort-custom-label {
   font-family: "Roboto Condensed", var(--font), sans-serif;
-  font-size: 8.5px;
+  font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--accentClr);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
 }
 
 .vs-comfort-custom-note p {
   margin: 0;
   color: var(--taupe, #c5c0b6);
   font-style: italic;
+  font-size: 13px;
 }
 
 /* ─── Footer : Notes & Signature ─── */
 .vs-comfort-footer {
-  padding: 16px 22px 14px;
+  padding: 18px 24px 16px;
   background: radial-gradient(circle at 50% 100%, rgba(var(--gold-rgb), 0.06) 0%, transparent 80%);
 }
 
 .vs-comfort-notes-title {
   font-family: "Cinzel", Georgia, serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accentClr);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -4321,14 +4321,14 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 
 .vs-comfort-notes-title::before {
   content: "◈";
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .vs-comfort-notes-content {
-  font-size: 11.5px;
+  font-size: 13px;
   color: var(--taupe, #c5c0b6);
-  line-height: 1.6;
-  padding: 10px 14px;
+  line-height: 1.65;
+  padding: 12px 16px;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(var(--gold-rgb), 0.16);
   border-left: 2px solid var(--accentClr);
@@ -4338,15 +4338,15 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
 }
 
 .vs-comfort-signature {
-  margin-top: 12px;
+  margin-top: 14px;
   text-align: right;
-  padding-top: 8px;
+  padding-top: 10px;
   border-top: 1px solid rgba(var(--gold-rgb), 0.1);
 }
 
 .vs-comfort-signature-label {
   font-family: "Cinzel", Georgia, serif;
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   color: var(--gold-light, #f0e2be);
   text-transform: uppercase;
@@ -4357,10 +4357,10 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   background: rgba(0, 0, 0, 0.6);
   color: var(--taupe, #8a8275);
   font-family: "Cinzel", Georgia, serif;
-  font-size: 8.5px;
+  font-size: 9.5px;
   letter-spacing: 2.5px;
   text-align: center;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border-top: 1px solid rgba(var(--gold-rgb), 0.12);
   text-transform: uppercase;
 }
