@@ -1,472 +1,392 @@
 /* ==========================================================================
-   10-PROTOTYPES.CSS — MODAL NETFLIX RP (SERIES & EPISODES)
+   10-PROTOTYPES.CSS — PROTOTYPE FICHE PROFIL POPUP (WOMBAT VELVET SIN)
    ========================================================================== */
 
-/* ─── Variables Spécifiques Netflix ─── */
-:root {
-  --nf-bg-modal: #181818;
-  --nf-bg-hero: #141414;
-  --nf-red: #e50914;
-  --nf-text-white: #ffffff;
-  --nf-text-gray: #a3a3a3;
-  --nf-text-darkgray: #777777;
-  --nf-border-subtle: rgba(255, 255, 255, 0.1);
+/* ─── Conteneur Principal Modal Wombat ─── */
+#wombat {
+  max-width: 820px !important;
+  width: 100% !important;
+  background: rgba(10, 20, 28, 0.95) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid rgba(197, 160, 89, 0.3) !important;
+  border-radius: 4px !important;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.15),
+    inset 0 0 40px rgba(0, 0, 0, 0.5) !important;
+  position: relative !important;
+  padding: 24px 28px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  height: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* ─── Conteneur Principal Modal Netflix ─── */
-.vs-nf-modal {
-  max-width: 800px;
-  margin: 25px auto;
-  background: var(--nf-bg-modal);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85);
-  font-family: var(--font, "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
-  color: var(--nf-text-white);
-  box-sizing: border-box;
-  padding: 0;
-}
-
-/* ─── 1. Hero Banner avec Titre & Dégradé (Tout en haut) ─── */
-.vs-nf-hero {
-  position: relative;
-  width: 100%;
-  min-height: 340px;
-  background-size: cover;
-  background-position: center top;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 30px 32px 20px;
-  box-sizing: border-box;
-  margin: 0;
-  border-radius: 8px 8px 0 0;
-}
-
-.vs-nf-hero-overlay {
+/* Liseré or supérieur */
+#wombat::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(to top, #181818 2%, rgba(24, 24, 24, 0.6) 25%, transparent 65%),
-    linear-gradient(to right, rgba(20, 20, 20, 0.9) 0%, rgba(20, 20, 20, 0.45) 50%, transparent 100%);
-  pointer-events: none;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c5a059, transparent);
+  opacity: 0.9;
 }
 
-.vs-nf-hero-main {
-  position: relative;
-  z-index: 2;
+/* ─── EN-TÊTE : NOM DU PERSONNAGE & STATUT ─── */
+#wombat .profile-title-override {
+  margin: 0 !important;
+  text-align: center !important;
+  font-family: "Cinzel", Georgia, serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  letter-spacing: 4px !important;
+  text-transform: uppercase !important;
+  color: #f0e2be !important;
+  text-shadow: 0 0 14px rgba(197, 160, 89, 0.4) !important;
+  line-height: 1.2 !important;
+  padding-bottom: 2px !important;
+}
+
+#wombat .profile-title-override span,
+#wombat .profile-title-override strong {
+  color: inherit !important;
+  font-weight: 700 !important;
+}
+
+/* Badge Statut en haut à droite */
+.vs-profile-status-badge {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.5);
+  color: #8a8275;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 6px;
-  max-width: 540px;
+  z-index: 5;
 }
 
-/* Logo Velvet Sin */
-.vs-nf-brand-name {
-  font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 3.5px;
-  color: var(--nf-red);
-  text-transform: uppercase;
-  line-height: 1;
-}
-
-.vs-nf-show-title {
-  font-family: "Impact", "Anton", "Cinzel", "Arial Black", sans-serif;
-  font-size: clamp(28px, 5vw, 42px);
-  font-weight: 900;
-  color: #ffffff;
-  line-height: 0.95;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 2px 0 10px;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
-}
-
-/* Barre d'action Hero (Play + Bouton Liste) */
-.vs-nf-hero-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.vs-nf-btn-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.vs-nf-play-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  color: #000000 !important;
-  font-size: 13.5px;
-  font-weight: 700;
-  padding: 7px 22px;
-  border-radius: 4px;
-  text-decoration: none !important;
-  transition: background 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.vs-nf-play-btn:hover {
-  background: rgba(255, 255, 255, 0.85);
-  transform: scale(1.03);
-}
-
-.vs-nf-play-btn svg {
-  width: 15px;
-  height: 15px;
-  fill: #000000;
-}
-
-.vs-nf-circle-btn {
-  width: 34px;
-  height: 34px;
+.vs-profile-status-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: rgba(42, 42, 42, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  background: #71717a;
 }
 
-.vs-nf-circle-btn:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.08);
+.vs-profile-status-badge.is-online {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+.vs-profile-status-badge.is-online::before {
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
 }
 
-.vs-nf-volume-btn {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(42, 42, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: rgba(255, 255, 255, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
+/* ─── BARRE DES 4 STATISTIQUES HORIZONTALES (AGATHA STYLE) ─── */
+.vs-profile-stats-bar {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  border: 1px solid rgba(197, 160, 89, 0.25) !important;
+  border-radius: 3px !important;
+  padding: 8px 12px !important;
+  box-sizing: border-box !important;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* ─── 2. Section Métadonnées & Synopsis (Compressée) ─── */
-.vs-nf-meta-grid {
-  display: flex;
-  gap: 25px;
-  padding: 16px 32px 18px;
-  box-sizing: border-box;
-  border-bottom: 1px solid var(--nf-border-subtle);
-  width: 100%;
+.vs-profile-stat-box {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  text-align: center !important;
+  position: relative !important;
 }
 
-.vs-nf-meta-left {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.vs-nf-tags-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 12.5px;
-  color: var(--nf-text-gray);
-}
-
-.vs-nf-year {
-  color: #ffffff;
-  font-weight: 500;
-}
-
-.vs-nf-badge-age {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 1px 5px;
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #fff;
-  border-radius: 2px;
-}
-
-.vs-nf-badge-spec {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 1px 4px;
-  font-size: 9px;
-  font-weight: 700;
-  border-radius: 2px;
-  color: #fff;
-}
-
-.vs-nf-top10-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.vs-nf-top10-icon {
-  background: var(--nf-red);
-  color: #ffffff;
-  font-size: 7.5px;
-  font-weight: 900;
-  padding: 2.5px 3.5px;
-  border-radius: 2px;
-  line-height: 1;
-  text-align: center;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.vs-nf-plot {
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: #e0e0e0;
-  margin: 2px 0 0;
-}
-
-/* Colonne droite : Distribution & Genres */
-.vs-nf-meta-right {
-  width: 250px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 11.5px;
-  line-height: 1.4;
-}
-
-.vs-nf-info-block {
-  color: var(--nf-text-gray);
-}
-
-.vs-nf-info-block strong {
-  color: var(--nf-text-darkgray);
-  font-weight: 500;
-}
-
-.vs-nf-info-block span {
-  color: #e0e0e0;
-}
-
-.vs-nf-info-block em {
-  font-style: italic;
-  color: #888888;
-}
-
-/* ─── 3. Section Épisodes (Header + Rangées Continues & Collées) ─── */
-.vs-nf-episodes-wrap {
-  padding: 20px 32px 30px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.vs-nf-ep-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.vs-nf-ep-head h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  letter-spacing: 0.3px;
-}
-
-.vs-nf-ep-season-label {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-.vs-nf-ep-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-/* Ligne d'un Épisode (Ordre strict : [1] Chiffre | [2] Image | [3] Texte) */
-.vs-nf-ep-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 14px 16px;
-  background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  transition: background 0.15s ease;
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.vs-nf-ep-row:last-child {
-  border-bottom: none;
-}
-
-.vs-nf-ep-row:hover,
-.vs-nf-ep-row.vs-active {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* 1. Chiffre à gauche */
-.vs-nf-ep-num {
-  font-size: 18px;
-  font-weight: 700;
-  color: #777777;
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.vs-nf-ep-row:hover .vs-nf-ep-num,
-.vs-nf-ep-row.vs-active .vs-nf-ep-num {
-  color: #ffffff;
-}
-
-/* 2. Miniature avec bouton Play au hover au milieu */
-.vs-nf-ep-thumb-wrap {
-  position: relative;
-  width: 130px;
-  aspect-ratio: 16 / 9;
-  border-radius: 4px;
-  overflow: hidden;
-  display: block;
-  text-decoration: none !important;
-  background: #000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-  flex-shrink: 0;
-}
-
-.vs-nf-ep-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.2s ease;
-}
-
-.vs-nf-ep-thumb-wrap:hover .vs-nf-ep-thumb {
-  transform: scale(1.04);
-}
-
-/* Overlay Bouton Play au hover */
-.vs-nf-ep-play-overlay {
+.vs-profile-stat-box:not(:last-child)::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  right: 0;
+  top: 15%;
+  bottom: 15%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(197, 160, 89, 0.3), transparent);
 }
 
-.vs-nf-ep-thumb-wrap:hover .vs-nf-ep-play-overlay {
-  opacity: 1;
+.vs-profile-stat-label {
+  font-family: "Roboto Condensed", sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #111 !important;
+  background: linear-gradient(135deg, #c5a059, #dfc185) !important;
+  padding: 1px 8px !important;
+  border-radius: 2px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4) !important;
+  display: inline-block !important;
 }
 
-.vs-nf-ep-play-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1.5px solid #ffffff;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.15s ease, background 0.15s ease;
+.vs-profile-stat-val {
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #e5e2dc !important;
+  letter-spacing: 0.5px !important;
 }
 
-.vs-nf-ep-thumb-wrap:hover .vs-nf-ep-play-circle {
-  transform: scale(1.1);
-  background: rgba(0, 0, 0, 0.85);
+/* ─── CORPS DU PROFIL (AVATAR GAUCHE + COLONNE UNIQUE DROITE) ─── */
+#wombat .user_profile {
+  display: flex !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  height: 350px !important;
+  position: relative !important;
+  box-sizing: border-box !important;
 }
 
-.vs-nf-ep-play-circle svg {
-  width: 11px;
-  height: 11px;
-  fill: #ffffff;
-  margin-left: 2px;
+/* Avatar */
+#wombat .profile_avatar {
+  flex: 0 0 200px !important;
+  width: 200px !important;
+  height: 350px !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(197, 160, 89, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+  background: #000 !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* 3. Contenu texte de l'épisode à droite */
-.vs-nf-ep-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  flex: 1;
-  min-width: 0;
+#wombat .profile_avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  filter: contrast(1.05) brightness(0.95) !important;
+  transition: transform 0.5s ease, filter 0.5s ease !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
-.vs-nf-ep-name {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  line-height: 1.25;
+#wombat .profile_avatar:hover img {
+  transform: scale(1.03) !important;
+  filter: contrast(1.08) brightness(1.02) !important;
 }
 
-.vs-nf-ep-synopsis {
-  font-size: 12px;
-  line-height: 1.45;
-  color: var(--nf-text-gray);
-  margin: 0;
+/* Colonne Droite Unique */
+#wombat .profile_infos {
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 350px !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(197, 160, 89, 0.15) !important;
+  border-radius: 3px !important;
+  padding: 14px 16px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  font-size: 0 !important;
 }
 
-/* ─── Responsive Netflix ─── */
-@media (max-width: 700px) {
-  .vs-nf-hero {
-    padding: 24px 18px 16px;
-    min-height: 280px;
-  }
-  .vs-nf-meta-grid {
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px 18px;
-  }
-  .vs-nf-meta-right {
-    width: 100%;
-  }
-  .vs-nf-episodes-wrap {
-    padding: 16px 18px;
-  }
-  .vs-nf-ep-row {
-    gap: 12px;
-    padding: 10px 8px;
-  }
-  .vs-nf-ep-thumb-wrap {
-    width: 100px;
-  }
+#wombat .profile_content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 9px !important;
+  overflow-y: auto !important;
+  padding-right: 8px !important;
+  height: 100% !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #c5a059 rgba(0, 0, 0, 0.3) !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-@media (max-width: 480px) {
-  .vs-nf-ep-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .vs-nf-ep-num {
-    display: none;
-  }
-  .vs-nf-ep-thumb-wrap {
-    width: 100%;
-  }
+#wombat .profile_content::-webkit-scrollbar {
+  width: 4px;
+}
+#wombat .profile_content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+#wombat .profile_content::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 2px;
+}
+
+/* ─── CHAMPS DU PROFIL (LIGNES & CARTES ÉLÉGANTES) ─── */
+#wombat .profile_field {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-left: 2px solid rgba(197, 160, 89, 0.4) !important;
+  border-radius: 2px !important;
+  padding: 8px 12px !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+}
+
+#wombat .profile_field:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(197, 160, 89, 0.25) !important;
+  border-left-color: #c5a059 !important;
+}
+
+#wombat .profile_field label {
+  width: auto !important;
+  text-align: left !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #c5a059 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 !important;
+}
+
+#wombat .profile_field label::before {
+  content: "◈";
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+#wombat .profile_field label span {
+  color: inherit !important;
+}
+
+#wombat .profile_field field {
+  font-family: "Inter", sans-serif !important;
+  font-size: 13px !important;
+  color: #d8d4cf !important;
+  line-height: 1.5 !important;
+  display: block !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+#wombat .profile_field field .field_uneditable {
+  color: #e5e2dc !important;
+  font-size: 13px !important;
+}
+
+#wombat .profile_field field img {
+  max-width: 100% !important;
+  max-height: 190px !important;
+  object-fit: cover !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(197, 160, 89, 0.25) !important;
+  margin-top: 6px !important;
+  display: block !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Cache le champ Reflet dans la colonne de droite s'il est déjà dans la barre supérieure */
+#wombat .profile_content #field_id1 {
+  display: none !important;
+}
+
+/* ─── BANDEAU D'ACTIONS INFÉRIEUR (5 BOUTONS ALIGNÉS EN GRILLE) ─── */
+#wombat .vs-profile-actions {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(197, 160, 89, 0.18) !important;
+  margin-top: 2px !important;
+  box-sizing: border-box !important;
+}
+
+#wombat form.profile_contact,
+#wombat #field_id,
+#wombat .profile_admin {
+  display: contents !important;
+  margin: 0 !important;
+}
+
+#wombat .vs-profile-btn,
+#wombat #alltopics,
+#wombat #allposts,
+#wombat form.profile_contact #field_id a,
+#wombat .profile_admin button,
+#wombat .profile_admin a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  height: 34px !important;
+  width: 100% !important;
+  padding: 0 8px !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(197, 160, 89, 0.3) !important;
+  color: #f0e2be !important;
+  font-family: "Cinzel", Georgia, serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.2px !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  border-radius: 2px !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+}
+
+#wombat .vs-profile-btn:hover,
+#wombat #alltopics:hover,
+#wombat #allposts:hover,
+#wombat form.profile_contact #field_id a:hover,
+#wombat .profile_admin button:hover,
+#wombat .profile_admin a:hover {
+  background: rgba(197, 160, 89, 0.2) !important;
+  border-color: #c5a059 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+#wombat .vs-profile-btn--admin,
+#wombat .profile_admin a {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #a8a29e !important;
+}
+#wombat .vs-profile-btn--admin:hover,
+#wombat .profile_admin a:hover {
+  border-color: #f87171 !important;
+  color: #fca5a5 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3) !important;
 }
