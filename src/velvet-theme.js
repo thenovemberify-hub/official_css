@@ -10,6 +10,18 @@
     var STORAGE_KEY = 'velvet_sin_theme';
     var DEFAULT_THEME = 'bleu_nuit';
 
+    // Configuration des avatars du staff par thème
+    var THEME_STAFF_AVATARS = {
+        bleu_nuit: {
+            sinclair: 'https://imagesend.fr/uploads/20260501/847c8eeb020fd8e6b7e57999d33d0e97d2fccb1f.jpg',
+            vanda: 'https://imagesend.fr/uploads/20260503/0694a34da1daa36cc728ebbf647f3eae6aef554e.jpg'
+        },
+        vert_foret: {
+            sinclair: 'https://imagesend.fr/uploads/20260828/d208f60fbf850c7acb0ed29031d1486083b4d6fb.jpg',
+            vanda: 'https://imagesend.fr/uploads/20260828/938780a5f690ca33259a6aa3abbee47d7a961d67.jpg'
+        }
+    };
+
     /**
      * Applique un thème au document
      * @param {string} themeName - Identifiant du thème (ex: 'bleu_nuit', 'vert_foret')
@@ -32,7 +44,25 @@
 
         // 3. Mise à jour visuelle des boutons / pips .velvet-theme
         updateThemeButtons(themeName);
+
+        // 4. Mise à jour dynamique des images du staff
+        updateStaffAvatars(themeName);
     };
+
+    /**
+     * Met à jour dynamiquement les avatars du staff sur la page d'accueil
+     * @param {string} currentTheme
+     */
+    function updateStaffAvatars(currentTheme) {
+        var avatars = THEME_STAFF_AVATARS[currentTheme] || THEME_STAFF_AVATARS[DEFAULT_THEME];
+        if (!avatars) return;
+        Object.keys(avatars).forEach(function (name) {
+            var img = document.querySelector('.vs-hp-avatar[data-name="' + name + '"] img');
+            if (img) {
+                img.src = avatars[name];
+            }
+        });
+    }
 
     /**
      * Met à jour la classe .active sur les boutons .velvet-theme
@@ -71,9 +101,10 @@
             });
         });
 
-        // Appliquer l'état actif sur les boutons au chargement
+        // Appliquer l'état actif sur les boutons et les avatars au chargement
         var savedTheme = getSavedTheme();
         updateThemeButtons(savedTheme);
+        updateStaffAvatars(savedTheme);
     }
 
     /**

@@ -551,6 +551,14 @@
   display: block;
 }
 
+.vs-hp-avatar[data-name="sinclair"] img {
+  content: var(--hp-avatar-sinclair);
+}
+
+.vs-hp-avatar[data-name="vanda"] img {
+  content: var(--hp-avatar-vanda);
+}
+
 .vs-hp-avatar:hover img {
   filter: grayscale(0%) brightness(0.4);
   transform: scale(1.05);

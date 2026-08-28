@@ -62,6 +62,8 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --bg-blur: none;
     --hp-visual-img: url("https://imagesend.fr/uploads/27ff10bf74706db3316a79dd2be9c7e0c6a906d9.gif");
     --hp-quote-text: "I'M GIVING\A YOU\A A NIGHT\A CALL TO\A TELL YOU\A HOW I\A FEEL,\A \A I WANT TO\A DRIVE YOU\A THROUGH THE NIGHT,\A DOWN THE\A HILLS";
+    --hp-avatar-sinclair: url("https://imagesend.fr/uploads/20260501/847c8eeb020fd8e6b7e57999d33d0e97d2fccb1f.jpg");
+    --hp-avatar-vanda: url("https://imagesend.fr/uploads/20260503/0694a34da1daa36cc728ebbf647f3eae6aef554e.jpg");
     --fond-category: #12283f;
     --midnight-purple: #2e1a47;
     --taupe: #a29587;
