@@ -443,60 +443,6 @@ h1.profile-title-override {
   }
 }
 
-@media only screen {
-
-  /* Override body .navbar */
-  body .navbar {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-
-    width: 100% !important;
-    height: auto !important;
-
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    flex-wrap: wrap !important;
-    padding: 10px 40px !important;
-
-    margin-bottom: 20px !important;
-    border-radius: 5px !important;
-    border: 2px solid var(--contrastLighter) !important;
-    border-left: 2px solid var(--contrastLighter) !important;
-    border-right: 2px solid var(--contrastLighter) !important;
-
-    transform: none !important;
-    overflow-y: visible !important;
-    box-shadow: none !important;
-  }
-
-  .navbar::before {
-    display: none !important;
-  }
-
-  .navbar li {
-    margin: 0 !important;
-    width: auto !important;
-    background: transparent !important;
-    display: inline-block !important;
-  }
-
-  .navbar li a.mainmenu {
-    border-bottom: none !important;
-    padding: 2px !important;
-    text-align: center !important;
-    display: inline !important;
-    width: auto !important;
-  }
-
-  .navbar li a.mainmenu:hover {
-    background: transparent !important;
-    padding-left: 2px !important;
-  }
-}
 
 @media print {
 

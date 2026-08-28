@@ -188,92 +188,189 @@
   clear: both;
 }
 
-/*** ------------------------------- ***/
-/*** BARRE DE NAVIGATION ----------- ***/
-/* Conteneur de la barre de nav */
-.navbar {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(var(--neutral), 0.8);
-  border-top: none;
-  border-radius: 0 0 5px 5px;
-  padding: 15px 60px;
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 15px;
-  position: fixed;
-  top: 0px;
-  right: 0px;
-  transform: translateX(-50%);
-  right: auto;
-  width: 100%;
-  height: auto;
-  z-index: 999;
-  font-family: "Karla", sans-serif;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--white);
-  box-sizing: border-box;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
-  /* Ombre pour le détacher */
-  justify-content: center;
+/*** ------------------------------------------------------------------ ***/
+/*** BARRE DE NAVIGATION (NAVBAR) ------------------------------------ ***/
+/*** Harmonisée avec l'esthétique Velvet Sin / Glassmorphism ---------- ***/
+.navbar,
+body .navbar {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  max-width: 980px !important;
+  margin: 0 auto 20px auto !important;
+  padding: 6px 14px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 6px 10px !important;
+  list-style: none !important;
+  box-sizing: border-box !important;
+
+  /* Glassmorphisme harmonisé avec la homepage */
+  background: var(--surface-glass, rgba(18, 40, 63, 0.45)) !important;
+  backdrop-filter: blur(12px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+  border: 1px solid var(--hp-border, rgba(196, 178, 188, 0.15)) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+  z-index: 100 !important;
 }
 
-/* Hide entire li if its anchor is one of the 'suppressed' links so it doesn't occupy space.
-   Uses :has() (supported in modern browsers). Keep explicit selectors for clarity.
-*/
+/* Masquage des éléments inutilisés / secondaires */
 .navbar > li:has(a[href^="/faq"]),
 .navbar > li:has(a[href^="/calendar"]),
 .navbar > li:has(a[href^="/groups"]),
-.navbar > li:has(a[href^="/images"]) {
-  display: none !important;
-}
-
-/* Also handle inline-hidden anchors (style="display:none") if present */
+.navbar > li:has(a[href^="/images"]),
 .navbar > li:has(a[style*="display:none"]) {
   display: none !important;
 }
 
-/* Fallback for browsers without :has(): remove whitespace nodes by collapsing font-size
-   of anchors that are hidden and remove non-breaking space effect. This is less ideal
-   but prevents visible gaps when :has() isn't available.
-*/
 .navbar a[href^="/faq"],
 .navbar a[href^="/calendar"],
 .navbar a[href^="/groups"],
-.navbar a[href^="/images"] {
-  display: none;
-}
-
-/* If HTML contains literal non-breaking spaces after links, set the li's font-size to 0
-   only for li whose anchors are hidden — use a conservative selector so it doesn't
-   affect all nav items. This uses attribute presence on the anchor as a hint.
-   Note: this is intentionally broad but scoped under .navbar.
-*/
+.navbar a[href^="/images"],
 .navbar > li > a[style="display:none"] {
-  font-size: 0;
+  display: none !important;
 }
 
-/* Home button: show text, hide icon */
-.navbar a[href="/"] {
-  color: var(--white);
-  background-image: none;
-  padding: 0;
-  width: auto;
-  height: auto;
-  display: inline;
+/* Eléments de liste */
+.navbar li {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  background: transparent !important;
+  list-style: none !important;
+  position: relative;
 }
 
-/* (Règle vide retirée : .navbar a[href="/"]:hover — était vide. Le pseudo-élément
-   ::after ci-dessous se charge de l'état de survol.) */
-.navbar a[href="/"]:hover::after {
-  display: none;
+/* Masquage des puces / images par défaut de Forumactif */
+.navbar a.mainmenu img,
+.navbar a img {
+  display: none !important;
 }
 
-.navbar a[href="/"] img {
-  display: none;
+/* Style de base unifié de tous les liens de la navbar */
+.navbar a.mainmenu,
+.navbar a.mainmenu[href="/"],
+.navbar a.mainmenu#logout {
+  font-family: var(--hp-font-cinzel, "Cinzel", serif) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--hp-lavender, #d8d4f2) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  border: 1px solid transparent !important;
+  background: rgba(216, 212, 242, 0.03) !important;
+  transition: all 0.25s ease !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Icônes FontAwesome avant chaque élément */
+.navbar a.mainmenu::before {
+  font-family: "Font Awesome 6 Free", "FontAwesome" !important;
+  font-weight: 900 !important;
+  font-size: 10px !important;
+  color: var(--hp-mauve, #c4b2bc) !important;
+  opacity: 0.85 !important;
+  transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease !important;
+}
+
+/* Icônes spécifiques par lien */
+.navbar a.mainmenu[href="/"]::before {
+  content: "\f015" !important; /* Accueil / Home */
+}
+
+.navbar a.mainmenu[href^="/discover"]::before {
+  content: "\f0e7" !important; /* Activités / Bolt */
+}
+
+.navbar a.mainmenu[href^="/search"]::before {
+  content: "\f002" !important; /* Rechercher / Search */
+}
+
+.navbar a.mainmenu[href^="/memberlist"]::before {
+  content: "\f0c0" !important; /* Membres / Users */
+}
+
+.navbar a.mainmenu[href^="/profile"]::before {
+  content: "\f2bd" !important; /* Profil / User circle */
+}
+
+.navbar a.mainmenu[href^="/privmsg"]::before {
+  content: "\f0e0" !important; /* Messagerie / Envelope */
+}
+
+.navbar a.mainmenu#logout::before,
+.navbar a.mainmenu[href*="logout"]::before {
+  content: "\f2f5" !important; /* Déconnexion / Quitter */
+}
+
+/* Hover de tous les liens */
+.navbar a.mainmenu:hover,
+.navbar a.mainmenu[href="/"]:hover,
+.navbar a.mainmenu#logout:hover {
+  color: #ffffff !important;
+  background: rgba(216, 212, 242, 0.09) !important;
+  border-color: var(--hp-border, rgba(196, 178, 188, 0.25)) !important;
+  box-shadow: 0 0 10px rgba(46, 26, 71, 0.4) !important;
+  transform: translateY(-1px) !important;
+}
+
+.navbar a.mainmenu:hover::before {
+  color: var(--accentClr, #d4af37) !important;
+  opacity: 1 !important;
+  transform: scale(1.15) !important;
+}
+
+/* Gestion propre du bouton Logout / Déconnexion (masque [ Velvet Sin ]) */
+.navbar a.mainmenu#logout {
+  font-size: 0 !important;
+}
+
+.navbar a.mainmenu#logout::after {
+  content: "Déconnexion" !important;
+  font-family: inherit !important;
+  font-size: 10px !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  text-transform: uppercase !important;
+  color: inherit !important;
+  transition: color 0.25s ease !important;
+}
+
+/* Menu de recherche popup */
+#search_menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+#search_menu .overview {
+  background: var(--surface-glass, rgba(18, 40, 63, 0.95)) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid var(--hp-border, rgba(196, 178, 188, 0.25)) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  padding: 12px 16px !important;
 }
 
 /*** ------------------------------- ***/
