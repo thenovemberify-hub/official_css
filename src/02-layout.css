@@ -201,14 +201,14 @@ body .navbar {
   transform: none !important;
   width: 100% !important;
   max-width: 980px !important;
-  margin: 0 auto 2px auto !important;
-  padding: 4px 8px !important;
+  margin: 0 auto 1px auto !important;
+  padding: 10px 14px !important;
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
   align-items: center !important;
   flex-wrap: nowrap !important;
-  gap: 4px !important;
+  gap: 8px !important;
   list-style: none !important;
   box-sizing: border-box !important;
   white-space: nowrap !important;
@@ -263,16 +263,16 @@ body .navbar {
 .navbar a.mainmenu[href="/"],
 .navbar a.mainmenu#logout {
   font-family: var(--hp-font-cinzel, "Cinzel", serif) !important;
-  font-size: 9.5px !important;
-  font-weight: 600 !important;
-  letter-spacing: 1.5px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
   text-transform: uppercase !important;
   color: var(--hp-lavender, #d8d4f2) !important;
   text-decoration: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 5px !important;
-  padding: 4px 8px !important;
+  gap: 7px !important;
+  padding: 6px 12px !important;
   border-radius: 4px !important;
   border: 1px solid transparent !important;
   background: rgba(216, 212, 242, 0.03) !important;
@@ -289,7 +289,7 @@ body .navbar {
 .navbar a.mainmenu::before {
   font-family: "Font Awesome 6 Free", "FontAwesome" !important;
   font-weight: 900 !important;
-  font-size: 9.5px !important;
+  font-size: 11px !important;
   color: var(--hp-mauve, #c4b2bc) !important;
   opacity: 0.85 !important;
   transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease !important;
@@ -350,7 +350,7 @@ body .navbar {
 .navbar a.mainmenu#logout::after {
   content: "Quitter" !important;
   font-family: inherit !important;
-  font-size: 9.5px !important;
+  font-size: 11px !important;
   font-weight: inherit !important;
   letter-spacing: inherit !important;
   text-transform: uppercase !important;
