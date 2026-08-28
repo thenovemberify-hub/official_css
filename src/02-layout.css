@@ -350,11 +350,14 @@ body .navbar {
 .navbar a.mainmenu#logout {
   font-size: 0 !important;
   line-height: 0 !important;
+  letter-spacing: 0 !important;
+  word-spacing: 0 !important;
   gap: 0 !important;
 }
 
 .navbar a.mainmenu#logout::before {
-  margin-right: 7px !important;
+  margin-right: 6px !important;
+  letter-spacing: 0 !important;
   line-height: 1 !important;
 }
 
@@ -363,7 +366,7 @@ body .navbar {
   font-family: inherit !important;
   font-size: 11px !important;
   font-weight: inherit !important;
-  letter-spacing: inherit !important;
+  letter-spacing: 2px !important;
   text-transform: uppercase !important;
   color: inherit !important;
   line-height: 1 !important;
