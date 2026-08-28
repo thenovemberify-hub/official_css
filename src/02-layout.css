@@ -435,7 +435,9 @@ body .navbar {
   display: grid;
   grid-template-columns: 220px 1fr 280px;
   gap: 0;
-  width: 100%;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
   /* Glassmorphisme identique à la homepage */
   background: var(--qeel-glass);
   backdrop-filter: blur(12px) saturate(140%);
@@ -446,6 +448,7 @@ body .navbar {
   color: var(--qeel-mauve);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box !important;
 }
 
 /* Lueur intérieure subtile — miroir de la homepage */

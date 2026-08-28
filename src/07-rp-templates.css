@@ -743,6 +743,73 @@
 }
 
 /* ==========================================================================
+   FORMULAIRES ADMINISTRATIFS VELVET SIN (.vs-admin-form)
+   ========================================================================== */
+.vs-admin-form {
+  max-width: 480px;
+  margin: 25px auto;
+  padding: 20px 24px;
+  background: var(--surface-glass-dim);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vs-admin-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(196, 178, 188, 0.08);
+}
+
+.vs-admin-form-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.vs-admin-form-label,
+.vs-admin-form velvetify {
+  font-family: "Cinzel", serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  display: block;
+}
+
+.vs-admin-form-val {
+  font-family: var(--font, "Inter", sans-serif);
+  font-size: 13px;
+  color: var(--contrastLight);
+}
+
+.vs-admin-form-val a {
+  color: var(--accentClr) !important;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.35);
+  transition: all 0.2s ease;
+}
+
+.vs-admin-form-val a:hover {
+  color: #fff !important;
+  border-bottom-color: #fff;
+  text-shadow: 0 0 8px rgba(var(--gold-rgb), 0.6);
+}
+
+/* ==========================================================================
    RÈGLEMENT DU FORUM (THE HOUSE RULES / CODEX)
    ========================================================================== */
 .vs-rule-section {
