@@ -308,6 +308,15 @@ body .navbar {
   content: "\f0e7" !important; /* Activités / Bolt */
 }
 
+.navbar a.mainmenu[href^="/register"]::before {
+  content: "\f234" !important; /* S'enregistrer / User Plus */
+}
+
+.navbar a.mainmenu[href^="/login"]:not([href*="logout"]):not(#logout)::before,
+.navbar a.mainmenu[href="/login"]::before {
+  content: "\f2f6" !important; /* Connexion / Right To Bracket */
+}
+
 .navbar a.mainmenu[href^="/search"]::before {
   content: "\f002" !important; /* Rechercher / Search */
 }
