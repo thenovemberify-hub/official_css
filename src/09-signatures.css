@@ -710,18 +710,21 @@
 }
 
 .vs-sig5-image-wrap img {
-  width: 155%;
-  height: 100%;
+  width: 170%;
+  height: 125%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
+  object-position: center;
   position: absolute;
-  top: 0;
-  left: -27.5%;
-  transform: skewX(12deg) scale(1.05);
-  transition: transform 0.5s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) skewX(12deg);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .vs-sig5-block:hover .vs-sig5-image-wrap img {
-  transform: skewX(12deg) scale(1.12);
+  transform: translate(-50%, -50%) skewX(12deg) scale(1.08);
 }
 
 .vs-sig5-content {
