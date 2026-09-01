@@ -277,54 +277,31 @@ a.forumtitle {
   box-shadow: none;
 }
 
-/* BOUTONS D'EDITION DU MESSAGE --- */
+/* BOUTONS D'EDITION ET D'ACTION DU MESSAGE --- */
 /* Conteneur boutons d'édition */
 ul.profile-icons {
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   list-style: none;
   margin: 10px 0;
   padding: 0;
   gap: 15px;
 }
 
-/*UN SEUL bouton d'édition */
+/* UN SEUL bouton d'édition */
 ul.profile-icons li {
-  padding: 2px 4px;
-  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
 }
 
-/*hover d'un bouton d'édition*/
+/* hover d'un bouton d'édition */
 ul.profile-icons li:hover {
   background: transparent;
-}
-
-button.rep-button .like_text {
-  font-family: "Karla", sans-serif !important;
-  text-transform: uppercase !important;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--contrastLight);
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-}
-
-button.rep-button .rep-nb {
-  font-family: "Karla", sans-serif !important;
-  text-transform: uppercase !important;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--contrastLight);
-  text-decoration: none !important;
-  transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
-  margin-left: 6px;
 }
 
 /* Lien "@" de mention */
@@ -332,32 +309,94 @@ a.fa-mention {
   cursor: pointer;
 }
 
-/* Post Control Buttons (Citer, Editer, etc.) */
+/* Post Control Buttons (Citer, Editer, Supprimer, IP, Like, etc.) */
 ul.profile-icons li a,
 .i_icon_quote,
 .i_icon_edit,
 .i_icon_delete,
-.i_icon_ip {
+.i_icon_ip,
+button.rep-button,
+button.rep-button:active,
+button.rep-button:focus {
   font-family: "Karla", sans-serif !important;
   text-transform: uppercase !important;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #d8d4f2;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  color: #d8d4f2 !important;
   text-decoration: none !important;
   transition: all 0.3s ease;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 2px;
+  border: none !important;
+  border-bottom: 1px solid transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  padding: 0 0 2px 0 !important;
+  margin: 0 !important;
+  cursor: pointer;
+  line-height: normal !important;
+  display: inline-flex;
+  align-items: center;
 }
 
+button.rep-button .like_text {
+  font-family: inherit !important;
+  text-transform: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: inherit;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+button.rep-button .rep-nb {
+  font-family: inherit !important;
+  text-transform: inherit !important;
+  font-size: 9px !important;
+  font-weight: inherit !important;
+  letter-spacing: 1px !important;
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: inherit;
+  margin-left: 5px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* Hover de tous les boutons de contrôle */
 ul.profile-icons li a:hover,
 .i_icon_quote:hover,
 .i_icon_edit:hover,
 .i_icon_delete:hover,
-.i_icon_ip:hover {
-  color: #c4b2bc;
-  border-bottom-color: #c4b2bc;
+.i_icon_ip:hover,
+button.rep-button:hover,
+button.rep-button:hover .like_text,
+button.rep-button:hover .rep-nb {
+  background: transparent !important;
+  color: #c4b2bc !important;
+  border-bottom-color: #c4b2bc !important;
   text-shadow: none;
+}
+
+/* Bouton Like quand le post est liké */
+button.rep-button.fa_liked,
+button.rep-button.fa_liked .like_text,
+button.rep-button.fa_liked .rep-nb {
+  color: #eaba6b !important;
+  border-bottom-color: #eaba6b !important;
+}
+
+button.rep-button.fa_liked:hover,
+button.rep-button.fa_liked:hover .like_text,
+button.rep-button.fa_liked:hover .rep-nb {
+  color: #ffd700 !important;
+  border-bottom-color: #ffd700 !important;
 }
 
 /* Lien de réponse au MP */

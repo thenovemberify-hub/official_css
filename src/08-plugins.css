@@ -1379,26 +1379,12 @@ div.post_row:nth-of-type(2) {
 /* BOUTON LIKE --- */
 /* Conteneur du bouton like */
 .like_button {
-  float: right;
-  margin-left: 10px;
-  flex-grow: 1;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 15px;
+  flex-grow: 0;
+  flex-shrink: 0;
   cursor: pointer;
-}
-
-/* Bouton like */
-.rep-button,
-.rep-button:active,
-.rep-button:focus {
-  color: var(--neutral);
-  border: none;
-  padding: 3px 5px;
-  border-radius: 5px;
-  font-weight: 600;
-}
-
-/*Bouton au survol*/
-.rep-button:hover {
-  background: var(--contrastLighter);
 }
 
 .post_pseudo {
