@@ -133,7 +133,6 @@ div.sceditor-group {
 /* ============================
    2. FORMULAIRE D'ENVOI (.container, #postingbox)
    ============================ */
-/* Titre de la page "Envoyer un nouveau message privé" */
 /* Panneau d'édition */
 #postingbox {
   background: var(--surface-glass-dim);
@@ -141,8 +140,20 @@ div.sceditor-group {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(216, 212, 242, 0.15);
   border-radius: 8px;
-  padding: 20px 25px;
-  margin-bottom: 15px;
+  padding: 25px 30px;
+  width: 900px !important;
+  max-width: 100% !important;
+  margin: 20px auto 25px auto !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+#postingbox .inner {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
 }
 
 #postingbox h3 {
@@ -154,6 +165,38 @@ div.sceditor-group {
   padding-bottom: 12px;
   margin-bottom: 18px;
   border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+}
+
+#postingbox fieldset.fields1 {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#postingbox fieldset.fields1 dl {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 12px 0 !important;
+  gap: 15px !important;
+}
+
+#postingbox fieldset.fields1 dt {
+  width: 180px !important;
+  min-width: 180px !important;
+  text-align: left !important;
+  float: none !important;
+}
+
+#postingbox fieldset.fields1 dd {
+  flex: 1 1 auto !important;
+  margin: 0 !important;
+  float: none !important;
 }
 
 /* Labels des champs */
@@ -180,10 +223,53 @@ div.sceditor-group {
     box-shadow 0.3s ease;
 }
 
+#postingbox .inputbox.medium,
+#postingbox input[name="subject"],
+#postingbox input[name="description"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 #postingbox .inputbox:focus {
   outline: none;
   border-color: rgba(216, 212, 242, 0.4);
   box-shadow: 0 0 8px rgba(216, 212, 242, 0.1);
+}
+
+#postingbox .message-edition {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 15px !important;
+}
+
+#postingbox #smiley-box {
+  width: 240px !important;
+  min-width: 240px !important;
+  float: none !important;
+}
+
+#postingbox #message-box {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  float: none !important;
+}
+
+#postingbox .sceditor-container {
+  width: 100% !important;
+  min-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#postingbox .sceditor-container iframe,
+#postingbox .sceditor-container textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Bouton "Trouver un nom d'utilisateur" */
