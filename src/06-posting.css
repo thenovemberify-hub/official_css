@@ -409,3 +409,278 @@ div.sceditor-group {
 .sceditor-mention-user:hover {
   background: rgba(216, 212, 242, 0.1) !important;
 }
+
+/* ============================================================================
+   4. PANNEAU DE CONFIRMATION / MODÉRATION (Déplacement, suppression, etc.)
+   ============================================================================ */
+
+/* Conteneur de la modale / carte de confirmation */
+form[name="confirm"] .panel,
+form#confirm .panel,
+.panel:has(fieldset.fields1),
+.panel:has(input[name="confirm"]) {
+  max-width: 680px !important;
+  margin: 45px auto !important;
+  background: rgba(18, 22, 38, 0.78) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(216, 212, 242, 0.18) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Suppression des anciens coins arrondis phpBB */
+.panel:has(fieldset.fields1) .corners-top,
+.panel:has(fieldset.fields1) .corners-bottom,
+.panel:has(input[name="confirm"]) .corners-top,
+.panel:has(input[name="confirm"]) .corners-bottom {
+  display: none !important;
+}
+
+/* Espacement interne */
+.panel:has(fieldset.fields1) .inner,
+.panel:has(input[name="confirm"]) .inner,
+form[name="confirm"] .inner {
+  padding: 35px 40px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Titre du panneau de confirmation */
+.panel:has(fieldset.fields1) h1.page-title,
+.panel:has(fieldset.fields1) .page-title,
+.panel:has(input[name="confirm"]) h1.page-title,
+.panel:has(input[name="confirm"]) .page-title,
+form[name="confirm"] h1.page-title {
+  font-family: "Cinzel", serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  color: #eaba6b !important;
+  text-align: center !important;
+  margin: 0 0 25px 0 !important;
+  padding: 0 0 16px 0 !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.15) !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  height: auto !important;
+  display: block !important;
+  box-shadow: none !important;
+  text-shadow: 0 2px 10px rgba(234, 186, 107, 0.2) !important;
+}
+
+/* Structure du formulaire */
+.panel fieldset.fields1 {
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 18px !important;
+}
+
+/* Lignes de formulaire (DL / DT / DD) */
+.panel fieldset.fields1 dl {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  gap: 12px !important;
+}
+
+.panel fieldset.fields1 dt {
+  float: none !important;
+  width: auto !important;
+  min-width: 180px !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.panel fieldset.fields1 dt:empty,
+.panel fieldset.fields1 dl:has(input[type="checkbox"]) dt {
+  display: none !important;
+}
+
+.panel fieldset.fields1 dt label {
+  font-family: "Karla", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px !important;
+  color: #c4b2bc !important;
+  line-height: normal !important;
+}
+
+.panel fieldset.fields1 dd {
+  float: none !important;
+  margin: 0 !important;
+  flex: 1 1 260px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Menu déroulant (Select forum) */
+.panel fieldset.fields1 select,
+.panel select[name="new_forum"] {
+  width: 100% !important;
+  background: rgba(12, 16, 28, 0.85) !important;
+  border: 1px solid rgba(216, 212, 242, 0.22) !important;
+  border-radius: 6px !important;
+  color: #d8d4f2 !important;
+  padding: 10px 14px !important;
+  font-family: "Karla", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
+  outline: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.panel fieldset.fields1 select:hover,
+.panel fieldset.fields1 select:focus,
+.panel select[name="new_forum"]:hover,
+.panel select[name="new_forum"]:focus {
+  border-color: #eaba6b !important;
+  box-shadow: 0 0 14px rgba(234, 186, 107, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+.panel fieldset.fields1 select option {
+  background: #141724 !important;
+  color: #d8d4f2 !important;
+  padding: 6px 10px !important;
+}
+
+.panel fieldset.fields1 select option[value="-1"],
+.panel fieldset.fields1 select option[value^="c"] {
+  color: #eaba6b !important;
+  font-weight: 700 !important;
+}
+
+/* Ligne Checkbox (sujet-traceur) */
+.panel fieldset.fields1 dl:has(input[type="checkbox"]) {
+  justify-content: center !important;
+  margin-top: 4px !important;
+}
+
+.panel fieldset.fields1 dl:has(input[type="checkbox"]) dd {
+  flex: 1 1 100% !important;
+  justify-content: center !important;
+}
+
+.panel fieldset.fields1 dd label:has(input[type="checkbox"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: "Karla", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #d8d4f2 !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  padding: 8px 16px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(216, 212, 242, 0.12) !important;
+  border-radius: 6px !important;
+  transition: all 0.25s ease !important;
+}
+
+.panel fieldset.fields1 dd label:has(input[type="checkbox"]):hover {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(216, 212, 242, 0.3) !important;
+  color: #ffffff !important;
+}
+
+.panel fieldset.fields1 input[type="checkbox"] {
+  accent-color: #eaba6b !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Question de confirmation & Boutons d'action */
+.panel fieldset.fields1 p.center,
+.panel p.center:has(input[name="confirm"]) {
+  text-align: center !important;
+  font-family: "Cormorant Garamond", serif !important;
+  font-size: 1.18rem !important;
+  font-style: italic !important;
+  letter-spacing: 0.8px !important;
+  color: #d8d4f2 !important;
+  margin: 22px 0 0 0 !important;
+  padding: 22px 0 0 0 !important;
+  border-top: 1px solid rgba(216, 212, 242, 0.12) !important;
+  width: 100% !important;
+  line-height: 1.6 !important;
+}
+
+/* Boutons OUI / NON */
+.panel input[type="submit"].button2,
+.panel input[name="confirm"],
+.panel input[name="cancel"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 125px !important;
+  padding: 10px 26px !important;
+  margin: 16px 8px 0 !important;
+  font-family: "Karla", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  line-height: normal !important;
+  text-shadow: none !important;
+}
+
+/* Bouton OUI (Confirmation positive) */
+.panel input[name="confirm"],
+.panel input[name="confirm"].button2 {
+  background: rgba(234, 186, 107, 0.16) !important;
+  color: #eaba6b !important;
+  border: 1px solid rgba(234, 186, 107, 0.5) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.panel input[name="confirm"]:hover,
+.panel input[name="confirm"].button2:hover {
+  background: #eaba6b !important;
+  color: #12101e !important;
+  border-color: #eaba6b !important;
+  box-shadow: 0 0 22px rgba(234, 186, 107, 0.5) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Bouton NON (Annulation) */
+.panel input[name="cancel"],
+.panel input[name="cancel"].button2 {
+  background: rgba(216, 212, 242, 0.05) !important;
+  color: #c4b2bc !important;
+  border: 1px solid rgba(216, 212, 242, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+}
+
+.panel input[name="cancel"]:hover,
+.panel input[name="cancel"].button2:hover {
+  background: rgba(216, 212, 242, 0.16) !important;
+  color: #ffffff !important;
+  border-color: rgba(216, 212, 242, 0.45) !important;
+  box-shadow: 0 0 15px rgba(216, 212, 242, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
