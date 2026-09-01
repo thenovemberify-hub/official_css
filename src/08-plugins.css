@@ -2144,7 +2144,10 @@ html[data-color-scheme="light"] .userlist_contact a:hover {
   border: 1px solid rgba(216, 212, 242, 0.15);
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  width: 1012px;
+  max-width: 100%;
+  box-sizing: border-box;
   color: #d8d4f2;
 }
 

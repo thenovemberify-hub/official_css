@@ -141,7 +141,7 @@ div.sceditor-group {
   border: 1px solid rgba(216, 212, 242, 0.15);
   border-radius: 8px;
   padding: 25px 30px;
-  width: 900px !important;
+  width: 1012px !important;
   max-width: 100% !important;
   margin: 20px auto 25px auto !important;
   box-sizing: border-box !important;
@@ -508,7 +508,7 @@ form[action*="mode=delete"] .panel,
 .panel:has(input[name="confirm"]):not(#postingbox),
 .panel:has(input[name="cancel"]):not(#postingbox) {
   width: 100% !important;
-  max-width: 900px !important;
+  max-width: 1012px !important;
   margin: 30px auto !important;
   background: var(--surface-glass-dim, rgba(18, 22, 38, 0.78)) !important;
   backdrop-filter: blur(16px) !important;
