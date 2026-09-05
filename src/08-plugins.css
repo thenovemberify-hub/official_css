@@ -126,7 +126,7 @@
 :hover:is(
     input:is([type="submit"], [type="button"], [type="reset"]),
     .button,
-    button
+    button:not(.rep-button):not(.fa_like):not(.fa_liked):not([data-href*="vote_like"]):not(.sceditor-button)
   ):not(:disabled) {
   background: color-mix(
     in srgb,
@@ -140,7 +140,7 @@
 :focus-visible:is(
   input:is([type="submit"], [type="button"], [type="reset"]),
   .button,
-  button
+  button:not(.rep-button):not(.fa_like):not(.fa_liked):not([data-href*="vote_like"]):not(.sceditor-button)
 ) {
   outline: none;
   box-shadow: var(--fond-category);
@@ -150,7 +150,7 @@
 :active:is(
     input:is([type="submit"], [type="button"], [type="reset"]),
     .button,
-    button
+    button:not(.rep-button):not(.fa_like):not(.fa_liked):not([data-href*="vote_like"]):not(.sceditor-button)
   ):not(:disabled) {
   transform: translateY(1px) scale(0.98);
 }
@@ -159,7 +159,7 @@
 :disabled:is(
   input:is([type="submit"], [type="button"], [type="reset"]),
   .button,
-  button
+  button:not(.rep-button):not(.fa_like):not(.fa_liked):not([data-href*="vote_like"]):not(.sceditor-button)
 ) {
   opacity: 0.5;
   filter: saturate(0.6);
