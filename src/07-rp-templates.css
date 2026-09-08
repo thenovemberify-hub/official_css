@@ -4847,6 +4847,9 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: var(--textColor);
   text-align: justify;
   margin: 0;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 /* Section Notes & Attentes HRP */
