@@ -4847,32 +4847,6 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: var(--textColor);
   text-align: justify;
   margin: 0;
-  max-height: 160px;
-  overflow-y: auto;
-  padding-right: 8px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accentClr) rgba(0, 0, 0, 0.2);
-}
-
-.vs-wanted-link-desc p {
-  margin: 0 0 8px 0;
-}
-
-.vs-wanted-link-desc p:last-child {
-  margin-bottom: 0;
-}
-
-.vs-wanted-link-desc::-webkit-scrollbar {
-  width: 4px;
-}
-
-.vs-wanted-link-desc::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.vs-wanted-link-desc::-webkit-scrollbar-thumb {
-  background: var(--accentClr);
-  border-radius: 2px;
 }
 
 /* Section Notes & Attentes HRP */
