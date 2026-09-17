@@ -4103,6 +4103,37 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   font-weight: 700;
 }
 
+/* ─── Rétrocompatibilité : Grille de rythme (V1) ─── */
+.vs-comfort-rhythm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.vs-comfort-rhythm-item {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(var(--gold-rgb), 0.12);
+  border-radius: 3px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.vs-comfort-rhythm-label {
+  font-family: "Roboto Condensed", var(--font), sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--accentClr);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 4px;
+}
+
+.vs-comfort-rhythm-value {
+  font-size: 13px;
+  color: var(--textColor, #d8d4cf);
+  font-family: var(--font, "Inter", sans-serif);
+}
+
 /* ─── Section 2 : Seuils de Tolérance (Légende & Topics Compacts) ─── */
 .vs-comfort-legend {
   display: flex;
@@ -4216,6 +4247,25 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ─── Rétrocompatibilité : topic-content (V1) ─── */
+.vs-comfort-topic-content {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.vs-comfort-topic-content .vs-comfort-topic-title {
+  margin-bottom: 0;
+}
+
+.vs-comfort-topic-content .vs-comfort-topic-desc {
+  margin-left: auto;
+  text-align: right;
 }
 
 /* ─── Section 3 : L'Emprise (Mastery Blocks Compacts) ─── */
@@ -4337,6 +4387,34 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   color: #e5e2dc;
 }
 
+/* ─── Rétrocompatibilité : Réponses texte / listes L'Emprise (V1) ─── */
+.vs-comfort-mastery-answer {
+  font-size: 13px;
+  color: var(--textColor, #d8d4cf);
+  line-height: 1.6;
+}
+
+.vs-comfort-mastery-answer ul {
+  margin: 4px 0 0 0;
+  padding-left: 18px;
+  list-style-type: disc;
+}
+
+.vs-comfort-mastery-answer li {
+  margin-bottom: 6px;
+  color: var(--taupe, #a8a29e);
+}
+
+.vs-comfort-mastery-answer li:last-child {
+  margin-bottom: 0;
+}
+
+.vs-comfort-mastery-answer velvetify,
+.vs-comfort-mastery-answer strong {
+  color: var(--accentClr);
+  font-weight: 700;
+}
+
 /* Zone de Précisions Personnalisées */
 .vs-comfort-custom-note {
   margin-top: 8px;
@@ -4410,6 +4488,13 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   border-top: 1px solid rgba(var(--gold-rgb), 0.1);
 }
 
+.vs-comfort-signature-line {
+  display: inline-block;
+  width: 180px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.35);
+  margin-bottom: 4px;
+}
+
 .vs-comfort-signature-label {
   font-family: "Cinzel", Georgia, serif;
   font-size: 12px;
@@ -4440,6 +4525,10 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
     padding: 14px 12px;
   }
 
+  .vs-comfort-rhythm-grid {
+    grid-template-columns: 1fr;
+  }
+
   .vs-comfort-option-row {
     flex-direction: column;
     align-items: flex-start;
@@ -4449,6 +4538,18 @@ details.vs-faq-item[open] summary.vs-faq-title::after {
   .vs-comfort-topic {
     flex-wrap: wrap;
     gap: 6px;
+  }
+
+  .vs-comfort-topic-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+
+  .vs-comfort-topic-content .vs-comfort-topic-desc {
+    margin-left: 0;
+    text-align: left;
+    white-space: normal;
   }
 
   .vs-comfort-topic-desc {
