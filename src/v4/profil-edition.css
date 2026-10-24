@@ -1,0 +1,284 @@
+/* ============================================================================
+ * V4 — ÉDITION DU PROFIL (Profil › Informations, Préférences, Signature, Avatar…)
+ * Template : profile_add_body. Page : /profile?mode=editprofile
+ *
+ * Objectif : une page de formulaire lisible dans les deux thèmes, sans dépendre de la photo de fond.
+ * - panneaux presque opaques (la photo ne passe plus derrière le texte)
+ * - une ligne par champ : libellé à gauche, champ + aide en dessous à droite, séparateur discret
+ * - onglets sur une ligne, sans césure, en capitales espacées comme le reste du forum
+ * - boutons Enregistrer / Réinitialiser visibles et collés en bas de l'écran pendant le défilement
+ * Tout est limité à #cp-main et #tabs : aucune autre page n'est touchée.
+ * ============================================================================ */
+
+#cp-main {
+  --pe-surface: color-mix(in srgb, var(--bg-black) 90%, transparent);
+  --pe-field: rgba(0, 0, 0, 0.35);
+  --pe-line: rgba(255, 255, 255, 0.08);
+  --pe-text: var(--text-cream);
+  --pe-help: var(--textColor);
+  --pe-accent: var(--accentClr);
+}
+
+/* ─── Onglets (Informations, Préférences, Signature…) ─── */
+#tabs {
+  --pe-surface: color-mix(in srgb, var(--bg-black) 90%, transparent);
+  margin: 0 0 24px;
+}
+
+#tabs ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  background: var(--pe-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+}
+
+#tabs li {
+  margin: 0;
+  padding: 0;
+}
+
+#tabs li a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font2);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--textColor);
+  text-decoration: none;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+#tabs li a:hover,
+#tabs li a:focus-visible {
+  color: var(--text-cream);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#tabs li.activetab a {
+  color: var(--text-cream);
+  background: rgba(var(--gold-rgb), 0.16);
+  box-shadow: inset 0 -2px 0 var(--accentClr);
+}
+
+/* ─── Titres de section (« Enregistrement », « Profil personnalisé »…) ───
+ * Fond plein au lieu du bandeau flouté sur la photo ; hauteur libre. */
+#cp-main h1.page-title {
+  height: auto;
+  margin: 32px 0 0;
+  padding: 16px 24px;
+  background: var(--pe-surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: var(--border);
+  border-bottom: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  text-align: center;
+  justify-content: center;
+}
+
+#cp-main h1.page-title:first-of-type {
+  margin-top: 0;
+}
+
+/* ─── Panneaux ─── */
+#cp-main .panel {
+  margin: 0 0 8px;
+  padding: 8px 28px 20px;
+  background: var(--pe-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  color: var(--pe-text);
+}
+
+/* Panneau sans titre au-dessus (ex. suppression du compte) : coins tous arrondis */
+#cp-main .panel:not(h1.page-title + .panel) {
+  margin-top: 24px;
+  border-radius: var(--radius-lg);
+}
+
+/* « Les champs marqués d'un * sont obligatoires. » */
+#cp-main .panel > p {
+  margin: 12px 0 4px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--pe-help);
+}
+
+/* ─── Une ligne par champ ─── */
+#cp-main fieldset dl {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr;
+  gap: 8px 28px;
+  align-items: start;
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--pe-line);
+}
+
+#cp-main fieldset dl:last-child {
+  border-bottom: none;
+}
+
+/* Libellé (les noms des champs de profil arrivent avec une couleur en ligne réglée dans l'admin) */
+#cp-main fieldset dt,
+#cp-main fieldset dt label,
+#cp-main fieldset dt span[style] {
+  font-family: var(--font2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--pe-text) !important;
+}
+
+#cp-main fieldset dt {
+  padding-top: 10px;
+}
+
+#cp-main fieldset dd {
+  margin: 0;
+  color: var(--pe-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Champs : fond sombre plein, largeur utile (bat la largeur de 250px écrite en ligne par Forumactif) */
+#cp-main fieldset dd :is(input[type="text"], input[type="email"], input[type="password"], input[type="url"], input[type="number"], .inputbox),
+#cp-main fieldset dd textarea {
+  width: 100% !important;
+  max-width: 560px;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  background: var(--pe-field);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  font-size: 16px; /* ≥ 16px : pas de zoom automatique sur iPhone */
+  color: var(--pe-text) !important;
+}
+
+#cp-main fieldset dd textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#cp-main fieldset dd :is(input, textarea):focus-visible {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: var(--pe-accent);
+  box-shadow: 0 0 0 3px rgba(var(--gold-rgb), 0.25);
+}
+
+#cp-main fieldset dd select {
+  max-width: 560px;
+}
+
+/* Texte d'aide sous le champ (« Votre personnalité », « métier du personnage »…) */
+#cp-main fieldset dd .italic {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--pe-help);
+}
+
+#cp-main fieldset dd br + .italic {
+  margin-top: 2px;
+}
+
+/* Lien « < Modifier > » du mot de passe, présenté comme un petit bouton */
+#cp-main fieldset dd > a:has(> b) {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid var(--pe-accent);
+  border-radius: var(--radius-sm);
+  color: var(--pe-text);
+  text-decoration: none;
+}
+
+#cp-main fieldset dd > a:has(> b):hover {
+  background: rgba(var(--gold-rgb), 0.16);
+}
+
+/* ─── Enregistrer / Réinitialiser : toujours visibles en bas de l'écran ─── */
+#cp-main fieldset.submit-buttons {
+  position: sticky;
+  bottom: 12px;
+  z-index: 5;
+  margin: 24px 0 0;
+  padding: 14px;
+  background: var(--pe-surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+#cp-main fieldset.submit-buttons center {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+#cp-main fieldset.submit-buttons :is(.button1, .button2) {
+  padding: 10px 26px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font2);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Bouton principal : plein, couleur d'accent du thème, texte sombre */
+#cp-main fieldset.submit-buttons .button1 {
+  background: var(--pe-accent);
+  border: 1px solid var(--pe-accent);
+  color: #111;
+}
+
+#cp-main fieldset.submit-buttons .button1:hover {
+  filter: brightness(1.1);
+}
+
+/* Bouton secondaire : contour */
+#cp-main fieldset.submit-buttons .button2 {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--pe-text);
+}
+
+#cp-main fieldset.submit-buttons .button2:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Petits écrans : une seule colonne ─── */
+@media (max-width: 680px) {
+  #cp-main fieldset dl {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  #cp-main fieldset dt {
+    padding-top: 0;
+  }
+
+  #cp-main .panel {
+    padding: 8px 16px 16px;
+  }
+}

@@ -25,3 +25,6 @@
 @import "./08-plugins.css";
 @import "./09-signatures.css";
 @import "./10-prototypes.css";
+
+/* 4. V4 — ajouts de la refonte (chargés en dernier : ils priment à spécificité égale) */
+@import "./v4/profil-edition.css";
