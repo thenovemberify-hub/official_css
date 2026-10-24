@@ -1,6 +1,6 @@
 # Dependances Node
 node_modules/
-package-lock.json
+# package-lock.json est versionné : garantit les mêmes versions de build partout
 
 # Logs
 npm-debug.log*
@@ -8,8 +8,8 @@ yarn-debug.log*
 yarn-error.log*
 *.log
 
-# Fichiers temporaires ou de build intermediaires (si besoin)
-# test.css
+# test.css et test.css.map ne sont PAS ignorés : GitHub Pages les sert au forum de test (club27).
+# Ils doivent donc être poussés comme main.css. Voir GIT.md à la racine du projet.
 
 # System / IDE
 .DS_Store
