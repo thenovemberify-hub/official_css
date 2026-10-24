@@ -3,6 +3,37 @@
  * ============================================================================ */
 /* (Ancien sélecteur universel `*` — fusionné dans @layer reset ci-dessus) */
 /*** ------------------------------- ***/
+/*** EX-CSS DE L'ADMIN FORUMACTIF ---- ***/
+/* Règles qui vivaient dans Admin › Affichage › Images et Couleurs › CSS principal (page Activités).
+ * Rapatriées ici le 24/10/2026 (V4, phase 3) : le CSS de l'admin peut être vidé.
+ * Placées en tête de nos styles car l'admin était chargé AVANT main.css : à priorité égale, nos règles gagnent toujours. */
+.post_date {
+  text-transform: lowercase;
+  font-size: 13px;
+}
+
+div.header {
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+div.text {
+  font-size: 13px;
+}
+
+time.time {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-style: italic;
+}
+
+img.act-icon {
+  margin-left: 8px;
+  width: 24px;
+}
+
+/*** ------------------------------- ***/
 /*** TOUTES LES PAGES --------------- ***/
 /* FOND DU FORUM ---
  * Background fixe + font-feature-settings pour ligatures de qualité,
@@ -22,7 +53,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  --top-offset: var(--offset-to-main);
   /* Évite l'auto-zoom horizontal sur mobile */
   overflow-x: hidden;
 }
@@ -260,7 +290,6 @@ a.forumtitle {
   font-family: var(--font-title, "Times New Roman", serif);
   text-transform: uppercase;
   text-align: end;
-  font-weight: 700;
   letter-spacing: 1px;
   font-size: 1.5em;
   background: rgba(18, 10, 10, 0.4);

@@ -146,7 +146,6 @@
 .switcheroo__popper {
   padding: 0.3rem 1rem;
   position: absolute;
-  width: -webkit-max-content;
   width: max-content;
   border-radius: 5px;
   z-index: 0;
@@ -312,14 +311,11 @@
 /*** LISTE DES MPs ----------------- ***/
 /* Menu des MPS */
 #privmsgs-menu {
-  gap: 20px;
-  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0;
   padding: 12px 20px;
-  border: var(--border);
   margin: 15px 0 25px;
   flex-wrap: wrap;
   background: var(--surface-glass);
@@ -329,7 +325,6 @@
 }
 
 #privmsgs-menu li {
-  gap: 5px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -345,7 +340,6 @@
 /* Post Details (date, actions) - Full width at top */
 /* Sticky Profile Sidebar */
 .post_profile.vs-profile-tabs {
-  position: -webkit-sticky;
   position: sticky;
   top: 80px;
   align-self: flex-start;

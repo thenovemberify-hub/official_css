@@ -18,7 +18,6 @@
 }
 
 .body__background {
-  --top-offset: var(--offset-to-main);
   position: fixed;
   inset: 0;
   width: 100%;
@@ -95,12 +94,6 @@
 .page-title {
   grid-column: 1;
   grid-row: 1;
-  font-family: var(--font-title);
-  color: var(--gold-accent);
-  display: block;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-size: var(--fluid-lg);
   backdrop-filter: blur(8px) saturate(140%);
   -webkit-backdrop-filter: blur(8px) saturate(140%);
   border: none;
@@ -109,7 +102,6 @@
   align-items: center;
   justify-content: flex-start;
   line-height: normal;
-  margin: 0;
   height: 80px;
   box-shadow: none;
   font-family: "Cormorant Garamond", serif;
@@ -259,7 +251,6 @@ summary:focus-visible {
 .links_bar {
   padding: 10px;
   border: var(--border);
-  margin: 25px 0;
   clear: both;
   width: 1000px;
   margin: 10px auto;
@@ -312,14 +303,8 @@ a.specials_links:empty {
 /* Bouton de notification */
 /* Bouton de notification */
 #notiffi_button {
-  background: transparent;
   gap: 5px;
   padding: 10px;
-  position: relative;
-  z-index: auto;
-  top: auto;
-  right: auto;
-  height: auto;
   font-family: var(--font2);
   font-size: var(--little-size);
   letter-spacing: 1px;
@@ -582,7 +567,6 @@ a.specials_links:empty {
   left: 50%;
   opacity: 0;
   width: 94%;
-  padding: 30px;
   transition: 0.2s opacity ease;
   transform: translate(-50%, -50%);
   background: var(--surface-glass);
@@ -652,17 +636,12 @@ a.specials_links:empty {
   width: 1000px;
   margin: 0 auto 20px auto;
   padding: 0;
-  border: 2px solid var(--contrastLighter);
 }
 
 /* Ensure no wrapper borders on list container */
 .forums {
-  backdrop-filter: blur(12px) saturate(140%);
-  border: 1px solid var(--hp-border);
-  border-radius: 10px;
   border: none !important;
   padding: 0;
-  margin: 0;
   width: 100%;
   /* Reset to fit parent (.category) */
   height: auto;
@@ -670,7 +649,6 @@ a.specials_links:empty {
   overflow: visible;
   background: var(--surface-glass);
   backdrop-filter: blur(10px);
-  border: var(--border);
   border-radius: var(--radius-lg);
   margin-block: var(--space-lg);
   box-shadow: var(--elevation-4);
@@ -702,7 +680,6 @@ a.specials_links:empty {
 }
 
 .cate_quote {
-  color: var(--accent2);
   margin-top: 42px;
   position: absolute;
   letter-spacing: 1px;
@@ -1388,7 +1365,6 @@ div.post_row:nth-of-type(2) {
 }
 
 .post_pseudo {
-  font-weight: bold;
   text-transform: lowercase;
   font-size: var(--large-size);
   font-weight: 700;
@@ -1543,7 +1519,6 @@ blockquote cite a {
 
 /* Bouton édition d'un champ de profil */
 .ajax-profil_edit {
-  left: 0px;
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -2060,9 +2035,6 @@ html[data-color-scheme="light"] .userlist_contact a:hover {
 /*** ------------------------------- ***/
 /*** AFFICHAGE D'UN MESSAGE PRIVÉ -- ***/
 .message {
-  background: var(--neutral);
-  grid-template-rows: max-content auto;
-  grid-template-columns: 220px minmax(0, 1fr);
   display: grid;
   grid-template-columns: 140px 1fr;
   grid-template-rows: auto 1fr;
@@ -2076,9 +2048,7 @@ html[data-color-scheme="light"] .userlist_contact a:hover {
 }
 
 .message_infos {
-  grid-column: 1 / span 2;
   border-bottom: 1px solid var(--neutralDark);
-  padding: 10px;
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
@@ -2099,8 +2069,6 @@ html[data-color-scheme="light"] .userlist_contact a:hover {
 }
 
 .message_profil {
-  padding: 10px;
-  border-right: 1px solid var(--neutralDark);
   text-align: center;
   grid-column: 1;
   grid-row: 2;
@@ -2114,7 +2082,6 @@ html[data-color-scheme="light"] .userlist_contact a:hover {
 }
 
 .message_content {
-  padding: 25px;
   grid-column: 2;
   grid-row: 2;
   padding: 20px 24px;
@@ -2264,15 +2231,12 @@ form[name="form_login"] .content {
 
 /*** ------------------------------- ***/
 /*** ELEMENTS FLOTTANTS ------------ ***/
-/* Fenêtre popup "recherche" */
+/* Fenêtre popup "recherche" (position : voir #search_menu dans 02-layout.css) */
 .overview {
   background: var(--surface-glass);
   border-radius: 5px;
   border: var(--border);
   padding: 10px;
-  position: fixed !important;
-  top: 50% !important;
-  margin-top: 22px;
 }
 
 /* Bouton rechercher */

@@ -179,7 +179,6 @@
 
 /* Conteneur moins large (les historiques des messages essentiellement) */
 .wrapped {
-  width: min(var(--content-narrow), 80%);
   margin-inline: auto;
   margin-block: var(--space-xs);
   width: 1018px;
@@ -383,16 +382,23 @@ body .navbar {
   white-space: nowrap !important;
 }
 
-/* Menu de recherche popup */
+/* Menu de recherche popup : s'ouvre SOUS le bouton « Rechercher » (V4, phase 3).
+ * Forumactif écrit top/left en style inline sur #search_menu (calculés en JS) : les !important les remplacent.
+ * Le conteneur de référence est le <li> du bouton (.navbar li { position: relative }). */
 #search_menu {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  left: 50% !important;
   transform: translateX(-50%);
   z-index: 1000;
 }
 
+/* La fenêtre suit son conteneur (plus de position fixed qui la décalait selon la largeur de l'écran) */
 #search_menu .overview {
+  position: static !important;
+  width: 350px;
+  max-width: calc(100vw - 32px) !important;
+  margin: 0 !important;
   background: var(--surface-glass, rgba(18, 40, 63, 0.95)) !important;
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
