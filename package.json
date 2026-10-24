@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build:test": "postcss src/index.css -o test.css",
+    "build:test": "postcss src/index.css -o test.css --env test",
     "build:prod": "postcss src/index.css -o main.css --env production",
-    "watch": "postcss src/index.css -o test.css --watch",
+    "watch": "postcss src/index.css -o test.css --env test --watch",
     "link:test": "node dev/link-css.js test",
     "link:official": "node dev/link-css.js official",
     "link:status": "node dev/link-css.js status"

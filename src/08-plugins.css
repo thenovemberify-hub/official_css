@@ -1390,7 +1390,6 @@ div.post_row:nth-of-type(2) {
 .post_pseudo {
   font-weight: bold;
   text-transform: lowercase;
-  font-family: "April Fatface", serif;
   font-size: var(--large-size);
   font-weight: 700;
 }

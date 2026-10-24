@@ -3,10 +3,14 @@ import combineSelectors from 'postcss-combine-duplicated-selectors';
 import sortMediaQueries from 'postcss-sort-media-queries';
 import cssnano from 'cssnano';
 
-// `postcss --env production` => build de production (main.css)
-// sans --env                  => build de dev (lisible, avec source map)
+// `postcss --env production` => build de production (main.css, forum officiel)
+// `postcss --env test`       => test.css (forum de test) : MÊMES étapes que la production,
+//                               pour que club27 montre exactement ce que verra l'officiel,
+//                               + source map (test.css.map) pour déboguer dans DevTools
+// sans --env                 => dev lisible, avec source map (preview local)
 export default ({ env }) => {
     const isProd = env === 'production';
+    const isFull = isProd || env === 'test';
 
     return {
         map: isProd ? false : { inline: false },
@@ -16,7 +20,7 @@ export default ({ env }) => {
 
             // Étapes suivantes : production uniquement, car elles déplacent des règles
             // et rendent le CSS illisible dans DevTools.
-            ...(isProd ? [
+            ...(isFull ? [
                 // 2. Fusionne les sélecteurs dupliqués (.postprofile { ... } .postprofile { ... })
                 combineSelectors({
                     removeDuplicatedProperties: true,
