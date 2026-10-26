@@ -3,7 +3,6 @@
  * Palette : #5095BF | #A0D3F2 | #F28705 | #D96704 | #8C2703
  * ============================================================================ */
 [data-theme="vert_foret"] {
-    --header: url("https://i.postimg.cc/sx2QtPwy/velvet-sin-title.png");
     --bg-img: url("https://imagesend.fr/uploads/20260815/14cbb47cf4fb88a45b945ea8e543df6683d610db.jpg");
     --bg-position: center 10%;
     --hp-visual-img: url("https://64.media.tumblr.com/76fd205c3cd32b79b37ab49248af146a/9ac08417b001f6b8-f8/s500x750/df335cb2391907d1c2469c7d1456d4878812a7b5.gif");
@@ -15,18 +14,15 @@
     --fond-category: #112330;
     --midnight-purple: #2d130a;
     --taupe: #8ea6b6;
-    --neutral: #ecf4f9;
+    --pale-1: #ecf4f9;
     --thistle: #A0D3F2;
-    --neutralDark: #dbeef7;
-    --neutralDarker: #b8d7e8;
-    --dark: #89aabf;
-    --subcategory-dark: #cfe7f5;
+    --pale-2: #dbeef7;
+    --pale-3: #b8d7e8;
+    --pale-4: #cfe7f5;
     --bg-soft: #1e3848;
     --bg-dim: #152936;
     --bg-darker: #0c1820;
     --bg-black: #060d12;
-    --bg-warm-deep: #1a0904;
-    --bg-warm-soft: #2e1208;
 
     /* Typographie & Contrastes */
     --textColor: #c2d6e3;
@@ -38,26 +34,22 @@
     --surface-glass: rgba(17, 35, 48, 0.78);
     --surface-glass-dim: rgba(17, 35, 48, 0.7);
     --surface-glass-deep: rgba(17, 35, 48, 0.88);
-    --contrast: #A0D3F2;
-    --contrastLight: #f0f8fc;
-    --contrastLighter: #1e3848;
+    --text-bright: #f0f8fc;
+    --edge: #1e3848;
     --white: #ffffff;
 
     /* Accents Ambre & Or (#F28705, #D96704, #8C2703) */
     --accentClr: #F28705;
-    --accentClrDark: #D96704;
     --gold-rgb: 242, 135, 5;
     --borderGold: #F28705;
 
     --gold-accent: #F28705;
     --gold-light: #f7ba63;
     --gold-medium: #D96704;
-    --gold-warm: #d99152;
     --gold-bronze: #a64d03;
     --gold-dark: #8C2703;
     --gold-darker: #541702;
     --gold-cream: #ffe1b3;
-    --gold-mid: #D96704;
 
     /* V4 : ambre « texte », plus clair que l'ambre « décor » (bordures, icônes, filets) */
     --accent-text: #ffb454;
@@ -68,13 +60,10 @@
     --surface-row-strong: rgba(10, 22, 31, 0.94);
 
     /* QEEL */
-    --qeel-dark: #060d12;
-    --qeel-surface: #112330;
     --qeel-border: rgba(160, 211, 242, 0.15);
     --qeel-lavender: #A0D3F2;
     --qeel-mauve: #5095BF;
     --qeel-taupe: #8ea6b6;
-    --qeel-purple: #8C2703;
     --qeel-purple-light: #b83605;
     --qeel-purple-dim: rgba(140, 39, 3, 0.5);
     --qeel-text-bright: #f0f8fc;
@@ -82,8 +71,6 @@
     --qeel-glass-deep: rgba(6, 13, 18, 0.45);
 
     /* Page d'Accueil (HP) */
-    --hp-dark: #060d12;
-    --hp-darker: #04080c;
     --hp-surface: #112330;
     --hp-border: rgba(160, 211, 242, 0.15);
     --hp-lavender: #A0D3F2;
@@ -93,6 +80,5 @@
     --hp-purple-light: #F28705;
     --hp-purple-dim: rgba(242, 135, 5, 0.28);
     --hp-text: #A0D3F2;
-    --hp-text-dim: #8ea6b6;
     --hp-text-bright: #f0f8fc;
 }

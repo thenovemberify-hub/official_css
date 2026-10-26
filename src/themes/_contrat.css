@@ -1,0 +1,63 @@
+/* ============================================================================
+ * CONTRAT DE THÈME (V4, phase 5)
+ * ----------------------------------------------------------------------------
+ * Ce que tout thème peut régler, nommé par RÔLE (et non par couleur), avec ses valeurs
+ * par défaut : celles du thème nuit. Un thème (themes/<nom>.css, sous [data-theme="<nom>"])
+ * ne redéfinit que ce qui change chez lui ; ce fichier est chargé avant les thèmes.
+ *
+ * Avancement (détail et plan : AUDIT_THEMES.md à la racine du projet) :
+ *   5.1 ✅ rôles de couleur et de police, alias des anciens noms ;
+ *   5.2    couleurs écrites en dur → ces rôles ;
+ *   5.3    panneaux, logo ; 5.4 tailles, lettrage, largeur ; 5.5 registre JS ; 5.6 dispositions.
+ *
+ * Règle : en 5.1 et 5.2, chaque rôle vaut EXACTEMENT la couleur qu'il remplace, en nuit comme
+ * en jour (rendu identique, vérifié par tools/banc-captures/diff-styles.mjs). Harmoniser le jour
+ * viendra après, à part.
+ * ============================================================================ */
+:root {
+    /* ─── Encre : la couleur de base de l'interface (aujourd'hui le lavande de la nuit) ───
+     * S'écrit rgba(var(--ink-rgb), α) pour toutes les transparences, comme --gold-rgb. */
+    --ink-rgb: 216, 212, 242;
+    --ink: rgb(var(--ink-rgb));
+
+    /* ─── Blanc et noir de l'interface (reflets, filets, voiles, ombres) ─── */
+    --paper-rgb: 255, 255, 255;
+    --shadow-rgb: 0, 0, 0;
+
+    /* ─── Effets néon (glitch, survols, liseré des sujets) ─── */
+    --fx-a-rgb: 255, 48, 64;  /* rouge */
+    --fx-b-rgb: 0, 229, 255;  /* cyan */
+
+    /* ─── Teintes secondaires écrites en dur dans l'interface ───
+     * (ne pas confondre avec --thistle, --taupe, --midnight-purple, que le thème jour change déjà) */
+    --mauve-rgb: 196, 178, 188;  /* #c4b2bc */
+    --stone-rgb: 162, 149, 135;  /* #a29587 */
+    --violet-rgb: 46, 26, 71;    /* #2e1a47 */
+
+    /* ─── Polices par rôle ─── */
+    --font-body: "Inter", sans-serif;                       /* texte courant */
+    --font-display: "Cormorant Garamond", "Cormorant", "Playfair Display", Georgia, serif; /* logo, titres de page */
+    --font-title: "Playfair Display", Georgia, serif;       /* titres de section */
+    --font-label: "Cinzel", serif;                          /* onglets, petites capitales */
+    --font-ui: "Karla", sans-serif;                         /* libellés de formulaires */
+    --font-condensed: "Roboto Condensed", sans-serif;       /* compteurs, méta-données */
+    --font-mono: "Share Tech Mono", "Courier New", monospace; /* fil d'Ariane, boutons, dates */
+
+    /* ─── Niveaux de texte (V4, phase 4) ─── */
+    --text: var(--textColor);
+    --text-2: var(--text-soft);
+    --text-3: var(--text-muted);
+
+    /* ─── Alias des anciens noms (à remplacer par les rôles au fil de la phase 5, puis à retirer) ─── */
+    --font: var(--font-body);
+    --font2: var(--font-label);
+    --font-cinzel: var(--font-label);
+    --font-4: var(--font-condensed);
+    /* Noms hérités du Blank Theme (thème clair) : « neutralDark » était clair, « contrastLighter » sombre */
+    --neutral: var(--pale-1);
+    --neutralDark: var(--pale-2);
+    --neutralDarker: var(--pale-3);
+    --subcategory-dark: var(--pale-4);
+    --contrastLight: var(--text-bright);
+    --contrastLighter: var(--edge);
+}

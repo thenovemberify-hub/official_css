@@ -6,6 +6,7 @@
 
 /* 2. Variables & Thèmes */
 @import "./00-variables.css";
+@import "./themes/_contrat.css";
 @import "./themes/bleu_nuit.css";
 @import "./themes/vert_foret.css";
 @import "./themes/theme-switcher.css";
