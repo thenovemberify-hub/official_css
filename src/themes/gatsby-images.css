@@ -2,8 +2,9 @@
  * GATSBY — IMAGES (26/10)
  * ----------------------------------------------------------------------------
  * Toutes les images du thème, au même endroit : fonds du bloc d'accueil et de « Qui est en ligne »,
- * avatars du staff sur l'accueil, bandeaux des catégories (#c1…) et des forums (lien /fN-, et la page
- * du forum : data-forum). Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
+ * avatars du staff sur l'accueil, bandeaux des catégories (#c1…) et des forums, repérés par le NOM dans leur
+ * adresse (/f2-the-velvet-lounge → the-velvet-lounge) : le même sur club27 et sur l'officiel, dont les numéros
+ * diffèrent. Brique de l'accueil : lien qui finit par « -nom » ; page du forum : data-forum (module 22301). Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
  * (préparés par tools/images-gatsby.py, depuis assets/references).
  * Chemins relatifs : ils partent du fichier CSS (test.css / main.css, à la racine du dépôt official_css).
  * SAUF les avatars du staff : le module 22301 les lit et les pose dans la page, il leur faut l'adresse complète.
@@ -32,14 +33,15 @@
 [data-theme="gatsby"] #c6 { --cat-img: url("img/gatsby/bandeau-12.jpg"); }       /* The After-Hours : le bar */
 
 /* ─── Forums : la brique de l'accueil et le bandeau de la page du forum ─── */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f1-"]), [data-forum="1"] .page-title) { --forum-img: url("img/gatsby/bandeau-02.jpg"); --forum-gif: hidden; }        /* The Crimson Codex */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f2-"]), [data-forum="2"] .page-title) { --forum-img: url("img/gatsby/bandeau-07.jpg"); --forum-gif: hidden; }        /* The Velvet Lounge */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f10-"]), [data-forum="10"] .page-title) { --forum-img: url("img/gatsby/bandeau-13.jpg"); --forum-gif: hidden; }      /* Casting Calls */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f13-"]), [data-forum="13"] .page-title) { --forum-img: url("img/gatsby/bandeau-15.jpg"); --forum-gif: hidden; }      /* Bureau of Sin */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f59-"]), [data-forum="59"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); --forum-gif: hidden; }  /* The Black Ledger */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f17-"]), [data-forum="17"] .page-title) { --forum-img: url("img/gatsby/bandeau-18.jpg"); --forum-gif: hidden; }      /* The Circle of Lights */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f22-"]), [data-forum="22"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }      /* The Circle of Shadows */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f27-"]), [data-forum="27"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-bas.jpg"); --forum-gif: hidden; }  /* The Circle of Vices */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f32-"]), [data-forum="32"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); --forum-gif: hidden; } /* The City of Angels */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f38-"]), [data-forum="38"] .page-title) { --forum-img: url("img/gatsby/bandeau-11-bas.jpg"); --forum-gif: hidden; }  /* The City of Ghosts */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f49-"]), [data-forum="49"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); --forum-gif: hidden; } /* The Green Room */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-crimson-codex"]), [data-forum="the-crimson-codex"] .page-title) { --forum-img: url("img/gatsby/bandeau-02.jpg"); --forum-gif: hidden; }        /* The Crimson Codex */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-velvet-lounge"]), [data-forum="the-velvet-lounge"] .page-title) { --forum-img: url("img/gatsby/bandeau-07.jpg"); --forum-gif: hidden; }        /* The Velvet Lounge */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-casting-calls"]), [data-forum="casting-calls"] .page-title) { --forum-img: url("img/gatsby/bandeau-13.jpg"); --forum-gif: hidden; }      /* Casting Calls */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-bureau-of-sin"]), [data-forum="bureau-of-sin"] .page-title) { --forum-img: url("img/gatsby/bandeau-15.jpg"); --forum-gif: hidden; }      /* Bureau of Sin */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-black-ledger"]), [data-forum="the-black-ledger"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); --forum-gif: hidden; }  /* The Black Ledger */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-lights"]), [data-forum="the-circle-of-lights"] .page-title) { --forum-img: url("img/gatsby/bandeau-18.jpg"); --forum-gif: hidden; }      /* The Circle of Lights */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-shadows"]), [data-forum="the-circle-of-shadows"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }      /* The Circle of Shadows */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-vices"]), [data-forum="the-circle-of-vices"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-bas.jpg"); --forum-gif: hidden; }  /* The Circle of Vices */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-angels"]), [data-forum="the-city-of-angels"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); --forum-gif: hidden; } /* The City of Angels */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-ghosts"]), [data-forum="the-city-of-ghosts"] .page-title) { --forum-img: url("img/gatsby/bandeau-11-bas.jpg"); --forum-gif: hidden; }  /* The City of Ghosts */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-green-room"]), [data-forum="the-green-room"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); --forum-gif: hidden; } /* The Green Room */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-zenith"]), [data-forum="zenith"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }                    /* Zenith (staff) : adresse supposée /fN-zenith */

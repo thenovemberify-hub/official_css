@@ -101,13 +101,20 @@
   grid-column: 1;
 }
 
-/* Case vide de la dernière rangée : le motif d'éventails (la citation est montée dans le bandeau) */
+/* Case vide de la dernière rangée : une citation sur le motif d'éventails. Pas la même que celle du bandeau :
+   la case prend la citation décalée de trois (catégorie 1 → citation 4, 2 → 5…) */
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 1) { --cat-quote-case: var(--cat-quote-4); }
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 2) { --cat-quote-case: var(--cat-quote-5); }
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 3) { --cat-quote-case: var(--cat-quote-6); }
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 4) { --cat-quote-case: var(--cat-quote); }
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 5) { --cat-quote-case: var(--cat-quote-2); }
+[data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 6) { --cat-quote-case: var(--cat-quote-3); }
+
 [data-layout-categories="briques-bandeaux"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after,
 [data-layout-categories="briques-bandeaux"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 2))::after {
-  content: "";
-  padding: 0;
+  content: var(--cat-quote-case) "\A\A" var(--cat-quote-source);
   background:
-    radial-gradient(ellipse at center, rgba(var(--panel-deep-rgb), 0.1), rgba(var(--panel-deep-rgb), 0.85) 75%),
+    radial-gradient(ellipse at center, rgba(var(--panel-deep-rgb), 0.92) 30%, rgba(var(--panel-deep-rgb), 0.55) 80%),
     url("img/gatsby/eventails-losanges-fort.svg") center / 80px 80px repeat,
     var(--brick-bg);
 }

@@ -15,6 +15,11 @@
   background-image: var(--hp-backdrop);
   background-size: cover;
   background-position: center;
+  /* Mêmes bords que la navigation et les catégories : centré à 1000px, et en fenêtre étroite il passe
+     par-dessus la bordure de 1px du cadre du message d'accueil (sinon 2px plus étroit que le reste) */
+  width: auto;
+  max-width: none;
+  margin-inline: max(-1px, calc((100% - var(--layout-width)) / 2));
 }
 
 /* Exception : les br dans le bloc texte sont autorisés */
@@ -476,4 +481,11 @@
   color: var(--hp-taupe);
   text-transform: lowercase;
   letter-spacing: 0.5px;
+}
+
+/* Écran étroit (02-layout la repasse à max-width: 100%) : garder les mêmes bords que le reste */
+@media (max-width: 900px) {
+  .vs-hp-wrapper {
+    max-width: none;
+  }
 }
