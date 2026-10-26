@@ -4,7 +4,7 @@
  * Variante des briques (layouts/categories-briques.css, dont toutes les règles s'appliquent : sélecteurs
  * ^="briques") pour une structure moins protocolaire, d'après la maquette du 26/10 :
  *   - la tranche verticale devient un BANDEAU au-dessus des briques : image de la catégorie, losange au
- *     chiffre romain, nom, et la citation de la catégorie (qui quitte la case vide) ;
+ *     chiffre romain et nom (26/10, s7 : sans citation, titre à gauche puis à droite une catégorie sur deux) ;
  *   - chaque brique s'ouvre sur l'IMAGE DU FORUM, nom posé dessus : l'image donnée par le thème si elle
  *     existe (--forum-img, le gif de la description est alors caché), sinon le gif lui-même ;
  *   - la case vide de la dernière rangée reçoit le motif d'éventails ;
@@ -37,7 +37,7 @@
   overflow: hidden;
 }
 
-/* Losange et chiffre romain : à gauche, au milieu de la hauteur */
+/* Losange et chiffre romain : à gauche, au milieu de la hauteur (à droite une catégorie sur deux, plus bas) */
 [data-layout-categories="briques-bandeaux"] .cate_title::before,
 [data-layout-categories="briques-bandeaux"] .cate_title::after {
   top: calc(50% - 14px);
@@ -72,28 +72,29 @@
   filter: drop-shadow(0 2px 6px rgba(var(--shadow-rgb), 0.8));
 }
 
-/* La citation de la catégorie, à droite (six à tour de rôle : categories-briques.css) */
+/* Pas de citation dans le bandeau (26/10, session 7) : le titre seul. Celle de la case vide des briques reste. */
 [data-layout-categories="briques-bandeaux"] .cate_title h2::after {
-  content: var(--cat-quote-ici, var(--cat-quote)) "\A" var(--cat-quote-source);
-  position: absolute;
-  top: 50%;
-  right: 34px;
-  width: 300px;
-  transform: translateY(-50%);
-  white-space: pre-line;
-  text-align: end;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: var(--fs-lg);
-  letter-spacing: 0;
-  line-height: 1.45;
-  color: var(--text-bright);
-  text-shadow: 0 1px 6px rgba(var(--shadow-rgb), 0.9);
+  content: none;
 }
 
-[data-layout-categories="briques-bandeaux"] .cate_title h2 {
-  padding-right: 320px;
+/* Une catégorie sur deux : le titre à droite, le losange à sa droite, l'image dégagée à gauche */
+[data-layout-categories="briques-bandeaux"] .category:nth-child(even of .category) .cate_title {
+  padding: 18px 98px 18px 34px;
+  background:
+    linear-gradient(270deg, rgba(var(--panel-deep-rgb), 0.94) 0%, rgba(var(--panel-deep-rgb), 0.7) 45%,
+      rgba(var(--panel-deep-rgb), 0.35) 72%, rgba(var(--panel-deep-rgb), 0.82) 100%),
+    var(--cat-img) center / cover no-repeat,
+    var(--brick-spine-bg);
+}
+
+[data-layout-categories="briques-bandeaux"] .category:nth-child(even of .category) .cate_title::before,
+[data-layout-categories="briques-bandeaux"] .category:nth-child(even of .category) .cate_title::after {
+  left: auto;
+  right: 44px;
+}
+
+[data-layout-categories="briques-bandeaux"] .category:nth-child(even of .category) .cate_title h2 {
+  text-align: end;
 }
 
 /* ─── Briques : sous le bandeau, sur toute la largeur ─── */
@@ -226,11 +227,9 @@
 /* ─── Écran étroit : bandeau sans citation, nom réduit ─── */
 @media (max-width: 760px) {
   [data-layout-categories="briques-bandeaux"] .cate_title h2 {
-    padding-right: 0;
     font-size: var(--fs-3xl);
   }
 
-  [data-layout-categories="briques-bandeaux"] .cate_title h2::after,
   [data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title::after {
     display: none;
   }

@@ -9,20 +9,49 @@
  *   The Emperor #b71c1c → gradins ; The Star #d63384 → éventails ; The Devil #e67e22 → chevrons ;
  *   The Fool #00b0f0 → arcs.
  * Les avatars doivent être sans cadre (assets/gatsby/avatars/*-sans-cadre-*) : le cadre vient d'ici.
+ * 26/10 (session 7) : le cadre ne recouvre plus la photo. Il tient dans une bordure de 14px (--cadre-bande), comme un
+ * passe-partout ; la photo est posée à l'intérieur, entière, sans voile sombre ; la pierre est sur la bordure, en haut.
  * Ne s'applique que si le thème le demande (registre 22301 : profil: 'cadres' → data-layout-profil).
  * ============================================================================ */
 
 [data-layout-profil="cadres"] :is(.vs-profile-avatar, .userlist_avatar) {
   --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
-  --cadre-pierre-y: 0px;
+  --cadre-bande: 14px;
+  --cadre-pierre-y: 1px;
   --cadre-pierre-display: none;  /* la pierre n'apparaît qu'avec une arcane reconnue */
 }
 
 [data-layout-profil="cadres"] .vs-profile-avatar {
   border: none;
+  background: rgb(var(--panel-deep-rgb));
 }
 
-/* Le cadre, posé sur l'image ; une ombre sous les filets les détache de n'importe quelle photo */
+/* La photo, entière, à l'intérieur de la bordure */
+[data-layout-profil="cadres"] .vs-profile-avatar img {
+  width: calc(100% - 2 * var(--cadre-bande));
+  height: calc(100% - 2 * var(--cadre-bande));
+  margin: var(--cadre-bande);
+}
+
+/* Les !important répondent à ceux de la carte (08-plugins.css) ; le zoom du survol ne déborde plus sur le cadre */
+[data-layout-profil="cadres"] .userlist_avatar {
+  background: rgb(var(--panel-deep-rgb)) !important;
+}
+
+[data-layout-profil="cadres"] .userlist_avatar > img {
+  top: var(--cadre-bande) !important;
+  left: var(--cadre-bande) !important;
+  width: calc(100% - 2 * var(--cadre-bande)) !important;
+  height: calc(100% - 2 * var(--cadre-bande)) !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+[data-layout-profil="cadres"] .userlist_profil:hover .userlist_avatar > img {
+  transform: none !important;
+}
+
+/* Le cadre, dans la bordure : il ne touche pas la photo */
 [data-layout-profil="cadres"] :is(.vs-profile-avatar, .userlist_avatar)::after {
   content: "";
   position: absolute;
@@ -30,10 +59,6 @@
   z-index: 6;
   pointer-events: none;
   background: var(--cadre-avatar) center / 100% 100% no-repeat;
-  box-shadow:
-    inset 0 0 0 5px rgb(var(--panel-deep-rgb)),
-    inset 0 0 26px 14px rgba(var(--panel-deep-rgb), 0.5);
-  filter: drop-shadow(0 0 1px rgba(var(--shadow-rgb), 0.9));
 }
 
 /* La pierre de l'arcane, au milieu du haut du cadre */
@@ -59,7 +84,7 @@
   --cadre-avatar: url("img/gatsby/cadres/cadre-gradins.svg");
   --cadre-pierre: #b71c1c;
   --cadre-pierre-display: block;
-  --cadre-pierre-y: 28px;
+  --cadre-pierre-y: 1px;
 }
 
 [data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="d63384" i]) .vs-profile-avatar,
@@ -67,7 +92,7 @@
   --cadre-avatar: url("img/gatsby/cadres/cadre-eventails.svg");
   --cadre-pierre: #d63384;
   --cadre-pierre-display: block;
-  --cadre-pierre-y: 4px;
+  --cadre-pierre-y: 1px;
 }
 
 [data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="e67e22" i]) .vs-profile-avatar,
@@ -75,7 +100,7 @@
   --cadre-avatar: url("img/gatsby/cadres/cadre-chevrons.svg");
   --cadre-pierre: #e67e22;
   --cadre-pierre-display: block;
-  --cadre-pierre-y: 3px;
+  --cadre-pierre-y: 1px;
 }
 
 [data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="00b0f0" i]) .vs-profile-avatar,
@@ -83,7 +108,7 @@
   --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
   --cadre-pierre: #00b0f0;
   --cadre-pierre-display: block;
-  --cadre-pierre-y: 0px;
+  --cadre-pierre-y: 1px;
 }
 
 /* ─── Liste des membres : le cadre remplace le liseré de la carte ; les infos qui montent au survol
@@ -108,7 +133,7 @@
 
 /* Au repos, seul le pseudo dépasse : on remonte la bande pour qu'il passe au-dessus des ornements du bas du cadre */
 [data-layout-profil="cadres"] .userlist_profil:not(:hover) .userlist_details {
-  transform: translateY(calc(100% - 64px)) !important;
+  transform: translateY(calc(100% - 60px)) !important;
 }
 
 /* Le gif « Fragment d'âme » en tête du message (v4/entete-message.css) : un filet d'or, comme une vitrine */
