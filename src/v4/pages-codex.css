@@ -1,0 +1,144 @@
+/* ============================================================================
+ * V4 — RÈGLEMENT, CONTEXTE, FAQ, HIÉRARCHIE EN PLEINE LARGEUR (phase A, A3, 26/10)
+ * ----------------------------------------------------------------------------
+ * Les sujets de The Crimson Codex (t1 FAQ, t2 hiérarchie, t3 règlement, t4 contexte) commencent par un bloc
+ * .vs-admin-card ou .vs-context-card. Dans un sujet dont le PREMIER message commence ainsi, chaque message perd sa colonne
+ * profil et son en-tête (date, gif) : la carte s'affiche seule, centrée, à une largeur de lecture.
+ * Les boutons du message (Citer, Éditer…) restent accessibles : petite barre en haut à droite, au survol
+ * ou au clavier. Repérage par le contenu (:has) : ni template ni sujet à modifier. Seul le premier message compte
+ * (.post_row qui n'en suit aucun autre) : une réponse du staff en carte d'admin dans un sujet RP ou une fiche ne change rien.
+ * Les sujets de codes du staff (signatures officielles, fiche RP d'exemple) commencent aussi par une carte : ils passent
+ * de même en pleine largeur.
+ * Le sommaire du règlement et la recherche de la FAQ sont posés par le module « Pages du Codex »
+ * (js/modules/pages_codex.js).
+ * ============================================================================ */
+
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_row {
+  grid-template-columns: minmax(0, 1fr);
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent;
+}
+
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_profile {
+  display: none;
+}
+
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_message {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* La carte colle au bandeau de titre (le message avait 25px de retrait, la carte 35px de marge) */
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_message > div > :first-child {
+  margin-top: 0;
+}
+
+/* L'en-tête devient une barre de boutons discrète, posée sur la carte */
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_details {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  width: auto;
+  padding: 0;
+  background: none;
+  border: none;
+  opacity: 0;
+  transition: opacity calc(0.2s * var(--dur-scale)) ease;
+}
+
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_details > :not(.profile-icons) {
+  display: none;
+}
+
+.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_row:is(:hover, :focus-within) .post_details {
+  opacity: 1;
+}
+
+/* ─── Sommaire du règlement (module) ─── */
+.vs-codex-sommaire {
+  margin: 0 auto 28px;
+  max-width: 760px;
+  padding: 18px 24px;
+  background: rgba(var(--veil-rgb), 0.35);
+  border: var(--panel-border);
+  border-radius: var(--panel-radius);
+}
+
+.vs-codex-sommaire-titre {
+  margin: 0 0 10px;
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.vs-codex-sommaire ol {
+  columns: 2;
+  column-gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vs-codex-sommaire li {
+  break-inside: avoid;
+  padding: 3px 0;
+}
+
+.vs-codex-sommaire a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.vs-codex-sommaire a:is(:hover, :focus-visible) {
+  color: var(--accent-text);
+}
+
+/* Article visé par le sommaire : un bref halo */
+.vs-rule-item.vs-codex-cible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 4px;
+}
+
+/* ─── Recherche dans la FAQ (module) ─── */
+.vs-codex-recherche {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 560px;
+  margin: 0 auto 24px;
+}
+
+.vs-codex-recherche label {
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.vs-codex-recherche input {
+  min-height: 44px;
+  padding: 0 16px;
+  background: rgba(var(--veil-rgb), 0.5);
+  border: var(--panel-border);
+  border-radius: var(--panel-radius);
+  color: var(--text);
+  font: inherit;
+}
+
+.vs-codex-recherche output {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+.vs-faq-item.vs-codex-masque {
+  display: none !important;
+}

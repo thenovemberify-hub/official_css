@@ -1,0 +1,163 @@
+/* ============================================================================
+ * V4 — NOUVELLES SIGNATURES (phase A, A2, 26/10)
+ * ----------------------------------------------------------------------------
+ * Modèles ajoutés aux 11 signatures existantes (09-signatures.css, inchangé). Code à donner aux membres :
+ * content/codes-rp/signature-vs-sig17.html. Couleurs et polices tirées du thème : la signature s'accorde
+ * avec nuit, jour et Gatsby.
+ *
+ * vs-sig17 « Constellation » (inspirée de la signature « Song Yong Jun » vue ailleurs, code réécrit) :
+ * portrait découpé en polygone irrégulier, liseré en dégradé et ombre douce, petites étoiles qui tournent
+ * lentement autour ; à droite, une surtitre, le nom en dégradé, une ligne-jauge qui se remplit, la phrase.
+ * ============================================================================ */
+
+.vs-sig17 br {
+  display: none !important;
+}
+
+.vs-sig17 {
+  --sig17-or: rgb(var(--gold-rgb));
+  --sig17-accent: var(--accent-text);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: 520px;
+  max-width: 100%;
+  margin: 24px auto;
+  padding: 18px 26px 18px 18px;
+  box-sizing: border-box;
+  background: rgba(var(--veil-rgb), 0.35);
+  border: 1px solid rgba(var(--gold-rgb), 0.18);
+  border-radius: calc(10px * var(--radius-scale));
+  box-shadow: 0 10px 28px rgba(var(--shadow-rgb), 0.45);
+}
+
+/* ─── Portrait : polygone irrégulier, liseré en dégradé (le cadre a la même découpe, 3px plus grand) ─── */
+.vs-sig17-portrait {
+  position: relative;
+  flex: 0 0 150px;
+  height: 180px;
+}
+
+.vs-sig17-cadre {
+  position: absolute;
+  inset: 0;
+  padding: 3px;
+  background: linear-gradient(150deg, var(--sig17-or), var(--sig17-accent) 55%, rgba(var(--gold-rgb), 0.2));
+  clip-path: polygon(14% 0, 100% 6%, 92% 74%, 76% 100%, 0 92%, 5% 30%);
+  filter: drop-shadow(0 8px 16px rgba(var(--shadow-rgb), 0.6));
+}
+
+.vs-sig17-cadre img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: inherit;
+}
+
+/* ─── Étoiles : six points de lumière qui tournent autour du portrait, à des vitesses différentes ─── */
+.vs-sig17-etoiles {
+  position: absolute;
+  inset: -14px;
+  pointer-events: none;
+}
+
+.vs-sig17-etoiles span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px;
+  background: var(--sig17-or);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  filter: drop-shadow(0 0 4px var(--sig17-or)) drop-shadow(0 0 8px var(--sig17-or));
+  animation: vs-sig17-orbite 18s linear infinite;
+  --rayon: 92px;
+}
+
+.vs-sig17-etoiles span:nth-child(2) { animation-duration: 24s; animation-delay: -6s; --rayon: 98px; width: 7px; height: 7px; }
+.vs-sig17-etoiles span:nth-child(3) { animation-duration: 30s; animation-delay: -15s; --rayon: 86px; }
+.vs-sig17-etoiles span:nth-child(4) { animation-duration: 21s; animation-delay: -3s; --rayon: 104px; width: 6px; height: 6px; }
+.vs-sig17-etoiles span:nth-child(5) { animation-duration: 27s; animation-delay: -20s; --rayon: 90px; width: 8px; height: 8px; }
+.vs-sig17-etoiles span:nth-child(6) { animation-duration: 33s; animation-delay: -11s; --rayon: 100px; width: 6px; height: 6px; }
+
+@keyframes vs-sig17-orbite {
+  from { transform: rotate(0deg) translateX(var(--rayon)) scaleY(0.82) rotate(0deg); opacity: 0.9; }
+  50%  { opacity: 0.35; }
+  to   { transform: rotate(360deg) translateX(var(--rayon)) scaleY(0.82) rotate(-360deg); opacity: 0.9; }
+}
+
+/* ─── Texte ─── */
+.vs-sig17-texte {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vs-sig17-surtitre {
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-5);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.vs-sig17-nom {
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 500;
+  background: linear-gradient(100deg, var(--sig17-or), var(--sig17-accent) 60%, var(--text));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* La ligne-jauge : un filet qui se remplit lentement de gauche à droite, puis recommence */
+.vs-sig17-jauge {
+  position: relative;
+  height: 2px;
+  background: rgba(var(--ink-rgb), 0.15);
+  overflow: hidden;
+}
+
+.vs-sig17-jauge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--sig17-or) 70%, var(--sig17-accent));
+  transform-origin: left;
+  animation: vs-sig17-jauge 7s ease-in-out infinite;
+}
+
+@keyframes vs-sig17-jauge {
+  0%   { transform: scaleX(0); opacity: 1; }
+  70%  { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+.vs-sig17-phrase {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-sig17-etoiles span,
+  .vs-sig17-jauge::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .vs-sig17 {
+    flex-direction: column;
+    text-align: center;
+  }
+}

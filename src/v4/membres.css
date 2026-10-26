@@ -14,3 +14,64 @@
   border-radius: var(--panel-radius);
   box-shadow: var(--panel-shadow);
 }
+
+/* ============================================================================
+ * A4 (26/10) — FILTRE PAR GROUPE ET LISERÉ
+ * Le module « Filtre des membres » (js/modules/membres_filtre.js) pose au-dessus de la grille une barre
+ * .vs-ml-filtre (une pastille par groupe, plus « Tous ») et donne à chaque carte la couleur de son groupe
+ * (--vs-groupe, lue dans le pseudo). En Gatsby, le cadre selon l'arcane remplace le liseré (layouts/profil-cadres.css).
+ * ============================================================================ */
+.vs-ml-filtre {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.vs-ml-pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 16px;
+  background: var(--panel-bg);
+  border: var(--panel-border);
+  border-radius: calc(20px * var(--radius-scale));
+  color: var(--text);
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Le point de couleur du groupe (« Tous » n'en a pas) */
+.vs-ml-pastille[style*="--vs-groupe"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--vs-groupe);
+}
+
+.vs-ml-pastille[aria-pressed="true"] {
+  border-color: var(--vs-groupe, var(--accent-text));
+  box-shadow: inset 0 0 0 1px var(--vs-groupe, var(--accent-text));
+}
+
+.vs-ml-nombre {
+  color: var(--text-2);
+}
+
+.userlist_profil.vs-ml-masque {
+  display: none !important;
+}
+
+/* Liseré : le bord de la carte et un filet en haut, à la couleur du groupe (les !important répondent à 08-plugins) */
+html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
+  border-color: var(--vs-groupe) !important;
+  box-shadow:
+    inset 0 3px 0 var(--vs-groupe),
+    0 8px 24px rgba(var(--shadow-rgb), 0.6) !important;
+}
