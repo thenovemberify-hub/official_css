@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 44" width="320" height="44"><style>
+@keyframes tw{0%,100%{opacity:.35;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+@keyframes blink{0%,60%{opacity:1}61%,74%{opacity:.15}75%,100%{opacity:1}}
+@keyframes glr{0%,86%,100%{transform:translate(0,0)}88%{transform:translate(-4px,-1px)}91%{transform:translate(3px,1px)}94%{transform:translate(-1px,0)}}
+@keyframes glc{0%,86%,100%{transform:translate(0,0)}88%{transform:translate(4px,1px)}91%{transform:translate(-3px,-1px)}94%{transform:translate(1px,0)}}
+@keyframes shim{0%,100%{opacity:.55}50%{opacity:1}}
+@keyframes rise{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+.tw{animation:tw 2.6s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.tw2{animation:tw 3.4s ease-in-out .8s infinite;transform-box:fill-box;transform-origin:center}
+.blink{animation:blink 4.5s infinite}.glr{animation:glr 5s infinite}.glc{animation:glc 5s infinite}
+.shim{animation:shim 3.5s ease-in-out infinite}.rise{animation:rise 4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}}
+</style><g stroke="#d4af55" fill="none"><path d="M30 20.5 H130 V17.5 H136 V14.5 H142" stroke-width="1"/><path d="M30 23.5 H130 V26.5 H136 V29.5 H142" stroke-width="1"/><path d="M290 20.5 H190 V17.5 H184 V14.5 H178" stroke-width="1"/><path d="M290 23.5 H190 V26.5 H184 V29.5 H178" stroke-width="1"/><path d="M160 8 L174 22 L160 36 L146 22 Z" stroke-width="1"/><path d="M160 13 L169 22 L160 31 L151 22 Z" stroke-width=".7"/></g><path class="shim" d="M160 17 L165 22 L160 27 L155 22 Z" fill="#ecd08a"/><g fill="#d4af55"><path d="M22 22 L26 18 L30 22 L26 26 Z"/><path d="M290 22 L294 18 L298 22 L294 26 Z"/></g></svg>

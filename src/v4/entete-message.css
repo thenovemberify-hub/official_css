@@ -58,3 +58,39 @@
 .post_date > a:hover {
   color: var(--accent-text);
 }
+
+/* ─── 26/10 (session 7) : le gif a sa propre case ───
+ * Le trait qui sépare la colonne profil du texte (.post_message, border-left) remonte jusqu'en haut du message :
+ * à gauche le gif, à droite la date et les boutons. La date s'aligne sur le texte du message (25px après le trait).
+ * --vs-col-profil : largeur de la colonne profil, marge comprise (205px + 20px). */
+.post_details:has(> .vs-post-fragment) {
+  --vs-col-profil: 225px;
+  position: relative;
+  gap: 38px;
+}
+
+.post_details:has(> .vs-post-fragment)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--vs-col-profil);
+  border-left: 1px solid rgba(var(--ink-rgb), 0.15);
+  pointer-events: none;
+}
+
+/* ─── Nuit et jour : un cadre fin autour du gif et de l'avatar (Gatsby a ses cadres selon l'arcane) ───
+ * Un filet à la couleur d'accent du thème (or la nuit, orange le jour), un second filet clair à 3px, une lueur douce.
+ * Rien ne se pose sur l'image. */
+html:not([data-layout-profil="cadres"]) :is(.vs-profile-avatar, .vs-post-fragment) {
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  outline: 1px solid rgba(var(--ink-rgb), 0.22);
+  outline-offset: 3px;
+  box-shadow: 0 0 18px rgba(var(--gold-rgb), 0.12);
+}
+
+@media (max-width: 760px) {
+  .post_details:has(> .vs-post-fragment)::after {
+    display: none;
+  }
+}

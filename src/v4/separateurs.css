@@ -1,0 +1,53 @@
+/* ============================================================================
+ * V4 — SÉPARATEURS DE SIGNATURE (26/10, session 7)
+ * ----------------------------------------------------------------------------
+ * Trois séparateurs par thème (maquette : https://claude.ai/artifact/K4f5zV3Eao7jPGpcwf4Ew1), qui tournent d'un
+ * message à l'autre : deux messages qui se suivent n'ont jamais le même (le 1er, le 4e, le 7e… ont le n° 1).
+ * Le séparateur écrit dans le template viewtopic_body (deux traits et une icône de coupes, en style intégré) est
+ * masqué : aucun template à recoller. Images : img/separateurs/<thème>-<n>.svg (animées, discrètes ; arrêtées si le
+ * système demande moins d'animations), refaites par tools/separateurs.py.
+ * ============================================================================ */
+
+/* Le séparateur du template (premier enfant de .signature_div, en style intégré) */
+.signature_div > div:first-child[style*="justify-content"] {
+  display: none !important;
+}
+
+.signature_div {
+  border-top: none;
+}
+
+.signature_div::before {
+  content: "";
+  display: block;
+  max-width: 320px;
+  height: 44px;
+  margin: 18px auto 14px;
+  background: var(--sig-sep) center / contain no-repeat;
+}
+
+/* Le tour de rôle : on ne compte que les messages */
+.post_row:nth-child(3n + 1 of .post_row) .signature_div { --sig-sep: var(--sig-sep-1); }
+.post_row:nth-child(3n + 2 of .post_row) .signature_div { --sig-sep: var(--sig-sep-2); }
+.post_row:nth-child(3n of .post_row) .signature_div { --sig-sep: var(--sig-sep-3); }
+
+/* Les images, par thème (chemins relatifs au fichier CSS, comme celles de Gatsby) */
+:root,
+[data-theme="bleu_nuit"] {
+  --sig-sep-1: url("img/separateurs/nuit-1.svg");   /* Skyline */
+  --sig-sep-2: url("img/separateurs/nuit-2.svg");   /* Constellation */
+  --sig-sep-3: url("img/separateurs/nuit-3.svg");   /* Glitch */
+}
+
+[data-theme="day_in_LA"],
+[data-theme="vert_foret"] {
+  --sig-sep-1: url("img/separateurs/jour-1.svg");   /* Coucher de soleil */
+  --sig-sep-2: url("img/separateurs/jour-2.svg");   /* Palmiers */
+  --sig-sep-3: url("img/separateurs/jour-3.svg");   /* Horizon */
+}
+
+[data-theme="gatsby"] {
+  --sig-sep-1: url("img/separateurs/gatsby-1.svg"); /* Éventail */
+  --sig-sep-2: url("img/separateurs/gatsby-2.svg"); /* Gradins */
+  --sig-sep-3: url("img/separateurs/gatsby-3.svg"); /* La coupe et la lumière verte */
+}

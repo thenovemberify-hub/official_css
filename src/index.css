@@ -51,6 +51,7 @@
 @import "./v4/participants.css";          /* A5 : participants dans le bandeau de titre */
 @import "./v4/pages-codex.css";           /* A3 : règlement, contexte, FAQ, hiérarchie en pleine largeur */
 @import "./v4/signatures-a2.css";         /* A2 : nouvelles signatures (vs-sig17 « Constellation ») */
+@import "./v4/separateurs.css";           /* séparateurs de signature : 3 par thème, en tour de rôle */
 
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";

@@ -30,6 +30,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 0;
+  border-left: none;   /* le trait qui séparait la colonne profil, masquée ici */
   box-sizing: border-box;
 }
 
@@ -141,4 +142,31 @@
 
 .vs-faq-item.vs-codex-masque {
   display: none !important;
+}
+
+/* ─── Barre du haut (module « Pages du Codex ») : Poster et Répondre à gauche, les boutons du premier message
+ * (@, Citer, Éditer, Supprimer, IP) déplacés tout à droite. La barre ne reçoit .vs-codex-barre que dans ces sujets. */
+.links_bar.vs-codex-barre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  text-align: start;
+}
+
+.vs-codex-barre .pagination {
+  order: 3;
+}
+
+.vs-codex-actions {
+  order: 2;
+  margin-left: auto;
+}
+
+.vs-codex-actions .profile-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
 }
