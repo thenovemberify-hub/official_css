@@ -12,8 +12,8 @@
 
 #cp-main {
   --pe-surface: color-mix(in srgb, var(--bg-black) 90%, transparent);
-  --pe-field: rgba(0, 0, 0, 0.35);
-  --pe-line: rgba(255, 255, 255, 0.08);
+  --pe-field: rgba(var(--shadow-rgb), 0.35);
+  --pe-line: rgba(var(--paper-rgb), 0.08);
   --pe-text: var(--text-cream);
   --pe-help: var(--textColor);
   --pe-accent: var(--accentClr);
@@ -49,10 +49,10 @@
   display: block;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
-  font-family: var(--font2);
-  font-size: 12px;
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--track-2);
   text-transform: uppercase;
   white-space: nowrap;
   color: var(--textColor);
@@ -63,7 +63,7 @@
 #tabs li a:hover,
 #tabs li a:focus-visible {
   color: var(--text-cream);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(var(--paper-rgb), 0.06);
 }
 
 #tabs li.activetab a {
@@ -112,7 +112,7 @@
 /* « Les champs marqués d'un * sont obligatoires. » */
 #cp-main .panel > p {
   margin: 12px 0 4px;
-  font-size: 13px;
+  font-size: var(--fs-base);
   font-style: italic;
   color: var(--pe-help);
 }
@@ -136,10 +136,10 @@
 #cp-main fieldset dt,
 #cp-main fieldset dt label,
 #cp-main fieldset dt span[style] {
-  font-family: var(--font2);
-  font-size: 13px;
+  font-family: var(--font-label);
+  font-size: var(--fs-base);
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--track-2);
   text-transform: uppercase;
   line-height: 1.4;
   color: var(--pe-text) !important;
@@ -152,7 +152,7 @@
 #cp-main fieldset dd {
   margin: 0;
   color: var(--pe-text);
-  font-size: 14px;
+  font-size: var(--fs-md);
   line-height: 1.5;
 }
 
@@ -164,9 +164,9 @@
   box-sizing: border-box;
   padding: 10px 12px;
   background: var(--pe-field);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(var(--paper-rgb), 0.14);
   border-radius: var(--radius-sm);
-  font-size: 16px; /* ≥ 16px : pas de zoom automatique sur iPhone */
+  font-size: var(--fs-lg); /* ≥ 16px : pas de zoom automatique sur iPhone */
   color: var(--pe-text) !important;
 }
 
@@ -176,7 +176,7 @@
 }
 
 #cp-main fieldset dd :is(input, textarea):focus-visible {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(var(--shadow-rgb), 0.5);
   border-color: var(--pe-accent);
   box-shadow: 0 0 0 3px rgba(var(--gold-rgb), 0.25);
 }
@@ -189,7 +189,7 @@
 #cp-main fieldset dd .italic {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: var(--fs-base);
   font-style: italic;
   line-height: 1.4;
   color: var(--pe-help);
@@ -225,7 +225,7 @@
   -webkit-backdrop-filter: blur(14px);
   border: var(--border) !important;
   border-radius: var(--radius-lg) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.45);
 }
 
 #cp-main fieldset.submit-buttons center {
@@ -237,10 +237,10 @@
 #cp-main fieldset.submit-buttons :is(.button1, .button2) {
   padding: 10px 26px;
   border-radius: var(--radius-sm);
-  font-family: var(--font2);
-  font-size: 13px;
+  font-family: var(--font-label);
+  font-size: var(--fs-base);
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: var(--track-2);
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -249,7 +249,7 @@
 #cp-main fieldset.submit-buttons .button1 {
   background: var(--pe-accent);
   border: 1px solid var(--pe-accent);
-  color: #111;
+  color: rgb(var(--coal-rgb));
 }
 
 #cp-main fieldset.submit-buttons .button1:hover {
@@ -259,12 +259,12 @@
 /* Bouton secondaire : contour */
 #cp-main fieldset.submit-buttons .button2 {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(var(--paper-rgb), 0.35);
   color: var(--pe-text);
 }
 
 #cp-main fieldset.submit-buttons .button2:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--paper-rgb), 0.08);
 }
 
 /* ─── Petits écrans : une seule colonne ─── */

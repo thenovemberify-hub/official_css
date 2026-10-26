@@ -4,28 +4,28 @@
 }
 
 .topicslist_infos .topic-type strong {
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
   color: var(--taupe);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  background: rgba(255, 48, 64, 0.08);
+  letter-spacing: var(--track-3);
+  background: rgba(var(--fx-a-rgb), 0.08);
   padding: 3px 6px;
   border-radius: 2px;
-  border: 1px solid rgba(255, 48, 64, 0.2);
+  border: 1px solid rgba(var(--fx-a-rgb), 0.2);
   font-weight: normal;
 }
 
 .topic-meta {
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 11px;
-  color: rgba(216, 212, 242, 0.5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: rgba(var(--ink-rgb), 0.5);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: var(--track-1);
 }
 
 .topic-meta a {
-  color: #c4b2bc;
+  color: rgb(var(--mauve-rgb));
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -61,7 +61,8 @@
   align-items: flex-start;
   /* Critical for sticky to work */
   gap: 0px 20px;
-  max-width: 980px;
+  max-width: var(--layout-width);
+  margin-inline: auto;
 }
 
 /* Post Message - Fills remaining space */
@@ -112,7 +113,7 @@
 /* Bloc contenant le message prévisualisé */
 .post.row2 {
   background: var(--surface-glass);
-  border: 2px solid var(--contrastLighter) !important;
+  border: var(--frame-border) !important;
   border-top: none;
   border-radius: 0 0 5px 5px;
   margin-bottom: 20px;
@@ -125,10 +126,10 @@
 
 /* Titre du sujet dans la prévisualisation */
 .postbody h3 {
-  font-family: "Cinzel", serif;
+  font-family: var(--font-label);
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   color: var(--gold-accent-text);
   padding: 14px 20px 6px;
   margin: 0;
@@ -136,12 +137,12 @@
 
 /* Auteur & date */
 .postbody .author {
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   font-style: italic;
   color: var(--textColor);
   opacity: 0.55;
   padding: 0 20px 12px;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.1);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
   margin: 0;
 }
 
@@ -155,7 +156,7 @@
 
 /* Signature — séparateur doré subtil */
 .signature_div {
-  border-top: 1px solid rgba(216, 212, 242, 0.15);
+  border-top: 1px solid rgba(var(--ink-rgb), 0.15);
   margin-top: 15px;
   padding-top: 12px;
   opacity: 0.7;
@@ -194,15 +195,15 @@
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.35);
   border-radius: 2px;
   color: var(--gold-light, #cfc09f);
-  font-family: var(--font-cinzel, "Cinzel", serif);
-  font-size: var(--little-size, 0.72rem);
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   text-decoration: none !important;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35),
+  box-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.35),
               inset 0 0 10px rgba(var(--gold-rgb, 212, 175, 55), 0.03);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   user-select: none;
@@ -211,7 +212,7 @@
 
 /* Flèches indicatrices */
 .vs-topic-nav__arrow {
-  font-size: 0.65rem;
+  font-size: var(--fs-2xs);
   color: var(--accent-text, #d4af37);
   transition: transform 0.3s ease, color 0.3s ease;
   line-height: 1;
@@ -227,15 +228,15 @@
 .vs-topic-nav__btn:hover {
   background: rgba(var(--gold-rgb, 212, 175, 55), 0.12);
   border-color: var(--gold-accent, var(--borderGold, #d4af37));
-  color: #ffffff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5),
+  color: rgb(var(--paper-rgb));
+  box-shadow: 0 4px 15px rgba(var(--shadow-rgb), 0.5),
               0 0 12px rgba(var(--gold-rgb, 212, 175, 55), 0.35),
               inset 0 0 12px rgba(var(--gold-rgb, 212, 175, 55), 0.15);
   transform: translateY(-2px);
 }
 
 .vs-topic-nav__btn:hover .vs-topic-nav__arrow {
-  color: #ffffff;
+  color: rgb(var(--paper-rgb));
 }
 
 /* Animation de recul / avance des flèches */
@@ -250,7 +251,7 @@
 /* Clic actif */
 .vs-topic-nav__btn:active {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 4px rgba(var(--shadow-rgb), 0.4);
 }
 
 /* --- ÉTAT DÉSACTIVÉ (ex: Premier ou Dernier sujet) --- */
@@ -258,7 +259,7 @@
   opacity: 0.35;
   cursor: not-allowed;
   pointer-events: none;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(var(--paper-rgb), 0.1);
   filter: grayscale(100%);
 }
 

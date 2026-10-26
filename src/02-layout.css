@@ -31,7 +31,7 @@
   content: "";
   position: absolute;
   border-image: var(--gold-gradient) 1;
-  filter: drop-shadow(0 0 3px rgba(207, 192, 159, 0.5));
+  filter: drop-shadow(0 0 3px rgba(var(--champagne-rgb), 0.5));
   z-index: 10;
   pointer-events: none;
 }
@@ -51,15 +51,15 @@
    ======================================== */
 .vs-hd-wrapper {
   width: 100%;
-  max-width: 1010px;
+  max-width: var(--layout-width);
   padding: 36px 0 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur);
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
 }
 
 .sidebar {
@@ -100,9 +100,9 @@
 .sidebar_bottom > a {
   padding: var(--space-2xs) var(--space-xs);
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur);
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
   text-align: center;
   color: var(--textColor);
   display: grid;
@@ -162,7 +162,7 @@
 /* .pagination {} - Removed empty rule */
 /*lien unique vers les pages numérotées*/
 .pagination span a {
-  font-size: var(--little-size);
+  font-size: var(--fs-xs);
 }
 
 /*survol des liens uniques des pages*/
@@ -181,7 +181,7 @@
 .wrapped {
   margin-inline: auto;
   margin-block: var(--space-xs);
-  width: 1018px;
+  width: var(--layout-width);
   max-width: 100%;
   margin: 30px auto 15px;
   clear: both;
@@ -200,7 +200,7 @@ body .navbar {
   bottom: auto !important;
   transform: none !important;
   width: 100% !important;
-  max-width: 980px !important;
+  max-width: var(--layout-width) !important;
   margin: 0 auto 1px auto !important;
   padding: 8px 12px !important;
   min-height: 48px !important;
@@ -216,11 +216,11 @@ body .navbar {
 
   /* Glassmorphisme harmonisé avec la homepage */
   background: var(--surface-glass, rgba(18, 40, 63, 0.45)) !important;
-  backdrop-filter: blur(12px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(140%) !important;
+  backdrop-filter: var(--frame-blur) !important;
+  -webkit-backdrop-filter: var(--frame-blur) !important;
   border: 1px solid var(--hp-border, rgba(196, 178, 188, 0.15)) !important;
   border-radius: 8px 8px 4px 4px !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(var(--shadow-rgb), 0.35) !important;
   z-index: 100 !important;
 }
 
@@ -264,9 +264,9 @@ body .navbar {
 .navbar a.mainmenu[href="/"],
 .navbar a.mainmenu#logout {
   font-family: var(--hp-font-cinzel, "Cinzel", serif) !important;
-  font-size: 11px !important;
+  font-size: var(--fs-xs) !important;
   font-weight: 700 !important;
-  letter-spacing: 2px !important;
+  letter-spacing: var(--track-3) !important;
   text-transform: uppercase !important;
   color: var(--hp-lavender, #d8d4f2) !important;
   text-decoration: none !important;
@@ -278,7 +278,7 @@ body .navbar {
   height: 30px !important;
   border-radius: 4px !important;
   border: 1px solid transparent !important;
-  background: rgba(216, 212, 242, 0.03) !important;
+  background: rgba(var(--ink-rgb), 0.03) !important;
   transition: all 0.25s ease !important;
   text-shadow: none !important;
   cursor: pointer !important;
@@ -292,7 +292,7 @@ body .navbar {
 .navbar a.mainmenu::before {
   font-family: "Font Awesome 6 Free", "FontAwesome" !important;
   font-weight: 900 !important;
-  font-size: 11px !important;
+  font-size: var(--fs-xs) !important;
   color: var(--hp-mauve, #c4b2bc) !important;
   opacity: 0.85 !important;
   transition: transform 0.25s ease, color 0.25s ease, opacity 0.25s ease !important;
@@ -341,10 +341,10 @@ body .navbar {
 .navbar a.mainmenu:hover,
 .navbar a.mainmenu[href="/"]:hover,
 .navbar a.mainmenu#logout:hover {
-  color: #ffffff !important;
-  background: rgba(216, 212, 242, 0.09) !important;
+  color: rgb(var(--paper-rgb)) !important;
+  background: rgba(var(--ink-rgb), 0.09) !important;
   border-color: var(--hp-border, rgba(196, 178, 188, 0.25)) !important;
-  box-shadow: inset 0 0 8px rgba(216, 212, 242, 0.06), 0 0 10px rgba(46, 26, 71, 0.4) !important;
+  box-shadow: inset 0 0 8px rgba(var(--ink-rgb), 0.06), 0 0 10px rgba(var(--violet-rgb), 0.4) !important;
   transform: none !important;
 }
 
@@ -372,9 +372,9 @@ body .navbar {
 .navbar a.mainmenu#logout::after {
   content: "Quitter" !important;
   font-family: inherit !important;
-  font-size: 11px !important;
+  font-size: var(--fs-xs) !important;
   font-weight: inherit !important;
-  letter-spacing: 2px !important;
+  letter-spacing: var(--track-3) !important;
   text-transform: uppercase !important;
   color: inherit !important;
   line-height: 1 !important;
@@ -404,7 +404,7 @@ body .navbar {
   -webkit-backdrop-filter: blur(14px) !important;
   border: 1px solid var(--hp-border, rgba(196, 178, 188, 0.25)) !important;
   border-radius: 8px !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.5) !important;
   padding: 12px 16px !important;
 }
 
@@ -442,12 +442,12 @@ body .navbar {
   grid-template-columns: 220px 1fr 280px;
   gap: 0;
   width: 100% !important;
-  max-width: 1000px !important;
+  max-width: var(--layout-width) !important;
   margin: 0 auto !important;
   /* Glassmorphisme identique à la homepage */
   background: var(--qeel-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: var(--frame-blur);
+  -webkit-backdrop-filter: var(--frame-blur);
   border: 1px solid var(--qeel-border);
   border-radius: 10px;
   font-family: var(--qeel-font-body);
@@ -463,7 +463,7 @@ body .navbar {
   position: absolute;
   inset: 0;
   border-radius: 10px;
-  border: 1px solid rgba(216, 212, 242, 0.07);
+  border: 1px solid rgba(var(--ink-rgb), 0.07);
   pointer-events: none;
   z-index: 20;
 }
@@ -471,9 +471,9 @@ body .navbar {
 /* En-tête de bloc */
 .vs-qeel-header {
   font-family: var(--qeel-font-condensed);
-  font-size: 14px;
+  font-size: var(--fs-md);
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: var(--track-4);
   text-transform: uppercase;
   color: var(--qeel-taupe);
   margin-bottom: 4px;
@@ -493,16 +493,16 @@ body .navbar {
   margin-right: 3px;
   background: var(--neutralDark);
   border-radius: 3px;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   text-decoration: none;
-  color: #c4b2bc;
+  color: rgb(var(--mauve-rgb));
   transition: all 0.3s ease;
 }
 
 .topicslist-pagination a:hover {
-  background: rgba(255, 48, 64, 0.2);
-  color: #ffffff;
-  box-shadow: 0 0 5px rgba(255, 48, 64, 0.3);
+  background: rgba(var(--fx-a-rgb), 0.2);
+  color: rgb(var(--paper-rgb));
+  box-shadow: 0 0 5px rgba(var(--fx-a-rgb), 0.3);
 }
 
 #main-content
@@ -516,9 +516,9 @@ body .navbar {
 
 .wrap-mp-main-container {
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur);
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
 }
 
 /* Old Navbar Styles Deleted */
@@ -533,24 +533,24 @@ body .navbar {
 .vs-admin-footer {
   margin-top: 50px;
   text-align: right;
-  font-family: "Karla", sans-serif;
-  font-size: 10px;
-  color: #a29587;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  color: rgb(var(--stone-rgb));
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
 }
 
 .vs-reg-header {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-display);
   font-size: 3rem;
-  letter-spacing: 4px;
+  letter-spacing: var(--track-5);
   font-weight: 300;
   text-align: center;
   text-transform: uppercase;
-  color: #d8d4f2;
+  color: rgb(var(--ink-rgb));
   background: none;
   -webkit-text-fill-color: initial;
-  filter: drop-shadow(0 0 10px rgba(216, 212, 242, 0.2));
+  filter: drop-shadow(0 0 10px rgba(var(--ink-rgb), 0.2));
 }
 
 /* ========================================
@@ -560,8 +560,8 @@ body .navbar {
 .vs-destiny-wrapper {
   max-width: 850px;
   margin: 0 auto;
-  font-family: "Playfair Display", serif;
-  color: #ccc;
+  font-family: var(--font-title);
+  color: rgb(var(--silver-rgb));
 }
 
 /* Responsive Mobile */
@@ -575,7 +575,7 @@ body .navbar {
 .vs-faq-wrapper {
   max-width: 100%;
   margin: 0 auto;
-  font-family: var(--font, "Inter", sans-serif);
+  font-family: var(--font-body);
   background: transparent;
   border: none;
   padding: 0;
@@ -585,7 +585,7 @@ body .navbar {
 .vs-letter-header {
   font-size: 40px;
   color: var(--accent-text);
-  border-bottom: 1px dotted #554411;
+  border-bottom: 1px dotted rgb(var(--bronze-dim-rgb));
   margin-top: 25px;
   margin-bottom: 10px;
   padding-left: 20px;
@@ -655,10 +655,10 @@ body .navbar {
    4. HISTORIQUE DES MESSAGES PRIVÉS (.wrapped)
    ============================ */
 .wrapped h2 {
-  font-family: "Cinzel", serif;
-  font-size: 0.85rem;
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: var(--track-4);
   color: var(--gold-accent-text);
   text-align: center;
   margin-bottom: 20px;
@@ -687,9 +687,9 @@ body .navbar {
 /* --- Conteneur d'un message dans l'historique --- */
 .wrapped .panel {
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur);
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
   margin: 0 0 12px;
   padding: 14px 18px;
   transition:
@@ -699,13 +699,13 @@ body .navbar {
 
 .wrapped .panel:hover {
   border-color: rgba(var(--gold-rgb), 0.2);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 12px rgba(var(--shadow-rgb), 0.3);
 }
 
 /* Message courant dans l'historique — plus visible */
 .wrapped .panel.curr_privmsg {
   border-left: 3px solid var(--gold-accent);
-  background: rgba(18, 10, 10, 0.7);
+  background: rgba(var(--wine-black-rgb), 0.7);
   box-shadow: inset 3px 0 12px -4px rgba(var(--gold-rgb), 0.08);
 }
 
@@ -716,7 +716,7 @@ body .navbar {
   gap: 12px;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(54, 54, 54, 0.5);
+  border-bottom: 1px solid rgba(var(--graphite-rgb), 0.5);
 }
 
 /* Avatar dans l'historique */
@@ -736,9 +736,9 @@ body .navbar {
 
 /* Auteur + date */
 .wrapped .panel .author {
-  font-family: "Cinzel", serif;
-  font-size: 0.7rem;
-  letter-spacing: 1.5px;
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-2);
   color: var(--gold-accent-text);
   font-weight: 600;
 }
@@ -811,11 +811,13 @@ body .navbar {
   grid-template-columns: 220px 1fr 210px;
   gap: 0;
   width: 100%;
+  max-width: var(--layout-width);
+  margin-inline: auto;
   height: 220px;
   /* Glassmorphisme : fond semi-transparent + flou de l'arrière-plan */
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: var(--frame-blur);
+  -webkit-backdrop-filter: var(--frame-blur);
   border: 1px solid var(--hp-border);
   border-radius: 10px;
   font-family: var(--hp-font-body);
@@ -837,7 +839,7 @@ body .navbar {
   content: "";
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(216, 212, 242, 0.08);
+  border: 1px solid rgba(var(--ink-rgb), 0.08);
   pointer-events: none;
   z-index: 10;
 }
@@ -878,10 +880,10 @@ body .navbar {
   align-items: center !important;
   gap: 5px !important;
   padding: 5px !important;
-  background: rgba(6, 12, 18, 0.65) !important;
+  background: rgba(var(--panel-deep-rgb), 0.65) !important;
   backdrop-filter: blur(10px) saturate(130%) !important;
   -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
-  border: 1px solid rgba(196, 178, 188, 0.15) !important;
+  border: 1px solid rgba(var(--mauve-rgb), 0.15) !important;
   border-radius: 20px !important;
   opacity: 0.6;
   transition: opacity 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
@@ -889,8 +891,8 @@ body .navbar {
 
 .vs-hp-theme-switcher:hover {
   opacity: 1;
-  border-color: rgba(196, 178, 188, 0.35);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 16px rgba(46, 26, 71, 0.2);
+  border-color: rgba(var(--mauve-rgb), 0.35);
+  box-shadow: 0 2px 12px rgba(var(--shadow-rgb), 0.5), 0 0 16px rgba(var(--violet-rgb), 0.2);
 }
 
 /* Pastilles dans le contexte homepage */
@@ -898,7 +900,7 @@ body .navbar {
   width: 16px !important;
   height: 16px !important;
   border-radius: 50% !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+  border: 1.5px solid rgba(var(--paper-rgb), 0.25) !important;
   cursor: pointer !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -909,7 +911,7 @@ body .navbar {
 
 .vs-hp-theme-switcher .velvet-theme:hover {
   transform: scale(1.2);
-  border-color: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(var(--paper-rgb), 0.7) !important;
 }
 
 .vs-hp-theme-switcher .velvet-theme.active {

@@ -1,0 +1,335 @@
+/* ============================================================================
+ * DISPOSITION « BRIQUES À TRANCHE » DES CATÉGORIES (V4, phase 5, lot 5.6)
+ * ----------------------------------------------------------------------------
+ * D'après la maquette du 25/10 (planche « Briques numérotées ») : chaque catégorie a une
+ * tranche verticale (losange au chiffre romain + nom écrit à la verticale), ses forums sont
+ * des briques en grille, la case vide de la dernière rangée reçoit une citation.
+ *
+ * Ne s'applique que si le thème la demande : le registre du module Velvet Theme (22301) pose
+ * data-layout-categories="briques" sur <html> (ex. Gatsby, ou le thème d'essai
+ * « essai_briques »). Nuit et jour n'en déclarent pas : rien ne change pour eux.
+ * Les couleurs viennent du thème (contrat : --panel-*, --gold-rgb, --text-*…) : un futur thème
+ * reprend les briques avec ses propres couleurs. Réglages fins : --cat-* et --brick-* (contrat).
+ *
+ * HTML : template index_box (catégorie .category > .cate_title + .forums > .forum). Les
+ * compteurs « N sujets / N messages » (.vs-forum-stats) sont ajoutés au template par
+ * ACTIONS_V4 T10 ; ils restent masqués hors de cette disposition.
+ * ============================================================================ */
+
+/* Compteurs des forums : seulement dans les dispositions qui les montrent */
+.vs-forum-stats {
+  display: none;
+}
+
+[data-layout-categories="briques"] body {
+  counter-reset: vs-cat;
+}
+
+/* ─── Catégorie : tranche | grille de briques ─── */
+[data-layout-categories="briques"] .category {
+  display: grid;
+  grid-template-columns: var(--cat-title-width) minmax(0, 1fr);
+  gap: var(--cat-gap);
+  counter-increment: vs-cat;
+  margin-bottom: 22px;
+}
+
+/* ─── Tranche : losange numéroté + nom à la verticale ─── */
+[data-layout-categories="briques"] .cate_title {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 72px 0 18px;
+  /* La tranche prend la hauteur des briques sans jamais l'imposer (un nom long passe sur deux colonnes) */
+  contain: size;
+  background: var(--brick-spine-bg);
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: var(--brick-radius);
+}
+
+/* Losange (carré tourné) et, par-dessus, le numéro de la catégorie en chiffres romains */
+[data-layout-categories="briques"] .cate_title::before,
+[data-layout-categories="briques"] .cate_title::after {
+  position: absolute;
+  top: 24px;
+  height: 28px;
+}
+
+[data-layout-categories="briques"] .cate_title::before {
+  content: "";
+  left: 50%;
+  width: 28px;
+  margin-left: -14px;
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--gold-rgb));
+  transform: rotate(45deg);
+}
+
+[data-layout-categories="briques"] .cate_title::after {
+  content: counter(vs-cat, upper-roman);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  color: var(--accent-text);
+}
+
+[data-layout-categories="briques"] .cate_title h2 {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  max-height: 100%;
+  padding: 0;
+  font-size: var(--fs-md);
+  letter-spacing: 5px;
+  line-height: 1.6;
+  filter: none;
+}
+
+/* La description de catégorie (souvent vide) ne flotte plus par-dessus les briques */
+[data-layout-categories="briques"] .cate_quote {
+  display: none;
+}
+
+/* ─── Grille des briques ─── */
+[data-layout-categories="briques"] .forums {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--cat-columns), minmax(0, 1fr));
+  gap: var(--cat-gap);
+  margin: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Case vide de la dernière rangée (3 colonnes) : une citation du thème */
+[data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after,
+[data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 2))::after {
+  content: var(--cat-quote) "\A\A" var(--cat-quote-source);
+  white-space: pre-line;
+  display: flex;
+  align-items: center;
+  padding: 30px 34px;
+  background: var(--brick-bg);
+  border: var(--panel-border);
+  border-radius: var(--brick-radius);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-2xl);
+  line-height: 1.35;
+  color: var(--text-bright);
+}
+
+[data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after {
+  grid-column: span 2;
+}
+
+/* ─── Une brique ─── */
+[data-layout-categories="briques"] .forum {
+  grid-template-areas:
+    "titre titre"
+    "desc desc"
+    "dernier compteurs";
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+  width: auto;
+  margin: 0;
+  background: var(--brick-bg);
+  border: var(--panel-border);
+  border-radius: var(--brick-radius);
+  transition: border-color 0.25s ease;
+}
+
+[data-layout-categories="briques"] .forum:last-child {
+  margin-bottom: 0;
+}
+
+[data-layout-categories="briques"] .forum:hover {
+  border-color: rgba(var(--gold-rgb), 0.55);
+}
+
+/* En-tête : nom du forum */
+[data-layout-categories="briques"] a.forumtitle {
+  grid-area: titre;
+  height: auto;
+  padding: 16px 18px 10px;
+  text-align: start;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-3xl);
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  color: var(--text-bright);
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+}
+
+/* Description : image du forum à gauche, texte qui défile, sous-forums dessous */
+[data-layout-categories="briques"] .forum .forum_desc {
+  grid-area: desc;
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  grid-template-areas:
+    "image texte"
+    "liens liens";
+  gap: 12px 14px;
+  align-content: start;
+  height: auto;
+  margin: 0;
+  padding: 14px 18px 12px;
+  border-bottom: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+[data-layout-categories="briques"] .forum_desc .cat-icon-wrapper {
+  grid-area: image;
+  float: none;
+  margin: 0;
+}
+
+[data-layout-categories="briques"] .forum_desc .cat-icon {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-color: rgba(var(--gold-rgb), 0.5);
+}
+
+[data-layout-categories="briques"] .forum_desc .txt {
+  grid-area: texte;
+  height: var(--brick-desc-height);
+  overflow-y: auto;
+  padding: 0 8px 0 0;
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  text-align: start;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--gold-rgb), 0.5) transparent;
+  /* Le texte s'efface en bas : on devine qu'il continue */
+  -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent);
+  mask-image: linear-gradient(to bottom, #000 75%, transparent);
+}
+
+/* Le sous-titre écrit en tête de la description devient la ligne sous le nom du forum */
+[data-layout-categories="briques"] .forum_desc bb3 {
+  display: block;
+  margin: 0 0 6px;
+  background: none;
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--track-4);
+  color: var(--accent-text);
+}
+
+[data-layout-categories="briques"] .forum_desc .sublink {
+  grid-area: liens;
+  gap: 4px 0;
+  margin: 0;
+  justify-content: flex-start;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-base);
+  letter-spacing: var(--track-1);
+}
+
+[data-layout-categories="briques"] .forum_desc .sublink::before {
+  display: none;
+}
+
+[data-layout-categories="briques"] .forum_desc .sublink a + a::before {
+  content: "◆";
+  margin: 0 10px;
+  font-style: normal;
+  font-size: var(--fs-2xs);
+  color: rgba(var(--gold-rgb), 0.5);
+}
+
+/* Pied : avatar rond + dernier message | compteurs */
+[data-layout-categories="briques"] .forum_bloc_last_response,
+[data-layout-categories="briques"] .vs-forum-stats {
+  background: rgba(var(--panel-deep-rgb), 0.5);
+  border-top: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+
+[data-layout-categories="briques"] .forum_bloc_last_response {
+  grid-area: dernier;
+  justify-content: flex-start;
+  gap: 12px;
+  height: auto;
+  min-width: 0;
+  padding: 12px 0 12px 18px;
+  text-align: start;
+}
+
+[data-layout-categories="briques"] .forum_avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--gold-rgb), 0.6);
+  border-radius: 50%;
+}
+
+[data-layout-categories="briques"] .forum_avatar img {
+  opacity: 1;
+}
+
+[data-layout-categories="briques"] .forum_lastpost {
+  position: static;
+  width: auto;
+  min-width: 0;
+  justify-content: flex-start;
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+}
+
+[data-layout-categories="briques"] .forum_lastpost a.lastpost_link {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: none;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+}
+
+[data-layout-categories="briques"] .vs-forum-stats {
+  grid-area: compteurs;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 12px 18px 12px 12px;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-1);
+  line-height: 1.6;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+
+/* Écran étroit : une brique par ligne, la tranche reste à gauche */
+@media (max-width: 760px) {
+  [data-layout-categories="briques"] .forums {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  [data-layout-categories="briques"] .forums::after {
+    display: none;
+  }
+}

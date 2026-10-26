@@ -8,27 +8,27 @@
  * ============================================================================ */
 .activity-date-group {
   margin-bottom: 18px;
-  background: var(--surface-row);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(216, 212, 242, 0.14);
-  border-radius: 4px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: var(--panel-border);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-shadow);
   overflow: hidden;
 }
 
 /* Titre du jour (« Aujourd'hui », « 23 octobre »…) */
 .activity-date-group > .header {
-  background: rgba(0, 0, 0, 0.22);
-  border-bottom: 1px solid rgba(216, 212, 242, 0.12);
+  background: rgba(var(--shadow-rgb), 0.22);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.12);
 }
 
 .activity-date-group .table-title {
   padding: 12px 20px !important; /* le style en ligne de Forumactif met 18px */
-  font-family: "Cinzel", serif;
-  font-size: 14px;
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: var(--track-4);
   color: var(--accent-text);
 }
 
@@ -44,7 +44,7 @@
   column-gap: 14px;
   align-items: center;
   padding: 10px 20px;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.06);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.06);
   transition: background var(--transition-fast);
 }
 
@@ -53,7 +53,7 @@
 }
 
 .activity-feed .feed-item:hover {
-  background: rgba(216, 212, 242, 0.05);
+  background: rgba(var(--ink-rgb), 0.05);
 }
 
 /* Avatar de l'auteur */
@@ -64,21 +64,21 @@
   height: 40px;
   border-radius: 50%;
   background: var(--activity-image) center / cover no-repeat, var(--bg-darker);
-  border: 1px solid rgba(216, 212, 242, 0.25);
+  border: 1px solid rgba(var(--ink-rgb), 0.25);
 }
 
 .activity-feed time.time {
   grid-column: 2;
-  font-family: "Share Tech Mono", monospace;
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
   font-style: normal;
-  letter-spacing: 1px;
+  letter-spacing: var(--track-1);
   color: var(--text-2);
 }
 
 .activity-feed .text {
   grid-column: 2;
-  font-size: 13px;
+  font-size: var(--fs-base);
   line-height: 1.5;
   color: var(--text);
 }

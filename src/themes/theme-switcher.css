@@ -6,9 +6,9 @@
     align-items: center;
     gap: 8px;
     padding: 4px 8px;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(var(--shadow-rgb), 0.25);
     border-radius: var(--radius-pill, 100px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(var(--paper-rgb), 0.1);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -17,7 +17,7 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(var(--paper-rgb), 0.25);
     cursor: pointer;
     padding: 0;
     margin: 0;
@@ -30,7 +30,7 @@
 
 .velvet-theme:hover {
     transform: scale(1.15);
-    border-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(var(--paper-rgb), 0.8);
 }
 
 .velvet-theme.active {
@@ -45,7 +45,8 @@
     background: #12283f;
 }
 
+.velvet-theme[data-t="day_in_LA"],
 .velvet-theme[data-t="vert_foret"],
-.velvet-theme[data-theme="vert_foret"] {
+.velvet-theme[data-theme="day_in_LA"] {
     background: linear-gradient(135deg, #5095BF 50%, #F28705 50%);
 }

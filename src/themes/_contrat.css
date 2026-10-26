@@ -7,10 +7,11 @@
  *
  * Avancement (détail et plan : AUDIT_THEMES.md à la racine du projet) :
  *   5.1 ✅ rôles de couleur et de police, alias des anciens noms ;
- *   5.2    couleurs écrites en dur → ces rôles ;
- *   5.3    panneaux, logo ; 5.4 tailles, lettrage, largeur ; 5.5 registre JS ; 5.6 dispositions.
+ *   5.2 ✅ couleurs écrites en dur de l'interface → ces rôles (outil : tools/couleurs.mjs) ;
+ *   5.3 ✅ polices par rôle (tools/polices.mjs), panneaux, logo ;
+ *   5.4 tailles, lettrage, largeur ; 5.5 registre JS ; 5.6 dispositions.
  *
- * Règle : en 5.1 et 5.2, chaque rôle vaut EXACTEMENT la couleur qu'il remplace, en nuit comme
+ * Règle : de 5.1 à 5.3, chaque rôle vaut EXACTEMENT ce qu'il remplace, en nuit comme
  * en jour (rendu identique, vérifié par tools/banc-captures/diff-styles.mjs). Harmoniser le jour
  * viendra après, à part.
  * ============================================================================ */
@@ -34,6 +35,49 @@
     --stone-rgb: 162, 149, 135;  /* #a29587 */
     --violet-rgb: 46, 26, 71;    /* #2e1a47 */
 
+    /* ─── Teintes isolées de l'interface (5.2) ───
+     * Une par couleur écrite en dur, à sa valeur exacte (rendu identique). Plusieurs sont très
+     * proches (fonds bleu nuit) : les fusionner changerait le rendu, ce sera l'affaire d'une
+     * harmonisation à part. Un thème les redéfinit pour recolorer la zone correspondante. */
+    /* Ors et crèmes (≠ --gold-accent et --gold-light, que le thème jour passe à l'ambre) */
+    --honey-rgb: 234, 186, 107;      /* #eaba6b : or pâle (like, formulaires de confirmation, lueurs) */
+    --gold-vivid-rgb: 255, 215, 0;   /* #ffd700 : like au survol */
+    --champagne-rgb: 207, 192, 159;  /* #cfc09f : lueur du cadre du bandeau */
+    --bronze-rgb: 122, 92, 30;       /* #7a5c1e : badge de la liste des membres */
+    --bronze-deep-rgb: 74, 52, 10;   /* #4a340a */
+    --bronze-dim-rgb: 85, 68, 17;    /* #554411 : filet des lettres de la FAQ */
+    --cream-rgb: 255, 242, 207;      /* #fff2cf : pseudo au survol (liste des membres) */
+    --parchment-rgb: 245, 228, 188;  /* #f5e4bc */
+    --cornsilk-rgb: 255, 248, 220;   /* #fff8dc : image d'un forum avec nouveaux messages */
+    /* Gris */
+    --silver-rgb: 204, 204, 204;     /* #ccc : page Destins */
+    --ash-rgb: 160, 157, 152;        /* #a09d98 */
+    --graphite-rgb: 54, 54, 54;      /* #363636 : --border, filets de l'historique des MP */
+    --coal-rgb: 17, 17, 17;          /* #111 : texte sur bouton plein (édition du profil) */
+    /* Fonds bleu nuit */
+    --panel-rgb: 13, 21, 32;         /* #0d1520 : lignes de sujets, descriptions (= --surface-row en nuit) */
+    --panel-deep-rgb: 6, 12, 18;     /* #060c12 */
+    --abyss-rgb: 6, 11, 17;          /* #060b11 : cartes de la liste des membres */
+    --panel-dim-rgb: 8, 18, 28;      /* #08121c */
+    --veil-rgb: 10, 18, 28;          /* #0a121c : voile de la liste des membres */
+    --panel-hover-rgb: 25, 45, 68;   /* #192d44 */
+    --navy-rgb: 18, 40, 63;          /* #12283f : menus de l'éditeur (= --fond-category en nuit) */
+    --teal-night-rgb: 12, 24, 32;    /* #0c1820 : profil en popup (Wombat) */
+    --field-rgb: 12, 16, 28;         /* #0c101c : listes déroulantes (déplacer un sujet) */
+    --field-option-rgb: 20, 23, 36;  /* #141724 */
+    --on-honey-rgb: 18, 16, 30;      /* #12101e : texte sur bouton or plein */
+    /* Fonds bordeaux */
+    --wine-black-rgb: 18, 10, 10;    /* #120a0a */
+    --wine-abyss-rgb: 14, 8, 8;      /* #0e0808 */
+    --wine-rgb: 45, 27, 27;          /* #2d1b1b : survols (notifications, multicomptes), image des forums */
+    /* Alertes */
+    --alert-rgb: 196, 30, 58;        /* #c41e3a : pastille des notifications */
+    --danger-rgb: 180, 50, 60;       /* bouton d'administration du profil (Wombat) */
+    --danger-deep-rgb: 160, 40, 50;
+    --danger-bright-rgb: 220, 70, 80;
+    --danger-text-rgb: 217, 119, 127; /* #d9777f */
+    --danger-pale-rgb: 255, 157, 166; /* #ff9da6 */
+
     /* ─── Polices par rôle ─── */
     --font-body: "Inter", sans-serif;                       /* texte courant */
     --font-display: "Cormorant Garamond", "Cormorant", "Playfair Display", Georgia, serif; /* logo, titres de page */
@@ -42,6 +86,77 @@
     --font-ui: "Karla", sans-serif;                         /* libellés de formulaires */
     --font-condensed: "Roboto Condensed", sans-serif;       /* compteurs, méta-données */
     --font-mono: "Share Tech Mono", "Courier New", monospace; /* fil d'Ariane, boutons, dates */
+
+    /* ─── Tailles de texte (5.4) : 9 pas ; --fs-scale agrandit ou resserre tout d'un coup ───
+     * Chaque taille de l'interface a été rattachée au pas le plus proche, à 1px près au plus.
+     * (outil : tools/tailles.mjs ; les fiches RP gardent leurs tailles et --little/normal/medium/large-size) */
+    --fs-scale: 1;
+    --fs-2xs: calc(10px * var(--fs-scale));   /* étiquettes courtes en capitales */
+    --fs-xs: calc(11px * var(--fs-scale));
+    --fs-sm: calc(12px * var(--fs-scale));
+    --fs-base: calc(13px * var(--fs-scale));  /* texte des messages et des descriptions */
+    --fs-md: calc(14px * var(--fs-scale));
+    --fs-lg: calc(16px * var(--fs-scale));
+    --fs-xl: calc(18px * var(--fs-scale));
+    --fs-2xl: calc(20px * var(--fs-scale));
+    --fs-3xl: calc(24px * var(--fs-scale));   /* au-delà : titres d'affichage, écrits tels quels */
+
+    /* ─── Lettrage (espacement des lettres) ─── */
+    --track-1: 1px;
+    --track-2: 1.5px;
+    --track-3: 2px;
+    --track-4: 3px;
+    --track-5: 4px;
+
+    /* ─── Largeur du site (5.4) : tous les grands blocs alignés sur les mêmes bords ─── */
+    --layout-width: 1000px;
+
+    /* ─── Panneaux (5.3) ───
+     * Cadre « verre » : les grands blocs (bandeau du logo, messages, MP, formulaires…), 02 à 08.
+     * Panneau V4 : les blocs posés sur la photo (lignes de sujets, barres de liens, bandeau de
+     * titre, jours de la page Activités, liste des membres), v4/*.
+     * Gatsby, par exemple : coins droits et double filet or, sans toucher aux fichiers de zone. */
+    --frame-blur: blur(12px) saturate(140%);
+    --frame-border: 2px solid var(--edge);
+    --frame-radius: 5px;
+    --panel-bg: var(--surface-row);
+    --panel-blur: blur(10px);
+    --panel-line: rgba(var(--ink-rgb), 0.14);
+    --panel-border: 1px solid var(--panel-line);
+    --panel-radius: 4px;
+    --panel-shadow: 0 2px 12px rgba(var(--shadow-rgb), 0.35);
+
+    /* ─── Dispositions (5.6, src/layouts/) : réglages fins, utilisés seulement quand le thème
+     * choisit la disposition (registre du module 22301 → data-layout-<zone> sur <html>) ─── */
+    /* Catégories en briques à tranche (layouts/categories-briques.css) */
+    --cat-columns: 3;             /* la citation de la case vide suppose 3 colonnes */
+    --cat-gap: 6px;
+    --cat-title-width: 62px;      /* largeur de la tranche */
+    --brick-desc-height: 112px;   /* hauteur de la description, qui défile au-delà */
+    --brick-bg: var(--panel-bg);
+    --brick-spine-bg: var(--panel-bg);
+    --brick-radius: var(--panel-radius);
+    --cat-quote: "Hollywood dreams, velvet nightmares.";
+    --cat-quote-source: "— LE VELVET SIN";
+
+    /* ─── Logo du bandeau (5.3, v4/logo.css) ─── */
+    --ink-glint-rgb: 247, 245, 255;  /* #f7f5ff : reflet presque blanc du dégradé */
+    --logo-font: var(--font-display);
+    --logo-weight: 300;
+    --logo-size: clamp(52px, 9vw, 110px);
+    --logo-tracking: clamp(12px, 2.5vw, 28px);
+    --logo-word-gap: normal;  /* espace entre VELVET et SIN, en plus de l'espacement des lettres */
+    --logo-gradient: linear-gradient(100deg,
+        rgb(var(--stone-rgb)), rgb(var(--mauve-rgb)) 18%, rgb(var(--ink-rgb)) 30%,
+        rgb(var(--ink-glint-rgb)) 40%, rgb(var(--paper-rgb)) 50%, rgb(var(--ink-glint-rgb)) 60%,
+        rgb(var(--ink-rgb)) 72%, rgb(var(--mauve-rgb)) 82%, rgb(var(--stone-rgb)));
+    --logo-color: rgb(var(--ink-rgb));  /* sous le dégradé (navigateurs sans background-clip: text) */
+    --logo-glow: drop-shadow(0 3px 8px rgba(var(--shadow-rgb), 0.7)) drop-shadow(0 0 30px rgba(var(--violet-rgb), 0.3));
+    --logo-scanline: linear-gradient(90deg,
+        transparent, rgba(var(--ink-rgb), 0) 5%, rgba(var(--ink-rgb), 0.8) 30%, rgb(var(--paper-rgb)) 50%,
+        rgba(var(--ink-rgb), 0.8) 70%, rgba(var(--ink-rgb), 0) 95%, transparent);
+    --logo-subtitle-font: var(--font-mono);
+    --logo-subtitle-color: rgb(var(--ink-rgb));
 
     /* ─── Niveaux de texte (V4, phase 4) ─── */
     --text: var(--textColor);

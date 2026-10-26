@@ -91,7 +91,7 @@
   border: 1px solid rgba(var(--gold-rgb), 0.4) !important;
   border-radius: 50% !important;
   transition: all 0.3s ease !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 2px 10px rgba(var(--shadow-rgb), 0.5) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -100,15 +100,15 @@
 
 /* icon plus */
 .switcheroo__squircle--button i {
-  font-size: 18px;
+  font-size: var(--fs-xl);
   color: var(--neutral);
   transition: all 0.3s ease;
 }
 
 .switcheroo__squircle--button:hover {
-  background: #2d1b1b !important;
+  background: rgb(var(--wine-rgb)) !important;
   border-color: var(--gold-accent) !important;
-  box-shadow: 0 0 15px rgba(234, 186, 107, 0.5) !important;
+  box-shadow: 0 0 15px rgba(var(--honey-rgb), 0.5) !important;
 }
 
 .switcheroo__squircle--button:hover i {
@@ -197,7 +197,7 @@
 /* Nom du champ */
 .switcheroo__form-label {
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: var(--fs-md);
   text-transform: uppercase;
   font-weight: 600;
 }
@@ -220,7 +220,7 @@
   outline: none;
   box-shadow: none;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: var(--fs-md);
   align-self: center;
   background-color: var(--fond-category);
   cursor: pointer;
@@ -319,9 +319,9 @@
   margin: 15px 0 25px;
   flex-wrap: wrap;
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border: 2px solid var(--contrastLighter) !important;
-  border-radius: 5px !important;
+  backdrop-filter: var(--frame-blur);
+  border: var(--frame-border) !important;
+  border-radius: var(--frame-radius) !important;
 }
 
 #privmsgs-menu li {
@@ -366,13 +366,13 @@
 
 /* Pseudo */
 .vs-profile-name {
-  font-family: "Cormorant Garamond", "Playfair Display", serif;
-  font-size: 20px;
-  color: #d8d4f2;
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  color: rgb(var(--ink-rgb));
   margin-bottom: 5px;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
 }
 
 .vs-profile-name a {
@@ -386,12 +386,12 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-family: "Karla", sans-serif;
-  font-size: 10px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   font-weight: 600;
-  color: #c4b2bc;
+  color: rgb(var(--mauve-rgb));
   padding: 5px 0;
   margin-bottom: 15px;
   text-align: center;
@@ -411,7 +411,7 @@
   width: 200px;
   height: 320px;
   margin: 0 auto 15px auto;
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   overflow: hidden;
   position: relative;
 }
@@ -483,10 +483,10 @@
 }
 
 #privmsgs-menu li a {
-  font-family: "Cinzel", serif;
-  font-size: 0.72rem;
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   color: var(--textColor);
   font-weight: 600;
   transition:
@@ -531,7 +531,7 @@
   border-color: var(--hp-purple-light);
   box-shadow:
     0 0 10px var(--hp-purple-dim),
-    0 0 16px rgba(46, 26, 71, 0.2);
+    0 0 16px rgba(var(--violet-rgb), 0.2);
 }
 
 .vs-hp-avatar img {

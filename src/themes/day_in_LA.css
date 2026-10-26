@@ -1,7 +1,10 @@
 /* ============================================================================
- * THÈME 2 : BLEU AZUR & AMBRE
+ * THÈME 2 : DAY IN LA (bleu azur & ambre ; s'appelait « vert_foret » jusqu'à la V4)
  * Palette : #5095BF | #A0D3F2 | #F28705 | #D96704 | #8C2703
+ * L'ancien nom reste reconnu le temps de la bascule : le module Velvet Theme (22301) réécrit
+ * le choix mémorisé des membres sous le nouveau nom (ACTIONS_V4 M6). À retirer après la V4.
  * ============================================================================ */
+[data-theme="day_in_LA"],
 [data-theme="vert_foret"] {
     --bg-img: url("https://imagesend.fr/uploads/20260815/14cbb47cf4fb88a45b945ea8e543df6683d610db.jpg");
     --bg-position: center 10%;

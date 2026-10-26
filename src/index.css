@@ -8,7 +8,7 @@
 @import "./00-variables.css";
 @import "./themes/_contrat.css";
 @import "./themes/bleu_nuit.css";
-@import "./themes/vert_foret.css";
+@import "./themes/day_in_LA.css";
 @import "./themes/theme-switcher.css";
 
 /* 3. Structure & Composants */
@@ -25,9 +25,13 @@
 
 /* 4. V4 — ajouts de la refonte (chargés en dernier : ils priment à spécificité égale) */
 @import "./v4/icones.css";
+@import "./v4/logo.css";
 @import "./v4/liste-sujets.css";
 @import "./v4/bandeau-titre.css";
 @import "./v4/activites.css";
 @import "./v4/boutons.css";
 @import "./v4/membres.css";
 @import "./v4/profil-edition.css";
+
+/* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
+@import "./layouts/categories-briques.css";

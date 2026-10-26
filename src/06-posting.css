@@ -28,9 +28,9 @@ div.sceditor-group {
 .sceditor-container iframe,
 .sceditor-container textarea {
   background: var(--surface-glass);
-  backdrop-filter: blur(12px) saturate(140%);
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur);
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 5px !important;
@@ -53,7 +53,7 @@ div.sceditor-group {
   width: 90%;
   margin: 10px auto;
   position: relative;
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   background: var(--surface-glass-dim);
   border-radius: 8px;
 }
@@ -63,22 +63,22 @@ div.sceditor-group {
   background: transparent;
   border-radius: 0;
   padding: 10px;
-  color: #d8d4f2;
-  font-family: "Karla", sans-serif;
-  font-size: 12px;
+  color: rgb(var(--ink-rgb));
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
   overflow-x: auto;
 }
 
 /* Nom de balise "code, spoiler" */
 .codebox dt {
   font-weight: 700;
-  font-size: 10px;
-  font-family: "Karla", sans-serif;
+  font-size: var(--fs-2xs);
+  font-family: var(--font-ui);
   text-transform: uppercase;
-  color: #c4b2bc;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  color: rgb(var(--mauve-rgb));
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
   padding: 5px;
-  background: rgba(46, 26, 71, 0.3);
+  background: rgba(var(--violet-rgb), 0.3);
   border-radius: 8px 8px 0 0;
 }
 
@@ -117,10 +117,10 @@ div.sceditor-group {
    Il est maintenant restreint au conteneur de prévisualisation MP. */
 #preview .h3,
 .posting-block .h3 {
-  font-family: "Cinzel", serif;
-  font-size: 0.85rem;
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: var(--track-4);
   color: var(--neutral);
   padding: 12px 20px;
   margin: 15px 0 0;
@@ -138,10 +138,10 @@ div.sceditor-group {
   background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: 8px;
   padding: 25px 30px;
-  width: 1012px !important;
+  width: var(--layout-width) !important;
   max-width: 100% !important;
   margin: 20px auto 25px auto !important;
   box-sizing: border-box !important;
@@ -157,14 +157,14 @@ div.sceditor-group {
 }
 
 #postingbox h3 {
-  font-family: "Karla", sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #c4b2bc;
+  letter-spacing: var(--track-3);
+  color: rgb(var(--mauve-rgb));
   padding-bottom: 12px;
   margin-bottom: 18px;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
 }
 
 #postingbox fieldset.fields1 {
@@ -201,23 +201,23 @@ div.sceditor-group {
 
 /* Labels des champs */
 #postingbox .fields1 dt label {
-  font-family: "Karla", sans-serif;
-  font-size: 0.72rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #c4b2bc;
+  letter-spacing: var(--track-2);
+  color: rgb(var(--mauve-rgb));
   font-weight: 600;
 }
 
 /* Champs de saisie */
 #postingbox .inputbox {
   background: var(--surface-glass);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: 4px;
-  color: #d8d4f2;
+  color: rgb(var(--ink-rgb));
   padding: 8px 12px;
-  font-family: "Karla", sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -233,8 +233,8 @@ div.sceditor-group {
 
 #postingbox .inputbox:focus {
   outline: none;
-  border-color: rgba(216, 212, 242, 0.4);
-  box-shadow: 0 0 8px rgba(216, 212, 242, 0.1);
+  border-color: rgba(var(--ink-rgb), 0.4);
+  box-shadow: 0 0 8px rgba(var(--ink-rgb), 0.1);
 }
 
 #postingbox .message-edition {
@@ -274,13 +274,13 @@ div.sceditor-group {
 
 /* Bouton "Trouver un nom d'utilisateur" */
 #postingbox .button2 {
-  font-family: "Karla", sans-serif;
-  font-size: 0.65rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #a29587;
-  background: rgba(46, 26, 71, 0.3);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  letter-spacing: var(--track-1);
+  color: rgb(var(--stone-rgb));
+  background: rgba(var(--violet-rgb), 0.3);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: 4px;
   padding: 6px 12px;
   cursor: pointer;
@@ -289,8 +289,8 @@ div.sceditor-group {
 }
 
 #postingbox .button2:hover {
-  color: #d8d4f2;
-  border-color: rgba(216, 212, 242, 0.3);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.3);
   opacity: 1;
 }
 
@@ -299,13 +299,13 @@ div.sceditor-group {
    ============================ */
 .posting-buttons .button1,
 .posting-buttons .button2 {
-  font-family: "Karla", sans-serif;
-  font-size: 0.68rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: #a29587;
-  background: rgba(46, 26, 71, 0.3);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  letter-spacing: var(--track-2);
+  color: rgb(var(--stone-rgb));
+  background: rgba(var(--violet-rgb), 0.3);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: 4px;
   padding: 8px 18px;
   cursor: pointer;
@@ -315,17 +315,17 @@ div.sceditor-group {
 
 .posting-buttons .button1:hover,
 .posting-buttons .button2:hover {
-  color: #d8d4f2;
-  border-color: rgba(216, 212, 242, 0.4);
+  color: rgb(var(--ink-rgb));
+  border-color: rgba(var(--ink-rgb), 0.4);
   opacity: 1;
-  text-shadow: 0 0 6px rgba(216, 212, 242, 0.2);
+  text-shadow: 0 0 6px rgba(var(--ink-rgb), 0.2);
 }
 
 /* Le bouton Envoyer — accent plus fort */
 .posting-buttons .button1 {
-  border-color: rgba(216, 212, 242, 0.35);
-  color: #d8d4f2;
-  background: rgba(46, 26, 71, 0.5);
+  border-color: rgba(var(--ink-rgb), 0.35);
+  color: rgb(var(--ink-rgb));
+  background: rgba(var(--violet-rgb), 0.5);
   opacity: 1;
 }
 
@@ -337,7 +337,7 @@ div.sceditor-group {
   background: var(--surface-glass-dim);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(216, 212, 242, 0.15);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: 8px;
   padding: 15px 20px;
   margin-top: 10px;
@@ -345,21 +345,21 @@ div.sceditor-group {
 
 .container + br + .panel h3,
 #postingbox ~ .panel h3 {
-  font-family: "Karla", sans-serif;
-  font-size: 0.72rem;
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #c4b2bc;
+  letter-spacing: var(--track-3);
+  color: rgb(var(--mauve-rgb));
   padding-bottom: 10px;
   margin-bottom: 12px;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.15);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
 }
 
 .container + br + .panel label,
 #postingbox ~ .panel label {
-  font-family: "Karla", sans-serif;
-  font-size: 0.75rem;
-  color: #d8d4f2;
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  color: rgb(var(--ink-rgb));
   opacity: 0.8;
   display: inline-flex;
   align-items: center;
@@ -369,7 +369,7 @@ div.sceditor-group {
 
 .container + br + .panel input[type="checkbox"],
 #postingbox ~ .panel input[type="checkbox"] {
-  accent-color: #d8d4f2;
+  accent-color: rgb(var(--ink-rgb));
 }
 
 /* ============================
@@ -378,22 +378,22 @@ div.sceditor-group {
 /* Conteneur principal de l'éditeur */
 .sceditor-container {
   background: var(--surface-glass) !important;
-  backdrop-filter: blur(12px) saturate(140%) !important;
-  border-radius: 5px !important;
-  border: 2px solid var(--contrastLighter) !important;
+  backdrop-filter: var(--frame-blur) !important;
+  border-radius: var(--frame-radius) !important;
+  border: var(--frame-border) !important;
   /* border-radius: 8px; */
 }
 
 /* Barre d'outils */
 .sceditor-toolbar {
-  background: rgba(46, 26, 71, 0.3) !important;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.1) !important;
+  background: rgba(var(--violet-rgb), 0.3) !important;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1) !important;
   padding: 6px !important;
 }
 
 .sceditor-group {
   background: transparent !important;
-  border-color: rgba(216, 212, 242, 0.1) !important;
+  border-color: rgba(var(--ink-rgb), 0.1) !important;
 }
 
 .sceditor-button {
@@ -403,7 +403,7 @@ div.sceditor-group {
 
 .sceditor-button:hover {
   opacity: 1;
-  background: rgba(216, 212, 242, 0.05) !important;
+  background: rgba(var(--ink-rgb), 0.05) !important;
 }
 
 /* Positions des icônes spécifiques Forumactif */
@@ -473,27 +473,27 @@ div.sceditor-group {
 .sceditor-twemojifa,
 #sceditor-mention-div,
 .jqmWindow {
-  background: #12283f !important;
+  background: rgb(var(--navy-rgb)) !important;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(216, 212, 242, 0.2) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
-  color: #d8d4f2 !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.2) !important;
+  box-shadow: 0 10px 40px rgba(var(--shadow-rgb), 0.6) !important;
+  color: rgb(var(--ink-rgb)) !important;
   border-radius: 10px !important;
 }
 
 /* Mentions */
 .sceditor-mention-user {
-  background: rgba(46, 26, 71, 0.5) !important;
-  border: 1px solid rgba(216, 212, 242, 0.1) !important;
-  color: #d8d4f2 !important;
+  background: rgba(var(--violet-rgb), 0.5) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.1) !important;
+  color: rgb(var(--ink-rgb)) !important;
   padding: 4px 8px !important;
   margin-bottom: 5px !important;
   border-radius: 4px !important;
 }
 
 .sceditor-mention-user:hover {
-  background: rgba(216, 212, 242, 0.1) !important;
+  background: rgba(var(--ink-rgb), 0.1) !important;
 }
 
 /* ============================================================================
@@ -508,14 +508,14 @@ form[action*="mode=delete"] .panel,
 .panel:has(input[name="confirm"]):not(#postingbox),
 .panel:has(input[name="cancel"]):not(#postingbox) {
   width: 100% !important;
-  max-width: 1012px !important;
+  max-width: var(--layout-width) !important;
   margin: 30px auto !important;
   background: var(--surface-glass-dim, rgba(18, 22, 38, 0.78)) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border: 1px solid rgba(216, 212, 242, 0.18) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.18) !important;
   border-radius: 12px !important;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 45px rgba(var(--shadow-rgb), 0.55), inset 0 1px 0 rgba(var(--paper-rgb), 0.08) !important;
   padding: 0 !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
@@ -546,24 +546,24 @@ form[name="confirm"] h1.page-title,
 form#confirm h1.page-title,
 .panel:has(input[name="confirm"]):not(#postingbox) h1.page-title,
 .panel:has(input[name="confirm"]):not(#postingbox) .page-title {
-  font-family: "Cinzel", serif !important;
-  font-size: 1.5rem !important;
+  font-family: var(--font-label) !important;
+  font-size: var(--fs-3xl) !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 3px !important;
-  color: #eaba6b !important;
+  letter-spacing: var(--track-4) !important;
+  color: rgb(var(--honey-rgb)) !important;
   text-align: center !important;
   margin: 0 0 25px 0 !important;
   padding: 0 0 18px 0 !important;
   border: none !important;
-  border-bottom: 1px solid rgba(216, 212, 242, 0.15) !important;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.15) !important;
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   height: auto !important;
   display: block !important;
   box-shadow: none !important;
-  text-shadow: 0 2px 10px rgba(234, 186, 107, 0.2) !important;
+  text-shadow: 0 2px 10px rgba(var(--honey-rgb), 0.2) !important;
 }
 
 /* Structure du formulaire de confirmation */
@@ -615,12 +615,12 @@ form#confirm fieldset.fields1 dl:has(input[type="checkbox"]) dt,
 form[name="confirm"] fieldset.fields1 dt label,
 form#confirm fieldset.fields1 dt label,
 .panel:has(input[name="confirm"]):not(#postingbox) fieldset.fields1 dt label {
-  font-family: "Karla", sans-serif !important;
-  font-size: 12px !important;
+  font-family: var(--font-ui) !important;
+  font-size: var(--fs-sm) !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 1.5px !important;
-  color: #c4b2bc !important;
+  letter-spacing: var(--track-2) !important;
+  color: rgb(var(--mauve-rgb)) !important;
   line-height: normal !important;
 }
 
@@ -639,19 +639,19 @@ form[name="confirm"] select[name="new_forum"],
 form#confirm select[name="new_forum"],
 .panel:has(input[name="confirm"]):not(#postingbox) select[name="new_forum"] {
   width: 100% !important;
-  background: rgba(12, 16, 28, 0.85) !important;
-  border: 1px solid rgba(216, 212, 242, 0.22) !important;
+  background: rgba(var(--field-rgb), 0.85) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.22) !important;
   border-radius: 6px !important;
-  color: #d8d4f2 !important;
+  color: rgb(var(--ink-rgb)) !important;
   padding: 11px 16px !important;
-  font-family: "Karla", sans-serif !important;
-  font-size: 13px !important;
+  font-family: var(--font-ui) !important;
+  font-size: var(--fs-base) !important;
   font-weight: 500 !important;
   letter-spacing: 0.5px !important;
   outline: none !important;
   cursor: pointer !important;
   transition: all 0.3s ease !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: inset 0 2px 4px rgba(var(--shadow-rgb), 0.4) !important;
 }
 
 form[name="confirm"] select[name="new_forum"]:hover,
@@ -660,15 +660,15 @@ form#confirm select[name="new_forum"]:hover,
 form#confirm select[name="new_forum"]:focus,
 .panel:has(input[name="confirm"]):not(#postingbox) select[name="new_forum"]:hover,
 .panel:has(input[name="confirm"]):not(#postingbox) select[name="new_forum"]:focus {
-  border-color: #eaba6b !important;
-  box-shadow: 0 0 14px rgba(234, 186, 107, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  border-color: rgb(var(--honey-rgb)) !important;
+  box-shadow: 0 0 14px rgba(var(--honey-rgb), 0.25), inset 0 2px 4px rgba(var(--shadow-rgb), 0.4) !important;
 }
 
 form[name="confirm"] select option,
 form#confirm select option,
 .panel:has(input[name="confirm"]):not(#postingbox) select option {
-  background: #141724 !important;
-  color: #d8d4f2 !important;
+  background: rgb(var(--field-option-rgb)) !important;
+  color: rgb(var(--ink-rgb)) !important;
   padding: 6px 10px !important;
 }
 
@@ -678,7 +678,7 @@ form#confirm select option[value="-1"],
 form#confirm select option[value^="c"],
 .panel:has(input[name="confirm"]):not(#postingbox) select option[value="-1"],
 .panel:has(input[name="confirm"]):not(#postingbox) select option[value^="c"] {
-  color: #eaba6b !important;
+  color: rgb(var(--honey-rgb)) !important;
   font-weight: 700 !important;
 }
 
@@ -703,17 +703,17 @@ form#confirm fieldset.fields1 dd label:has(input[type="checkbox"]),
   display: inline-flex !important;
   align-items: center !important;
   gap: 10px !important;
-  font-family: "Karla", sans-serif !important;
-  font-size: 11px !important;
+  font-family: var(--font-ui) !important;
+  font-size: var(--fs-xs) !important;
   font-weight: 600 !important;
-  letter-spacing: 1px !important;
+  letter-spacing: var(--track-1) !important;
   text-transform: uppercase !important;
-  color: #d8d4f2 !important;
+  color: rgb(var(--ink-rgb)) !important;
   cursor: pointer !important;
   user-select: none !important;
   padding: 8px 18px !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid rgba(216, 212, 242, 0.12) !important;
+  background: rgba(var(--paper-rgb), 0.03) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.12) !important;
   border-radius: 6px !important;
   transition: all 0.25s ease !important;
 }
@@ -721,15 +721,15 @@ form#confirm fieldset.fields1 dd label:has(input[type="checkbox"]),
 form[name="confirm"] fieldset.fields1 dd label:has(input[type="checkbox"]):hover,
 form#confirm fieldset.fields1 dd label:has(input[type="checkbox"]):hover,
 .panel:has(input[name="confirm"]):not(#postingbox) fieldset.fields1 dd label:has(input[type="checkbox"]):hover {
-  background: rgba(255, 255, 255, 0.07) !important;
-  border-color: rgba(216, 212, 242, 0.3) !important;
-  color: #ffffff !important;
+  background: rgba(var(--paper-rgb), 0.07) !important;
+  border-color: rgba(var(--ink-rgb), 0.3) !important;
+  color: rgb(var(--paper-rgb)) !important;
 }
 
 form[name="confirm"] fieldset.fields1 input[type="checkbox"],
 form#confirm fieldset.fields1 input[type="checkbox"],
 .panel:has(input[name="confirm"]):not(#postingbox) fieldset.fields1 input[type="checkbox"] {
-  accent-color: #eaba6b !important;
+  accent-color: rgb(var(--honey-rgb)) !important;
   width: 15px !important;
   height: 15px !important;
   margin: 0 !important;
@@ -741,14 +741,14 @@ form[name="confirm"] fieldset.fields1 p.center,
 form#confirm fieldset.fields1 p.center,
 .panel:has(input[name="confirm"]):not(#postingbox) fieldset.fields1 p.center {
   text-align: center !important;
-  font-family: "Cormorant Garamond", serif !important;
-  font-size: 1.25rem !important;
+  font-family: var(--font-display) !important;
+  font-size: var(--fs-2xl) !important;
   font-style: italic !important;
-  letter-spacing: 0.8px !important;
-  color: #d8d4f2 !important;
+  letter-spacing: var(--track-1) !important;
+  color: rgb(var(--ink-rgb)) !important;
   margin: 25px 0 0 0 !important;
   padding: 24px 0 0 0 !important;
-  border-top: 1px solid rgba(216, 212, 242, 0.12) !important;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.12) !important;
   width: 100% !important;
   line-height: 1.6 !important;
 }
@@ -768,11 +768,11 @@ form#confirm input[name="cancel"],
   min-width: 130px !important;
   padding: 11px 28px !important;
   margin: 18px 10px 0 !important;
-  font-family: "Karla", sans-serif !important;
-  font-size: 11px !important;
+  font-family: var(--font-ui) !important;
+  font-size: var(--fs-xs) !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 2px !important;
+  letter-spacing: var(--track-3) !important;
   border-radius: 6px !important;
   cursor: pointer !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -784,19 +784,19 @@ form#confirm input[name="cancel"],
 form[name="confirm"] input[name="confirm"],
 form#confirm input[name="confirm"],
 .panel:has(input[name="confirm"]):not(#postingbox) input[name="confirm"] {
-  background: rgba(234, 186, 107, 0.16) !important;
-  color: #eaba6b !important;
-  border: 1px solid rgba(234, 186, 107, 0.5) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+  background: rgba(var(--honey-rgb), 0.16) !important;
+  color: rgb(var(--honey-rgb)) !important;
+  border: 1px solid rgba(var(--honey-rgb), 0.5) !important;
+  box-shadow: 0 4px 15px rgba(var(--shadow-rgb), 0.25) !important;
 }
 
 form[name="confirm"] input[name="confirm"]:hover,
 form#confirm input[name="confirm"]:hover,
 .panel:has(input[name="confirm"]):not(#postingbox) input[name="confirm"]:hover {
-  background: #eaba6b !important;
-  color: #12101e !important;
-  border-color: #eaba6b !important;
-  box-shadow: 0 0 22px rgba(234, 186, 107, 0.5) !important;
+  background: rgb(var(--honey-rgb)) !important;
+  color: rgb(var(--on-honey-rgb)) !important;
+  border-color: rgb(var(--honey-rgb)) !important;
+  box-shadow: 0 0 22px rgba(var(--honey-rgb), 0.5) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -804,18 +804,18 @@ form#confirm input[name="confirm"]:hover,
 form[name="confirm"] input[name="cancel"],
 form#confirm input[name="cancel"],
 .panel:has(input[name="confirm"]):not(#postingbox) input[name="cancel"] {
-  background: rgba(216, 212, 242, 0.05) !important;
-  color: #c4b2bc !important;
-  border: 1px solid rgba(216, 212, 242, 0.2) !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+  background: rgba(var(--ink-rgb), 0.05) !important;
+  color: rgb(var(--mauve-rgb)) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.2) !important;
+  box-shadow: 0 4px 15px rgba(var(--shadow-rgb), 0.25) !important;
 }
 
 form[name="confirm"] input[name="cancel"]:hover,
 form#confirm input[name="cancel"]:hover,
 .panel:has(input[name="confirm"]):not(#postingbox) input[name="cancel"]:hover {
-  background: rgba(216, 212, 242, 0.16) !important;
-  color: #ffffff !important;
-  border-color: rgba(216, 212, 242, 0.45) !important;
-  box-shadow: 0 0 15px rgba(216, 212, 242, 0.2) !important;
+  background: rgba(var(--ink-rgb), 0.16) !important;
+  color: rgb(var(--paper-rgb)) !important;
+  border-color: rgba(var(--ink-rgb), 0.45) !important;
+  box-shadow: 0 0 15px rgba(var(--ink-rgb), 0.2) !important;
   transform: translateY(-2px) !important;
 }

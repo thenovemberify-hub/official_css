@@ -2,7 +2,7 @@
 .forum_lastpost {
   position: absolute;
   display: flex;
-  font-size: 11px;
+  font-size: var(--fs-xs);
   width: 160px;
   justify-content: center;
 }
@@ -11,7 +11,7 @@
   display: block;
   color: var(--gold-accent-text);
   text-transform: lowercase;
-  font-size: 13px;
+  font-size: var(--fs-base);
   margin-bottom: 2px;
   font-style: italic;
   font-weight: 600;
@@ -35,24 +35,24 @@
   height: 60px;
   object-fit: cover;
   border-radius: 3px;
-  border: 1px solid rgba(216, 212, 242, 0.1);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
   filter: grayscale(60%) contrast(110%);
   transition: all 0.4s ease;
 }
 
 .topicslist_row:hover .topicslist-avatar-lastpost img {
   filter: grayscale(0%) contrast(120%);
-  border-color: rgba(255, 48, 64, 0.5);
-  box-shadow: 0 0 15px rgba(255, 48, 64, 0.2);
+  border-color: rgba(var(--fx-a-rgb), 0.5);
+  box-shadow: 0 0 15px rgba(var(--fx-a-rgb), 0.2);
 }
 
 .topictitle {
-  font-family: "Cormorant Garamond", "Cormorant", "Playfair Display", serif;
+  font-family: var(--font-display);
   font-size: 26px;
   font-weight: 300;
-  color: #d8d4f2;
+  color: rgb(var(--ink-rgb));
   text-decoration: none;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   text-transform: uppercase;
   transition: all 0.3s ease;
   display: inline-block;
@@ -60,10 +60,10 @@
 }
 
 .topicslist_row:hover .topictitle {
-  color: #ffffff;
+  color: rgb(var(--paper-rgb));
   text-shadow:
-    -2px 0 rgba(255, 48, 64, 0.6),
-    2px 0 rgba(0, 229, 255, 0.6);
+    -2px 0 rgba(var(--fx-a-rgb), 0.6),
+    2px 0 rgba(var(--fx-b-rgb), 0.6);
 }
 
 /* Lastpost */
@@ -72,35 +72,35 @@
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  font-family: "Share Tech Mono", "Courier New", monospace;
-  font-size: 10px;
-  color: rgba(216, 212, 242, 0.6);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: rgba(var(--ink-rgb), 0.6);
   text-transform: uppercase;
-  letter-spacing: 1px;
-  border-left: 1px solid rgba(216, 212, 242, 0.1);
+  letter-spacing: var(--track-1);
+  border-left: 1px solid rgba(var(--ink-rgb), 0.1);
   padding-left: 20px;
   height: 100%;
   justify-content: center;
 }
 
 .topicslist-lastpost .lastpost-date {
-  color: #c4b2bc;
+  color: rgb(var(--mauve-rgb));
   margin-bottom: 5px;
-  font-size: 11px;
+  font-size: var(--fs-xs);
 }
 
 .topicslist-lastpost a {
-  color: #d8d4f2;
+  color: rgb(var(--ink-rgb));
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .topicslist-lastpost a.gensmall {
-  font-size: 12px;
+  font-size: var(--fs-sm);
 }
 
 .topicslist-lastpost a:hover {
-  color: #ffffff;
+  color: rgb(var(--paper-rgb));
 }
 
 /* L'icône de la flèche du dernier message */
@@ -147,5 +147,5 @@
   height: 47px;
   border: 1px solid rgba(var(--gold-rgb, 218, 165, 32), 0.25);
   padding: 3px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(var(--shadow-rgb), 0.4);
 }

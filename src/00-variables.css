@@ -66,7 +66,7 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --qeel-fool: #00b0f0;
 
     --qeel-font-cinzel: var(--font-label);
-    --qeel-font-serif: "Playfair Display", serif;
+    --qeel-font-serif: var(--font-title);
     --qeel-font-condensed: var(--font-condensed);
     --qeel-font-body: var(--font-body);
     --red-deep: #8a0303;
@@ -88,7 +88,7 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --normal-size: 0.8rem;
     --medium-size: 0.92rem;
     --large-size: 1.1rem;
-    --border: 1px solid #363636;
+    --border: 1px solid rgb(var(--graphite-rgb));
 
     --radius-xs: 3px;
     --radius-sm: 5px;
@@ -97,11 +97,11 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --radius-pill: 100px;
 
     --shadowBox: 0 0 20px var(--neutralDark);
-    --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --elevation-2: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
-    --elevation-3: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
-    --elevation-4: 0 10px 20px rgba(0, 0, 0, 0.55), 0 4px 8px rgba(0, 0, 0, 0.35);
-    --elevation-5: 0 20px 40px rgba(0, 0, 0, 0.6), 0 8px 16px rgba(0, 0, 0, 0.4);
+    --elevation-1: 0 1px 2px rgba(var(--shadow-rgb), 0.4);
+    --elevation-2: 0 2px 4px rgba(var(--shadow-rgb), 0.5), 0 1px 2px rgba(var(--shadow-rgb), 0.3);
+    --elevation-3: 0 4px 8px rgba(var(--shadow-rgb), 0.5), 0 2px 4px rgba(var(--shadow-rgb), 0.3);
+    --elevation-4: 0 10px 20px rgba(var(--shadow-rgb), 0.55), 0 4px 8px rgba(var(--shadow-rgb), 0.35);
+    --elevation-5: 0 20px 40px rgba(var(--shadow-rgb), 0.6), 0 8px 16px rgba(var(--shadow-rgb), 0.4);
     --elevation-gold-focus:
         0 0 0 2px rgba(var(--gold-rgb), 0.5), 0 0 0 4px rgba(var(--gold-rgb), 0.18);
     --space-3xs: 0.125rem;
@@ -220,7 +220,7 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --vs-mb-transition: 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
     --vs-mb-columns: 3;
     --hp-font-body: var(--font-body);
-    --hp-font-serif: "Playfair Display", serif;
+    --hp-font-serif: var(--font-title);
     --hp-font-cinzel: var(--font-label);
     --hp-font-condensed: var(--font-condensed);
 }
@@ -436,238 +436,6 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     }
 }
 
-@keyframes scan-sweep {
-    0% {
-        top: -5%;
-        opacity: 0;
-    }
-
-    8% {
-        opacity: 1;
-    }
-
-    92% {
-        opacity: 0.7;
-    }
-
-    100% {
-        top: 115%;
-        opacity: 0;
-    }
-}
-
-@keyframes title-shimmer {
-
-    0%,
-    100% {
-        background-position: 0% 0;
-    }
-
-    50% {
-        background-position: 100% 0;
-    }
-}
-
-@keyframes title-glitch {
-    0% {
-        transform: translateX(0);
-        clip-path: none;
-    }
-
-    12% {
-        transform: translateX(5px);
-        clip-path: inset(0 0 62% 0);
-        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) hue-rotate(80deg);
-    }
-
-    24% {
-        transform: translateX(-4px);
-        clip-path: inset(58% 0 0 0);
-    }
-
-    38% {
-        transform: translateX(3px);
-        clip-path: inset(22% 0 35% 0);
-        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) hue-rotate(-40deg);
-    }
-
-    52% {
-        transform: translateX(-2px);
-        clip-path: none;
-    }
-
-    70% {
-        transform: translateX(1px);
-        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(46, 26, 71, 0.3));
-    }
-
-    100% {
-        transform: translateX(0);
-        clip-path: none;
-        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(46, 26, 71, 0.3));
-    }
-}
-
-@keyframes gh-intrude {
-    0% {
-        opacity: 0;
-        transform: translateX(10px);
-        clip-path: inset(0 100% 0 0);
-        text-shadow: none;
-    }
-
-    12% {
-        opacity: 1;
-        transform: translateX(-5px);
-        clip-path: inset(0 70% 0 0);
-        text-shadow:
-            -3px 0 var(--taupe),
-            3px 0 #00e5ff;
-    }
-
-    25% {
-        transform: translateX(4px);
-        clip-path: inset(0 40% 0 0);
-        text-shadow:
-            -2px 0 var(--taupe),
-            2px 0 #00e5ff;
-    }
-
-    40% {
-        transform: translateX(-2px);
-        clip-path: inset(0 12% 0 0);
-    }
-
-    56% {
-        transform: translateX(1px);
-        clip-path: inset(0 3% 0 0);
-        text-shadow:
-            -1px 0 rgba(255, 48, 64, 0.6),
-            1px 0 rgba(0, 229, 255, 0.6);
-    }
-
-    72% {
-        transform: translateX(0);
-        clip-path: none;
-    }
-
-    100% {
-        transform: translateX(0);
-        clip-path: none;
-        text-shadow:
-            -1px 0 rgba(255, 48, 64, 0.45),
-            1px 0 rgba(0, 229, 255, 0.45);
-        opacity: 1;
-    }
-}
-
-@keyframes gh-hold-tick {
-
-    0%,
-    85%,
-    100% {
-        transform: translateX(0);
-        clip-path: none;
-        text-shadow:
-            -1px 0 rgba(255, 48, 64, 0.45),
-            1px 0 rgba(0, 229, 255, 0.45);
-    }
-
-    86% {
-        transform: translateX(5px);
-        clip-path: inset(0 0 0 20%);
-        text-shadow:
-            -4px 0 var(--taupe),
-            4px 0 #00e5ff;
-    }
-
-    87% {
-        transform: translateX(-4px);
-        clip-path: inset(50% 0 0 0);
-    }
-
-    88% {
-        transform: translateX(2px);
-        clip-path: none;
-    }
-
-    92% {
-        transform: translateX(-2px);
-        clip-path: inset(0 0 60% 0);
-        text-shadow:
-            -3px 0 var(--taupe),
-            3px 0 #00e5ff;
-    }
-
-    93% {
-        transform: translateX(0);
-        clip-path: none;
-    }
-}
-
-@keyframes gh-corrupt {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-        clip-path: none;
-        text-shadow:
-            -1px 0 rgba(255, 48, 64, 0.45),
-            1px 0 rgba(0, 229, 255, 0.45);
-    }
-
-    10% {
-        transform: translateX(7px);
-        clip-path: inset(0 0 45% 0);
-        text-shadow:
-            -5px 0 var(--taupe),
-            5px 0 #00e5ff;
-    }
-
-    22% {
-        transform: translateX(-6px);
-        clip-path: inset(55% 0 0 0);
-        opacity: 0.85;
-    }
-
-    35% {
-        transform: translateX(5px);
-        clip-path: inset(0 0 0 30%);
-        filter: hue-rotate(50deg);
-    }
-
-    48% {
-        transform: translateX(-4px);
-        clip-path: inset(25% 20% 30% 0);
-        opacity: 0.6;
-    }
-
-    60% {
-        transform: translateX(4px);
-        clip-path: inset(0 60% 0 0);
-        filter: hue-rotate(-30deg);
-        opacity: 0.4;
-    }
-
-    75% {
-        transform: translateX(-3px);
-        clip-path: inset(0 80% 0 0);
-        opacity: 0.2;
-    }
-
-    90% {
-        transform: translateX(2px);
-        clip-path: inset(0 95% 0 0);
-        opacity: 0.08;
-        filter: hue-rotate(0deg);
-    }
-
-    100% {
-        transform: translateX(0);
-        clip-path: inset(0 100% 0 0);
-        opacity: 0;
-    }
-}
-
 /* Animation d'apparition des notifications */
 @keyframes notiffiFadeIn {
     from {
@@ -847,16 +615,6 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
 }
 
 @media (max-width: 600px) {
-    .vs-hd-title {
-        font-size: 38px;
-        letter-spacing: 8px;
-    }
-
-    .vs-hd-subtitle {
-        font-size: 10px;
-        letter-spacing: 3px;
-    }
-
     .vs-scenario-card {
         width: 100%;
     }

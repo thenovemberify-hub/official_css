@@ -10,16 +10,16 @@
 
 /* ─── Lignes de sujets ─── */
 .topicslist_row {
-  background: var(--surface-row);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-color: rgba(216, 212, 242, 0.14);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border-color: var(--panel-line);
+  box-shadow: var(--panel-shadow);
 }
 
 .topicslist_row.folder_announce {
   background: var(--surface-row-strong);
-  border-left-color: rgba(255, 48, 64, 0.55);
+  border-left-color: rgba(var(--fx-a-rgb), 0.55);
 }
 
 /* Liseré de gauche : discret au repos, plein au survol (règle d'origine) */
@@ -29,7 +29,7 @@
 
 .topicslist_row:hover {
   background: var(--surface-row-strong);
-  border-color: rgba(216, 212, 242, 0.32);
+  border-color: rgba(var(--ink-rgb), 0.32);
 }
 
 /* Textes de la ligne : couleurs du thème au lieu du lavande à 50-70 % */
@@ -51,9 +51,9 @@
 
 /* ─── Barres de liens (haut, bas, pied de page) ─── */
 .links_bar {
-  background: var(--surface-row);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
 }
 
 .links_bar .right a {
@@ -63,7 +63,7 @@
 /* Bouton « Trier les sujets » : il était blanc sur fond clair en jour */
 #sort-topics {
   background: var(--surface-row-strong);
-  border: 1px solid rgba(216, 212, 242, 0.25);
+  border: 1px solid rgba(var(--ink-rgb), 0.25);
   border-radius: 4px;
 }
 
@@ -123,8 +123,8 @@ div.right:has(> form[name="jumpbox"]) ~ a:hover {
 }
 
 .topicslist_row .topicslist-pagination a {
-  background: rgba(216, 212, 242, 0.12);
-  border: 1px solid rgba(216, 212, 242, 0.25);
+  background: rgba(var(--ink-rgb), 0.12);
+  border: 1px solid rgba(var(--ink-rgb), 0.25);
   color: var(--text);
 }
 

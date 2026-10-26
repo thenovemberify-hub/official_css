@@ -1,0 +1,365 @@
+/* ============================================================================
+ * V4 (phase 5, lot 5.3) — LOGO DU BANDEAU « VELVET SIN »
+ * ----------------------------------------------------------------------------
+ * Sorti de 07-rp-templates.css (il y vivait par héritage) et de 00-variables.css (ses animations).
+ * Tout ce qui fait l'identité du logo passe par les variables --logo-* du contrat de thème
+ * (themes/_contrat.css) : un thème change la police, le dégradé, la lueur, l'espacement des
+ * lettres et l'espace entre VELVET et SIN sans toucher à ce fichier.
+ * Le glitch (classes posées par le script du bandeau, template overall_header) reste celui de la nuit.
+ * ============================================================================ */
+
+/* ─── Scène : colonne centrée ; isolation pour la ligne de balayage en « difference » ─── */
+.vs-hd-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  isolation: isolate;
+}
+
+/* ─── Ligne de balayage : traverse titre et sous-titre ; « difference » = coupe en clair sur fond sombre ─── */
+.vs-hd-scanline {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  height: 2px;
+  background: var(--logo-scanline);
+  mix-blend-mode: difference;
+  opacity: 0;
+  top: 0;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(var(--paper-rgb), 0.6);
+}
+
+.vs-hd-scanline.scan--sweep {
+  animation: scan-sweep 0.55s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+/* ─── Titre ─── */
+.vs-hd-title {
+  font-family: var(--logo-font);
+  font-weight: var(--logo-weight);
+  font-style: normal;
+  font-size: var(--logo-size);
+  letter-spacing: var(--logo-tracking);
+  word-spacing: var(--logo-word-gap);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  padding: 0 clamp(12px, 2vw, 28px);
+  user-select: none;
+  background: var(--logo-gradient);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--logo-color);
+  filter: var(--logo-glow);
+  animation: title-shimmer 9s ease-in-out infinite;
+
+  /* Glitch sur le titre au moment du scan */
+  transition: filter 0.1s ease;
+}
+
+/* Glitch appliqué au titre pendant l'intrusion */
+.vs-hd-title.title--glitch {
+  animation:
+    title-shimmer 9s ease-in-out infinite,
+    title-glitch 0.55s steps(1) forwards;
+}
+
+/* ─── Zone « confession », sous le titre : hauteur fixe = réserve l'espace même quand elle est vide ─── */
+.vs-hd-confession {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  position: relative;
+}
+
+/* ─── Sous-titre (phrases du bandeau) ─── */
+.vs-hd-subtitle {
+  font-family: var(--logo-subtitle-font);
+  font-size: clamp(10px, 1.3vw, 14px);
+  font-weight: 400;
+  letter-spacing: clamp(4px, 1vw, 10px);
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+
+  /* Pas de mix-blend-mode ici : le texte est sous le titre, pas dessus */
+  color: var(--logo-subtitle-color);
+
+  opacity: 0;
+  will-change: transform, opacity, clip-path, filter;
+}
+
+/* Phase 1 : intrusion */
+.vs-hd-subtitle.gh--intrude {
+  opacity: 1;
+  animation: gh-intrude 0.65s steps(1) forwards;
+}
+
+/* Phase 2 : maintien */
+.vs-hd-subtitle.gh--hold {
+  opacity: 1;
+  clip-path: none;
+  transform: translateX(0);
+  text-shadow:
+    -1px 0 rgba(var(--fx-a-rgb), 0.45),
+    1px 0 rgba(var(--fx-b-rgb), 0.45);
+  animation: gh-hold-tick 4s steps(1) infinite;
+}
+
+/* Phase 3 : corruption */
+.vs-hd-subtitle.gh--corrupt {
+  animation: gh-corrupt 0.75s steps(1) forwards;
+}
+
+@media (max-width: 600px) {
+  .vs-hd-title {
+    font-size: 38px;
+    letter-spacing: 8px;
+  }
+
+  .vs-hd-subtitle {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+}
+
+/* ─── Animations du bandeau ─── */
+@keyframes scan-sweep {
+    0% {
+        top: -5%;
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 1;
+    }
+
+    92% {
+        opacity: 0.7;
+    }
+
+    100% {
+        top: 115%;
+        opacity: 0;
+    }
+}
+
+@keyframes title-shimmer {
+
+    0%,
+    100% {
+        background-position: 0% 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes title-glitch {
+    0% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+
+    12% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 62% 0);
+        filter: drop-shadow(0 3px 8px rgba(var(--shadow-rgb), 0.7)) hue-rotate(80deg);
+    }
+
+    24% {
+        transform: translateX(-4px);
+        clip-path: inset(58% 0 0 0);
+    }
+
+    38% {
+        transform: translateX(3px);
+        clip-path: inset(22% 0 35% 0);
+        filter: drop-shadow(0 3px 8px rgba(var(--shadow-rgb), 0.7)) hue-rotate(-40deg);
+    }
+
+    52% {
+        transform: translateX(-2px);
+        clip-path: none;
+    }
+
+    70% {
+        transform: translateX(1px);
+        filter: var(--logo-glow);
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        filter: var(--logo-glow);
+    }
+}
+
+@keyframes gh-intrude {
+    0% {
+        opacity: 0;
+        transform: translateX(10px);
+        clip-path: inset(0 100% 0 0);
+        text-shadow: none;
+    }
+
+    12% {
+        opacity: 1;
+        transform: translateX(-5px);
+        clip-path: inset(0 70% 0 0);
+        text-shadow:
+            -3px 0 var(--taupe),
+            3px 0 rgb(var(--fx-b-rgb));
+    }
+
+    25% {
+        transform: translateX(4px);
+        clip-path: inset(0 40% 0 0);
+        text-shadow:
+            -2px 0 var(--taupe),
+            2px 0 rgb(var(--fx-b-rgb));
+    }
+
+    40% {
+        transform: translateX(-2px);
+        clip-path: inset(0 12% 0 0);
+    }
+
+    56% {
+        transform: translateX(1px);
+        clip-path: inset(0 3% 0 0);
+        text-shadow:
+            -1px 0 rgba(var(--fx-a-rgb), 0.6),
+            1px 0 rgba(var(--fx-b-rgb), 0.6);
+    }
+
+    72% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(var(--fx-a-rgb), 0.45),
+            1px 0 rgba(var(--fx-b-rgb), 0.45);
+        opacity: 1;
+    }
+}
+
+@keyframes gh-hold-tick {
+
+    0%,
+    85%,
+    100% {
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(var(--fx-a-rgb), 0.45),
+            1px 0 rgba(var(--fx-b-rgb), 0.45);
+    }
+
+    86% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 0 20%);
+        text-shadow:
+            -4px 0 var(--taupe),
+            4px 0 rgb(var(--fx-b-rgb));
+    }
+
+    87% {
+        transform: translateX(-4px);
+        clip-path: inset(50% 0 0 0);
+    }
+
+    88% {
+        transform: translateX(2px);
+        clip-path: none;
+    }
+
+    92% {
+        transform: translateX(-2px);
+        clip-path: inset(0 0 60% 0);
+        text-shadow:
+            -3px 0 var(--taupe),
+            3px 0 rgb(var(--fx-b-rgb));
+    }
+
+    93% {
+        transform: translateX(0);
+        clip-path: none;
+    }
+}
+
+@keyframes gh-corrupt {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        clip-path: none;
+        text-shadow:
+            -1px 0 rgba(var(--fx-a-rgb), 0.45),
+            1px 0 rgba(var(--fx-b-rgb), 0.45);
+    }
+
+    10% {
+        transform: translateX(7px);
+        clip-path: inset(0 0 45% 0);
+        text-shadow:
+            -5px 0 var(--taupe),
+            5px 0 rgb(var(--fx-b-rgb));
+    }
+
+    22% {
+        transform: translateX(-6px);
+        clip-path: inset(55% 0 0 0);
+        opacity: 0.85;
+    }
+
+    35% {
+        transform: translateX(5px);
+        clip-path: inset(0 0 0 30%);
+        filter: hue-rotate(50deg);
+    }
+
+    48% {
+        transform: translateX(-4px);
+        clip-path: inset(25% 20% 30% 0);
+        opacity: 0.6;
+    }
+
+    60% {
+        transform: translateX(4px);
+        clip-path: inset(0 60% 0 0);
+        filter: hue-rotate(-30deg);
+        opacity: 0.4;
+    }
+
+    75% {
+        transform: translateX(-3px);
+        clip-path: inset(0 80% 0 0);
+        opacity: 0.2;
+    }
+
+    90% {
+        transform: translateX(2px);
+        clip-path: inset(0 95% 0 0);
+        opacity: 0.08;
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(0);
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+}

@@ -9,22 +9,22 @@
  * Placées en tête de nos styles car l'admin était chargé AVANT main.css : à priorité égale, nos règles gagnent toujours. */
 .post_date {
   text-transform: lowercase;
-  font-size: 13px;
+  font-size: var(--fs-base);
 }
 
 div.header {
   text-transform: uppercase;
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: var(--fs-base);
+  letter-spacing: var(--track-3);
 }
 
 div.text {
-  font-size: 13px;
+  font-size: var(--fs-base);
 }
 
 time.time {
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: var(--fs-base);
   font-style: italic;
 }
 
@@ -45,7 +45,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: var(--neutral);
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: var(--normal-size);
   font-feature-settings: "kern", "liga", "calt";
   color: var(--textColor);
@@ -95,7 +95,7 @@ h1.page-title {
   font-size: var(--fluid-xl);
   font-weight: 700;
   text-transform: lowercase;
-  font-family: "Cinzel", serif;
+  font-family: var(--font-label);
   text-align: center;
   text-wrap: balance;
   /* CSS Text 4 — répartition équilibrée des lignes */
@@ -192,7 +192,7 @@ input:is([type="submit"], [type="button"], [type="reset"]),
 .button,
 button {
   font-family: inherit;
-  font-size: var(--normal-size);
+  font-size: var(--fs-base);
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-sm);
   background: var(--surface-glass);
@@ -226,7 +226,7 @@ select {
   border: 1px solid color-mix(in srgb, var(--accentClr) 25%, transparent);
   border-radius: var(--radius-sm);
   font-family: inherit;
-  font-size: var(--normal-size);
+  font-size: var(--fs-base);
   padding: var(--space-xs) var(--space-xl) var(--space-xs) var(--space-sm);
   color: var(--textColor);
   cursor: pointer;
@@ -261,12 +261,12 @@ body#sce_smilies_body {
 /* Suppression des liens peu utilisés*/
 /* liens de navigation */
 a.mainmenu {
-  font-family: var(--font2);
-  font-size: var(--medium-size);
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
   padding: 10px;
   text-transform: uppercase;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: var(--track-1);
 }
 
 /* Lien navigation au survol*/
@@ -274,7 +274,7 @@ a.mainmenu:hover,
 .nav-welcome:hover,
 .nav-notifs:hover {
   color: transparent;
-  text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 1px rgba(var(--paper-rgb), 0.8);
   transition: 0.3s;
 }
 
@@ -287,12 +287,12 @@ a.mainmenu img {
 a.forumtitle {
   grid-column: 1;
   grid-row: 1;
-  font-family: var(--font-title, "Times New Roman", serif);
+  font-family: var(--font-title);
   text-transform: uppercase;
   text-align: end;
-  letter-spacing: 1px;
+  letter-spacing: var(--track-1);
   font-size: 1.5em;
-  background: rgba(18, 10, 10, 0.4);
+  background: rgba(var(--wine-black-rgb), 0.4);
   /* Frosted glass */
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -347,12 +347,12 @@ ul.profile-icons li a,
 button.rep-button,
 button.rep-button:active,
 button.rep-button:focus {
-  font-family: "Karla", sans-serif !important;
+  font-family: var(--font-ui) !important;
   text-transform: uppercase !important;
-  font-size: 10px !important;
+  font-size: var(--fs-2xs) !important;
   font-weight: 700 !important;
-  letter-spacing: 2px !important;
-  color: #d8d4f2 !important;
+  letter-spacing: var(--track-3) !important;
+  color: rgb(var(--ink-rgb)) !important;
   text-decoration: none !important;
   transition: all 0.3s ease;
   border: none !important;
@@ -385,9 +385,9 @@ button.rep-button .like_text {
 button.rep-button .rep-nb {
   font-family: inherit !important;
   text-transform: inherit !important;
-  font-size: 11px !important;
+  font-size: var(--fs-xs) !important;
   font-weight: inherit !important;
-  letter-spacing: 1px !important;
+  letter-spacing: var(--track-1) !important;
   color: inherit !important;
   text-decoration: none !important;
   transition: inherit;
@@ -408,8 +408,8 @@ button.rep-button:hover,
 button.rep-button:hover .like_text,
 button.rep-button:hover .rep-nb {
   background: transparent !important;
-  color: #c4b2bc !important;
-  border-bottom-color: #c4b2bc !important;
+  color: rgb(var(--mauve-rgb)) !important;
+  border-bottom-color: rgb(var(--mauve-rgb)) !important;
   text-shadow: none;
 }
 
@@ -417,23 +417,23 @@ button.rep-button:hover .rep-nb {
 button.rep-button.fa_liked,
 button.rep-button.fa_liked .like_text,
 button.rep-button.fa_liked .rep-nb {
-  color: #eaba6b !important;
-  border-bottom-color: #eaba6b !important;
+  color: rgb(var(--honey-rgb)) !important;
+  border-bottom-color: rgb(var(--honey-rgb)) !important;
 }
 
 button.rep-button.fa_liked:hover,
 button.rep-button.fa_liked:hover .like_text,
 button.rep-button.fa_liked:hover .rep-nb {
-  color: #ffd700 !important;
-  border-bottom-color: #ffd700 !important;
+  color: rgb(var(--gold-vivid-rgb)) !important;
+  border-bottom-color: rgb(var(--gold-vivid-rgb)) !important;
 }
 
 /* Lien de réponse au MP */
 a.replypm_button {
-  font-family: "Cinzel", serif;
-  font-size: 0.72rem;
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: var(--track-3);
   color: var(--gold-accent-text);
   border: 1px solid rgba(var(--gold-rgb), 0.3);
   padding: 8px 18px;
@@ -461,12 +461,12 @@ h1.page-title {
   position: relative;
   /* ─── width: 220px; ─── */
   margin: 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-title);
   font-size: 26px;
   font-style: italic;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  letter-spacing: var(--track-1);
+  text-shadow: 2px 2px 4px rgba(var(--shadow-rgb), 0.6);
   z-index: 2;
 }
 
