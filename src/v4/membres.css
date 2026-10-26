@@ -1,0 +1,16 @@
+/* ============================================================================
+ * V4 — LISTE DES MEMBRES : un voile derrière la grille (phase 4b, choisi le 26/10)
+ * ----------------------------------------------------------------------------
+ * Les cartes ont déjà une image opaque : le voile ne sert pas à la lisibilité mais à unifier
+ * la page avec les autres panneaux et à calmer la photo entre les cartes. Volontairement
+ * plus léger que --surface-row (fond plein écarté : les cartes sombres s'y confondaient).
+ * ============================================================================ */
+.userlist {
+  padding: 28px !important; /* 08-plugins.css impose padding: 24px 0 !important */
+  background: rgba(10, 18, 28, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.14);
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
