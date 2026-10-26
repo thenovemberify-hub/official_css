@@ -5,8 +5,8 @@
  * (enseigne, éventails, filets) est dans themes/gatsby-decor.css. Ce que le registre du
  * module 22301 ajoute : polices Bodoni Moda et Josefin Sans, phrases du bandeau, catégories
  * en briques, « Qui est en ligne » en registre, logo en enseigne.
- * Images (fond photo, visuel et citation de l'accueil, avatars du staff) : celles de la nuit
- * en attendant ton choix ; le fond est dessiné en CSS (rayons Art déco), rien à charger.
+ * Images (fonds de la PA et de « Qui est en ligne », bandeaux, avatars du staff) : themes/gatsby-images.css (26/10) ;
+ * le fond de page est dessiné en CSS (arches), rien à charger.
  * ============================================================================ */
 [data-theme="gatsby"] {
     /* ─── Fond : le motif d'arches dorées de la maquette, sur vert profond ───
