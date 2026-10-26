@@ -61,7 +61,7 @@
   animation: title-shimmer 9s ease-in-out infinite;
 
   /* Glitch sur le titre au moment du scan */
-  transition: filter 0.1s ease;
+  transition: filter calc(0.1s * var(--dur-scale)) ease;
 }
 
 /* Glitch appliqué au titre pendant l'intrusion */

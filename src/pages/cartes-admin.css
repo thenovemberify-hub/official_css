@@ -1,0 +1,293 @@
+/* ============================================================================
+ * pages/cartes-admin.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface : cartes « dispatch » et formulaires du staff, utilisés dans les
+ * pages (la FAQ en contient). Règles dans l'ordre où elles étaient dans 07, importées à leur place
+ * d'origine (index.css), avant la FAQ dont une règle doit passer après la leur.
+ * ============================================================================ */
+
+/* Harmonisation des bordures catégories (comme QEEL) */
+/* --- REGULATION PAGE STYLES --- */
+/* ==========================================================================
+   CARTE ADMINISTRATIVE VELVET SIN (DISPATCH OFFICIEL)
+   ========================================================================== */
+.vs-admin-card {
+  max-width: 780px;
+  margin: 35px auto;
+  padding: 45px 50px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: calc(8px * var(--radius-scale));
+  box-shadow:
+    0 10px 30px rgba(var(--shadow-rgb), 0.4),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.12);
+  position: relative;
+  color: var(--textColor);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  text-align: justify;
+}
+
+/* Neutralisation des <br> parasites Forumactif dans vs-admin-card */
+.vs-admin-card br {
+  display: none !important;
+}
+
+.vs-admin-card p br,
+.vs-admin-body br,
+.vs-admin-callout br {
+  display: inline !important;
+}
+
+.vs-admin-card a {
+  color: var(--accentClr);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.3);
+  transition: color calc(0.2s * var(--dur-scale)) ease, border-color calc(0.2s * var(--dur-scale)) ease;
+}
+
+.vs-admin-card a:hover {
+  color: var(--contrastLight);
+  border-bottom-color: var(--contrastLight);
+}
+
+/* Badge supérieur institutionnel */
+.vs-admin-badge {
+  text-align: center;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  color: var(--accentClr);
+  margin-bottom: 8px;
+  opacity: 0.85;
+}
+
+/* Titre Principal (vs-admin-header & vs-reg-header compatibilité) */
+.vs-admin-header,
+.vs-admin-card .vs-reg-header {
+  font-family: var(--font-label);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--contrastLight);
+  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(var(--shadow-rgb), 0.6);
+  background: none;
+  -webkit-text-fill-color: initial;
+  filter: none;
+}
+
+.vs-admin-subtitle {
+  text-align: center;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--taupe);
+  letter-spacing: var(--track-1);
+  margin-bottom: 28px;
+}
+
+/* Titres de Section (vs-admin-section & vs-reg-title) */
+.vs-admin-section,
+.vs-admin-card .vs-reg-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 30px 0 18px;
+  color: var(--accentClr);
+  font-family: var(--font-label);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+}
+
+.vs-admin-section::after,
+.vs-admin-card .vs-reg-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(var(--gold-rgb), 0.45), transparent);
+}
+
+/* Corps du texte */
+.vs-admin-body p,
+.vs-admin-card p {
+  margin: 0 0 16px;
+  text-align: justify;
+  color: var(--textColor);
+}
+
+/* Boîte Callout (pour listes, règles ou arguments) */
+.vs-admin-callout {
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-left: 3px solid var(--accentClr);
+  border-radius: calc(4px * var(--radius-scale));
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+
+.vs-callout-title {
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--accentClr);
+  margin-bottom: 12px;
+}
+
+/* Listes stylisées (support des balises [list] / <ul>) */
+.vs-admin-list,
+.vs-admin-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vs-admin-list li,
+.vs-admin-card ul li {
+  position: relative;
+  padding-left: 20px;
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  color: var(--textColor);
+}
+
+.vs-admin-list li::before,
+.vs-admin-card ul li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 8px;
+  color: var(--accentClr);
+}
+
+.vs-admin-list strong,
+.vs-admin-card ul li strong,
+.vs-admin-card ul li b {
+  color: var(--contrastLight);
+}
+
+/* Bloc Conclusion & Signature */
+.vs-admin-footer-sign {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.vs-sign-quote {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--accentClr);
+  letter-spacing: 0.5px;
+}
+
+.vs-sign-team {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   FORMULAIRES ADMINISTRATIFS VELVET SIN (.vs-admin-form)
+   ========================================================================== */
+.vs-admin-form {
+  max-width: 480px;
+  margin: 25px auto;
+  padding: 20px 24px;
+  background: var(--surface-glass-dim);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  border-radius: calc(6px * var(--radius-scale));
+  box-shadow: 0 4px 20px rgba(var(--shadow-rgb), 0.4), inset 0 0 0 1px rgba(var(--paper-rgb), 0.03);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vs-admin-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--mauve-rgb), 0.08);
+}
+
+.vs-admin-form-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.vs-admin-form-label,
+.vs-admin-form velvetify {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--accentClr);
+  display: block;
+}
+
+.vs-admin-form-val {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--contrastLight);
+}
+
+.vs-admin-form-val a {
+  color: var(--accentClr) !important;
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.35);
+  transition: all calc(0.2s * var(--dur-scale)) ease;
+}
+
+.vs-admin-form-val a:hover {
+  color: rgb(var(--paper-rgb)) !important;
+  border-bottom-color: rgb(var(--paper-rgb));
+  text-shadow: 0 0 8px rgba(var(--gold-rgb), 0.6);
+}
+
+/* Re-thématisation inline de la balise <velvetify> pour compatibilité */
+.vs-admin-card velvetify {
+  display: inline;
+  color: var(--accentClr);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  letter-spacing: var(--track-1);
+  text-transform: uppercase;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+}

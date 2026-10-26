@@ -1,0 +1,467 @@
+/* ============================================================================
+ * zones/accueil.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* Exception : les br dans le bloc texte sont autorisés */
+.vs-hp-intro p br {
+  display: block !important;
+  height: auto !important;
+  margin: 0.4em 0 0 !important;
+  line-height: normal !important;
+  font-size: inherit !important;
+}
+
+/* ========================================
+   COLONNE GAUCHE — Visuel atmosphérique
+   ======================================== */
+.vs-hp-left {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--hp-border);
+}
+
+.vs-hp-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(10px * var(--radius-scale)) 0 0 calc(10px * var(--radius-scale));
+  overflow: hidden;
+  background-image: var(--hp-visual-img);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: contrast(1.1) saturate(0.85);
+}
+
+.vs-hp-visual img {
+  display: none;
+}
+
+/* Cercle décoratif (mauve) */
+.vs-hp-circle {
+  position: absolute;
+  bottom: 10px;
+  right: -25px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid var(--hp-mauve);
+  opacity: 0.2;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: 0 0 15px var(--hp-border);
+}
+
+/* Citation en overlay */
+.vs-hp-quote {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  z-index: 4;
+  margin: 0;
+  pointer-events: none;
+}
+
+.vs-hp-quote p {
+  font-size: 0 !important;
+  margin: 0;
+  line-height: 0;
+}
+
+.vs-hp-quote p::before {
+  content: var(--hp-quote-text);
+  display: block;
+  font-family: var(--hp-font-condensed);
+  font-size: 7.5px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.45;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--hp-text);
+  white-space: pre-line;
+  text-shadow:
+    0 1px 4px rgba(var(--shadow-rgb), 0.9),
+    0 0 12px rgba(var(--shadow-rgb), 0.5);
+}
+
+/* ========================================
+   COLONNE CENTRALE — Deux sous-colonnes
+   Gauche : titre vertical + texte
+   Droite : staff empilé
+   ======================================== */
+.vs-hp-center {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+  border-right: 1px solid var(--hp-border);
+  overflow: hidden;
+}
+
+/* ─── Sous-colonne gauche : titre vertical + texte ─── */
+.vs-hp-center-text {
+  display: flex;
+  gap: 0;
+  padding: 12px 14px 10px 0;
+  overflow: hidden;
+}
+
+/* Titre "VELVET SIN" en vertical */
+.vs-hp-vertical-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-5);
+  text-transform: uppercase;
+  color: var(--hp-mauve);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  padding: 0 8px 0 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--hp-border);
+  opacity: 0.7;
+}
+
+/* Contenu texte */
+.vs-hp-text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 12px;
+  justify-content: center;
+}
+
+/* ─── Titre principal ─── */
+.vs-hp-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  line-height: 1.15;
+  /* Effet iridescent */
+  background: linear-gradient(90deg,
+      var(--hp-mauve),
+      var(--hp-lavender) 20%,
+      var(--hp-text-bright) 35%,
+      var(--hp-lavender) 50%,
+      var(--hp-mauve) 65%,
+      var(--hp-lavender) 80%,
+      var(--hp-mauve));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hp-shimmer 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px var(--hp-border));
+}
+
+/* ─── Bloc d'introduction ─── */
+.vs-hp-intro {
+  margin: 0;
+}
+
+.vs-hp-intro p {
+  font-family: var(--hp-font-body);
+  font-size: var(--fs-base);
+  line-height: 1.35;
+  color: var(--hp-mauve);
+  margin: 0;
+  text-align: justify;
+  /* Préserve les retours à la ligne via <br> */
+  white-space: normal;
+}
+
+/* ========================================
+   Sous-colonne droite : STAFF empilé
+   ======================================== */
+.vs-hp-staff {
+  text-align: center;
+  padding: 10px 12px;
+  border-left: 1px solid var(--hp-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 110px;
+}
+
+.vs-hp-staff-title {
+  font-family: var(--hp-font-cinzel);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  color: var(--hp-lavender);
+  margin: 0 0 2px;
+}
+
+.vs-hp-staff-subtitle {
+  font-family: var(--hp-font-serif);
+  font-size: 7px;
+  font-style: italic;
+  color: var(--hp-taupe);
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.vs-hp-staff-subtitle a {
+  color: var(--hp-taupe);
+  text-decoration: underline;
+  text-decoration-color: var(--hp-border);
+  transition: color calc(0.3s * var(--dur-scale)) ease;
+  background-image: none !important;
+}
+
+.vs-hp-staff-subtitle a:hover {
+  color: var(--hp-lavender);
+}
+
+.vs-hp-overlay-name {
+  font-family: var(--hp-font-cinzel);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-1);
+  text-transform: lowercase;
+  color: var(--hp-lavender);
+  text-shadow: 0 1px 4px rgba(var(--shadow-rgb), 0.6);
+}
+
+.vs-hp-overlay-role {
+  font-family: var(--hp-font-condensed);
+  font-size: 7px;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--hp-purple-light);
+  text-shadow: 0 1px 3px rgba(var(--shadow-rgb), 0.5);
+}
+
+/* ========================================
+   COLONNE DROITE — Navigation & Capsules & Socials
+   ======================================== */
+.vs-hp-right {
+  padding: 10px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Légèrement plus opaque que le wrapper pour donner de la profondeur */
+  background: color-mix(in srgb, var(--hp-surface) 60%, transparent);
+  border-left: 1px solid var(--hp-border);
+  border-radius: 0 calc(10px * var(--radius-scale)) calc(10px * var(--radius-scale)) 0;
+  overflow: hidden;
+}
+
+/* ─── Navigation ─── */
+.vs-hp-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vs-hp-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  font-family: var(--hp-font-condensed);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--hp-lavender);
+  text-decoration: none !important;
+  background-image: none !important;
+  border-bottom: 1px solid var(--hp-border);
+  border-radius: calc(4px * var(--radius-scale));
+  transition:
+    color calc(0.3s * var(--dur-scale)) ease,
+    background calc(0.3s * var(--dur-scale)) ease,
+    padding-left calc(0.3s * var(--dur-scale)) ease;
+}
+
+.vs-hp-nav-link:first-child {
+  border-top: 1px solid var(--hp-border);
+}
+
+.vs-hp-nav-link:hover {
+  color: rgb(var(--paper-rgb));
+  background: color-mix(in srgb, var(--hp-lavender) 10%, transparent);
+  padding-left: 14px;
+}
+
+.vs-hp-nav-marker {
+  font-family: var(--hp-font-body);
+  font-size: var(--fs-2xs);
+  font-weight: 300;
+  color: var(--hp-mauve);
+  opacity: 0.5;
+  transition: opacity calc(0.3s * var(--dur-scale)) ease;
+}
+
+.vs-hp-nav-link:hover .vs-hp-nav-marker {
+  opacity: 1;
+}
+
+/* ─── Capsules d'infos ─── */
+.vs-hp-capsules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  flex: 1;
+  align-content: flex-start;
+}
+
+.vs-hp-capsule {
+  padding: 2px 8px;
+  font-family: var(--hp-font-condensed);
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--hp-text);
+  border-radius: calc(20px * var(--radius-scale));
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform calc(0.3s * var(--dur-scale)) ease,
+    box-shadow calc(0.3s * var(--dur-scale)) ease;
+  cursor: default;
+  background: linear-gradient(135deg,
+      var(--hp-purple),
+      var(--hp-purple-dim) 50%,
+      var(--hp-surface));
+  border: 1px solid var(--hp-border);
+}
+
+.vs-hp-capsule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%,
+      var(--hp-purple-dim),
+      transparent 70%);
+  opacity: 0;
+  transition: opacity calc(0.4s * var(--dur-scale)) ease;
+  pointer-events: none;
+}
+
+.vs-hp-capsule:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 10px var(--hp-purple-dim),
+    0 0 14px var(--hp-purple-dim);
+  border-color: var(--hp-purple-light);
+}
+
+.vs-hp-capsule:hover::before {
+  opacity: 1;
+}
+
+.vs-hp-capsule span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Variantes de fond par capsule */
+.vs-hp-capsule:nth-child(1) {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--hp-purple) 80%, rgb(var(--shadow-rgb))),
+      var(--hp-purple) 50%,
+      var(--hp-surface));
+}
+
+.vs-hp-capsule:nth-child(2) {
+  background: linear-gradient(135deg,
+      var(--hp-purple),
+      color-mix(in srgb, var(--hp-purple) 50%, var(--hp-surface)) 50%,
+      var(--hp-surface));
+}
+
+.vs-hp-capsule:nth-child(3) {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--hp-purple) 60%, rgb(var(--shadow-rgb))),
+      var(--hp-purple-light) 50%,
+      var(--hp-surface));
+}
+
+.vs-hp-capsule:nth-child(4) {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--hp-purple) 80%, rgb(var(--shadow-rgb))),
+      var(--hp-purple) 50%,
+      color-mix(in srgb, var(--hp-surface) 80%, rgb(var(--shadow-rgb))));
+}
+
+.vs-hp-capsule:nth-child(5) {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--hp-purple-light) 60%, rgb(var(--shadow-rgb))),
+      var(--hp-purple) 50%,
+      var(--hp-surface));
+}
+
+/* ─── Liens sociaux ─── */
+.vs-hp-socials {
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.vs-hp-social-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 1;
+  padding: 4px 6px;
+  text-decoration: none !important;
+  background-image: none !important;
+  border: 1px solid var(--hp-border);
+  border-radius: calc(6px * var(--radius-scale));
+  transition:
+    border-color calc(0.3s * var(--dur-scale)) ease,
+    background calc(0.3s * var(--dur-scale)) ease;
+}
+
+.vs-hp-social-link:hover {
+  border-color: var(--hp-lavender);
+  background: color-mix(in srgb, var(--hp-lavender) 8%, transparent);
+}
+
+.vs-hp-social-icon {
+  font-size: var(--fs-sm);
+  color: var(--hp-mauve);
+  flex-shrink: 0;
+}
+
+.vs-hp-social-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.vs-hp-social-name {
+  font-family: var(--hp-font-condensed);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-1);
+  color: var(--hp-lavender);
+}
+
+.vs-hp-social-sub {
+  font-family: var(--hp-font-body);
+  font-size: 7px;
+  color: var(--hp-taupe);
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}

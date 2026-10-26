@@ -1,0 +1,129 @@
+/* ============================================================================
+ * DISPOSITION « ENSEIGNE » DU LOGO (V4, phase 6 ; maquette du 25/10, validée le 26/10)
+ * ----------------------------------------------------------------------------
+ * Les lettres de VELVET SIN s'allument une à une, comme une enseigne des années 1920 ; un
+ * éventail au-dessus, trois filets de chaque côté, la lumière verte au loin. Pas de glitch :
+ * les phrases du bandeau apparaissent en fondu (effet « fondu » du registre, script du
+ * bandeau, ACTIONS_V4 T10).
+ * Le module 22301 pose data-layout-logo="enseigne" sur <html> et découpe le titre en lettres
+ * (<span class="vs-hd-l" style="--i:n">) ; il remet le texte d'origine en quittant le thème.
+ * Couleurs et police : variables --logo-* et --gold-rgb du thème.
+ * ============================================================================ */
+
+/* Titre : plus de reflet balayé ni de glitch ; chaque lettre porte sa propre lumière */
+[data-layout-logo="enseigne"] .vs-hd-title,
+[data-layout-logo="enseigne"] .vs-hd-title.title--glitch {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: rgba(var(--gold-rgb), 0.32);
+  animation: none;
+  white-space: nowrap;
+}
+
+[data-layout-logo="enseigne"] .vs-hd-scanline {
+  display: none;
+}
+
+[data-layout-logo="enseigne"] .vs-hd-l {
+  display: inline-block;
+  animation: enseigne-lettre calc(10s * var(--dur-scale)) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes enseigne-lettre {
+  0%, 100% { color: rgba(var(--gold-rgb), 0.32); text-shadow: none; }
+  5%, 84% {
+    color: var(--logo-color);
+    text-shadow: 0 0 6px rgba(var(--honey-rgb), 0.75), 0 0 26px rgba(var(--gold-rgb), 0.45);
+  }
+  93% { color: rgba(var(--gold-rgb), 0.32); text-shadow: none; }
+}
+
+/* Trois filets de chaque côté du nom, plus courts vers l'extérieur */
+[data-layout-logo="enseigne"] .vs-hd-title::before,
+[data-layout-logo="enseigne"] .vs-hd-title::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: clamp(30px, 6vw, 90px);
+  height: 13px;
+  margin: 0 clamp(10px, 2vw, 26px);
+  background:
+    linear-gradient(rgb(var(--gold-rgb)), rgb(var(--gold-rgb))) 0 0 / 100% 1px no-repeat,
+    linear-gradient(rgb(var(--gold-rgb)), rgb(var(--gold-rgb))) 0 6px / 73% 1px no-repeat,
+    linear-gradient(rgb(var(--gold-rgb)), rgb(var(--gold-rgb))) 0 12px / 46% 1px no-repeat;
+}
+
+[data-layout-logo="enseigne"] .vs-hd-title::before {
+  transform: scaleX(-1);
+}
+
+/* Éventail au-dessus du nom */
+[data-layout-logo="enseigne"] .vs-hd-stage::before {
+  content: "";
+  width: 180px;
+  height: 90px;
+  margin-bottom: -4px;
+  background: repeating-conic-gradient(from -90deg at 50% 100%, rgba(var(--gold-rgb), 0.85) 0deg 1.1deg, transparent 1.1deg 9deg);
+  border-radius: 180px 180px 0 0;
+  -webkit-mask: radial-gradient(circle at 50% 100%, transparent 0 22%, #000 23%);
+  mask: radial-gradient(circle at 50% 100%, transparent 0 22%, #000 23%);
+  opacity: 0.85;
+}
+
+/* La lumière verte, au loin, qui pulse */
+[data-layout-logo="enseigne"] .vs-hd-wrapper {
+  position: relative;
+}
+
+[data-layout-logo="enseigne"] .vs-hd-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 34px;
+  bottom: 30px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--ink-glint-rgb)) 0%, rgb(var(--fx-b-rgb)) 35%, transparent 70%);
+  animation: enseigne-lumiere calc(3.4s * var(--dur-scale)) ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes enseigne-lumiere {
+  0%, 100% { opacity: 0.35; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Phrases du bandeau : en fondu, lumineuses, sans glitch */
+[data-layout-logo="enseigne"] .vs-hd-subtitle.gh--intrude {
+  animation: enseigne-fondu calc(0.65s * var(--dur-scale)) ease-out both;
+}
+
+[data-layout-logo="enseigne"] .vs-hd-subtitle.gh--hold {
+  animation: none;
+  text-shadow: 0 0 10px rgba(var(--gold-rgb), 0.45);
+}
+
+[data-layout-logo="enseigne"] .vs-hd-subtitle.gh--corrupt {
+  animation: enseigne-fondu calc(0.75s * var(--dur-scale)) ease-in reverse both;
+}
+
+@keyframes enseigne-fondu {
+  from { opacity: 0; transform: translateY(3px); letter-spacing: inherit; }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-layout-logo="enseigne"] .vs-hd-l,
+  [data-layout-logo="enseigne"] .vs-hd-wrapper::after {
+    animation: none;
+    color: var(--logo-color);
+  }
+}
+
+@media (max-width: 600px) {
+  [data-layout-logo="enseigne"] .vs-hd-title::before,
+  [data-layout-logo="enseigne"] .vs-hd-title::after {
+    display: none;
+  }
+}

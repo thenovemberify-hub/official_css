@@ -1,0 +1,136 @@
+/* ============================================================================
+ * pages/destins.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* Titres de section (Scénarios / Amorces) */
+.vs-section-title {
+  border-bottom: 1px solid var(--gold-bronze);
+  padding-bottom: 10px;
+  margin: 40px 0 20px 0;
+  font-size: 36px !important;
+  font-family: var(--font-decorative);
+  color: var(--vs-gold);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+/* --- STYLE 1 : LES SCENARIOS (Grosses cartes avec image) --- */
+.vs-scenario-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.vs-scenario-card {
+  /* 2 par ligne */
+  background: rgb(var(--gray-0c-rgb));
+  border: 1px solid rgb(var(--gray-33-rgb));
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  transition: calc(0.3s * var(--dur-scale));
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+}
+
+.vs-scenario-card:hover {
+  border-color: var(--gold-bronze);
+  transform: translateY(-2px);
+}
+
+.vs-scen-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 2px solid var(--gold-bronze);
+  flex-shrink: 0;
+}
+
+.vs-scen-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.vs-scen-name {
+  font-family: var(--font-label);
+  font-size: var(--fs-lg);
+  color: rgb(var(--gold-sand-rgb));
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.vs-scen-desc {
+  font-size: var(--fs-xs);
+  color: rgb(var(--gray-99-rgb));
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.vs-scen-link {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  color: var(--gold-bronze);
+  text-decoration: none;
+  text-align: right;
+}
+
+/* --- STYLE 2 : LES HOOKS (Petites notes compactes) --- */
+.vs-hooks-grid {
+  /* Grille auto-ajustable */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.vs-hook-box {
+  background: rgb(var(--coal-rgb));
+  border-left: 3px solid var(--gold-bronze);
+  /* Barre dorée à gauche */
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.vs-hook-title {
+  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: var(--fs-lg);
+  color: var(--vs-gold-light);
+  text-align: center;
+  margin-bottom: 15px;
+  letter-spacing: var(--track-3);
+  position: relative;
+  z-index: 3;
+  transition: opacity calc(0.4s * var(--dur-scale)) ease;
+}
+
+.vs-hook-text {
+  font-size: var(--fs-xs);
+  color: rgb(var(--gray-aa-rgb));
+  line-height: 1.5;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+
+.vs-hook-meta {
+  font-size: var(--fs-2xs);
+  color: rgb(var(--gray-66-rgb));
+  text-transform: uppercase;
+  border-top: 1px solid rgb(var(--gray-22-rgb));
+  padding-top: 5px;
+  text-align: right;
+}

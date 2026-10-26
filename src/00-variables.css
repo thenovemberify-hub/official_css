@@ -90,10 +90,10 @@ etc. * * 10. BOÎTE DE MESSAGERIE PRIVÉE ................ ligne~8615 * * 11. PA
     --large-size: 1.1rem;
     --border: 1px solid rgb(var(--graphite-rgb));
 
-    --radius-xs: 3px;
-    --radius-sm: 5px;
-    --radius-md: 8px;
-    --radius-lg: 10px;
+    --radius-xs: calc(3px * var(--radius-scale));
+    --radius-sm: calc(5px * var(--radius-scale));
+    --radius-md: calc(8px * var(--radius-scale));
+    --radius-lg: calc(10px * var(--radius-scale));
     --radius-pill: 100px;
 
     --shadowBox: 0 0 20px var(--neutralDark);

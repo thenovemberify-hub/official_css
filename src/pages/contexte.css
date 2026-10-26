@@ -1,0 +1,303 @@
+/* ============================================================================
+ * pages/contexte.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* ==========================================================================
+   PAGE CONTEXTE (CHRONIQUES DU VELVET SIN & LORE)
+   ========================================================================== */
+.vs-context-card br,
+.vs-context-hero br,
+.vs-context-pillars br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-context-card {
+  max-width: 840px;
+  margin: 35px auto;
+  padding: 40px 45px;
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--contrastLighter);
+  border-radius: calc(8px * var(--radius-scale));
+  box-shadow:
+    0 12px 35px rgba(var(--shadow-rgb), 0.45),
+    inset 0 0 0 1px rgba(var(--gold-rgb), 0.12);
+  position: relative;
+  color: var(--textColor);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.8;
+  box-sizing: border-box;
+}
+
+/* ─── Bandeau Héro Cinématographique (Scénettes GIF) ─── */
+.vs-context-hero {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: stretch;
+  height: 240px;
+  margin-bottom: 30px;
+}
+
+.vs-strip-item {
+  width: 80px;
+  flex-shrink: 0;
+  height: 100%;
+  border-radius: calc(4px * var(--radius-scale));
+  overflow: hidden;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  box-shadow: 0 4px 15px rgba(var(--shadow-rgb), 0.5);
+  background: rgb(var(--shadow-rgb));
+  position: relative;
+}
+
+.vs-strip-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%) contrast(1.1);
+  transition:
+    filter calc(0.4s * var(--dur-scale)) ease,
+    transform calc(0.4s * var(--dur-scale)) ease;
+}
+
+.vs-strip-item:hover img {
+  filter: grayscale(0%) contrast(1.15);
+  transform: scale(1.06);
+}
+
+.vs-hero-center {
+  flex: 1;
+  min-width: 0;
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: calc(4px * var(--radius-scale));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 24px;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(var(--shadow-rgb), 0.3);
+}
+
+.vs-hero-crown {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  color: var(--accentClr);
+  margin-bottom: 4px;
+  letter-spacing: var(--track-1);
+}
+
+.vs-hero-title {
+  font-family: var(--font-label);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: var(--track-5);
+  text-transform: uppercase;
+  color: var(--contrastLight);
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(var(--shadow-rgb), 0.7);
+  margin-bottom: 8px;
+}
+
+.vs-hero-tagline {
+  font-family: var(--font-condensed);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--taupe);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.2);
+  padding-top: 10px;
+  margin-top: 4px;
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+/* Grille des 4 Piliers Thématiques */
+.vs-context-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 25px 0 35px;
+}
+
+.vs-pillar-item {
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-top: 2px solid var(--accentClr);
+  border-radius: calc(4px * var(--radius-scale));
+  padding: 12px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: transform calc(0.2s * var(--dur-scale)) ease, border-color calc(0.2s * var(--dur-scale)) ease;
+}
+
+.vs-pillar-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--gold-rgb), 0.4);
+}
+
+.vs-pillar-tag {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--contrastLight);
+}
+
+.vs-pillar-desc {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-2xs);
+  color: var(--taupe);
+  line-height: 1.3;
+}
+
+/* Corps du texte avec lettrine */
+.vs-context-body p {
+  margin: 0 0 18px;
+  text-align: justify;
+  color: var(--textColor);
+}
+
+.vs-context-body p strong,
+.vs-context-body p b {
+  color: var(--contrastLight);
+}
+
+/* Lettrine dorée */
+.vs-dropcap::first-letter {
+  font-family: var(--font-label);
+  float: left;
+  font-size: 46px;
+  line-height: 38px;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 2px;
+  color: var(--accentClr);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(var(--gold-rgb), 0.3);
+}
+
+/* Citation d'ambiance centrale */
+.vs-context-quote {
+  margin: 30px auto;
+  padding: 20px 25px;
+  max-width: 620px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.05), transparent 80%);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.25);
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.25);
+  position: relative;
+}
+
+.vs-context-quote p {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--accentClr);
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(var(--shadow-rgb), 0.8);
+}
+
+.vs-context-quote span {
+  display: block;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-style: normal;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .vs-context-pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Texte mis en valeur (Gras/Doré) */
+.vs-gold {
+  color: var(--contrastLight);
+  font-weight: bold;
+}
+
+/* --- STYLE ELITE --- */
+.vs-reg-container {
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.vs-text-elite {
+  font-family: var(--font-ui);
+  font-size: var(--fs-lg);
+  color: var(--neutral);
+  line-height: 1.7;
+  text-align: justify;
+  display: block;
+}
+
+.vs-reg-intro {
+  margin-bottom: 30px;
+  font-style: italic;
+  text-align: center;
+  font-size: var(--fs-lg);
+  font-family: var(--font-display);
+  color: rgb(var(--mauve-rgb));
+}
+
+.vs-reg-content ul {
+  list-style: none;
+  /* We can add custom bullets if needed */
+  padding: 0;
+  margin: 0;
+}
+
+.vs-reg-content li {
+  margin-bottom: 15px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.vs-reg-content li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--contrastLighter);
+}
+
+.vs-reg-content strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.vs-reg-content ins {
+  text-decoration: none;
+  border-bottom: 1px solid var(--contrastLighter);
+}

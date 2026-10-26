@@ -11,7 +11,7 @@
   letter-spacing: var(--track-3);
   background: rgba(var(--fx-a-rgb), 0.08);
   padding: 3px 6px;
-  border-radius: 2px;
+  border-radius: calc(2px * var(--radius-scale));
   border: 1px solid rgba(var(--fx-a-rgb), 0.2);
   font-weight: normal;
 }
@@ -27,7 +27,7 @@
 .topic-meta a {
   color: rgb(var(--mauve-rgb));
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color calc(0.3s * var(--dur-scale)) ease;
 }
 
 .topic-meta a:hover {
@@ -75,14 +75,14 @@
   text-align: right;
   font-style: italic;
   margin-top: 45px;
-  font-size: 16px;
-  color: #4a3a2a;
+  font-size: var(--fs-lg);
+  color: rgb(var(--letter-ink-3-rgb));
 }
 
 .vs-letter-signature .name {
-  font-family: "Mr De Haviland", cursive;
+  font-family: var(--font-script);
   font-size: 55px;
-  color: #3a2a1a;
+  color: rgb(var(--letter-ink-2-rgb));
   margin-top: 15px;
   display: inline-block;
   transform: rotate(-5deg);
@@ -115,7 +115,7 @@
   background: var(--surface-glass);
   border: var(--frame-border) !important;
   border-top: none;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 calc(5px * var(--radius-scale)) calc(5px * var(--radius-scale));
   margin-bottom: 20px;
   overflow: hidden;
 }
@@ -193,7 +193,7 @@
   background: var(--surface-glass, rgba(18, 40, 63, 0.45));
   background-image: none; /* Annule l'underline animée par défaut des liens */
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.35);
-  border-radius: 2px;
+  border-radius: calc(2px * var(--radius-scale));
   color: var(--gold-light, #cfc09f);
   font-family: var(--font-label);
   font-size: var(--fs-xs);
@@ -205,7 +205,7 @@
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.35),
               inset 0 0 10px rgba(var(--gold-rgb, 212, 175, 55), 0.03);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all calc(0.3s * var(--dur-scale)) cubic-bezier(0.25, 0.8, 0.25, 1);
   user-select: none;
   cursor: pointer;
 }
@@ -214,14 +214,14 @@
 .vs-topic-nav__arrow {
   font-size: var(--fs-2xs);
   color: var(--accent-text, #d4af37);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform calc(0.3s * var(--dur-scale)) ease, color calc(0.3s * var(--dur-scale)) ease;
   line-height: 1;
 }
 
 /* Étiquette texte */
 .vs-topic-nav__label {
   position: relative;
-  transition: color 0.3s ease;
+  transition: color calc(0.3s * var(--dur-scale)) ease;
 }
 
 /* --- EFFETS AU SURVOL (HOVER) --- */

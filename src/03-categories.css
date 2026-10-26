@@ -34,10 +34,10 @@
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
   border: 1px solid rgba(var(--ink-rgb), 0.1);
   filter: grayscale(60%) contrast(110%);
-  transition: all 0.4s ease;
+  transition: all calc(0.4s * var(--dur-scale)) ease;
 }
 
 .topicslist_row:hover .topicslist-avatar-lastpost img {
@@ -54,7 +54,7 @@
   text-decoration: none;
   letter-spacing: var(--track-3);
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   display: inline-block;
   margin: 0 0 5px 0;
 }
@@ -92,7 +92,7 @@
 .topicslist-lastpost a {
   color: rgb(var(--ink-rgb));
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 .topicslist-lastpost a.gensmall {
@@ -110,7 +110,7 @@
   filter: invert(70%) sepia(50%) saturate(3000%) hue-rotate(150deg)
     brightness(100%) contrast(90%);
   opacity: 0.7;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 .topicslist_row:hover .topicslist-lastpost a[href*="#"] img {

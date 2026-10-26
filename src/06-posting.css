@@ -55,7 +55,7 @@ div.sceditor-group {
   position: relative;
   border: 1px solid rgba(var(--ink-rgb), 0.15);
   background: var(--surface-glass-dim);
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
 }
 
 /* Contenu code, spoiler et hide*/
@@ -79,7 +79,7 @@ div.sceditor-group {
   border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
   padding: 5px;
   background: rgba(var(--violet-rgb), 0.3);
-  border-radius: 8px 8px 0 0;
+  border-radius: calc(8px * var(--radius-scale)) calc(8px * var(--radius-scale)) 0 0;
 }
 
 /*retire la mention "code" du bloc*/
@@ -127,7 +127,7 @@ div.sceditor-group {
   background: var(--surface-glass);
   border: var(--border);
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
-  border-radius: 5px 5px 0 0;
+  border-radius: calc(5px * var(--radius-scale)) calc(5px * var(--radius-scale)) 0 0;
 }
 
 /* ============================
@@ -139,7 +139,7 @@ div.sceditor-group {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
   padding: 25px 30px;
   width: var(--layout-width) !important;
   max-width: 100% !important;
@@ -213,14 +213,14 @@ div.sceditor-group {
 #postingbox .inputbox {
   background: var(--surface-glass);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   color: rgb(var(--ink-rgb));
   padding: 8px 12px;
   font-family: var(--font-ui);
   font-size: var(--fs-base);
   transition:
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    border-color calc(0.3s * var(--dur-scale)) ease,
+    box-shadow calc(0.3s * var(--dur-scale)) ease;
 }
 
 #postingbox .inputbox.medium,
@@ -281,10 +281,10 @@ div.sceditor-group {
   color: rgb(var(--stone-rgb));
   background: rgba(var(--violet-rgb), 0.3);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   padding: 6px 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   opacity: 0.75;
 }
 
@@ -306,10 +306,10 @@ div.sceditor-group {
   color: rgb(var(--stone-rgb));
   background: rgba(var(--violet-rgb), 0.3);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   padding: 8px 18px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   opacity: 0.8;
 }
 
@@ -338,7 +338,7 @@ div.sceditor-group {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
   padding: 15px 20px;
   margin-top: 10px;
 }
@@ -398,7 +398,7 @@ div.sceditor-group {
 
 .sceditor-button {
   opacity: 0.7;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 .sceditor-button:hover {
@@ -479,7 +479,7 @@ div.sceditor-group {
   border: 1px solid rgba(var(--ink-rgb), 0.2) !important;
   box-shadow: 0 10px 40px rgba(var(--shadow-rgb), 0.6) !important;
   color: rgb(var(--ink-rgb)) !important;
-  border-radius: 10px !important;
+  border-radius: calc(10px * var(--radius-scale)) !important;
 }
 
 /* Mentions */
@@ -489,7 +489,7 @@ div.sceditor-group {
   color: rgb(var(--ink-rgb)) !important;
   padding: 4px 8px !important;
   margin-bottom: 5px !important;
-  border-radius: 4px !important;
+  border-radius: calc(4px * var(--radius-scale)) !important;
 }
 
 .sceditor-mention-user:hover {
@@ -514,7 +514,7 @@ form[action*="mode=delete"] .panel,
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border: 1px solid rgba(var(--ink-rgb), 0.18) !important;
-  border-radius: 12px !important;
+  border-radius: calc(12px * var(--radius-scale)) !important;
   box-shadow: 0 20px 45px rgba(var(--shadow-rgb), 0.55), inset 0 1px 0 rgba(var(--paper-rgb), 0.08) !important;
   padding: 0 !important;
   overflow: hidden !important;
@@ -641,7 +641,7 @@ form#confirm select[name="new_forum"],
   width: 100% !important;
   background: rgba(var(--field-rgb), 0.85) !important;
   border: 1px solid rgba(var(--ink-rgb), 0.22) !important;
-  border-radius: 6px !important;
+  border-radius: calc(6px * var(--radius-scale)) !important;
   color: rgb(var(--ink-rgb)) !important;
   padding: 11px 16px !important;
   font-family: var(--font-ui) !important;
@@ -650,7 +650,7 @@ form#confirm select[name="new_forum"],
   letter-spacing: 0.5px !important;
   outline: none !important;
   cursor: pointer !important;
-  transition: all 0.3s ease !important;
+  transition: all calc(0.3s * var(--dur-scale)) ease !important;
   box-shadow: inset 0 2px 4px rgba(var(--shadow-rgb), 0.4) !important;
 }
 
@@ -714,8 +714,8 @@ form#confirm fieldset.fields1 dd label:has(input[type="checkbox"]),
   padding: 8px 18px !important;
   background: rgba(var(--paper-rgb), 0.03) !important;
   border: 1px solid rgba(var(--ink-rgb), 0.12) !important;
-  border-radius: 6px !important;
-  transition: all 0.25s ease !important;
+  border-radius: calc(6px * var(--radius-scale)) !important;
+  transition: all calc(0.25s * var(--dur-scale)) ease !important;
 }
 
 form[name="confirm"] fieldset.fields1 dd label:has(input[type="checkbox"]):hover,
@@ -773,9 +773,9 @@ form#confirm input[name="cancel"],
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: var(--track-3) !important;
-  border-radius: 6px !important;
+  border-radius: calc(6px * var(--radius-scale)) !important;
   cursor: pointer !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all calc(0.3s * var(--dur-scale)) cubic-bezier(0.4, 0, 0.2, 1) !important;
   line-height: normal !important;
   text-shadow: none !important;
 }

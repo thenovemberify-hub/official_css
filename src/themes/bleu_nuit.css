@@ -53,24 +53,5 @@
     --surface-row: rgba(13, 21, 32, 0.86);
     --surface-row-strong: rgba(13, 21, 32, 0.93);
 
-    --qeel-border: rgba(196, 178, 188, 0.15);
-    --qeel-lavender: #d8d4f2;
-    --qeel-mauve: #c4b2bc;
-    --qeel-taupe: #a29587;
-    --qeel-purple-light: #4a2d6e;
-    --qeel-purple-dim: rgba(46, 26, 71, 0.5);
-    --qeel-text-bright: #eae8f5;
-    --qeel-glass: rgba(18, 40, 63, 0.45);
-    --qeel-glass-deep: rgba(8, 16, 28, 0.35);
 
-    --hp-surface: #12283f;
-    --hp-border: rgba(196, 178, 188, 0.15);
-    --hp-lavender: #d8d4f2;
-    --hp-mauve: #c4b2bc;
-    --hp-taupe: #a29587;
-    --hp-purple: #2e1a47;
-    --hp-purple-light: #4a2d6e;
-    --hp-purple-dim: rgba(46, 26, 71, 0.5);
-    --hp-text: #d8d4f2;
-    --hp-text-bright: #eae8f5;
 }

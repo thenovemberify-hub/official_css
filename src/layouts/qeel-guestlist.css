@@ -1,0 +1,358 @@
+/* ============================================================================
+ * DISPOSITION « THE GUEST LIST » DE « QUI EST EN LIGNE » (V4, phase 6, proposition A)
+ * ----------------------------------------------------------------------------
+ * D'après la maquette du 26/10 : à gauche le nouvel arrivant en médaillon et les connectés ;
+ * au centre le registre des 96 dernières heures, en deux colonnes numérotées ; à droite les
+ * chiffres, les quatre arcanes et leur devise. Même HTML qu'aujourd'hui (template index_body),
+ * aucun script : seules les places changent (grille), le reste suit le thème.
+ *
+ * Ne s'applique que si le thème la demande (registre du module 22301 →
+ * data-layout-qeel="guestlist" sur <html>) : thème d'essai « essai_guestlist » (la nuit avec
+ * cette disposition, ?vs_theme=essai_guestlist), puis Gatsby.
+ * Pour la retirer : supprimer ce fichier, sa ligne dans index.css et les lignes « qeel » du registre.
+ * Libellés : variables --qeel-t-* (contrat), qu'un thème peut traduire (Gatsby : « The Guest List »…).
+ * ============================================================================ */
+
+/* ─── Grille : gauche | registre | chiffres, arcanes, devise ─── */
+[data-layout-qeel="guestlist"] .vs-qeel-wrapper {
+  grid-template-columns: 230px minmax(0, 1fr) 260px;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "gauche liste chiffres"
+    "gauche liste arcanes"
+    "gauche liste devise"
+    "gauche liste copyright";
+  border-color: rgba(var(--gold-rgb), 0.55);
+}
+
+/* Second filet, à l'intérieur : le double cadre de la maquette */
+[data-layout-qeel="guestlist"] .vs-qeel-wrapper::before {
+  inset: 6px;
+  border-color: rgba(var(--gold-rgb), 0.22);
+}
+
+/* Les colonnes centre et droite s'effacent : leurs blocs se placent directement dans la grille */
+[data-layout-qeel="guestlist"] .vs-qeel-center,
+[data-layout-qeel="guestlist"] .vs-qeel-right {
+  display: contents;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-vertical-title,
+[data-layout-qeel="guestlist"] .vs-qeel-divider {
+  display: none;
+}
+
+/* Libellés écrits par le thème (le texte du template est masqué, la variable l'affiche) */
+[data-layout-qeel="guestlist"] .vs-qeel-label,
+[data-layout-qeel="guestlist"] .vs-qeel-header {
+  font-size: 0;
+  letter-spacing: 0;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-label::before,
+[data-layout-qeel="guestlist"] .vs-qeel-header::before {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-5);
+  color: var(--accent-text);
+}
+
+/* ─── Gauche : nouvel arrivant, puis les connectés ─── */
+[data-layout-qeel="guestlist"] .vs-qeel-left {
+  grid-area: gauche;
+  border-right: 1px solid var(--qeel-border);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-left-content {
+  gap: 18px;
+  padding: 26px 20px;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-bienvenue {
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+/* Libellé, puis médaillon, puis nom : le bloc du libellé et du nom s'efface pour qu'on les ordonne */
+[data-layout-qeel="guestlist"] .vs-qeel-bienvenue-meta {
+  display: contents;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-label {
+  order: -1;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-label::before {
+  content: var(--qeel-t-newest);
+}
+
+/* Médaillon en arche autour de l'avatar (posé par le module « avatar du dernier inscrit ») */
+[data-layout-qeel="guestlist"] .vs-qeel-newest-avatar,
+[data-layout-qeel="guestlist"] .vs-qeel-newest-avatar img {
+  width: 110px;
+  height: 140px;
+  border-radius: 55px 55px 0 0;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-newest-avatar {
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 1px solid rgb(var(--gold-rgb));
+  outline: 1px solid rgba(var(--gold-rgb), 0.22);
+  outline-offset: 4px;
+  background: radial-gradient(circle at 50% 35%, var(--surface-row-strong), transparent);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-newest-avatar img {
+  object-fit: cover;
+  object-position: top center;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-newest-name,
+[data-layout-qeel="guestlist"] .vs-qeel-newest-name a {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-2xl);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-section {
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--qeel-border);
+}
+
+/* « Dans les salons » : point vert qui pulse */
+[data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-header::before {
+  content: var(--qeel-t-online);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-header::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 10px;
+  border-radius: 50%;
+  vertical-align: middle;
+  background: rgb(var(--online-rgb));
+  animation: qeel-guest-pulse calc(2.6s * var(--dur-scale)) ease-in-out infinite;
+}
+
+@keyframes qeel-guest-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--online-rgb), 0.7); }
+  50% { box-shadow: 0 0 0 5px rgba(var(--online-rgb), 0); }
+}
+
+/* Listes de noms : un nom par ligne ; « Utilisateurs enregistrés : » et les virgules disparaissent */
+[data-layout-qeel="guestlist"] #online_users_list,
+[data-layout-qeel="guestlist"] #last_connected {
+  font-size: 0;
+  text-align: start;
+}
+
+[data-layout-qeel="guestlist"] #online_users_list a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+}
+
+/* ─── Centre : le registre des 96 heures ─── */
+[data-layout-qeel="guestlist"] .vs-qeel-72h {
+  grid-area: liste;
+  gap: 12px;
+  padding: 22px 26px;
+  background: var(--qeel-glass-deep);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-72h .vs-qeel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.55);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-72h .vs-qeel-header::before {
+  content: var(--qeel-t-recent);
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  letter-spacing: var(--track-2);
+  text-transform: none;
+  white-space: nowrap;
+  color: var(--text-bright);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-72h .vs-qeel-header::after {
+  content: var(--qeel-t-recent-sub);
+  white-space: nowrap;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  color: var(--text-3);
+}
+
+[data-layout-qeel="guestlist"] #last_connected {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: 400px;
+  overflow-y: auto;
+  counter-reset: qeel-guest;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--gold-rgb), 0.5) transparent;
+}
+
+[data-layout-qeel="guestlist"] #last_connected a {
+  flex: 0 0 50%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 5px 16px 5px 0;
+  border-bottom: 1px dotted var(--qeel-border);
+  counter-increment: qeel-guest;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  line-height: 1.3;
+}
+
+/* Forumactif met chaque nom en gras : trop lourd en italique d'affichage */
+[data-layout-qeel="guestlist"] .vs-qeel-wrapper a strong {
+  font-weight: 500;
+}
+
+/* Numéro de la ligne */
+[data-layout-qeel="guestlist"] #last_connected a::before {
+  content: counter(qeel-guest, decimal-leading-zero);
+  flex-shrink: 0;
+  width: 22px;
+  font-style: normal;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+[data-layout-qeel="guestlist"] #last_connected a > span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Losange or en fin de ligne (le nom garde la couleur de son groupe, écrite par Forumactif) */
+[data-layout-qeel="guestlist"] #last_connected a::after {
+  content: "";
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: rgba(var(--gold-rgb), 0.6);
+}
+
+/* ─── Droite : chiffres, arcanes, devise ─── */
+[data-layout-qeel="guestlist"] .vs-qeel-stats,
+[data-layout-qeel="guestlist"] .vs-qeel-groups,
+[data-layout-qeel="guestlist"] .vs-qeel-group-text,
+[data-layout-qeel="guestlist"] .vs-qeel-copyright {
+  border-left: 1px solid var(--qeel-border);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stats {
+  grid-area: chiffres;
+  padding-top: 24px;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stats-main {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  text-align: center;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stat-sep {
+  display: none;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stat-chunk {
+  flex-direction: column;
+  gap: 2px;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stat-chunk + .vs-qeel-stat-sep + .vs-qeel-stat-chunk {
+  border-left: 1px solid var(--qeel-border);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-stat-number {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-groups {
+  grid-area: arcanes;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--qeel-border);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-group {
+  min-height: 40px;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid currentColor;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-group-text {
+  grid-area: devise;
+  margin: 12px 0 0;
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-group-desc--active {
+  padding: 14px;
+  border: 1px solid var(--qeel-border);
+  background: rgba(var(--shadow-rgb), 0.2);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-group-desc em {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-copyright {
+  grid-area: copyright;
+  padding-top: 12px;
+  padding-bottom: 14px;
+}
+
+/* ─── Écran étroit : tout en une colonne ─── */
+@media (max-width: 760px) {
+  [data-layout-qeel="guestlist"] .vs-qeel-wrapper {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "gauche" "chiffres" "liste" "arcanes" "devise" "copyright";
+  }
+
+  [data-layout-qeel="guestlist"] .vs-qeel-left {
+    border-right: none;
+  }
+
+  [data-layout-qeel="guestlist"] #last_connected a {
+    flex-basis: 100%;
+  }
+}

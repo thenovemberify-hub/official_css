@@ -50,3 +50,8 @@
 .velvet-theme[data-theme="day_in_LA"] {
     background: linear-gradient(135deg, #5095BF 50%, #F28705 50%);
 }
+
+.velvet-theme[data-t="gatsby"],
+.velvet-theme[data-theme="gatsby"] {
+    background: linear-gradient(135deg, #0f3a2a 50%, #d4af55 50%);
+}

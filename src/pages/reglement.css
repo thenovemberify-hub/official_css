@@ -1,0 +1,210 @@
+/* ============================================================================
+ * pages/reglement.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* ==========================================================================
+   RÈGLEMENT DU FORUM (THE HOUSE RULES / CODEX)
+   ========================================================================== */
+.vs-rule-section {
+  margin: 30px 0 16px;
+}
+
+/* Système d'onglets du règlement (4 boutons : I, II, III, IV) */
+.vs-tab-radio {
+  display: none !important;
+}
+
+.vs-rules-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 12px auto 16px;
+}
+
+.vs-rules-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  padding: 6px 16px;
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+  border-radius: calc(4px * var(--radius-scale));
+  cursor: pointer;
+  transition: all calc(0.25s * var(--dur-scale)) ease;
+  user-select: none;
+  text-align: center;
+}
+
+.vs-rules-btn:hover {
+  background: rgba(var(--gold-rgb), 0.1);
+  border-color: rgba(var(--gold-rgb), 0.45);
+  transform: translateY(-1px);
+}
+
+.vs-btn-num {
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  color: var(--accentClr);
+  line-height: 1;
+}
+
+.vs-rules-panel {
+  display: none;
+}
+
+#vs-rule-tab-1:checked~.panel-1,
+#vs-rule-tab-2:checked~.panel-2,
+#vs-rule-tab-3:checked~.panel-3,
+#vs-rule-tab-4:checked~.panel-4 {
+  display: block;
+  animation: vsRulesFadeIn 0.3s ease forwards;
+}
+
+#vs-rule-tab-1:checked~.vs-rules-nav .tab-btn-1,
+#vs-rule-tab-2:checked~.vs-rules-nav .tab-btn-2,
+#vs-rule-tab-3:checked~.vs-rules-nav .tab-btn-3,
+#vs-rule-tab-4:checked~.vs-rules-nav .tab-btn-4 {
+  background: rgba(var(--gold-rgb), 0.15);
+  border-color: var(--accentClr);
+  box-shadow:
+    0 0 12px rgba(var(--gold-rgb), 0.25),
+    inset 0 0 6px rgba(var(--gold-rgb), 0.12);
+  transform: translateY(-1px);
+}
+
+#vs-rule-tab-1:checked~.vs-rules-nav .tab-btn-1 .vs-btn-num,
+#vs-rule-tab-2:checked~.vs-rules-nav .tab-btn-2 .vs-btn-num,
+#vs-rule-tab-3:checked~.vs-rules-nav .tab-btn-3 .vs-btn-num,
+#vs-rule-tab-4:checked~.vs-rules-nav .tab-btn-4 .vs-btn-num {
+  color: var(--contrastLight);
+  text-shadow: 0 0 8px rgba(var(--gold-rgb), 0.6);
+}
+
+@keyframes vsRulesFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Article individuel du règlement */
+.vs-rule-item {
+  background: var(--surface-glass-dim);
+  border: 1px solid rgba(var(--gold-rgb), 0.15);
+  border-left: 3px solid var(--accentClr);
+  border-radius: calc(4px * var(--radius-scale));
+  padding: 14px 18px;
+  margin: 12px 0;
+  transition:
+    border-color calc(0.3s * var(--dur-scale)) ease,
+    background calc(0.3s * var(--dur-scale)) ease,
+    transform calc(0.2s * var(--dur-scale)) ease;
+}
+
+.vs-rule-item:hover {
+  border-color: rgba(var(--gold-rgb), 0.4);
+  background: rgba(var(--shadow-rgb), 0.35);
+  transform: translateX(2px);
+}
+
+/* En-tête de la règle (numéro + titre) */
+.vs-rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(var(--paper-rgb), 0.05);
+}
+
+.vs-rule-title {
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--accentClr);
+}
+
+.vs-rule-badge {
+  font-family: var(--font-condensed);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: var(--track-1);
+  text-transform: uppercase;
+  color: var(--taupe);
+  opacity: 0.75;
+}
+
+/* Corps de la règle */
+.vs-rule-text {
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  color: var(--textColor);
+  text-align: justify;
+  margin: 0;
+}
+
+.vs-rule-text strong,
+.vs-rule-text b {
+  color: var(--contrastLight);
+}
+
+.vs-rule-text a {
+  color: var(--accentClr);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Boîte du Mot de Passe / Sceau d'Accord */
+.vs-rule-secret-box {
+  margin: 35px 0 15px;
+  padding: 22px 26px;
+  background: radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb), 0.06), rgba(var(--shadow-rgb), 0.4));
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: calc(6px * var(--radius-scale));
+  text-align: center;
+  position: relative;
+  box-shadow: inset 0 0 15px rgba(var(--gold-rgb), 0.05);
+}
+
+.vs-secret-seal {
+  font-size: var(--fs-xl);
+  color: var(--accentClr);
+  margin-bottom: 4px;
+}
+
+.vs-secret-code {
+  font-family: var(--font-label);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: var(--track-5);
+  text-transform: uppercase;
+  color: var(--accentClr);
+  text-shadow: 0 0 12px rgba(var(--gold-rgb), 0.4);
+  margin: 4px 0 8px;
+}
+
+.vs-secret-desc {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-sm);
+  color: var(--taupe);
+  line-height: 1.4;
+  margin: 0;
+}

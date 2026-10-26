@@ -1,0 +1,417 @@
+/* ============================================================================
+ * pages/groupes.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* ========================================
+   PAGE FAQ - END
+   ======================================== */
+/* ========================================
+   GROUPES DU FORUM (THE DEALER'S HAND)
+   Inspiré du Mystic Swan & Adapté Velvet Sin
+   ======================================== */
+/* ========================================
+   GROUPES DU FORUM (THE DEALER'S HAND)
+   Inspiré du Mystic Swan & Adapté Velvet Sin
+   ======================================== */
+.vs-group-card br,
+.vs-group-tarot br,
+.vs-group-info br {
+  display: none !important;
+  height: 0 !important;
+  line-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+}
+
+.vs-group-card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: stretch;
+  margin: 22px 0;
+  padding: 16px 18px;
+  background: var(--surface-glass-dim);
+  border: 1px solid var(--contrastLighter);
+  border-radius: calc(6px * var(--radius-scale));
+  position: relative;
+  box-sizing: border-box;
+  transition:
+    border-color calc(0.3s * var(--dur-scale)) ease,
+    box-shadow calc(0.3s * var(--dur-scale)) ease;
+}
+
+/* Alternance automatique : une carte à gauche, une carte à droite */
+.vs-group-card:nth-of-type(even) {
+  flex-direction: row-reverse;
+}
+
+.vs-group-card:hover {
+  border-color: rgba(var(--gold-rgb), 0.3);
+  box-shadow: 0 4px 20px rgba(var(--shadow-rgb), 0.4);
+}
+
+/* ─── Colonne Tarot (Agrandie & Proportions Entières) ─── */
+.vs-group-tarot {
+  width: 200px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-group-tarot .vs-flip-card,
+.vs-flip-card {
+  width: 200px;
+  height: 300px;
+  margin: 0 auto;
+  perspective: 1000px;
+  cursor: pointer;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.vs-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform calc(0.7s * var(--dur-scale)) cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.vs-flip-card:hover .vs-flip-inner,
+.vs-flip-card.is-flipped .vs-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.vs-flip-front,
+.vs-flip-back {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(4px * var(--radius-scale));
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 15px rgba(var(--shadow-rgb), 0.6);
+  border: 1px solid rgba(var(--gold-rgb), 0.2);
+}
+
+/* Recto (Illustration Tarot entière) */
+.vs-flip-front {
+  background-color: rgb(var(--shadow-rgb));
+}
+
+.vs-flip-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgb(var(--shadow-rgb));
+  display: block;
+}
+
+/* Verso (Sceau / Nom / Devise) */
+.vs-flip-back {
+  transform: rotateY(180deg);
+  background: radial-gradient(circle at 50% 50%, rgb(var(--tarot-rgb)), rgb(var(--tarot-deep-rgb)));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  color: var(--contrastLight);
+}
+
+.vs-tarot-back-inner {
+  border: 1px dashed rgba(var(--gold-rgb), 0.3);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+  gap: 8px;
+}
+
+.vs-tarot-num {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--accentClr);
+  letter-spacing: var(--track-3);
+}
+
+.vs-tarot-name {
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-3);
+  color: var(--contrastLight);
+}
+
+.vs-tarot-motto {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: var(--fs-xs);
+  color: var(--taupe);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ─── Colonne Lore & Bandeau ─── */
+.vs-group-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vs-group-desc {
+  background: rgba(var(--shadow-rgb), 0.25);
+  border: 1px solid rgba(var(--gold-rgb), 0.12);
+  border-radius: calc(4px * var(--radius-scale));
+  padding: 18px 22px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vs-group-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--paper-rgb), 0.06);
+}
+
+.vs-group-tag {
+  font-family: var(--font-label);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: calc(2px * var(--radius-scale));
+  background: var(--surface-glass);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  color: var(--accentClr);
+}
+
+.vs-group-role {
+  font-family: var(--font-condensed);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-1);
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+.vs-group-desc p {
+  margin: 0;
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  color: var(--textColor);
+  text-align: justify;
+}
+
+/* Bandeau Titre de Groupe */
+.vs-group-banner {
+  padding: 12px 18px;
+  border-radius: calc(4px * var(--radius-scale));
+  background: rgba(var(--shadow-rgb), 0.4);
+  border: 1px solid var(--contrastLighter);
+  border-left-width: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: transform calc(0.2s * var(--dur-scale)) ease;
+}
+
+.vs-group-card:nth-of-type(even) .vs-group-banner {
+  border-left-width: 1px;
+  border-right-width: 4px;
+}
+
+.vs-group-banner:hover {
+  transform: translateX(3px);
+}
+
+.vs-group-card:nth-of-type(even) .vs-group-banner:hover {
+  transform: translateX(-3px);
+}
+
+.vs-group-title {
+  font-family: var(--font-label);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.vs-group-subtitle {
+  font-family: var(--font-condensed);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* ─── Couleurs Signature par Groupe ─── */
+.vs-group--emperor .vs-group-banner {
+  border-left-color: #b71c1c;
+  border-right-color: #b71c1c;
+}
+
+.vs-group--emperor .vs-group-title {
+  color: #e57373;
+}
+
+.vs-group--star .vs-group-banner {
+  border-left-color: #d63384;
+  border-right-color: #d63384;
+}
+
+.vs-group--star .vs-group-title {
+  color: #f06292;
+}
+
+.vs-group--devil .vs-group-banner {
+  border-left-color: #e67e22;
+  border-right-color: #e67e22;
+}
+
+.vs-group--devil .vs-group-title {
+  color: #ffb74d;
+}
+
+.vs-group--fool .vs-group-banner {
+  border-left-color: #00b0f0;
+  border-right-color: #00b0f0;
+}
+
+.vs-group--fool .vs-group-title {
+  color: #81d4fa;
+}
+
+.vs-group--magician .vs-group-banner {
+  border-left-color: #9c27b0;
+  border-right-color: #9c27b0;
+}
+
+.vs-group--magician .vs-group-title {
+  color: #ce93d8;
+}
+
+.vs-group--world .vs-group-banner {
+  border-left-color: #d4af37;
+  border-right-color: #d4af37;
+}
+
+.vs-group--world .vs-group-title {
+  color: #ffd54f;
+}
+
+/* Rétro-compatibilité pour l'ancien verso .vs-back-title */
+.vs-back-title {
+  font-family: var(--font-label);
+  color: var(--accentClr);
+  font-size: var(--fs-lg);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.3);
+}
+
+.vs-back-desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .vs-group-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* BOTTIN */
+/* --- BOTTIN VELVET SIN (Version Or & Lignes Fines) --- */
+.vs-bottin-container {
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: rgb(var(--gray-12-rgb));
+  color: rgb(var(--gray-bf-rgb));
+  font-family: var(--font-typewriter);
+  padding: 40px;
+  border: 1px solid var(--accentClr);
+  box-shadow: 0 0 10px rgba(var(--gold-rgb), 0.1);
+  /* Lueur dorée très subtile */
+  line-height: 1.6em;
+  font-size: var(--fs-base);
+}
+
+.vs-bottin-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--accentClr);
+  border-bottom: 1px solid var(--accentClr);
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  font-size: var(--fs-lg);
+  letter-spacing: var(--track-4);
+  font-weight: normal;
+  /* Pas de gras, on reste fin */
+}
+
+/* Une ligne de célébrité */
+.vs-entry {
+  display: block;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgb(var(--gray-1f-rgb));
+  /* Séparation très sombre */
+  padding: 3px 0;
+  transition: calc(0.3s * var(--dur-scale));
+}
+
+.vs-celeb {
+  font-weight: bold;
+  color: rgb(var(--gold-star-rgb));
+  /* Nom de la star en or pâle */
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+
+.vs-sep {
+  color: rgb(var(--gray-66-rgb));
+  /* Le tiret de séparation discret */
+  margin-right: 8px;
+}
+
+.vs-player {
+  color: rgb(var(--gray-99-rgb));
+  /* Nom du joueur en gris */
+  font-style: normal;
+}
+
+/* Effet au survol : une petite barre dorée apparaît à gauche */
+.vs-entry:hover {
+  padding-left: 10px;
+  border-left: 2px solid var(--accentClr);
+  background-color: rgb(var(--gray-19-rgb));
+}

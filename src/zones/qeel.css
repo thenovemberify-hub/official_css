@@ -1,0 +1,410 @@
+/* ============================================================================
+ * zones/qeel.css — sorti de 07-rp-templates.css (V4, phase 5, lot 5.7)
+ * ----------------------------------------------------------------------------
+ * Interface ou page du forum (pas un code RP de membre) : elle suit le contrat de thème
+ * comme le reste de l'interface. Règles dans l'ordre où elles étaient dans 07, importées juste
+ * avant lui (index.css) ; ses classes ne servent pas aux codes RP restés dans 07, ce qui garde
+ * le rendu identique (vérifié au relevé des styles).
+ * ============================================================================ */
+
+/* ========================================
+   COLONNES
+   ======================================== */
+.vs-qeel-col {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+/* Séparations verticales — cohérentes avec la homepage */
+.vs-qeel-col+.vs-qeel-col {
+  border-left: 1px solid var(--qeel-border);
+}
+
+/* ─── Colonne gauche ─── */
+.vs-qeel-left {
+  border-radius: calc(10px * var(--radius-scale)) 0 0 calc(10px * var(--radius-scale));
+  /* Flex row pour le titre vertical + contenu (comme homepage) */
+  flex-direction: row;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+/* Titre vertical "VELVET SIN" — réplique exacte de .vs-hp-vertical-title */
+.vs-qeel-vertical-title {
+  font-family: var(--qeel-font-cinzel);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-5);
+  text-transform: uppercase;
+  color: var(--qeel-mauve);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  padding: 0 8px 0 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--qeel-border);
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Contenu à droite du titre vertical */
+.vs-qeel-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px 12px;
+  flex: 1;
+}
+
+/* ─── Colonne centre ─── */
+.vs-qeel-center {
+  padding: 14px 20px;
+  justify-content: center;
+  background: var(--qeel-glass-deep);
+}
+
+/* ─── Colonne droite ─── */
+.vs-qeel-right {
+  border-radius: 0 calc(10px * var(--radius-scale)) calc(10px * var(--radius-scale)) 0;
+  background: var(--qeel-glass-deep);
+  justify-content: space-between;
+}
+
+/* ========================================
+   ÉLÉMENTS COMMUNS
+   ======================================== */
+/* Label de section (ex: "NOUVELLE SIGNATURE") */
+.vs-qeel-label {
+  font-family: var(--qeel-font-condensed);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+  color: var(--qeel-taupe);
+  display: block;
+}
+
+/* Contenu texte */
+.vs-qeel-content {
+  font-family: var(--qeel-font-body);
+  font-size: var(--fs-2xs);
+  color: var(--qeel-lavender);
+  line-height: 1.55;
+  text-align: justify;
+}
+
+.vs-qeel-content a {
+  color: var(--qeel-lavender);
+  text-decoration: none !important;
+  background-image: none !important;
+  transition: color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.vs-qeel-content a:hover {
+  color: var(--qeel-text-bright);
+}
+
+/* Section = label + content */
+.vs-qeel-section {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Diviseur horizontal */
+.vs-qeel-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--qeel-border);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   COLONNE GAUCHE — Bienvenue
+   ======================================== */
+.vs-qeel-bienvenue {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vs-qeel-bienvenue-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Nom du dernier inscrit — même police que le titre homepage */
+.vs-qeel-newest-name {
+  font-family: var(--qeel-font-cinzel);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--qeel-lavender);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vs-qeel-newest-name a {
+  color: inherit;
+  text-decoration: none !important;
+  background-image: none !important;
+  transition: color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.vs-qeel-newest-name a:hover {
+  color: var(--qeel-text-bright);
+}
+
+/* ========================================
+   COLONNE CENTRE — 72H + Stats
+   ======================================== */
+/* Bloc 72h — prend l'espace disponible */
+.vs-qeel-72h {
+  flex: 1;
+}
+
+.vs-qeel-72h-list {
+  font-size: var(--fs-2xs);
+  line-height: 1.6;
+  color: var(--qeel-lavender);
+  /* Petit scroll si beaucoup de noms */
+  overflow-y: auto;
+  max-height: 120px;
+  scrollbar-width: thin;
+}
+
+/* Stats — compactes, en bas */
+.vs-qeel-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.vs-qeel-stats-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--qeel-font-condensed);
+}
+
+.vs-qeel-stat-chunk {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+/* Chiffres iridescents — même animation shimmer que la homepage */
+.vs-qeel-stat-number {
+  font-family: var(--qeel-font-cinzel);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  background: linear-gradient(90deg,
+      var(--qeel-mauve),
+      var(--qeel-lavender) 25%,
+      rgb(var(--ink-shine-rgb)) 50%,
+      var(--qeel-lavender) 75%,
+      var(--qeel-mauve));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: qeel-shimmer 7s ease-in-out infinite;
+}
+
+.vs-qeel-stat-label {
+  font-size: var(--fs-2xs);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--qeel-taupe);
+}
+
+.vs-qeel-stat-sep {
+  font-size: var(--fs-lg);
+  color: var(--qeel-border);
+  padding-bottom: 10px;
+  align-self: center;
+}
+
+.vs-qeel-stats-secondary {
+  font-family: var(--qeel-font-body);
+  font-size: var(--fs-sm);
+  color: var(--qeel-taupe);
+  text-transform: uppercase;
+  letter-spacing: var(--track-1);
+  text-align: center;
+}
+
+.vs-qeel-stats-secondary strong {
+  color: var(--qeel-mauve);
+}
+
+/* ========================================
+   COLONNE DROITE — Groupes + Texte dynamique
+   ======================================== */
+/* Grille 2×2 des groupes */
+.vs-qeel-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+/* Boutons de groupe — stylisés comme les nav-links de la homepage */
+.vs-qeel-group {
+  display: block;
+  padding: 5px 8px;
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  text-decoration: none !important;
+  background: var(--surface-glass-deep);
+  border: 1px solid rgba(var(--mauve-rgb), 0.1);
+  border-left-width: 2px;
+  border-radius: calc(4px * var(--radius-scale));
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background calc(0.3s * var(--dur-scale)) ease,
+    transform calc(0.2s * var(--dur-scale)) ease,
+    box-shadow calc(0.3s * var(--dur-scale)) ease,
+    opacity calc(0.3s * var(--dur-scale)) ease;
+  /* Reset bouton */
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  font-family: var(--qeel-font-condensed);
+}
+
+.vs-qeel-group:hover {
+  background: color-mix(in srgb, var(--fond-category) 90%, transparent);
+  transform: translateX(2px);
+}
+
+/* Couleurs par groupe */
+.vs-qeel-group--emperor {
+  color: var(--qeel-emperor);
+  border-left-color: var(--qeel-emperor);
+}
+
+.vs-qeel-group--emperor:hover,
+.vs-qeel-group--emperor.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(183, 28, 28, 0.3);
+}
+
+.vs-qeel-group--star {
+  color: var(--qeel-star);
+  border-left-color: var(--qeel-star);
+}
+
+.vs-qeel-group--star:hover,
+.vs-qeel-group--star.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(214, 51, 132, 0.3);
+}
+
+.vs-qeel-group--devil {
+  color: var(--qeel-devil);
+  border-left-color: var(--qeel-devil);
+}
+
+.vs-qeel-group--devil:hover,
+.vs-qeel-group--devil.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(230, 126, 34, 0.3);
+}
+
+.vs-qeel-group--fool {
+  color: var(--qeel-fool);
+  border-left-color: var(--qeel-fool);
+}
+
+.vs-qeel-group--fool:hover,
+.vs-qeel-group--fool.vs-qeel-group--active {
+  box-shadow: -3px 0 10px rgba(0, 176, 240, 0.3);
+}
+
+/* État actif : plus lumineux, fond légèrement teinté */
+.vs-qeel-group--active {
+  background: rgba(var(--violet-rgb), 0.45) !important;
+}
+
+/* Zone texte dynamique */
+.vs-qeel-group-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 6px 0 2px;
+  min-height: 0;
+  position: relative;
+}
+
+/* Tous les textes masqués par défaut */
+.vs-qeel-group-desc {
+  font-family: var(--qeel-font-serif);
+  font-size: var(--fs-md);
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--qeel-taupe);
+  margin: 0;
+  padding: 0;
+  text-align: justify;
+  position: absolute;
+  inset: 6px 0 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity calc(0.4s * var(--dur-scale)) ease;
+}
+
+.vs-qeel-group-desc em {
+  color: var(--qeel-mauve);
+  font-style: italic;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* Texte actif visible */
+.vs-qeel-group-desc--active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+  inset: auto;
+}
+
+/* Copyright */
+.vs-qeel-copyright {
+  font-family: var(--qeel-font-body);
+  font-size: 7px;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: rgba(var(--stone-rgb), 0.45);
+  text-align: right;
+  border-top: 1px solid rgba(var(--mauve-rgb), 0.08);
+  padding-top: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .vs-qeel-groups {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vs-qeel-stat-number {
+    font-size: 14px;
+  }
+}

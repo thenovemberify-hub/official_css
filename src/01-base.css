@@ -175,7 +175,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px var(--subcategory-dark) inset;
   caret-color: var(--accentClr);
-  transition: background-color 9999s ease-in-out 0s;
+  transition: background-color calc(9999s * var(--dur-scale)) ease-in-out 0s;
 }
 
 /* Champ invalide (HTML5 validation native) */
@@ -275,7 +275,7 @@ a.mainmenu:hover,
 .nav-notifs:hover {
   color: transparent;
   text-shadow: 0 0 1px rgba(var(--paper-rgb), 0.8);
-  transition: 0.3s;
+  transition: calc(0.3s * var(--dur-scale));
 }
 
 /* Image des liens */
@@ -354,7 +354,7 @@ button.rep-button:focus {
   letter-spacing: var(--track-3) !important;
   color: rgb(var(--ink-rgb)) !important;
   text-decoration: none !important;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   border: none !important;
   border-bottom: 1px solid transparent !important;
   background: transparent !important;
@@ -437,8 +437,8 @@ a.replypm_button {
   color: var(--gold-accent-text);
   border: 1px solid rgba(var(--gold-rgb), 0.3);
   padding: 8px 18px;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  border-radius: calc(4px * var(--radius-scale));
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   display: inline-block;
 }
 

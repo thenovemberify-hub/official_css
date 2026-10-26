@@ -1,0 +1,123 @@
+/* ============================================================================
+ * THÈME 3 : GATSBY (vert & or, Art déco, années 1920) — palette « Émeraude » (choisie le 26/10)
+ * ----------------------------------------------------------------------------
+ * Ne règle que des variables du contrat (themes/_contrat.css) ; le décor propre au thème
+ * (enseigne, éventails, filets) est dans themes/gatsby-decor.css. Ce que le registre du
+ * module 22301 ajoute : polices Bodoni Moda et Josefin Sans, phrases du bandeau, catégories
+ * en briques, « Qui est en ligne » en registre, logo en enseigne.
+ * Images (fond photo, visuel et citation de l'accueil, avatars du staff) : celles de la nuit
+ * en attendant ton choix ; le fond est dessiné en CSS (rayons Art déco), rien à charger.
+ * ============================================================================ */
+[data-theme="gatsby"] {
+    /* ─── Fond : rayons Art déco depuis le haut, halo d'or, vert profond ─── */
+    --bg-img:
+        radial-gradient(ellipse 70% 45% at 50% -8%, rgba(212, 175, 85, 0.20), transparent 70%),
+        repeating-conic-gradient(from -90deg at 50% -6%, rgba(212, 175, 85, 0.07) 0deg 0.8deg, transparent 0.8deg 6deg),
+        radial-gradient(ellipse 120% 90% at 50% 110%, #0f3a2b, #04110c 72%);
+    --bg-position: center top;
+    /* Citation du visuel de l'accueil (texte, comme les paroles de la nuit et du jour) : Gatsby le Magnifique,
+     * libre de droits (Fitzgerald, mort en 1940). Le visuel lui-même : celui de la nuit, en attendant ton choix. */
+    --hp-quote-text: "CAN'T REPEAT\A THE PAST ?\A \A WHY OF\A COURSE\A YOU CAN !\A \A I'M GOING\A TO FIX\A EVERYTHING\A JUST THE WAY\A IT WAS\A BEFORE";
+
+    /* ─── Rôles de couleur du contrat ─── */
+    --ink-rgb: 239, 230, 208;          /* ivoire « coton » : textes et filets de base */
+    --ink-glint-rgb: 255, 246, 214;
+    --ink-shine-rgb: 255, 236, 179;
+    --ink-bright-rgb: 248, 241, 222;
+    --paper-rgb: 255, 250, 235;
+    --fx-a-rgb: 212, 175, 85;          /* l'or remplace le rouge du glitch */
+    --fx-b-rgb: 47, 209, 138;          /* la lumière verte du ponton remplace le cyan */
+    --mauve-rgb: 189, 181, 156;        /* kaki clair : textes secondaires */
+    --stone-rgb: 158, 150, 120;        /* kaki « Cleveland green », éclairci : ≥ 4,5:1 en texte */
+    --violet-rgb: 18, 53, 42;          /* vert bouteille : fonds teintés, lueurs */
+    --violet-light-rgb: 60, 120, 88;
+    --honey-rgb: 236, 208, 138;
+    --gold-vivid-rgb: 255, 224, 138;
+    --champagne-rgb: 230, 207, 143;
+    --cream-rgb: 255, 242, 207;
+    --online-rgb: 47, 209, 138;
+    /* Fonds (bleu nuit → vert nuit) */
+    --panel-rgb: 8, 30, 22;
+    --panel-deep-rgb: 4, 16, 11;
+    --abyss-rgb: 3, 14, 10;
+    --panel-dim-rgb: 6, 22, 16;
+    --veil-rgb: 6, 22, 16;
+    --panel-hover-rgb: 18, 58, 43;
+    --navy-rgb: 12, 42, 31;
+    --deep-navy-rgb: 4, 18, 12;
+    --teal-night-rgb: 8, 28, 20;
+    --field-rgb: 8, 24, 18;
+    --field-option-rgb: 14, 36, 27;
+    --on-honey-rgb: 6, 19, 14;
+    --wine-black-rgb: 6, 20, 14;
+    --wine-abyss-rgb: 5, 16, 11;
+    --wine-rgb: 30, 52, 40;
+
+    /* ─── Variables de thème (comme bleu_nuit.css et day_in_LA.css) ─── */
+    --fond-category: #0c2a1f;
+    --midnight-purple: #12352a;
+    --taupe: #9e9678;
+    --thistle: #bdb59c;
+    --bg-soft: #2c4a3b;
+    --bg-dim: #1a3428;
+    --bg-darker: #0c1f17;
+    --bg-black: #061009;
+    --textColor: #e6dcc0;
+    --textColorAccent: #ecd08a;
+    --text-soft: #d6ccb0;
+    --text-muted: #bdb59c;
+    --text-cream: #f6efdc;
+    --text-bright: #f6efdc;
+    --edge: #7a6634;
+    --surface-glass: rgba(9, 34, 25, 0.88);
+    --surface-glass-dim: rgba(9, 34, 25, 0.8);
+    --surface-glass-deep: rgba(9, 34, 25, 0.94);
+    --surface-row: rgba(8, 30, 22, 0.9);
+    --surface-row-strong: rgba(8, 30, 22, 0.95);
+    --accentClr: #d4af55;
+    --gold-rgb: 212, 175, 85;
+    --borderGold: #d4af55;
+    --gold-accent: #ecd08a;
+    --gold-light: #e6cf8f;
+    --gold-medium: #c9a24a;
+    --gold-bronze: #9a7a36;
+    --gold-dark: #6b5524;
+    --gold-darker: #3a2c0f;
+    --gold-cream: #fff1c4;
+    --accent-text: #ecd08a;
+    --gold-accent-text: #ecd08a;
+
+    /* ─── Polices (chargées par le registre, seulement en Gatsby) ─── */
+    --font-display: "Bodoni Moda", "Cormorant Garamond", Georgia, serif;
+    --font-title: "Bodoni Moda", "Playfair Display", Georgia, serif;
+    --font-label: "Josefin Sans", "Cinzel", sans-serif;
+    --track-3: 2.5px;                  /* capitales un peu plus espacées, à l'Art déco */
+    --track-4: 4px;
+
+    /* ─── Formes : coins droits, cadres à double filet d'or ─── */
+    --radius-scale: 0;
+    --frame-border: 3px double rgba(212, 175, 85, 0.55);
+    --panel-line: rgba(212, 175, 85, 0.3);
+    --panel-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+    --dur-scale: 1.3;                  /* survols un peu plus posés */
+
+    /* ─── Logo : l'enseigne (lettres qui s'allument, disposition logo « enseigne ») ─── */
+    --logo-font: "Bodoni Moda", Georgia, serif;
+    --logo-weight: 500;
+    --logo-size: clamp(40px, 6vw, 76px);
+    --logo-tracking: clamp(8px, 1.4vw, 14px);
+    --logo-word-gap: 0.35em;           /* le vrai espace entre VELVET et SIN */
+    --logo-color: #ecd08a;
+    --logo-glow: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+    --logo-subtitle-font: "Josefin Sans", sans-serif;
+    --logo-subtitle-color: #d9c48f;
+
+    /* ─── Dispositions ─── */
+    --cat-quote: "So we beat on, boats against the current, borne back ceaselessly into the past.";
+    --cat-quote-source: "— F. SCOTT FITZGERALD";
+    --brick-spine-bg: rgba(12, 42, 31, 0.92);
+    --qeel-t-newest: "NEW ARRIVAL";
+    --qeel-t-online: "ON THE FLOOR";
+    --qeel-t-recent: "The Guest List";
+    --qeel-t-recent-sub: "LES 96 DERNIÈRES HEURES";
+}

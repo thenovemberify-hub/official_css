@@ -78,6 +78,74 @@
     --danger-text-rgb: 217, 119, 127; /* #d9777f */
     --danger-pale-rgb: 255, 157, 166; /* #ff9da6 */
 
+    /* ─── Pages du forum sorties de 07 (5.7) : à leur valeur exacte, comme ci-dessus ─── */
+    --ink-shine-rgb: 184, 176, 216;   /* #b8b0d8 : reflet des chiffres de « Qui est en ligne » */
+    --online-rgb: 85, 170, 85;        /* #5a5 : « en ligne » (colonne profil des messages) */
+    --scroll-thumb-rgb: 91, 89, 94;   /* #5b595e */
+    --gold-sand-rgb: 230, 200, 136;   /* #e6c888 : noms des scénarios (Destins) */
+    --gold-star-rgb: 229, 193, 93;    /* #e5c15d : célébrités (Bottin) */
+    --tarot-rgb: 22, 22, 31;          /* #16161f : dos des cartes (Groupes) */
+    --tarot-deep-rgb: 8, 8, 12;       /* #08080c */
+    /* Lettre d'ouverture : papier, encre, filets */
+    --letter-paper-1-rgb: 252, 249, 240; /* #fcf9f0 */
+    --letter-paper-2-rgb: 248, 243, 230; /* #f8f3e6 */
+    --letter-paper-3-rgb: 245, 239, 224; /* #f5efe0 */
+    --letter-paper-4-rgb: 240, 232, 213; /* #f0e8d5 */
+    --letter-ink-rgb: 42, 31, 21;        /* #2a1f15 */
+    --letter-ink-2-rgb: 58, 42, 26;      /* #3a2a1a */
+    --letter-ink-3-rgb: 74, 58, 42;      /* #4a3a2a */
+    --letter-ink-4-rgb: 90, 64, 48;      /* #5a4030 */
+    --letter-muted-rgb: 138, 122, 106;   /* #8a7a6a */
+    --letter-muted-2-rgb: 90, 74, 58;    /* #5a4a3a */
+    --letter-line-rgb: 100, 80, 60;
+    --letter-gold-rgb: 180, 150, 80;
+    --letter-glow-rgb: 200, 180, 140;
+    --letter-glow-2-rgb: 160, 140, 100;
+    /* Gris neutres des pages sombres (Destins, Bottin, enveloppe, onglets du profil) : nommés par
+     * leur valeur hexadécimale, du plus sombre au plus clair */
+    --gray-0c-rgb: 12, 12, 12;
+    --gray-10-rgb: 16, 16, 16;
+    --gray-12-rgb: 18, 18, 18;
+    --gray-15-rgb: 21, 21, 21;
+    --gray-19-rgb: 25, 25, 25;
+    --gray-1a-rgb: 26, 26, 26;
+    --gray-1c-rgb: 28, 28, 28;
+    --gray-1e-rgb: 30, 30, 30;
+    --gray-1f-rgb: 31, 31, 31;
+    --gray-22-rgb: 34, 34, 34;
+    --gray-33-rgb: 51, 51, 51;
+    --gray-66-rgb: 102, 102, 102;
+    --gray-77-rgb: 119, 119, 119;
+    --gray-99-rgb: 153, 153, 153;
+    --gray-aa-rgb: 170, 170, 170;
+    --gray-bf-rgb: 191, 191, 191;
+
+    /* ─── Palettes de zone : accueil (--hp-*) et « Qui est en ligne » (--qeel-*) ───
+     * Valeurs par défaut calées sur les rôles (celles de la nuit) : un thème ne les redéfinit que
+     * s'il veut une exception pour la zone (le jour le fait). AUDIT_THEMES F9. */
+    --violet-light-rgb: 74, 45, 110;  /* #4a2d6e */
+    --ink-bright-rgb: 234, 232, 245;  /* #eae8f5 */
+    --deep-navy-rgb: 8, 16, 28;
+    --qeel-border: rgba(var(--mauve-rgb), 0.15);
+    --qeel-lavender: rgb(var(--ink-rgb));
+    --qeel-mauve: rgb(var(--mauve-rgb));
+    --qeel-taupe: rgb(var(--stone-rgb));
+    --qeel-purple-light: rgb(var(--violet-light-rgb));
+    --qeel-purple-dim: rgba(var(--violet-rgb), 0.5);
+    --qeel-text-bright: rgb(var(--ink-bright-rgb));
+    --qeel-glass: var(--surface-glass);
+    --qeel-glass-deep: rgba(var(--deep-navy-rgb), 0.35);
+    --hp-surface: rgb(var(--navy-rgb));
+    --hp-border: rgba(var(--mauve-rgb), 0.15);
+    --hp-lavender: rgb(var(--ink-rgb));
+    --hp-mauve: rgb(var(--mauve-rgb));
+    --hp-taupe: rgb(var(--stone-rgb));
+    --hp-purple: rgb(var(--violet-rgb));
+    --hp-purple-light: rgb(var(--violet-light-rgb));
+    --hp-purple-dim: rgba(var(--violet-rgb), 0.5);
+    --hp-text: rgb(var(--ink-rgb));
+    --hp-text-bright: rgb(var(--ink-bright-rgb));
+
     /* ─── Polices par rôle ─── */
     --font-body: "Inter", sans-serif;                       /* texte courant */
     --font-display: "Cormorant Garamond", "Cormorant", "Playfair Display", Georgia, serif; /* logo, titres de page */
@@ -86,6 +154,10 @@
     --font-ui: "Karla", sans-serif;                         /* libellés de formulaires */
     --font-condensed: "Roboto Condensed", sans-serif;       /* compteurs, méta-données */
     --font-mono: "Share Tech Mono", "Courier New", monospace; /* fil d'Ariane, boutons, dates */
+    /* Polices décoratives des pages du forum (5.7) */
+    --font-decorative: "Cinzel Decorative", serif;           /* titre de la page Destins */
+    --font-script: "Mr De Haviland", cursive;               /* signature de la lettre d'ouverture */
+    --font-typewriter: "Courier New", Courier, monospace;   /* Bottin */
 
     /* ─── Tailles de texte (5.4) : 9 pas ; --fs-scale agrandit ou resserre tout d'un coup ───
      * Chaque taille de l'interface a été rattachée au pas le plus proche, à 1px près au plus.
@@ -111,6 +183,12 @@
     /* ─── Largeur du site (5.4) : tous les grands blocs alignés sur les mêmes bords ─── */
     --layout-width: 1000px;
 
+    /* ─── Formes et mouvement (5.8) : deux leviers (outil : tools/formes.mjs) ───
+     * Tous les rayons des coins de l'interface valent « valeur × --radius-scale » (0 = coins droits ;
+     * les cercles et les pilules restent ronds), toutes les durées de transition « valeur × --dur-scale ». */
+    --radius-scale: 1;
+    --dur-scale: 1;
+
     /* ─── Panneaux (5.3) ───
      * Cadre « verre » : les grands blocs (bandeau du logo, messages, MP, formulaires…), 02 à 08.
      * Panneau V4 : les blocs posés sur la photo (lignes de sujets, barres de liens, bandeau de
@@ -118,12 +196,12 @@
      * Gatsby, par exemple : coins droits et double filet or, sans toucher aux fichiers de zone. */
     --frame-blur: blur(12px) saturate(140%);
     --frame-border: 2px solid var(--edge);
-    --frame-radius: 5px;
+    --frame-radius: calc(5px * var(--radius-scale));
     --panel-bg: var(--surface-row);
     --panel-blur: blur(10px);
     --panel-line: rgba(var(--ink-rgb), 0.14);
     --panel-border: 1px solid var(--panel-line);
-    --panel-radius: 4px;
+    --panel-radius: calc(4px * var(--radius-scale));
     --panel-shadow: 0 2px 12px rgba(var(--shadow-rgb), 0.35);
 
     /* ─── Dispositions (5.6, src/layouts/) : réglages fins, utilisés seulement quand le thème
@@ -138,6 +216,11 @@
     --brick-radius: var(--panel-radius);
     --cat-quote: "Hollywood dreams, velvet nightmares.";
     --cat-quote-source: "— LE VELVET SIN";
+    /* « Qui est en ligne » en registre (layouts/qeel-guestlist.css) : libellés, traduisibles par un thème */
+    --qeel-t-newest: "NOUVELLE SIGNATURE";
+    --qeel-t-online: "DANS LES SALONS";
+    --qeel-t-recent: "Silhouettes récentes";
+    --qeel-t-recent-sub: "LES 96 DERNIÈRES HEURES";
 
     /* ─── Logo du bandeau (5.3, v4/logo.css) ─── */
     --ink-glint-rgb: 247, 245, 255;  /* #f7f5ff : reflet presque blanc du dégradé */

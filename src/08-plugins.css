@@ -150,7 +150,7 @@
 /* Contenur général qui sert généralement de fond et/ou de contour*/
 .container {
   /*background: var(--neutralDark);*/
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
 }
 
 /* Barre de séparation */
@@ -196,7 +196,7 @@ summary:focus-visible {
   height: 40px;
   object-fit: cover;
   object-position: center;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   margin-right: 10px;
   background: var(--neutralDark);
 }
@@ -227,7 +227,7 @@ summary:focus-visible {
   font-size: var(--fs-2xs);
   text-transform: uppercase;
   font-weight: 700;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   background: var(--surface-glass);
   filter: drop-shadow(0 0 10px rgba(var(--shadow-rgb), 0.8));
   display: flex;
@@ -250,7 +250,7 @@ summary:focus-visible {
 .specials_links a,
 a.specials_links {
   padding: 2px 6px;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
 }
 
 /* Suppression des liens vides */
@@ -293,14 +293,14 @@ a.specials_links:empty {
   /* Même fond que le body */
   border: 1px solid rgba(var(--thistle), 0.4);
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   box-shadow: 0 2px 10px rgba(var(--shadow-rgb), 0.5);
 }
 
 #notiffi_button:hover {
   color: transparent;
   text-shadow: 0 0 1px rgba(var(--paper-rgb), 0.8);
-  transition: 0.3s;
+  transition: calc(0.3s * var(--dur-scale));
   background: rgb(var(--wine-rgb));
   border-color: var(--thistle);
   box-shadow: 0 0 15px var(--surface-glass);
@@ -310,7 +310,7 @@ a.specials_links:empty {
 .unread_count {
   position: relative;
   background: var(--neutralDarker);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   width: 25px;
   display: grid;
   place-items: center;
@@ -319,7 +319,7 @@ a.specials_links:empty {
   scale: 1;
   opacity: 1;
   aspect-ratio: 1;
-  transition: scale ease-out 0.2s;
+  transition: scale ease-out calc(0.2s * var(--dur-scale));
 }
 
 /* Conteneur du nombre de notification non lues VIDE */
@@ -327,7 +327,7 @@ a.specials_links:empty {
   position: absolute;
   scale: 0;
   opacity: 0;
-  transition: all ease-out 0.2s;
+  transition: all ease-out calc(0.2s * var(--dur-scale));
 }
 
 /* Menu des notifications FERMÉ */
@@ -350,7 +350,7 @@ a.specials_links:empty {
   /* Increased to avoid navbar overlap */
   opacity: 0;
   visibility: hidden;
-  transition: all ease 0.7s;
+  transition: all ease calc(0.7s * var(--dur-scale));
 }
 
 /* Menu des notifications OUVERT */
@@ -371,7 +371,7 @@ a.specials_links:empty {
   max-height: 100%;
   background: var(--surface-glass);
   backdrop-filter: var(--frame-blur);
-  border-radius: 10px;
+  border-radius: calc(10px * var(--radius-scale));
   border: var(--frame-border) !important;
   padding: 10px;
   -ms-overflow-style: none;
@@ -420,9 +420,9 @@ a.specials_links:empty {
   gap: 15px;
   margin-bottom: 5px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   border: 1px solid transparent;
-  transition: border 0.2s;
+  transition: border calc(0.2s * var(--dur-scale));
   animation: notiffiFadeIn 0.3s ease-in-out;
 }
 
@@ -442,7 +442,7 @@ a.specials_links:empty {
   aspect-ratio: 1;
   display: grid;
   place-items: center;
-  border-radius: 20px;
+  border-radius: calc(20px * var(--radius-scale));
   font-size: var(--fs-2xs);
 }
 
@@ -474,7 +474,7 @@ a.specials_links:empty {
   border-radius: 100px;
   aspect-ratio: 1;
   padding: 2px;
-  transition: all 0.3s;
+  transition: all calc(0.3s * var(--dur-scale));
 }
 
 /* Affiche le bouton de suppression au survol de la notification */
@@ -494,14 +494,14 @@ a.specials_links:empty {
   transform: translateY(100%);
   opacity: 0;
   filter: blur(5px);
-  transition: all 0.5s ease-in-out;
+  transition: all calc(0.5s * var(--dur-scale)) ease-in-out;
 }
 
 .notification.alert.up {
   transform: translateY(0%);
   opacity: 1;
   filter: blur(0);
-  transition: all 0.5s ease-in-out;
+  transition: all calc(0.5s * var(--dur-scale)) ease-in-out;
 }
 
 .alert_close {
@@ -523,7 +523,7 @@ a.specials_links:empty {
   opacity: 0;
   width: 100%;
   height: 100%;
-  transition: 0.2s opacity ease;
+  transition: calc(0.2s * var(--dur-scale)) opacity ease;
   background: rgba(var(--shadow-rgb), 0.2);
 }
 
@@ -535,11 +535,11 @@ a.specials_links:empty {
   left: 50%;
   opacity: 0;
   width: 94%;
-  transition: 0.2s opacity ease;
+  transition: calc(0.2s * var(--dur-scale)) opacity ease;
   transform: translate(-50%, -50%);
   background: var(--surface-glass);
   backdrop-filter: var(--frame-blur);
-  border-radius: 10px;
+  border-radius: calc(10px * var(--radius-scale));
   border: var(--frame-border) !important;
   padding: 50px;
   box-shadow: var(--shadowBox);
@@ -564,7 +564,7 @@ a.specials_links:empty {
   border: 0;
   outline: none;
   background: rgba(var(--gold-rgb), 0.3);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   padding: 0;
   padding-left: 1px;
 }
@@ -577,7 +577,7 @@ a.specials_links:empty {
 /*** ANNONCES DEFILANTES ----------- ***/
 /* Barre défilante */
 .module {
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   border: var(--border);
   margin: 10px auto;
   padding: 4px 8px;
@@ -665,7 +665,7 @@ a.specials_links:empty {
   padding: 0;
   margin-bottom: 5px;
   align-items: stretch;
-  transition: 0.3s ease;
+  transition: calc(0.3s * var(--dur-scale)) ease;
   width: 100%;
   margin: 0 auto 5px auto;
   overflow: hidden;
@@ -773,7 +773,7 @@ a.specials_links:empty {
   text-decoration: none;
   color: inherit;
   /* Ou une couleur par défaut si nécessaire */
-  transition: 0.3s;
+  transition: calc(0.3s * var(--dur-scale));
   cursor: pointer;
   margin-top: 5px;
   justify-content: center;
@@ -825,7 +825,7 @@ a.specials_links:empty {
   letter-spacing: var(--track-1);
   display: block;
   line-height: normal;
-  transition: 0.2s ease;
+  transition: calc(0.2s * var(--dur-scale)) ease;
   text-align: center;
   font-family: var(--font-body);
   background: transparent;
@@ -936,7 +936,7 @@ a.specials_links:empty {
   background: var(--neutralDark);
   padding: 1px 8px;
   margin-right: 5px;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   opacity: 1;
 }
 
@@ -952,7 +952,7 @@ a.specials_links:empty {
 
 #moderation_forum_tools a {
   background: var(--neutralDark);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   padding: 2px 8px;
   font-size: var(--fs-base);
 }
@@ -980,7 +980,7 @@ a.specials_links:empty {
   padding: 25px;
   text-align: left;
   margin-bottom: 40px;
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   box-shadow: 0 10px 30px rgba(var(--shadow-rgb), 0.5);
   position: relative;
 }
@@ -1009,7 +1009,7 @@ a.specials_links:empty {
   letter-spacing: var(--track-4);
   margin: 0 15px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   display: inline-block;
   padding-bottom: 5px;
   border-bottom: 1px solid transparent;
@@ -1042,7 +1042,7 @@ a.specials_links:empty {
 .navigation_links a.nav {
   color: rgb(var(--ink-rgb));
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color calc(0.3s * var(--dur-scale));
 }
 
 .navigation_links a.nav:hover {
@@ -1060,8 +1060,8 @@ a.specials_links:empty {
   text-transform: uppercase;
   letter-spacing: var(--track-3);
   text-decoration: none;
-  transition: all 0.3s ease;
-  border-radius: 2px;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
+  border-radius: calc(2px * var(--radius-scale));
 }
 
 .links_bar .buttons:hover {
@@ -1076,7 +1076,7 @@ a.specials_links:empty {
   color: rgba(var(--ink-rgb), 0.5);
   text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: color calc(0.3s * var(--dur-scale));
   letter-spacing: var(--track-1);
 }
 
@@ -1093,12 +1093,12 @@ a.specials_links:empty {
   gap: 25px;
   background: rgba(var(--panel-rgb), 0.6);
   border: 1px solid rgba(var(--ink-rgb), 0.05);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   padding: 15px 20px;
   margin-bottom: 10px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all calc(0.3s * var(--dur-scale)) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Différenciation des statuts (Annonce vs Normal) */
@@ -1116,7 +1116,7 @@ a.specials_links:empty {
   width: 3px;
   background: linear-gradient(to bottom, var(--taupe), rgb(var(--fx-b-rgb)));
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity calc(0.3s * var(--dur-scale)) ease;
 }
 
 .topicslist_row:hover {
@@ -1214,7 +1214,7 @@ a.specials_links:empty {
   width: max-content;
   background: var(--neutral);
   border: 1px solid var(--neutralDarker);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   padding: 10px;
   position: absolute;
   top: 110%;
@@ -1278,7 +1278,7 @@ a.specials_links:empty {
   width: 150px;
   background: var(--neutralDarker);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
 }
 
 /*** ------------------------------- ***/
@@ -1291,13 +1291,13 @@ a.specials_links:empty {
   grid-template-rows: max-content auto;
   grid-template-columns: min-content 1fr;
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
   position: relative;
   margin-bottom: 20px;
 }
 
 div.post_row:nth-of-type(2) {
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
 }
 
 .post_details {
@@ -1307,7 +1307,7 @@ div.post_row:nth-of-type(2) {
   align-items: center;
   border-bottom: 1px solid rgba(var(--ink-rgb), 0.15);
   background: rgba(var(--violet-rgb), 0.3);
-  border-radius: 8px 8px 0 0;
+  border-radius: calc(8px * var(--radius-scale)) calc(8px * var(--radius-scale)) 0 0;
   width: 100%;
   order: -1;
 }
@@ -1347,7 +1347,7 @@ div.post_row:nth-of-type(2) {
   display: inline-block;
   position: relative;
   background-color: var(--neutralDarker);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   padding: 0 5px;
   margin: 0 auto;
 }
@@ -1386,7 +1386,7 @@ div.post_row:nth-of-type(2) {
   background-color: var(--neutral);
   border: 1px solid var(--neutralDark);
   padding: 5px;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   text-align: center;
   font-size: var(--fs-xs);
 }
@@ -1434,7 +1434,7 @@ blockquote {
   padding: 10px 15px;
   margin: 10px 0;
   color: rgb(var(--ink-rgb));
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 calc(8px * var(--radius-scale)) calc(8px * var(--radius-scale)) 0;
 }
 
 /* Citation contenu */
@@ -1472,7 +1472,7 @@ blockquote cite a {
 .followBtn {
   background: var(--neutral);
   border: 1px solid var(--neutralDark);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   font-weight: 600;
   margin: 0;
   font-size: var(--fs-md);
@@ -1512,7 +1512,7 @@ blockquote cite a {
   visibility: hidden;
   width: 100%;
   height: 100%;
-  transition: 0.2s opacity ease;
+  transition: calc(0.2s * var(--dur-scale)) opacity ease;
   background: var(--neutral);
 }
 
@@ -1528,13 +1528,13 @@ blockquote cite a {
   inset: 0;
   margin: auto;
   z-index: 999;
-  transition: 0.2s all ease;
+  transition: calc(0.2s * var(--dur-scale)) all ease;
   visibility: hidden;
   opacity: 0;
   width: 90%;
   max-width: 800px;
   box-shadow: var(--shadowBox);
-  border-radius: 10px;
+  border-radius: calc(10px * var(--radius-scale));
   height: max-content;
   transform: translateX(-20%);
 }
@@ -1601,12 +1601,12 @@ blockquote cite a {
   max-width: 210px !important;
   height: 320px !important;
   margin: 0 auto !important;
-  border-radius: 4px !important;
+  border-radius: calc(4px * var(--radius-scale)) !important;
   overflow: hidden !important;
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.25) !important;
   background: rgb(var(--abyss-rgb)) !important;
   box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.6) !important;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.6s ease, border-color 0.6s ease !important;
+  transition: transform calc(0.6s * var(--dur-scale)) cubic-bezier(0.22, 1, 0.36, 1), box-shadow calc(0.6s * var(--dur-scale)) ease, border-color calc(0.6s * var(--dur-scale)) ease !important;
   box-sizing: border-box !important;
 }
 
@@ -1626,7 +1626,7 @@ blockquote cite a {
   height: 1px !important;
   background: linear-gradient(90deg, transparent, var(--accentClr, #d4af37), transparent) !important;
   opacity: 0 !important;
-  transition: opacity 0.6s ease !important;
+  transition: opacity calc(0.6s * var(--dur-scale)) ease !important;
   z-index: 10 !important;
 }
 
@@ -1660,7 +1660,7 @@ blockquote cite a {
   object-fit: cover !important;
   object-position: center top !important;
   filter: brightness(0.95) contrast(1.05) !important;
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease !important;
+  transition: transform calc(0.8s * var(--dur-scale)) cubic-bezier(0.22, 1, 0.36, 1), filter calc(0.8s * var(--dur-scale)) ease !important;
   border: none !important;
 }
 
@@ -1689,7 +1689,7 @@ blockquote cite a {
   -webkit-backdrop-filter: blur(0px) !important;
   border-top: 1px solid transparent !important;
   transform: translateY(calc(100% - 46px)) !important;
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), background 0.65s ease, backdrop-filter 0.65s ease, border-color 0.65s ease !important;
+  transition: transform calc(0.65s * var(--dur-scale)) cubic-bezier(0.25, 1, 0.5, 1), background calc(0.65s * var(--dur-scale)) ease, backdrop-filter calc(0.65s * var(--dur-scale)) ease, border-color calc(0.65s * var(--dur-scale)) ease !important;
 }
 
 .userlist_profil:hover .userlist_details {
@@ -1722,7 +1722,7 @@ blockquote cite a {
   color: var(--gold-light, #dfc185) !important;
   text-decoration: none !important;
   text-shadow: 0 2px 10px rgba(var(--shadow-rgb), 0.95) !important;
-  transition: color 0.4s ease, text-shadow 0.4s ease !important;
+  transition: color calc(0.4s * var(--dur-scale)) ease, text-shadow calc(0.4s * var(--dur-scale)) ease !important;
   border: none !important;
 }
 
@@ -1750,7 +1750,7 @@ blockquote cite a {
   margin: 6px auto 0 auto !important;
   opacity: 0.4 !important;
   transform: scaleX(0.7) !important;
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.65s ease !important;
+  transition: transform calc(0.65s * var(--dur-scale)) cubic-bezier(0.25, 1, 0.5, 1), opacity calc(0.65s * var(--dur-scale)) ease !important;
 }
 
 .userlist_profil:hover .userlist_pseudo::after {
@@ -1772,7 +1772,7 @@ blockquote cite a {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
-  transition: opacity 0.55s ease 0.05s !important;
+  transition: opacity calc(0.55s * var(--dur-scale)) ease calc(0.05s * var(--dur-scale)) !important;
 }
 
 .userlist_profil:hover .userlist_infos {
@@ -1793,7 +1793,7 @@ blockquote cite a {
   padding: 2.5px 9px !important;
   background: linear-gradient(135deg, rgb(var(--bronze-rgb)), rgb(var(--bronze-deep-rgb))) !important;
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.55) !important;
-  border-radius: 12px !important;
+  border-radius: calc(12px * var(--radius-scale)) !important;
   color: rgb(var(--paper-rgb)) !important;
   font-family: var(--font-label) !important;
   font-size: var(--fs-2xs) !important;
@@ -1856,7 +1856,7 @@ blockquote cite a {
   padding-top: 2px !important;
   padding-bottom: 2px !important;
   opacity: 0.3 !important;
-  transition: opacity 0.55s ease 0.08s !important;
+  transition: opacity calc(0.55s * var(--dur-scale)) ease calc(0.08s * var(--dur-scale)) !important;
 }
 
 .userlist_profil:hover .userlist_contact {
@@ -1872,7 +1872,7 @@ blockquote cite a {
   height: 28px !important;
   background: rgba(var(--panel-deep-rgb), 0.85) !important;
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.45) !important;
-  border-radius: 20px !important;
+  border-radius: calc(20px * var(--radius-scale)) !important;
   color: var(--gold-light, #dfc185) !important;
   font-family: var(--font-label) !important;
   font-size: var(--fs-2xs) !important;
@@ -1881,7 +1881,7 @@ blockquote cite a {
   text-transform: uppercase !important;
   text-decoration: none !important;
   box-sizing: border-box !important;
-  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important;
+  transition: transform calc(0.25s * var(--dur-scale)) ease, background calc(0.25s * var(--dur-scale)) ease, border-color calc(0.25s * var(--dur-scale)) ease, color calc(0.25s * var(--dur-scale)) ease, box-shadow calc(0.25s * var(--dur-scale)) ease !important;
   box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.5) !important;
   cursor: pointer !important;
   position: relative !important;
@@ -1923,7 +1923,7 @@ blockquote cite a {
 
 /* Affichage d'un MP dans la liste */
 .mp_row {
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   display: grid;
   grid-template-columns: 55px auto;
   grid-gap: 10px;
@@ -2008,7 +2008,7 @@ blockquote cite a {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: 8px;
+  border-radius: calc(8px * var(--radius-scale));
   padding: 20px;
   margin: 0 auto 20px auto;
   width: var(--layout-width);
@@ -2024,7 +2024,7 @@ blockquote cite a {
   display: flex;
   justify-content: space-between;
   background: var(--surface-glass);
-  border-radius: 5px !important;
+  border-radius: calc(5px * var(--radius-scale)) !important;
   margin: 20px 0 10px;
 }
 
@@ -2038,7 +2038,7 @@ blockquote cite a {
 #tabs li.activetab {
   background: var(--fond-category);
   border: var(--border);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
 }
 
 /* onglet au survol */
@@ -2134,7 +2134,7 @@ form[name="form_login"] .content {
 /* Fenêtre popup "recherche" (position : voir #search_menu dans 02-layout.css) */
 .overview {
   background: var(--surface-glass);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   border: var(--border);
   padding: 10px;
 }
@@ -2166,7 +2166,7 @@ form[name="form_login"] .content {
   background-color: var(--neutral);
   padding: 10px;
   border: var(--border);
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
 }
 
 velvetify {
@@ -2218,7 +2218,7 @@ velvetify {
   justify-content: center;
   align-items: center;
   gap: 15px;
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
   /* Leger arrondi pour 'mini case' effect */
 }
 
@@ -2229,7 +2229,7 @@ velvetify {
   display: block;
   filter: grayscale(100%);
   opacity: 0.6;
-  transition: all 0.4s ease;
+  transition: all calc(0.4s * var(--dur-scale)) ease;
 }
 
 .ts-link:hover {
@@ -2275,7 +2275,7 @@ tag {
   padding: 0;
   border: none;
   background: transparent;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   letter-spacing: 0;
   cursor: default;
   margin: 0;
@@ -2339,7 +2339,7 @@ tag:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   padding-left: 0;
   background: transparent !important;
   border: none !important;
@@ -2403,7 +2403,7 @@ tag:hover {
 
 .pa-link-topsites a {
   display: inline-flex;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 .pa-link-topsites .ts-link {
@@ -2411,8 +2411,8 @@ tag:hover {
   height: 50px;
   object-fit: cover;
   border: 1px solid rgba(var(--gold-rgb), 0.3);
-  border-radius: 3px;
-  transition: all 0.3s ease;
+  border-radius: calc(3px * var(--radius-scale));
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   opacity: 0.8;
 }
 
@@ -2430,7 +2430,7 @@ tag:hover {
 #notiffi_button i {
   font-size: var(--fs-xl);
   color: var(--thistle);
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 #notiffi_button:hover i {
@@ -2443,7 +2443,7 @@ tag:hover {
   width: 18px;
   height: 18px;
   fill: var(--gold-accent);
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 #notiffi_button:hover svg {
@@ -2503,10 +2503,10 @@ tag:hover {
   font-family: var(--font-label);
   color: var(--textColor);
   opacity: 0.6;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   padding: 3px 8px;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
 }
 
 .mp-icons li a:hover {
@@ -2521,7 +2521,7 @@ tag:hover {
   height: 110px;
   object-fit: cover;
   object-position: top center;
-  border-radius: 5px;
+  border-radius: calc(5px * var(--radius-scale));
   border: 1px solid rgba(var(--gold-rgb), 0.25);
   box-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.4);
 }
@@ -2551,7 +2551,7 @@ tag:hover {
   box-shadow: none !important;
   border-radius: 0 !important;
   opacity: 0.5;
-  transition: opacity 0.3s ease;
+  transition: opacity calc(0.3s * var(--dur-scale)) ease;
 }
 
 .message_from a img:hover {
@@ -2589,10 +2589,10 @@ tag:hover {
   color: var(--textColor);
   background: transparent;
   border: 1px solid transparent;
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
   padding: 6px 14px !important;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   opacity: 0.7;
 }
 
@@ -2630,11 +2630,11 @@ form[name="jumpbox"] select {
   border: 1px solid rgba(var(--ink-rgb), 0.15);
   color: rgb(var(--ink-rgb));
   padding: 5px 10px;
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   font-size: var(--fs-sm);
   font-family: var(--font-ui);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 form[name="jumpbox"] select:hover {
@@ -2664,7 +2664,7 @@ form[name="jumpbox"] select:hover {
   background: var(--surface-glass);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border-radius: 8px !important;
+  border-radius: calc(8px * var(--radius-scale)) !important;
   border: 1px solid var(--contrastLighter) !important;
   margin: 0 0 25px;
   overflow: hidden;
@@ -2719,9 +2719,9 @@ form[name="jumpbox"] select:hover {
   letter-spacing: var(--track-2);
   color: var(--taupe);
   border: 1px solid rgba(var(--gold-rgb), 0.2);
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
   padding: 4px 10px;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   white-space: nowrap;
   text-decoration: none;
 }
@@ -2749,7 +2749,7 @@ form[name="jumpbox"] select:hover {
   letter-spacing: 0.3px;
   line-height: 1.4;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.08);
-  transition: color 0.3s ease;
+  transition: color calc(0.3s * var(--dur-scale)) ease;
 }
 
 .poll_option:hover {
@@ -2808,7 +2808,7 @@ form[name="jumpbox"] select:hover {
 
 .poll_vote img[src*="voting_bar"] {
   height: 6px !important;
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
   background: linear-gradient(
     90deg,
     rgba(var(--gold-rgb), 0.5),
@@ -2835,12 +2835,12 @@ form[name="jumpbox"] select:hover {
   background: rgba(var(--shadow-rgb), 0.4);
   cursor: pointer;
   position: relative;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
   margin: 0;
 }
 
 .poll_vote input[type="checkbox"] {
-  border-radius: 3px;
+  border-radius: calc(3px * var(--radius-scale));
 }
 
 .poll_vote input[type="radio"]:hover,
@@ -2921,10 +2921,10 @@ form[name="jumpbox"] select:hover {
   color: var(--accent-text);
   background: rgba(var(--gold-rgb), 0.1);
   border: 1px solid rgba(var(--gold-rgb), 0.35);
-  border-radius: 4px;
+  border-radius: calc(4px * var(--radius-scale));
   padding: 6px 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all calc(0.3s * var(--dur-scale)) ease;
 }
 
 .poll_send input[type="submit"].button1:hover,
@@ -2941,7 +2941,7 @@ form[name="jumpbox"] select:hover {
   letter-spacing: var(--track-1);
   color: var(--taupe);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color calc(0.3s * var(--dur-scale)) ease;
 }
 
 .poll_send a:hover {

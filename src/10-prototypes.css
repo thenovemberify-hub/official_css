@@ -23,7 +23,7 @@
   background-color: rgb(var(--teal-night-rgb));
   background: var(--wombat-bg) !important;
   border: 1px solid var(--wombat-border) !important;
-  border-radius: 4px !important;
+  border-radius: calc(4px * var(--radius-scale)) !important;
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
   box-shadow: 0 18px 45px rgba(var(--shadow-rgb), 0.75),
@@ -67,7 +67,7 @@
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
   padding: 4px 10px !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
@@ -90,9 +90,9 @@
   background: rgba(var(--danger-deep-rgb), 0.12) !important;
   border: 1px solid rgba(var(--danger-rgb), 0.35) !important;
   padding: 3px 8px !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   text-decoration: none !important;
-  transition: all 0.25s ease !important;
+  transition: all calc(0.25s * var(--dur-scale)) ease !important;
 }
 
 #wombat .vs-profile-admin-btn a:hover {
@@ -134,7 +134,7 @@
   margin-bottom: 22px !important;
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
-  border-radius: 3px !important;
+  border-radius: calc(3px * var(--radius-scale)) !important;
   padding: 12px 16px !important;
   box-sizing: border-box !important;
 }
@@ -159,7 +159,7 @@
   background: rgba(var(--gold-rgb, 212, 175, 55), 0.08) !important;
   border: 1px solid rgba(var(--gold-rgb, 212, 175, 55), 0.2) !important;
   padding: 2px 10px !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
 }
 
 #wombat .vs-profile-stat-val {
@@ -193,7 +193,7 @@
   justify-content: center !important;
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
-  border-radius: 3px !important;
+  border-radius: calc(3px * var(--radius-scale)) !important;
   padding: 6px !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
@@ -206,10 +206,10 @@
   min-height: 270px !important;
   max-height: 320px !important;
   object-fit: cover !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   display: block !important;
   filter: brightness(0.95) contrast(1.05) !important;
-  transition: transform 0.4s ease, filter 0.4s ease !important;
+  transition: transform calc(0.4s * var(--dur-scale)) ease, filter calc(0.4s * var(--dur-scale)) ease !important;
 }
 
 #wombat .profile_avatar:hover img {
@@ -240,11 +240,11 @@
 }
 #wombat .profile_content::-webkit-scrollbar-track {
   background: rgba(var(--shadow-rgb), 0.2);
-  border-radius: 2px;
+  border-radius: calc(2px * var(--radius-scale));
 }
 #wombat .profile_content::-webkit-scrollbar-thumb {
   background: var(--wombat-accent);
-  border-radius: 2px;
+  border-radius: calc(2px * var(--radius-scale));
 }
 
 /* Blocs de Champs Profil (Silhouette, Fragment d'âme, Mécène, Poison...) */
@@ -252,12 +252,12 @@
   background: var(--wombat-card-bg) !important;
   border: 1px solid var(--wombat-border) !important;
   border-left: 2px solid var(--wombat-accent) !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   padding: 10px 14px !important;
   display: flex !important;
   flex-direction: column !important;
   gap: 4px !important;
-  transition: border-color 0.25s ease, background 0.25s ease !important;
+  transition: border-color calc(0.25s * var(--dur-scale)) ease, background calc(0.25s * var(--dur-scale)) ease !important;
 }
 
 #wombat .profile_field:hover {
@@ -300,7 +300,7 @@
 
 #wombat .profile_field .field_uneditable img {
   max-width: 100% !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   border: 1px solid var(--wombat-border) !important;
   margin-top: 4px !important;
   display: block !important;
@@ -342,10 +342,10 @@
   border: 1px solid var(--wombat-border) !important;
   padding: 10px 8px !important;
   height: 38px !important;
-  border-radius: 2px !important;
+  border-radius: calc(2px * var(--radius-scale)) !important;
   text-decoration: none !important;
   text-align: center !important;
-  transition: all 0.25s ease !important;
+  transition: all calc(0.25s * var(--dur-scale)) ease !important;
   white-space: nowrap !important;
   box-sizing: border-box !important;
   width: 100% !important;

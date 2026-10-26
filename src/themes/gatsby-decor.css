@@ -1,0 +1,31 @@
+/* ============================================================================
+ * GATSBY — règles propres au thème (le reste n'est que variables : themes/gatsby.css)
+ * ============================================================================ */
+
+/* ─── Le bloc d'accueil (« PA ») garde sa structure et son design : seules ses couleurs changent ───
+ * (ta demande du 26/10). On lui rend donc, à lui seul, les polices, l'espacement des lettres,
+ * les coins et le rythme de la nuit ; les couleurs viennent du thème. */
+[data-theme="gatsby"] .vs-hp-wrapper {
+    --font-body: "Inter", sans-serif;
+    --font-display: "Cormorant Garamond", "Cormorant", "Playfair Display", Georgia, serif;
+    --font-title: "Playfair Display", Georgia, serif;
+    --font-label: "Cinzel", serif;
+    --hp-font-body: "Inter", sans-serif;
+    --hp-font-serif: "Playfair Display", serif;
+    --hp-font-cinzel: "Cinzel", serif;
+    --hp-font-condensed: "Roboto Condensed", sans-serif;
+    --track-3: 2px;
+    --track-4: 3px;
+    --radius-scale: 1;
+    --dur-scale: 1;
+}
+
+/* ─── Sélection de texte et barre de défilement en laiton ─── */
+[data-theme="gatsby"] ::selection {
+    background: rgba(212, 175, 85, 0.45);
+    color: #fffaf0;
+}
+
+[data-theme="gatsby"] body {
+    scrollbar-color: #9a7a36 #061009;
+}

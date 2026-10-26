@@ -9,6 +9,7 @@
 @import "./themes/_contrat.css";
 @import "./themes/bleu_nuit.css";
 @import "./themes/day_in_LA.css";
+@import "./themes/gatsby.css";
 @import "./themes/theme-switcher.css";
 
 /* 3. Structure & Composants */
@@ -18,7 +19,19 @@
 @import "./04-topics.css";
 @import "./05-user-ui.css";
 @import "./06-posting.css";
-@import "./07-rp-templates.css";
+/* 07 a longtemps tout contenu : en sont sorties (lot 5.7, dans leur ordre d'origine) les zones d'interface et les pages du forum */
+@import "./zones/qeel.css";
+@import "./pages/cartes-admin.css";
+@import "./pages/reglement.css";
+@import "./pages/contexte.css";
+@import "./zones/profil-message.css";
+@import "./pages/destins.css";
+@import "./pages/faq.css";
+@import "./pages/groupes.css";
+@import "./pages/lettre.css";
+@import "./pages/raisons-metiers.css";
+@import "./zones/accueil.css";
+@import "./07-rp-templates.css";      /* codes RP des membres : on n'y touche pas */
 @import "./08-plugins.css";
 @import "./09-signatures.css";
 @import "./10-prototypes.css";
@@ -35,3 +48,8 @@
 
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";
+@import "./layouts/qeel-guestlist.css";      /* essai (phase 6) : à retirer si refusé */
+@import "./layouts/logo-enseigne.css";
+
+/* 6. Décor propre à chaque thème (en dernier : il prime à spécificité égale) */
+@import "./themes/gatsby-decor.css";
