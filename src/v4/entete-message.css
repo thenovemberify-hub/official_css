@@ -10,8 +10,9 @@
  * ============================================================================ */
 
 .post_details:has(> .vs-post-fragment) {
-  gap: 20px;
-  padding-left: 10px;
+  gap: 24px;
+  /* Même bord gauche que l'avatar : la colonne profil a 12px de marge (.vs-profile-tabs) */
+  padding-left: 12px;
 }
 
 .vs-post-fragment {
@@ -29,10 +30,29 @@
   object-fit: cover;
 }
 
-/* La date, seule désormais, sert de lien vers le message */
+/* La date, seule désormais, sert de lien vers le message : petites capitales espacées, précédées d'un losange */
 .post_date > a {
-  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-image: none;
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
   text-decoration: none;
+  color: var(--text-2);
+  transition: color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.post_date > a::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  transform: rotate(45deg);
+  border: 1px solid var(--accent-text);
 }
 
 .post_date > a:hover {

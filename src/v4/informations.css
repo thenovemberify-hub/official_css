@@ -1,0 +1,80 @@
+/* ============================================================================
+ * V4 — PAGE « INFORMATIONS » (26/10)
+ * ----------------------------------------------------------------------------
+ * La page de message de Forumactif (« Votre profil a été mis à jour », « Le sujet n'existe pas »,
+ * « Votre message a été enregistré »…) : .panel.msgdie-panel > .inner > h1.page-title + p (texte et liens
+ * séparés par des <br>). Avant : titre à gauche, texte collé au bord, liens perdus dans le texte.
+ * Maintenant : un panneau centré, titre et texte au milieu, chaque lien en bouton encadré.
+ * Tous les thèmes (couleurs, polices, coins : contrat de thème).
+ * ============================================================================ */
+
+.msgdie-panel {
+  max-width: 680px;
+  margin: 40px auto;
+  padding: 0;
+  text-align: center;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: var(--frame-border);
+  border-radius: var(--frame-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+.msgdie-panel .inner {
+  padding: 0 0 34px;
+}
+
+/* Le titre : centré, sans le cadre du bandeau de titre (le panneau en tient lieu) */
+.msgdie-panel .page-title {
+  justify-content: center;
+  min-height: 0;
+  margin: 0;
+  padding: 26px 32px 20px;
+  text-align: center;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--panel-line);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.msgdie-panel p {
+  margin: 0;
+  padding: 26px 40px 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: 1.8;
+  text-align: center;
+  color: var(--text);
+}
+
+/* Les liens (« Cliquez ici pour retourner… », « Voir mon profil ») : des boutons encadrés, l'un sous l'autre */
+.msgdie-panel p a {
+  display: inline-block;
+  margin: 4px 0;
+  padding: 8px 20px;
+  border: 1px solid var(--panel-line);
+  border-radius: var(--panel-radius);
+  background-image: none;
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-text);
+  transition: border-color calc(0.25s * var(--dur-scale)) ease, color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.msgdie-panel p a:hover {
+  border-color: var(--accent-text);
+  color: var(--text-bright);
+}
+
+.msgdie-panel .corners-top,
+.msgdie-panel .corners-bottom {
+  display: none;
+}

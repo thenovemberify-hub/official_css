@@ -72,3 +72,38 @@
 [data-theme="gatsby"] .forum_desc .sublink a + a::before {
     content: none;
 }
+
+/* ─── Boutons des messages (@, Citer, Éditer, Supprimer, IP, J'aime) : des cartouches encadrés, comme les liens
+ * des forums ; au survol, le cadre s'éclaire, sans trait ni mouvement (26/10). Les !important répondent à ceux
+ * de la règle de base (01-base.css). */
+[data-theme="gatsby"] ul.profile-icons {
+    gap: 8px;
+}
+
+[data-theme="gatsby"] ul.profile-icons li a,
+[data-theme="gatsby"] button.rep-button,
+[data-theme="gatsby"] button.rep-button:active,
+[data-theme="gatsby"] button.rep-button:focus {
+    padding: 5px 11px !important;
+    border: 1px solid rgba(var(--gold-rgb), 0.35) !important;
+    font-family: var(--font-label) !important;
+    letter-spacing: var(--track-3) !important;
+    color: var(--accent-text) !important;
+    transition: border-color calc(0.25s * var(--dur-scale)) ease, color calc(0.25s * var(--dur-scale)) ease;
+}
+
+[data-theme="gatsby"] ul.profile-icons li a:hover,
+[data-theme="gatsby"] button.rep-button:hover {
+    border-color: rgba(var(--gold-rgb), 0.8) !important;
+    color: rgb(var(--ink-glint-rgb)) !important;
+}
+
+[data-theme="gatsby"] button.rep-button:hover .like_text,
+[data-theme="gatsby"] button.rep-button:hover .rep-nb {
+    border-bottom-color: transparent !important;
+    color: inherit !important;
+}
+
+[data-theme="gatsby"] .like_button {
+    margin-left: 8px;
+}

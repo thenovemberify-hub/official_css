@@ -47,6 +47,7 @@
 @import "./v4/membres.css";
 @import "./v4/profil-edition.css";
 @import "./v4/entete-message.css";        /* A1 : gif « Fragment d'âme » en tête, date seule */
+@import "./v4/informations.css";          /* page « Informations » centrée, liens en boutons (26/10) */
 
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";
