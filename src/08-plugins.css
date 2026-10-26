@@ -82,7 +82,7 @@
 }
 
 .color-scheme-toggle:hover {
-  color: var(--accentClr);
+  color: var(--accent-text);
 }
 
 /* Emoji mis par défaut de FA
@@ -440,7 +440,7 @@ a.specials_links:empty {
     border: 2px solid var(--contrastLighter) !important;
 
     &:hover {
-      color: var(--accentClr);
+      color: var(--accent-text);
       border-color: var(--neutralDarker);
     }
   }
@@ -624,7 +624,7 @@ a.specials_links:empty {
 }
 
 .links_bar a:hover {
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
 }
 
 .category {
@@ -885,7 +885,7 @@ a.specials_links:empty {
   color: rgba(255, 255, 255, 0.7);
   /* Blanc 0.7 opacité */
   text-transform: uppercase;
-  font-size: 9px;
+  font-size: 10px;
   padding: 6px 4px;
   text-align: center;
   letter-spacing: 1.2px;
@@ -904,7 +904,7 @@ a.specials_links:empty {
   color: rgba(255, 255, 255, 0.7);
   /* Blanc 0.7 opacité */
   text-transform: uppercase;
-  font-size: 9px;
+  font-size: 10px;
   padding: 6px 4px;
   text-align: center;
   letter-spacing: 1.2px;
@@ -1513,7 +1513,7 @@ blockquote cite a {
 .followBtn::before {
   top: 1px;
   position: relative;
-  color: var(--accentClr);
+  color: var(--accent-text);
   margin-right: 5px;
 }
 
@@ -1828,7 +1828,7 @@ blockquote cite a {
   border-radius: 12px !important;
   color: #ffffff !important;
   font-family: var(--font-cinzel, "Cinzel", serif) !important;
-  font-size: 8.5px !important;
+  font-size: 10px !important;
   font-weight: 700 !important;
   letter-spacing: 1.2px !important;
   text-transform: uppercase !important;
@@ -1859,14 +1859,14 @@ blockquote cite a {
   font-family: var(--font-cinzel, "Cinzel", serif) !important;
   font-size: 18px !important;
   font-weight: 700 !important;
-  color: var(--accentClr, #d4af37) !important;
+  color: var(--accent-text, #d4af37) !important;
   line-height: 1 !important;
   text-shadow: 0 0 12px rgba(var(--gold-rgb, 212, 175, 55), 0.5), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .vs-ml-posts-label {
   font-family: var(--font, "Inter", sans-serif) !important;
-  font-size: 9.5px !important;
+  font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
@@ -2344,7 +2344,7 @@ title_disclaimer {
   font-family: "Cinzel", serif;
   font-size: 1.3em;
   font-weight: 700;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-align: center;
   margin-bottom: 10px;
   padding-bottom: 8px;
@@ -2370,7 +2370,7 @@ tag {
   font-size: 0.95em;
   font-weight: 400;
   text-transform: none;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   /* Or pour ressembler aux liens du popup */
   padding: 0;
   border: none;
@@ -2453,7 +2453,7 @@ tag:hover {
   counter-increment: link-counter;
   content: "0" counter(link-counter) ".";
   font-family: "Cinzel", serif;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   margin-right: 20px;
   font-size: 0.9em;
   font-weight: 400;
@@ -2466,7 +2466,7 @@ tag:hover {
 
 .pa-link:hover {
   text-shadow: 0 0 15px rgba(234, 186, 107, 0.6);
-  color: var(--gold-accent) !important;
+  color: var(--gold-accent-text) !important;
   /* Or au hover */
   transform: translateX(10px);
 }
@@ -2490,7 +2490,7 @@ tag:hover {
 .pa-link-topsites::before {
   content: "0" counter(link-counter) ".";
   font-family: "Cinzel", serif;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   margin-right: 20px;
   font-size: 0.9em;
   font-weight: 400;
@@ -2610,7 +2610,7 @@ tag:hover {
 }
 
 .mp-icons li a:hover {
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   opacity: 1;
   border-color: rgba(var(--gold-rgb), 0.3);
 }
@@ -2633,7 +2633,7 @@ tag:hover {
 .message_from {
   font-family: "Cinzel", serif;
   font-size: 0.75rem;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-align: center;
   letter-spacing: 1px;
   font-weight: 600;
@@ -2813,7 +2813,7 @@ form[name="jumpbox"] select:hover {
 
 .head_poll .right a {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -2827,7 +2827,7 @@ form[name="jumpbox"] select:hover {
 }
 
 .head_poll .right a:hover {
-  color: var(--accentClr);
+  color: var(--accent-text);
   border-color: var(--accentClr);
   background: rgba(var(--gold-rgb), 0.1);
 }
@@ -2853,7 +2853,7 @@ form[name="jumpbox"] select:hover {
 }
 
 .poll_option:hover {
-  color: var(--accentClr);
+  color: var(--accent-text);
 }
 
 .poll_vote {
@@ -2884,7 +2884,7 @@ form[name="jumpbox"] select:hover {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
   font-size: 11px;
   font-weight: 700;
-  color: var(--accentClr);
+  color: var(--accent-text);
 }
 
 /* Liste des votants en dessous de la barre */
@@ -2974,7 +2974,7 @@ form[name="jumpbox"] select:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--accentClr);
+  color: var(--accent-text);
   font-size: 10px;
   font-weight: 700;
   line-height: 1;
@@ -3001,7 +3001,7 @@ form[name="jumpbox"] select:hover {
 }
 
 .poll_send b {
-  color: var(--accentClr);
+  color: var(--accent-text);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -3018,7 +3018,7 @@ form[name="jumpbox"] select:hover {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--accentClr);
+  color: var(--accent-text);
   background: rgba(var(--gold-rgb), 0.1);
   border: 1px solid rgba(var(--gold-rgb), 0.35);
   border-radius: 4px;
@@ -3036,7 +3036,7 @@ form[name="jumpbox"] select:hover {
 
 .poll_send a {
   font-family: var(--font-4, "Roboto Condensed", sans-serif);
-  font-size: 9px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--taupe);
@@ -3045,7 +3045,7 @@ form[name="jumpbox"] select:hover {
 }
 
 .poll_send a:hover {
-  color: var(--accentClr);
+  color: var(--accent-text);
 }
 
 @media (max-width: 600px) {

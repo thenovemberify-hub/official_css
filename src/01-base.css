@@ -385,7 +385,7 @@ button.rep-button .like_text {
 button.rep-button .rep-nb {
   font-family: inherit !important;
   text-transform: inherit !important;
-  font-size: 9px !important;
+  font-size: 11px !important;
   font-weight: inherit !important;
   letter-spacing: 1px !important;
   color: inherit !important;
@@ -434,7 +434,7 @@ a.replypm_button {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   border: 1px solid rgba(var(--gold-rgb), 0.3);
   padding: 8px 18px;
   border-radius: 4px;

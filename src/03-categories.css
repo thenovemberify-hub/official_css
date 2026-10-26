@@ -9,7 +9,7 @@
 
 .forum_lastpost a.lastpost_link {
   display: block;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-transform: lowercase;
   font-size: 13px;
   margin-bottom: 2px;
@@ -18,7 +18,7 @@
 }
 
 .forum_lastpost .gensmall a {
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-transform: lowercase;
   font-weight: 700;
 }

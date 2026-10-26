@@ -2,11 +2,7 @@
  * VELVET SIN — INDEX CSS
  * ============================================================================ */
 
-/* 1. Imports de polices externes */
-@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Cinzel:wght@700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Special+Elite&display=swap");
+/* 1. Polices : chargées en une seule fois dans le template overall_header (V4), plus aucun @import ici */
 
 /* 2. Variables & Thèmes */
 @import "./00-variables.css";
@@ -27,4 +23,5 @@
 @import "./10-prototypes.css";
 
 /* 4. V4 — ajouts de la refonte (chargés en dernier : ils priment à spécificité égale) */
+@import "./v4/icones.css";
 @import "./v4/profil-edition.css";

@@ -118,7 +118,7 @@
 .sidebar_bottom > a:hover {
   background: color-mix(in srgb, var(--neutralDark) 70%, var(--accentClr));
   border-color: var(--accentClr);
-  color: var(--accentClr);
+  color: var(--accent-text);
   transform: translateY(-2px);
 }
 
@@ -349,7 +349,7 @@ body .navbar {
 }
 
 .navbar a.mainmenu:hover::before {
-  color: var(--accentClr, #d4af37) !important;
+  color: var(--accent-text, #d4af37) !important;
   opacity: 1 !important;
   transform: scale(1.15) !important;
 }
@@ -584,7 +584,7 @@ body .navbar {
 /* La Lettre (A, B, C...) */
 .vs-letter-header {
   font-size: 40px;
-  color: var(--accentClr);
+  color: var(--accent-text);
   border-bottom: 1px dotted #554411;
   margin-top: 25px;
   margin-bottom: 10px;
@@ -659,7 +659,7 @@ body .navbar {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 3px;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-align: center;
   margin-bottom: 20px;
   padding-bottom: 12px;
@@ -739,7 +739,7 @@ body .navbar {
   font-family: "Cinzel", serif;
   font-size: 0.7rem;
   letter-spacing: 1.5px;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   font-weight: 600;
 }
 

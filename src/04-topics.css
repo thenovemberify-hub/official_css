@@ -129,7 +129,7 @@
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   padding: 14px 20px 6px;
   margin: 0;
 }
@@ -212,7 +212,7 @@
 /* Flèches indicatrices */
 .vs-topic-nav__arrow {
   font-size: 0.65rem;
-  color: var(--accentClr, #d4af37);
+  color: var(--accent-text, #d4af37);
   transition: transform 0.3s ease, color 0.3s ease;
   line-height: 1;
 }

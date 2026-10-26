@@ -31,12 +31,13 @@
     /* Typographie & Contrastes */
     --textColor: #c2d6e3;
     --textColorAccent: #A0D3F2;
-    --text-soft: #9bb5c7;
-    --text-muted: #688091;
+    --text-soft: #b3c9d8;   /* V4 : #9bb5c7 → ≥ 4,5:1 sur les panneaux */
+    --text-muted: #9db3c3;  /* V4 : #688091 (illisible) → ≥ 3:1, mentions secondaires */
     --text-cream: #f4f7f4;
-    --surface-glass: rgba(17, 35, 48, 0.55);
-    --surface-glass-dim: rgba(17, 35, 48, 0.4);
-    --surface-glass-deep: rgba(17, 35, 48, 0.75);
+    /* V4 : panneaux plus opaques (0,55 → 0,78) : la photo claire ne passe plus derrière le texte */
+    --surface-glass: rgba(17, 35, 48, 0.78);
+    --surface-glass-dim: rgba(17, 35, 48, 0.7);
+    --surface-glass-deep: rgba(17, 35, 48, 0.88);
     --contrast: #A0D3F2;
     --contrastLight: #f0f8fc;
     --contrastLighter: #1e3848;
@@ -58,6 +59,10 @@
     --gold-cream: #ffe1b3;
     --gold-mid: #D96704;
 
+    /* V4 : ambre « texte », plus clair que l'ambre « décor » (bordures, icônes, filets) */
+    --accent-text: #ffb454;
+    --gold-accent-text: #ffb454;
+
     /* QEEL */
     --qeel-dark: #060d12;
     --qeel-surface: #112330;
@@ -69,7 +74,7 @@
     --qeel-purple-light: #b83605;
     --qeel-purple-dim: rgba(140, 39, 3, 0.5);
     --qeel-text-bright: #f0f8fc;
-    --qeel-glass: rgba(17, 35, 48, 0.55);
+    --qeel-glass: rgba(17, 35, 48, 0.78);
     --qeel-glass-deep: rgba(6, 13, 18, 0.45);
 
     /* Page d'Accueil (HP) */

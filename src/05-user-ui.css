@@ -496,7 +496,7 @@
 }
 
 #privmsgs-menu li a:hover {
-  color: var(--gold-accent);
+  color: var(--gold-accent-text);
   text-shadow: 0 0 8px rgba(var(--gold-rgb), 0.3);
 }
 
