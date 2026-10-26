@@ -7,6 +7,13 @@
  * le rendu identique (vérifié au relevé des styles).
  * ============================================================================ */
 
+/* Image de fond du bloc, si le thème en donne une (--qeel-backdrop, voile compris ; Gatsby, 26/10) */
+.vs-qeel-wrapper {
+  background-image: var(--qeel-backdrop);
+  background-size: cover;
+  background-position: center;
+}
+
 /* ========================================
    COLONNES
    ======================================== */

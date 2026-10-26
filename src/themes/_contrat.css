@@ -145,6 +145,10 @@
     --hp-purple-dim: rgba(var(--violet-rgb), 0.5);
     --hp-text: rgb(var(--ink-rgb));
     --hp-text-bright: rgb(var(--ink-bright-rgb));
+    /* Image de fond du bloc d'accueil et de « Qui est en ligne » (Gatsby, 26/10) : « none », ou des couches
+     * de background-image (un voile en dégradé par-dessus la photo, sinon le texte devient illisible). */
+    --hp-backdrop: none;
+    --qeel-backdrop: none;
 
     /* ─── Polices par rôle ─── */
     --font-body: "Inter", sans-serif;                       /* texte courant */
@@ -221,6 +225,11 @@
     --cat-quote-5: "The curtain rises. The mask falls.";
     --cat-quote-6: "Desire is a dangerous game.";
     --cat-quote-source: "— LE VELVET SIN";
+    /* Bandeaux (layouts/categories-bandeaux.css, et la page d'un forum) : images posées par le thème, catégorie
+     * par catégorie (#c1…) et forum par forum (themes/gatsby-images.css). Sans image : un fond uni. */
+    --cat-img: none;
+    --forum-img: none;
+    --forum-gif: visible;         /* « hidden » cache le gif de la description quand le thème donne une image */
     /* « Qui est en ligne » en registre (layouts/qeel-guestlist.css) : libellés, traduisibles par un thème */
     --qeel-t-newest: "NOUVELLE SIGNATURE";
     --qeel-t-online: "DANS LES SALONS";

@@ -1,0 +1,235 @@
+/* ============================================================================
+ * DISPOSITION « BRIQUES À BANDEAUX » (V4, Gatsby, 26/10)
+ * ----------------------------------------------------------------------------
+ * Variante des briques (layouts/categories-briques.css, dont toutes les règles s'appliquent : sélecteurs
+ * ^="briques") pour une structure moins protocolaire, d'après la maquette du 26/10 :
+ *   - la tranche verticale devient un BANDEAU au-dessus des briques : image de la catégorie, losange au
+ *     chiffre romain, nom, et la citation de la catégorie (qui quitte la case vide) ;
+ *   - chaque brique s'ouvre sur l'IMAGE DU FORUM, nom posé dessus : l'image donnée par le thème si elle
+ *     existe (--forum-img, le gif de la description est alors caché), sinon le gif lui-même ;
+ *   - la case vide de la dernière rangée reçoit le motif d'éventails ;
+ *   - la page d'un forum (data-forum, posé par le module 22301) reprend son image en bandeau de titre.
+ * Images : variables --cat-img (par catégorie) et --forum-img (par forum), données par le thème
+ * (themes/gatsby-images.css). Sans image : un fond uni, rien ne casse.
+ * ============================================================================ */
+
+/* ─── Catégorie : bandeau sur toute la largeur, briques dessous ─── */
+[data-layout-categories="briques-bandeaux"] .category {
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: 30px;
+}
+
+[data-layout-categories="briques-bandeaux"] .cate_title {
+  grid-column: 1;
+  grid-row: 1;
+  contain: none;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  min-height: 150px;
+  padding: 18px 34px 18px 98px;
+  background:
+    linear-gradient(90deg, rgba(var(--panel-deep-rgb), 0.94) 0%, rgba(var(--panel-deep-rgb), 0.7) 45%,
+      rgba(var(--panel-deep-rgb), 0.35) 72%, rgba(var(--panel-deep-rgb), 0.82) 100%),
+    var(--cat-img) center / cover no-repeat,
+    var(--brick-spine-bg);
+  border: var(--frame-border);
+  overflow: hidden;
+}
+
+/* Losange et chiffre romain : à gauche, au milieu de la hauteur */
+[data-layout-categories="briques-bandeaux"] .cate_title::before,
+[data-layout-categories="briques-bandeaux"] .cate_title::after {
+  top: calc(50% - 14px);
+}
+
+[data-layout-categories="briques-bandeaux"] .cate_title::before {
+  left: 44px;
+  margin-left: 0;
+}
+
+[data-layout-categories="briques-bandeaux"] .cate_title::after {
+  left: 44px;
+  right: auto;
+  width: 28px;
+}
+
+/* Le nom, à l'horizontale */
+[data-layout-categories="briques-bandeaux"] .cate_title h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  writing-mode: horizontal-tb;
+  transform: none;
+  max-height: none;
+  text-align: start;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 34px;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  text-transform: none;
+  color: var(--text-bright);
+  filter: drop-shadow(0 2px 6px rgba(var(--shadow-rgb), 0.8));
+}
+
+/* La citation de la catégorie, à droite (six à tour de rôle : categories-briques.css) */
+[data-layout-categories="briques-bandeaux"] .cate_title h2::after {
+  content: var(--cat-quote-ici, var(--cat-quote)) "\A" var(--cat-quote-source);
+  position: absolute;
+  top: 50%;
+  right: 34px;
+  width: 300px;
+  transform: translateY(-50%);
+  white-space: pre-line;
+  text-align: end;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  letter-spacing: 0;
+  line-height: 1.45;
+  color: var(--text-bright);
+  text-shadow: 0 1px 6px rgba(var(--shadow-rgb), 0.9);
+}
+
+[data-layout-categories="briques-bandeaux"] .cate_title h2 {
+  padding-right: 320px;
+}
+
+/* ─── Briques : sous le bandeau, sur toute la largeur ─── */
+[data-layout-categories="briques-bandeaux"] .forums {
+  grid-column: 1;
+}
+
+/* Case vide de la dernière rangée : le motif d'éventails (la citation est montée dans le bandeau) */
+[data-layout-categories="briques-bandeaux"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after,
+[data-layout-categories="briques-bandeaux"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 2))::after {
+  content: "";
+  padding: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(var(--panel-deep-rgb), 0.1), rgba(var(--panel-deep-rgb), 0.85) 75%),
+    url("img/gatsby/eventails-losanges-fort.svg") center / 80px 80px repeat,
+    var(--brick-bg);
+}
+
+/* ─── Une brique : l'image du forum en tête, le nom posé dessus ─── */
+[data-layout-categories="briques-bandeaux"] .forum {
+  grid-template-areas:
+    "tete tete"
+    "texte texte"
+    "liens liens"
+    "dernier compteurs";
+  grid-template-rows: 130px auto 1fr auto;
+  overflow: hidden;
+}
+
+/* La description se défait : image, texte et liens deviennent des cases de la brique */
+[data-layout-categories="briques-bandeaux"] .forum .forum_desc {
+  display: contents;
+}
+
+[data-layout-categories="briques-bandeaux"] .forum_desc > br,
+[data-layout-categories="briques-bandeaux"] .forum_desc .sublink br {
+  display: none;
+}
+
+[data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon-wrapper {
+  grid-area: tete;
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--forum-img) center / cover no-repeat, rgb(var(--panel-deep-rgb));
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.4);
+}
+
+/* Voile en bas de l'image : le nom reste lisible sur n'importe quelle image */
+[data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 25%, rgba(var(--panel-deep-rgb), 0.92));
+}
+
+[data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  visibility: var(--forum-gif);
+}
+
+[data-layout-categories="briques-bandeaux"] a.forumtitle {
+  grid-area: tete;
+  z-index: 1;
+  align-self: end;
+  padding: 0 18px 12px;
+  border-bottom: none;
+  text-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.9);
+}
+
+[data-layout-categories="briques-bandeaux"] .forum_desc .txt {
+  grid-area: texte;
+  height: var(--brick-desc-height);
+  padding: 14px 18px 0;
+}
+
+[data-layout-categories="briques-bandeaux"] .forum_desc .sublink {
+  grid-area: liens;
+  align-self: start;
+  padding: 10px 18px 14px;
+}
+
+/* ─── Page d'un forum : le titre devient un bandeau à l'image du forum ─── */
+[data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 220px;
+  padding: 28px 360px 28px 40px;
+  text-align: start;
+  font-family: var(--font-display);
+  font-size: 44px;
+  background:
+    linear-gradient(90deg, rgba(var(--panel-deep-rgb), 0.95) 0%, rgba(var(--panel-deep-rgb), 0.7) 50%,
+      rgba(var(--panel-deep-rgb), 0.25) 100%),
+    var(--forum-img) center / cover no-repeat,
+    var(--panel-bg);
+  border: var(--frame-border);
+  text-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.9);
+}
+
+[data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title::after {
+  content: var(--cat-quote-3) "\A" var(--cat-quote-source);
+  position: absolute;
+  right: 30px;
+  bottom: 24px;
+  width: 300px;
+  white-space: pre-line;
+  text-align: end;
+  font-style: italic;
+  font-size: var(--fs-md);
+  letter-spacing: 0;
+  line-height: 1.45;
+  text-transform: none;
+  color: var(--text-bright);
+}
+
+/* ─── Écran étroit : bandeau sans citation, nom réduit ─── */
+@media (max-width: 760px) {
+  [data-layout-categories="briques-bandeaux"] .cate_title h2 {
+    padding-right: 0;
+    font-size: var(--fs-3xl);
+  }
+
+  [data-layout-categories="briques-bandeaux"] .cate_title h2::after,
+  [data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title::after {
+    display: none;
+  }
+
+  [data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title {
+    padding-right: 40px;
+    font-size: var(--fs-3xl);
+  }
+}

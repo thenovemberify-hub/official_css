@@ -1,0 +1,86 @@
+/* ============================================================================
+ * DISPOSITION « CADRES » DE LA COLONNE PROFIL (V4, Gatsby, 26/10)
+ * ----------------------------------------------------------------------------
+ * Un cadre Art déco autour de l'avatar des messages, différent selon l'arcane du membre, avec une pierre
+ * à la couleur de l'arcane. Cadres : img/gatsby/cadres/ (redessinés d'après assets/references/gatsby-10).
+ * L'arcane est lue dans la couleur du pseudo (style="color:#…" posé par Forumactif) : rien à changer
+ * dans les templates, et un groupe renuméroté n'y change rien. Sans arcane reconnue : cadre « arcs », sans pierre.
+ *   The Emperor #b71c1c → gradins ; The Star #d63384 → éventails ; The Devil #e67e22 → chevrons ;
+ *   The Fool #00b0f0 → arcs.
+ * Les avatars doivent être sans cadre (assets/gatsby/avatars/*-sans-cadre-*) : le cadre vient d'ici.
+ * Ne s'applique que si le thème le demande (registre 22301 : profil: 'cadres' → data-layout-profil).
+ * ============================================================================ */
+
+[data-layout-profil="cadres"] .vs-profile-avatar {
+  --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
+  --cadre-pierre-y: 0px;
+  --cadre-pierre-display: none;  /* la pierre n'apparaît qu'avec une arcane reconnue */
+  border: none;
+}
+
+/* Le cadre, posé sur l'image ; une ombre sous les filets les détache de n'importe quelle photo */
+[data-layout-profil="cadres"] .vs-profile-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--cadre-avatar) center / 100% 100% no-repeat;
+  box-shadow:
+    inset 0 0 0 5px rgb(var(--panel-deep-rgb)),
+    inset 0 0 26px 14px rgba(var(--panel-deep-rgb), 0.5);
+  filter: drop-shadow(0 0 1px rgba(var(--shadow-rgb), 0.9));
+}
+
+/* La pierre de l'arcane, au milieu du haut du cadre */
+[data-layout-profil="cadres"] .vs-profile-avatar::before {
+  content: "";
+  display: var(--cadre-pierre-display);
+  position: absolute;
+  top: var(--cadre-pierre-y);
+  left: calc(50% - 7px);
+  z-index: 3;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background: var(--cadre-pierre);
+  border: 1px solid var(--accent-text);
+  box-shadow: 0 0 8px var(--cadre-pierre);
+  pointer-events: none;
+}
+
+/* ─── Un cadre par arcane ─── */
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="b71c1c" i]) .vs-profile-avatar {
+  --cadre-avatar: url("img/gatsby/cadres/cadre-gradins.svg");
+  --cadre-pierre: #b71c1c;
+  --cadre-pierre-display: block;
+  --cadre-pierre-y: 28px;
+}
+
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="d63384" i]) .vs-profile-avatar {
+  --cadre-avatar: url("img/gatsby/cadres/cadre-eventails.svg");
+  --cadre-pierre: #d63384;
+  --cadre-pierre-display: block;
+  --cadre-pierre-y: 4px;
+}
+
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="e67e22" i]) .vs-profile-avatar {
+  --cadre-avatar: url("img/gatsby/cadres/cadre-chevrons.svg");
+  --cadre-pierre: #e67e22;
+  --cadre-pierre-display: block;
+  --cadre-pierre-y: 3px;
+}
+
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="00b0f0" i]) .vs-profile-avatar {
+  --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
+  --cadre-pierre: #00b0f0;
+  --cadre-pierre-display: block;
+  --cadre-pierre-y: 0px;
+}
+
+/* Le gif « Fragment d'âme » en tête du message (v4/entete-message.css) : un filet d'or, comme une vitrine */
+[data-layout-profil="cadres"] .vs-post-fragment {
+  padding: 3px;
+  border: 1px solid rgba(var(--gold-rgb), 0.6);
+  border-radius: 0;
+}

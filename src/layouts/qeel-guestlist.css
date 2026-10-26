@@ -126,26 +126,9 @@
   border-top: 1px solid var(--qeel-border);
 }
 
-/* « Dans les salons » : point vert qui pulse */
+/* « Dans les salons » (le point vert qui pulsait a été retiré le 26/10 : mal aligné) */
 [data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-header::before {
   content: var(--qeel-t-online);
-}
-
-[data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-header::after {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-left: 10px;
-  border-radius: 50%;
-  vertical-align: middle;
-  background: rgb(var(--online-rgb));
-  animation: qeel-guest-pulse calc(2.6s * var(--dur-scale)) ease-in-out infinite;
-}
-
-@keyframes qeel-guest-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--online-rgb), 0.7); }
-  50% { box-shadow: 0 0 0 5px rgba(var(--online-rgb), 0); }
 }
 
 /* Listes de noms : un nom par ligne ; « Utilisateurs enregistrés : » et les virgules disparaissent */

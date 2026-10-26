@@ -7,6 +7,16 @@
  * le rendu identique (vérifié au relevé des styles).
  * ============================================================================ */
 
+/* Le bloc a une hauteur fixe (220px) : ses étiquettes gardent leurs 9px d'origine. À 10px (--fs-2xs),
+   « Top sites » passait sur deux lignes et la colonne de droite était rognée (corrigé le 26/10). */
+.vs-hp-wrapper {
+  --hp-fs-label: calc(9px * var(--fs-scale));
+  /* Image de fond du bloc, si le thème en donne une (--hp-backdrop, voile compris) */
+  background-image: var(--hp-backdrop);
+  background-size: cover;
+  background-position: center;
+}
+
 /* Exception : les br dans le bloc texte sont autorisés */
 .vs-hp-intro p br {
   display: block !important;
@@ -114,7 +124,7 @@
 /* Titre "VELVET SIN" en vertical */
 .vs-hp-vertical-title {
   font-family: var(--hp-font-cinzel);
-  font-size: var(--fs-2xs);
+  font-size: var(--hp-fs-label);
   font-weight: 700;
   letter-spacing: var(--track-5);
   text-transform: uppercase;
@@ -231,7 +241,7 @@
 
 .vs-hp-overlay-name {
   font-family: var(--hp-font-cinzel);
-  font-size: var(--fs-2xs);
+  font-size: var(--hp-fs-label);
   font-weight: 700;
   letter-spacing: var(--track-1);
   text-transform: lowercase;
@@ -255,7 +265,8 @@
   padding: 10px 10px 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  /* 6px (8px en V3) : les liens du bas débordaient déjà de 3px */
+  gap: 6px;
   /* Légèrement plus opaque que le wrapper pour donner de la profondeur */
   background: color-mix(in srgb, var(--hp-surface) 60%, transparent);
   border-left: 1px solid var(--hp-border);
@@ -276,7 +287,7 @@
   gap: 6px;
   padding: 4px 8px;
   font-family: var(--hp-font-condensed);
-  font-size: var(--fs-2xs);
+  font-size: var(--hp-fs-label);
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -303,7 +314,7 @@
 
 .vs-hp-nav-marker {
   font-family: var(--hp-font-body);
-  font-size: var(--fs-2xs);
+  font-size: var(--hp-fs-label);
   font-weight: 300;
   color: var(--hp-mauve);
   opacity: 0.5;
@@ -451,10 +462,11 @@
 
 .vs-hp-social-name {
   font-family: var(--hp-font-condensed);
-  font-size: var(--fs-2xs);
+  font-size: var(--hp-fs-label);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--track-1);
+  white-space: nowrap;
   color: var(--hp-lavender);
 }
 

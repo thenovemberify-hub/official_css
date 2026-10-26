@@ -1,0 +1,45 @@
+/* ============================================================================
+ * GATSBY — IMAGES (26/10)
+ * ----------------------------------------------------------------------------
+ * Toutes les images du thème, au même endroit : fonds du bloc d'accueil et de « Qui est en ligne »,
+ * avatars du staff sur l'accueil, bandeaux des catégories (#c1…) et des forums (lien /fN-, et la page
+ * du forum : data-forum). Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
+ * (préparés par tools/images-gatsby.py, depuis assets/references).
+ * Chemins relatifs : ils partent du fichier CSS (test.css / main.css, à la racine du dépôt official_css).
+ * SAUF les avatars du staff : le module 22301 les lit et les pose dans la page, il leur faut l'adresse complète.
+ *
+ * Changer une image : remplacer l'url sur sa ligne. Un forum sans ligne garde le gif de sa description.
+ * ============================================================================ */
+
+[data-theme="gatsby"] {
+    /* Fonds, voile compris (sans voile, le texte se perd dans l'image) */
+    --hp-backdrop:
+        linear-gradient(rgba(9, 34, 25, 0.8), rgba(9, 34, 25, 0.8)),
+        url("img/gatsby/bandeau-11-haut.jpg");
+    --qeel-backdrop:
+        linear-gradient(rgba(6, 19, 14, 0.82), rgba(6, 19, 14, 0.82)),
+        url("img/gatsby/bandeau-14-haut.jpg");
+    /* Staff de l'accueil (cadre compris) */
+    --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/sinclair-17-200x320.jpg");
+    --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/vanda-18-200x320.jpg");
+}
+
+/* ─── Catégories ─── */
+[data-theme="gatsby"] #c1 { --cat-img: url("img/gatsby/bandeau-06.jpg"); }       /* Behind the Velvet Curtain : les loges */
+[data-theme="gatsby"] #c2 { --cat-img: url("img/gatsby/bandeau-17.jpg"); }       /* Threads of Desire : le couple */
+[data-theme="gatsby"] #c3 { --cat-img: url("img/gatsby/bandeau-05.jpg"); }       /* The Velvet Sin : Salomé */
+[data-theme="gatsby"] #c4 { --cat-img: url("img/gatsby/bandeau-11-haut.jpg"); }  /* Los Angeles : la ville */
+[data-theme="gatsby"] #c6 { --cat-img: url("img/gatsby/bandeau-12.jpg"); }       /* The After-Hours : le bar */
+
+/* ─── Forums : la brique de l'accueil et le bandeau de la page du forum ─── */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f1-"]), [data-forum="1"] .page-title) { --forum-img: url("img/gatsby/bandeau-02.jpg"); --forum-gif: hidden; }        /* The Crimson Codex */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f2-"]), [data-forum="2"] .page-title) { --forum-img: url("img/gatsby/bandeau-07.jpg"); --forum-gif: hidden; }        /* The Velvet Lounge */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f10-"]), [data-forum="10"] .page-title) { --forum-img: url("img/gatsby/bandeau-13.jpg"); --forum-gif: hidden; }      /* Casting Calls */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f13-"]), [data-forum="13"] .page-title) { --forum-img: url("img/gatsby/bandeau-15.jpg"); --forum-gif: hidden; }      /* Bureau of Sin */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f59-"]), [data-forum="59"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); --forum-gif: hidden; }  /* The Black Ledger */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f17-"]), [data-forum="17"] .page-title) { --forum-img: url("img/gatsby/bandeau-18.jpg"); --forum-gif: hidden; }      /* The Circle of Lights */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f22-"]), [data-forum="22"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }      /* The Circle of Shadows */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f27-"]), [data-forum="27"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-bas.jpg"); --forum-gif: hidden; }  /* The Circle of Vices */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f32-"]), [data-forum="32"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); --forum-gif: hidden; } /* The City of Angels */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f38-"]), [data-forum="38"] .page-title) { --forum-img: url("img/gatsby/bandeau-11-bas.jpg"); --forum-gif: hidden; }  /* The City of Ghosts */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href*="/f49-"]), [data-forum="49"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); --forum-gif: hidden; } /* The Green Room */
