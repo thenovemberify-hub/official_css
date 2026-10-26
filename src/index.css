@@ -25,4 +25,7 @@
 /* 4. V4 — ajouts de la refonte (chargés en dernier : ils priment à spécificité égale) */
 @import "./v4/icones.css";
 @import "./v4/liste-sujets.css";
+@import "./v4/bandeau-titre.css";
+@import "./v4/activites.css";
+@import "./v4/boutons.css";
 @import "./v4/profil-edition.css";

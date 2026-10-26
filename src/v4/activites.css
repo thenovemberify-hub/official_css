@@ -1,0 +1,107 @@
+/* ============================================================================
+ * V4 — PAGE ACTIVITÉS (phase 4b)
+ * ----------------------------------------------------------------------------
+ * Avant : liste numérotée de Forumactif posée directement sur la photo (seules 5 règles
+ * venues de l'ancien CSS de l'admin, voir 01-base.css). Maintenant : un panneau par jour,
+ * une ligne par activité avec l'avatar de son auteur (Forumactif le donne dans
+ * --activity-image sur chaque ligne), l'heure en petit, le texte aux couleurs du thème.
+ * ============================================================================ */
+.activity-date-group {
+  margin-bottom: 18px;
+  background: var(--surface-row);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.14);
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+/* Titre du jour (« Aujourd'hui », « 23 octobre »…) */
+.activity-date-group > .header {
+  background: rgba(0, 0, 0, 0.22);
+  border-bottom: 1px solid rgba(216, 212, 242, 0.12);
+}
+
+.activity-date-group .table-title {
+  padding: 12px 20px !important; /* le style en ligne de Forumactif met 18px */
+  font-family: "Cinzel", serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--accent-text);
+}
+
+.activity-feed {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.activity-feed .feed-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 14px;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(216, 212, 242, 0.06);
+  transition: background var(--transition-fast);
+}
+
+.activity-feed .feed-item:last-child {
+  border-bottom: 0;
+}
+
+.activity-feed .feed-item:hover {
+  background: rgba(216, 212, 242, 0.05);
+}
+
+/* Avatar de l'auteur */
+.activity-feed .feed-item::before {
+  content: "";
+  grid-row: 1 / span 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--activity-image) center / cover no-repeat, var(--bg-darker);
+  border: 1px solid rgba(216, 212, 242, 0.25);
+}
+
+.activity-feed time.time {
+  grid-column: 2;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 1px;
+  color: var(--text-2);
+}
+
+.activity-feed .text {
+  grid-column: 2;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* Le sujet concerné (le pseudo garde la couleur de son groupe) */
+.activity-feed .text a:not(:has(.usr_grp_clr)) {
+  color: var(--textColorAccent);
+  font-weight: 600;
+}
+
+.activity-feed .text a:not(:has(.usr_grp_clr)):hover {
+  color: var(--accent-text);
+}
+
+/* « Vous avez atteint la dernière activité… » */
+.activity-end {
+  text-align: center;
+}
+
+.activity-end span {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--surface-row);
+  border-radius: 4px;
+  color: var(--text-2);
+}

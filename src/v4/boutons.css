@@ -1,0 +1,29 @@
+/* ============================================================================
+ * V4 — BOUTONS (phase 4b, début du « bouton unique, plein et contrasté »)
+ * ----------------------------------------------------------------------------
+ * Référence : « Nouveau sujet » / « Nouveau message privé » (.links_bar .buttons, 08-plugins.css).
+ * ============================================================================ */
+
+/* Boîte de MP : Sauvegarder la sélection, Marquer comme lu / non lu, Supprimer…
+ * (input Forumactif sans classe propre, repérés par leur name) */
+input[type="submit"]:is([name="save"], [name="moveprofile"], [name="mark_as_read"], [name="mark_as_unread"], [name="delete"], [name="deleteall"]) {
+  margin: 4px 2px;
+  padding: 8px 14px; /* un peu plus serré que la référence : les 5 boutons tiennent sur une ligne */
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+  background: var(--surface-row-strong);
+  border: 1px solid var(--contrastLighter);
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:is([name="save"], [name="moveprofile"], [name="mark_as_read"], [name="mark_as_unread"], [name="delete"], [name="deleteall"]):hover {
+  background: var(--surface-row-strong);
+  border-color: rgba(255, 48, 64, 0.5);
+  box-shadow: 0 0 15px rgba(255, 48, 64, 0.2);
+}

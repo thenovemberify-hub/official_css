@@ -1,0 +1,22 @@
+/* ============================================================================
+ * V4 — BANDEAU DE TITRE DES PAGES (phase 4b)
+ * ----------------------------------------------------------------------------
+ * Avant : pas de fond, seulement un flou saturé de la photo (en jour, le ciel devenait un
+ * bandeau bleu vif où le titre lavande se dissolvait, ≈ 1,8:1) et une hauteur fixe de 80px
+ * (un titre long débordait). Maintenant : même fond que les lignes de sujets, flou sans
+ * saturation, hauteur qui suit le titre.
+ * L'édition du profil (#cp-main, déjà refaite) et le profil en popup (#wombat) gardent leur style ;
+ * le :where() garde la spécificité de .page-title, pour ne pas écraser les règles plus précises.
+ * ============================================================================ */
+.page-title:not(:where(#wombat, #cp-main) *) {
+  height: auto;
+  min-height: 80px;
+  padding: 18px 28px;
+  background: var(--surface-row);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 212, 242, 0.14);
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  text-wrap: balance;
+}
