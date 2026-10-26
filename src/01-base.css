@@ -41,8 +41,8 @@ img.act-icon {
 body {
   background: var(--bg-img);
   background-position: var(--bg-position, center top);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: var(--bg-size);
+  background-repeat: var(--bg-repeat);
   background-attachment: fixed;
   background-color: var(--neutral);
   font-family: var(--font-body);

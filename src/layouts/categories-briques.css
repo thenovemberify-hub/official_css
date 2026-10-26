@@ -115,7 +115,7 @@
 /* Case vide de la dernière rangée (3 colonnes) : une citation du thème */
 [data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after,
 [data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 2))::after {
-  content: var(--cat-quote) "\A\A" var(--cat-quote-source);
+  content: var(--cat-quote-ici, var(--cat-quote)) "\A\A" var(--cat-quote-source);
   white-space: pre-line;
   display: flex;
   align-items: center;
@@ -133,6 +133,13 @@
 [data-layout-categories="briques"] .forums:has(> .forum:last-of-type:nth-of-type(3n + 1))::after {
   grid-column: span 2;
 }
+
+/* Six citations, une par catégorie à tour de rôle : sur l'accueil (6 catégories au plus), jamais deux fois la même */
+[data-layout-categories="briques"] .category:nth-of-type(6n + 2) { --cat-quote-ici: var(--cat-quote-2); }
+[data-layout-categories="briques"] .category:nth-of-type(6n + 3) { --cat-quote-ici: var(--cat-quote-3); }
+[data-layout-categories="briques"] .category:nth-of-type(6n + 4) { --cat-quote-ici: var(--cat-quote-4); }
+[data-layout-categories="briques"] .category:nth-of-type(6n + 5) { --cat-quote-ici: var(--cat-quote-5); }
+[data-layout-categories="briques"] .category:nth-of-type(6n + 6) { --cat-quote-ici: var(--cat-quote-6); }
 
 /* ─── Une brique ─── */
 [data-layout-categories="briques"] .forum {

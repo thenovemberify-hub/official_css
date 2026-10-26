@@ -24,8 +24,8 @@
   height: 100%;
   background-color: var(--neutral);
   background-image: var(--bg-img);
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-size: var(--bg-size);
+  background-repeat: var(--bg-repeat);
   background-attachment: fixed;
   z-index: -1;
   /* Optimisation perf : informe le compositor */

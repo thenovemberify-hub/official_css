@@ -29,3 +29,46 @@
 [data-theme="gatsby"] body {
     scrollbar-color: #9a7a36 #061009;
 }
+
+/* ─── Liens : plus de trait qui s'étire au survol ; les lettres s'éclairent très légèrement ───
+ * :where() garde la spécificité du « a » de base (01-base.css) : les liens qui ont leur propre fond le gardent. */
+:where([data-theme="gatsby"]) a {
+    background-image: none;
+    transition: color calc(0.25s * var(--dur-scale)) ease, text-shadow calc(0.25s * var(--dur-scale)) ease;
+}
+
+:where([data-theme="gatsby"]) a:hover {
+    text-shadow: 0 0 6px rgba(var(--gold-rgb), 0.35);
+}
+
+/* ─── Liens des forums (sous les descriptions) : des cartouches encadrés, comme les boutons ─── */
+[data-theme="gatsby"] .forum_desc .sublink,
+[data-theme="gatsby"] .forum-page_desc .sublink {
+    gap: 6px;
+}
+
+[data-theme="gatsby"] .forum_desc .sublink a,
+[data-theme="gatsby"] .forum-page_desc .sublink a {
+    display: inline-block;
+    padding: 3px 9px;
+    border: 1px solid rgba(var(--gold-rgb), 0.35);
+    font-style: normal;
+    font-family: var(--font-label);
+    font-size: var(--fs-2xs);
+    letter-spacing: var(--track-3);
+    color: var(--accent-text);
+    transition: border-color calc(0.25s * var(--dur-scale)) ease, color calc(0.25s * var(--dur-scale)) ease,
+        text-shadow calc(0.25s * var(--dur-scale)) ease;
+}
+
+[data-theme="gatsby"] .forum_desc .sublink a:hover,
+[data-theme="gatsby"] .forum-page_desc .sublink a:hover {
+    border-color: rgba(var(--gold-rgb), 0.8);
+    color: rgb(var(--ink-glint-rgb));
+    text-shadow: 0 0 6px rgba(var(--gold-rgb), 0.45);
+}
+
+/* Les losanges entre les liens (disposition briques) laissent la place aux cadres */
+[data-theme="gatsby"] .forum_desc .sublink a + a::before {
+    content: none;
+}

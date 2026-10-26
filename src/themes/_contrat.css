@@ -215,12 +215,22 @@
     --brick-spine-bg: var(--panel-bg);
     --brick-radius: var(--panel-radius);
     --cat-quote: "Hollywood dreams, velvet nightmares.";
+    --cat-quote-2: "Some sins are divine.";
+    --cat-quote-3: "We keep your secrets. We own your sins.";
+    --cat-quote-4: "Every vice has a VIP list.";
+    --cat-quote-5: "The curtain rises. The mask falls.";
+    --cat-quote-6: "Desire is a dangerous game.";
     --cat-quote-source: "— LE VELVET SIN";
     /* « Qui est en ligne » en registre (layouts/qeel-guestlist.css) : libellés, traduisibles par un thème */
     --qeel-t-newest: "NOUVELLE SIGNATURE";
     --qeel-t-online: "DANS LES SALONS";
     --qeel-t-recent: "Silhouettes récentes";
     --qeel-t-recent-sub: "LES 96 DERNIÈRES HEURES";
+
+    /* ─── Fond de page : un thème peut y mettre une photo (une couche, couvrante) ou un motif répété
+     * (plusieurs couches : une taille et une répétition par couche, dans le même ordre que --bg-img) ─── */
+    --bg-size: cover;
+    --bg-repeat: no-repeat;
 
     /* ─── Logo du bandeau (5.3, v4/logo.css) ─── */
     --ink-glint-rgb: 247, 245, 255;  /* #f7f5ff : reflet presque blanc du dégradé */

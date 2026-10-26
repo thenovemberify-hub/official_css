@@ -2,7 +2,7 @@
  * DISPOSITION « ENSEIGNE » DU LOGO (V4, phase 6 ; maquette du 25/10, validée le 26/10)
  * ----------------------------------------------------------------------------
  * Les lettres de VELVET SIN s'allument une à une, comme une enseigne des années 1920 ; un
- * éventail au-dessus, trois filets de chaque côté, la lumière verte au loin. Pas de glitch :
+ * éventail au-dessus, trois filets de chaque côté. Pas de glitch :
  * les phrases du bandeau apparaissent en fondu (effet « fondu » du registre, script du
  * bandeau, ACTIONS_V4 T10).
  * Le module 22301 pose data-layout-logo="enseigne" sur <html> et découpe le titre en lettres
@@ -58,40 +58,17 @@
   transform: scaleX(-1);
 }
 
-/* Éventail au-dessus du nom */
+/* Éventail au-dessus du nom : 20 rayons, symétriques (de -85,5° à +85,5°, centrés sur chaque rayon) */
 [data-layout-logo="enseigne"] .vs-hd-stage::before {
   content: "";
   width: 180px;
   height: 90px;
   margin-bottom: -4px;
-  background: repeating-conic-gradient(from -90deg at 50% 100%, rgba(var(--gold-rgb), 0.85) 0deg 1.1deg, transparent 1.1deg 9deg);
+  background: repeating-conic-gradient(from -86.05deg at 50% 100%, rgba(var(--gold-rgb), 0.85) 0deg 1.1deg, transparent 1.1deg 9deg);
   border-radius: 180px 180px 0 0;
   -webkit-mask: radial-gradient(circle at 50% 100%, transparent 0 22%, #000 23%);
   mask: radial-gradient(circle at 50% 100%, transparent 0 22%, #000 23%);
   opacity: 0.85;
-}
-
-/* La lumière verte, au loin, qui pulse */
-[data-layout-logo="enseigne"] .vs-hd-wrapper {
-  position: relative;
-}
-
-[data-layout-logo="enseigne"] .vs-hd-wrapper::after {
-  content: "";
-  position: absolute;
-  right: 34px;
-  bottom: 30px;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgb(var(--ink-glint-rgb)) 0%, rgb(var(--fx-b-rgb)) 35%, transparent 70%);
-  animation: enseigne-lumiere calc(3.4s * var(--dur-scale)) ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes enseigne-lumiere {
-  0%, 100% { opacity: 0.35; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.15); }
 }
 
 /* Phrases du bandeau : en fondu, lumineuses, sans glitch */
@@ -114,8 +91,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-layout-logo="enseigne"] .vs-hd-l,
-  [data-layout-logo="enseigne"] .vs-hd-wrapper::after {
+  [data-layout-logo="enseigne"] .vs-hd-l {
     animation: none;
     color: var(--logo-color);
   }

@@ -9,11 +9,18 @@
  * en attendant ton choix ; le fond est dessiné en CSS (rayons Art déco), rien à charger.
  * ============================================================================ */
 [data-theme="gatsby"] {
-    /* ─── Fond : rayons Art déco depuis le haut, halo d'or, vert profond ─── */
+    /* ─── Fond : le motif d'arches dorées de la maquette, sur vert profond ───
+     * TA TEXTURE : remplace « none » par url("lien-de-ton-image") ; elle se pose par-dessus le motif, répétée
+     * telle quelle (pour une photo qui couvre tout l'écran : mettre aussi « cover » au lieu du premier « auto »
+     * de --bg-size et « no-repeat » au lieu du premier « repeat » de --bg-repeat). */
+    --gatsby-texture: none;
     --bg-img:
-        radial-gradient(ellipse 70% 45% at 50% -8%, rgba(212, 175, 85, 0.20), transparent 70%),
-        repeating-conic-gradient(from -90deg at 50% -6%, rgba(212, 175, 85, 0.07) 0deg 0.8deg, transparent 0.8deg 6deg),
-        radial-gradient(ellipse 120% 90% at 50% 110%, #0f3a2b, #04110c 72%);
+        var(--gatsby-texture),
+        radial-gradient(circle at 50% 100%, transparent 0 34px, rgba(212, 175, 85, 0.10) 34px 35px, transparent 35px 44px,
+            rgba(212, 175, 85, 0.10) 44px 45px, transparent 45px 54px, rgba(212, 175, 85, 0.10) 54px 55px, transparent 55px),
+        linear-gradient(180deg, #06130e, #06130e);
+    --bg-size: auto, 120px 60px, cover;
+    --bg-repeat: repeat, repeat, no-repeat;
     --bg-position: center top;
     /* Citation du visuel de l'accueil (texte, comme les paroles de la nuit et du jour) : Gatsby le Magnifique,
      * libre de droits (Fitzgerald, mort en 1940). Le visuel lui-même : celui de la nuit, en attendant ton choix. */
@@ -113,7 +120,13 @@
     --logo-subtitle-color: #d9c48f;
 
     /* ─── Dispositions ─── */
+    /* Six citations de Gatsby le Magnifique (libres de droits), une par catégorie, à tour de rôle */
     --cat-quote: "So we beat on, boats against the current, borne back ceaselessly into the past.";
+    --cat-quote-2: "I like large parties. They're so intimate. At small parties there isn't any privacy.";
+    --cat-quote-3: "In his blue gardens men and girls came and went like moths among the whisperings and the champagne and the stars.";
+    --cat-quote-4: "Gatsby believed in the green light, the orgastic future that year by year recedes before us.";
+    --cat-quote-5: "They're a rotten crowd. You're worth the whole damn bunch put together.";
+    --cat-quote-6: "I hope she'll be a fool — that's the best thing a girl can be in this world, a beautiful little fool.";
     --cat-quote-source: "— F. SCOTT FITZGERALD";
     --brick-spine-bg: rgba(12, 42, 31, 0.92);
     --qeel-t-newest: "NEW ARRIVAL";

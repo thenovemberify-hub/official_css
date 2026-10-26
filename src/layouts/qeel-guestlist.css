@@ -261,7 +261,6 @@
 /* ─── Droite : chiffres, arcanes, devise ─── */
 [data-layout-qeel="guestlist"] .vs-qeel-stats,
 [data-layout-qeel="guestlist"] .vs-qeel-groups,
-[data-layout-qeel="guestlist"] .vs-qeel-group-text,
 [data-layout-qeel="guestlist"] .vs-qeel-copyright {
   border-left: 1px solid var(--qeel-border);
   padding-left: 20px;
@@ -317,15 +316,23 @@
   border: 1px solid currentColor;
 }
 
+/* La devise : le cadre est sur le conteneur et les quatre textes occupent la même case ; au clic sur un
+ * arcane, l'un s'efface pendant que l'autre apparaît, exactement au même endroit (pas de chevauchement décalé) */
 [data-layout-qeel="guestlist"] .vs-qeel-group-text {
   grid-area: devise;
-  margin: 12px 0 0;
-}
-
-[data-layout-qeel="guestlist"] .vs-qeel-group-desc--active {
+  display: grid;
+  align-items: start;
+  margin: 12px 20px 0;
   padding: 14px;
   border: 1px solid var(--qeel-border);
+  border-left: 1px solid var(--qeel-border);
   background: rgba(var(--shadow-rgb), 0.2);
+}
+
+[data-layout-qeel="guestlist"] .vs-qeel-group-desc {
+  grid-area: 1 / 1;
+  position: static;
+  inset: auto;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-group-desc em {
