@@ -57,6 +57,10 @@
     --accent-text: var(--accentClr);
     --gold-accent-text: var(--gold-accent);
 
+    /* V4 : fond des lignes et petits blocs posés sur la photo (liste de sujets, barres de liens) */
+    --surface-row: rgba(13, 21, 32, 0.86);
+    --surface-row-strong: rgba(13, 21, 32, 0.93);
+
     --qeel-dark: #0a0e14;
     --qeel-surface: #12283f;
     --qeel-border: rgba(196, 178, 188, 0.15);

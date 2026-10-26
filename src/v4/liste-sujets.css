@@ -1,0 +1,133 @@
+/* ============================================================================
+ * V4 — LISTE DES SUJETS ET BAS DE PAGE (phase 4b, zone « liste de sujets »)
+ * ----------------------------------------------------------------------------
+ * Avant : lignes à 60 % d'opacité sans flou, textes lavande à 50 % : on ne lisait
+ * bien qu'au survol, en nuit comme en jour. Les liens du bas (messages, modération,
+ * administration, « Actuellement sur ce forum », pied de page) étaient posés sur la photo.
+ * Maintenant : la ligne au repos ressemble à l'ancien survol ; le survol garde son effet
+ * (soulèvement, liseré, titre en glitch). Fonds réglés par thème : --surface-row(-strong).
+ * ============================================================================ */
+
+/* ─── Lignes de sujets ─── */
+.topicslist_row {
+  background: var(--surface-row);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-color: rgba(216, 212, 242, 0.14);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.topicslist_row.folder_announce {
+  background: var(--surface-row-strong);
+  border-left-color: rgba(255, 48, 64, 0.55);
+}
+
+/* Liseré de gauche : discret au repos, plein au survol (règle d'origine) */
+.topicslist_row::before {
+  opacity: 0.45;
+}
+
+.topicslist_row:hover {
+  background: var(--surface-row-strong);
+  border-color: rgba(216, 212, 242, 0.32);
+}
+
+/* Textes de la ligne : couleurs du thème au lieu du lavande à 50-70 % */
+.topicslist-stats span,
+.topic-meta,
+.topicslist-lastpost {
+  color: var(--text-2);
+}
+
+.topicslist-stats .stat-replies,
+.topic-meta a,
+.topicslist-lastpost .lastpost-date {
+  color: var(--text);
+}
+
+.topicslist-description {
+  opacity: 0.9;
+}
+
+/* ─── Barres de liens (haut, bas, pied de page) ─── */
+.links_bar {
+  background: var(--surface-row);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.links_bar .right a {
+  color: var(--text-2);
+}
+
+/* Bouton « Trier les sujets » : il était blanc sur fond clair en jour */
+#sort-topics {
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(216, 212, 242, 0.25);
+  border-radius: 4px;
+}
+
+#sort-btn {
+  color: var(--text);
+}
+
+/* « Actuellement sur ce forum » */
+#users_here {
+  display: inline-block;
+  background: var(--surface-row);
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: var(--text-2);
+}
+
+/* Liens utiles sous « Sauter vers » (voir ses messages, nouveaux messages, sans réponses) :
+ * pas de conteneur dans le template, on les repère par la boîte « Sauter vers » qui les précède */
+div.right:has(> form[name="jumpbox"]) ~ a {
+  display: inline-block;
+  margin: 3px 0;
+  padding: 4px 10px;
+  background: var(--surface-row);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+div.right:has(> form[name="jumpbox"]) ~ a:hover {
+  color: var(--accent-text);
+}
+
+/* « Modérer les sujets du forum » */
+#moderation_forum_tools a {
+  display: inline-block;
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  padding: 4px 12px;
+  color: var(--accent-text);
+}
+
+/* « Panneau d'administration | Modifier ce forum » */
+.specials_links.adminlink {
+  text-align: center;
+}
+
+.specials_links.adminlink center {
+  display: inline-block;
+  background: var(--surface-row);
+  padding: 6px 14px;
+  border-radius: 4px;
+  color: var(--text-2);
+}
+
+/* Mini-pagination d'un sujet long (« par Vanda 1 2 3 4 ») : pastilles claires illisibles, collées au pseudo */
+.topicslist-pagination {
+  margin-left: 10px;
+}
+
+.topicslist_row .topicslist-pagination a {
+  background: rgba(216, 212, 242, 0.12);
+  border: 1px solid rgba(216, 212, 242, 0.25);
+  color: var(--text);
+}
+
+.topicslist-pagination .page-sep {
+  display: none;
+}
