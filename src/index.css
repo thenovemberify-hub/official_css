@@ -54,6 +54,7 @@
 @import "./v4/separateurs.css";           /* séparateurs de signature : 3 par thème, en tour de rôle */
 @import "./v4/alignement.css";            /* mêmes bords (1000px) pour le bandeau de titre, le fil d'Ariane, les panneaux (27/10) */
 @import "./v4/connexion.css";             /* page de connexion et bloc « S'enregistrer » (27/10) */
+@import "./v4/profil-onglets.css";        /* colonne profil des messages : Le Masque et La Plume (27/10) */
 
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";

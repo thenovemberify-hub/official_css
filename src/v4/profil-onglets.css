@@ -1,0 +1,219 @@
+/* ============================================================================
+ * V4 — LE MASQUE ET LA PLUME (colonne profil des messages ; 27/10)
+ * ----------------------------------------------------------------------------
+ * Le module « Le Masque et La Plume » (js/modules/profil_masque_plume.js) range les champs de profil :
+ * - Le Masque : Âge, Occupation, Statut civil, Orientation, Habitation, puis le gif « Reflet » (.vs-reflet) ;
+ * - La Plume : badge « Exclusif » (.vs-exclusif, infobulle au survol et au focus), Disponibilité RP et Absence
+ *   précédées d'une pastille (.vs-pastille--ok / --moyen / --non), Nom du vava, Crédits, Écriture ; dans la rangée
+ *   des contacts, une icône par lien renseigné (fiche, TW, moodboard, playlist, MP), avec son nom au survol.
+ * Sans le module : les champs restent dans le Masque, un par ligne (libellé au-dessus de la valeur).
+ * Couleurs et polices : celles du thème (contrat).
+ * ============================================================================ */
+
+/* ─── Les deux onglets : un champ par ligne, libellé au-dessus, filet fin entre deux champs ─── */
+.vs-tab-content .vs-field {
+  display: block;
+  margin: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+
+.vs-tab-content .vs-field:last-of-type {
+  border-bottom: none;
+}
+
+.vs-tab-content .vs-field-label {
+  margin-bottom: 2px;
+  font-family: var(--font-label);
+  letter-spacing: var(--track-2);
+  color: rgb(var(--mauve-rgb));
+}
+
+.vs-tab-content .vs-field-content {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+/* ─── Le Masque : le gif « Reflet » en bas, à cadre fixe (le gif ne fait pas sauter la colonne) ───
+ * Les 5 champs et le gif tiennent sans barre de défilement (250px avant : le gif restait caché). */
+.vs-tab-content.vs-tab1 {
+  max-height: 460px;
+}
+
+.vs-reflet {
+  margin-top: 10px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
+  border-radius: var(--panel-radius);
+}
+
+.vs-reflet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* ─── La Plume : courte, elle s'affiche en entier (et laisse dépasser les infobulles) ─── */
+.vs-tab-content.vs-tab2 {
+  max-height: none;
+  overflow: visible;
+}
+
+/* Pastille de Disponibilité RP et d'Absence */
+.vs-pastille {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  border-radius: 50%;
+  vertical-align: 1px;
+}
+
+.vs-pastille--ok {
+  background: rgb(var(--online-rgb));
+  box-shadow: 0 0 6px rgba(var(--online-rgb), 0.6);
+}
+
+.vs-pastille--moyen {
+  background: rgb(var(--gold-rgb));
+  box-shadow: 0 0 6px rgba(var(--gold-rgb), 0.6);
+}
+
+.vs-pastille--non {
+  background: rgb(var(--danger-bright-rgb));
+  box-shadow: 0 0 6px rgba(var(--danger-bright-rgb), 0.6);
+}
+
+/* Badge « Exclusif » : on doit comprendre d'un coup d'œil que ce personnage n'est pas jouable */
+.vs-exclusif-zone {
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.vs-exclusif {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border: 1px solid rgba(var(--danger-bright-rgb), 0.75);
+  border-radius: var(--panel-radius);
+  background: rgba(var(--danger-rgb), 0.18);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: rgb(var(--danger-pale-rgb));
+  cursor: help;
+  outline: none;
+}
+
+.vs-exclusif:focus-visible {
+  box-shadow: 0 0 0 2px rgba(var(--danger-bright-rgb), 0.5);
+}
+
+.vs-exclusif-bulle {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 50%;
+  width: 190px;
+  padding: 10px 12px;
+  border: 1px solid rgba(var(--danger-bright-rgb), 0.75);
+  border-radius: var(--panel-radius);
+  background: var(--surface-row);
+  backdrop-filter: var(--frame-blur);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.5);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+  color: var(--text-2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -4px);
+  transition: opacity calc(0.18s * var(--dur-scale)) ease, transform calc(0.18s * var(--dur-scale)) ease,
+    visibility calc(0.18s * var(--dur-scale));
+  pointer-events: none;
+}
+
+.vs-exclusif:is(:hover, :focus) .vs-exclusif-bulle {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* ─── Rangée des liens : fiche, TW, moodboard, playlist, MP ─── */
+.vs-tab2 .vs-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.12);
+}
+
+.vs-tab2 .vs-contact > a {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--panel-radius);
+  background-image: none;
+  font-size: var(--fs-md);
+  text-decoration: none;
+  color: var(--text-2);
+  transform: none;
+  transition: color calc(0.15s * var(--dur-scale)) ease, border-color calc(0.15s * var(--dur-scale)) ease,
+    background-color calc(0.15s * var(--dur-scale)) ease;
+}
+
+.vs-tab2 .vs-contact > a:is(:hover, :focus-visible) {
+  border-color: var(--accent-text);
+  background-color: rgba(var(--gold-rgb), 0.1);
+  color: var(--accent-text);
+  transform: none;
+  outline: none;
+}
+
+/* Nom du lien au survol, au-dessus de l'icône */
+.vs-tab2 .vs-contact > a[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 20;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  padding: 3px 8px;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--panel-radius);
+  background: var(--surface-row);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--track-1);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-2);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%);
+  transition: opacity calc(0.15s * var(--dur-scale)) ease, visibility calc(0.15s * var(--dur-scale));
+  pointer-events: none;
+}
+
+.vs-tab2 .vs-contact > a[data-tip]:is(:hover, :focus-visible)::after {
+  opacity: 1;
+  visibility: visible;
+}
