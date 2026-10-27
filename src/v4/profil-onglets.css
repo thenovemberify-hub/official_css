@@ -10,6 +10,12 @@
  * Couleurs et polices : celles du thème (contrat).
  * ============================================================================ */
 
+/* ─── Le trait entre la colonne profil et le texte (bordure gauche de .post_message) descend jusqu'en bas,
+ * même pour un message plus court que la colonne profil (la ligne est en align-items: flex-start, 04-topics.css). */
+.post.post_row > .post_message {
+  align-self: stretch;
+}
+
 /* ─── Les deux onglets : un champ par ligne, libellé au-dessus, filet fin entre deux champs ─── */
 .vs-tab-content .vs-field {
   display: block;
@@ -62,14 +68,23 @@
   overflow: visible;
 }
 
-/* Pastille de Disponibilité RP et d'Absence */
+/* Pastille de Disponibilité RP et d'Absence, sur la même ligne que la valeur (même si la valeur contient des balises) */
+.vs-field-content:has(> .vs-pastille) {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.vs-valeur > * {
+  display: inline;
+  margin: 0;
+}
+
 .vs-pastille {
-  display: inline-block;
+  flex-shrink: 0;
   width: 7px;
   height: 7px;
-  margin-right: 7px;
   border-radius: 50%;
-  vertical-align: 1px;
 }
 
 .vs-pastille--ok {
