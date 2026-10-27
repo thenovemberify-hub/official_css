@@ -62,6 +62,7 @@
 @import "./layouts/categories-bandeaux.css"; /* variante des briques : bandeaux d'images (Gatsby) */
 @import "./layouts/qeel-guestlist.css";      /* essai (phase 6) : à retirer si refusé */
 @import "./layouts/logo-enseigne.css";
+@import "./layouts/logo-carte-postale.css"; /* logos carte postale du jour et de la nuit (phase 7) */
 @import "./layouts/profil-cadres.css";      /* cadres des avatars selon l'arcane (Gatsby) */
 
 /* 6. Décor propre à chaque thème (en dernier : il prime à spécificité égale) */

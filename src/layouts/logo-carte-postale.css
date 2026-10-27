@@ -1,0 +1,209 @@
+/* ============================================================================
+ * DISPOSITIONS « CARTE POSTALE » DU LOGO (V4, phase 7 ; maquettes du 27/10, choisies le 27/10)
+ * ----------------------------------------------------------------------------
+ * Une même carte postale, deux moments :
+ *   carte-postale (jour, Day in LA) : « Greetings from » ; lettres découpées dans la photo du fond
+ *     du thème, qui glisse lentement ; timbre avec la même photo ; phrases au dos, en fondu (effet
+ *     « fondu » du registre).
+ *   carte-nuit (nuit, Bleu nuit) : « Goodnight from » ; lettres remplies des lumières de la ville,
+ *     avec des points de lumière qui scintillent ; timbre au croissant de lune, tampon MIDNIGHT ;
+ *     les phrases gardent le glitch de la nuit (script du bandeau, sans effet dans le registre).
+ * Commun : VELVET SIN en Oswald 700, bord clair et relief de 6 px ; écriture à la main en travers ;
+ * timbre dentelé et oblitération dans le coin du cadre vitré.
+ * Le module 22301 pose data-layout-logo="carte-postale" ou "carte-nuit" sur <html> et charge Oswald.
+ * Chaque carte ne règle que ses variables --carte-* ; tout le dessin est commun ([data-layout-logo^="carte-"]).
+ * ============================================================================ */
+
+[data-layout-logo="carte-postale"] {
+  --carte-salut: "Greetings from";
+  --carte-encre: rgb(var(--gold-rgb));            /* orange du thème : écriture */
+  --carte-bord: #fffaf2;                          /* bord des lettres, dentelure du timbre */
+  --carte-relief: var(--bg-darker);               /* relief des lettres (#0c1820) */
+  /* Remplissage des lettres : la photo, cadrée sur la ville et le ciel, glisse en 40 s */
+  --carte-images: var(--bg-img);
+  --carte-tailles: 160% auto;
+  --carte-pos-debut: 50% 22%;
+  --carte-pos-fin: 22% 46%;
+  --carte-duree: 40s;
+  --carte-timbre: "LA · 27¢";
+  --carte-timbre-fond: var(--bg-img) 62% 40% / auto 260% content-box;
+  --carte-tampon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 52' fill='none' stroke='%23fffaf2' stroke-width='1.4'%3E%3Ccircle cx='26' cy='26' r='22'/%3E%3Ccircle cx='26' cy='26' r='17' stroke-width='.8'/%3E%3Ctext x='26' y='24' fill='%23fffaf2' stroke='none' font-family='Arial,sans-serif' font-size='6.5' font-weight='700' text-anchor='middle' letter-spacing='.6'%3EHOLLYWOOD%3C/text%3E%3Ctext x='26' y='33' fill='%23fffaf2' stroke='none' font-family='Arial,sans-serif' font-size='6' text-anchor='middle'%3ECA · 1926%3C/text%3E%3Cpath d='M54 14 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 22 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 30 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 38 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0'/%3E%3C/svg%3E");
+}
+
+[data-layout-logo="carte-nuit"] {
+  --carte-salut: "Goodnight from";
+  --carte-encre: rgb(var(--ink-rgb));             /* lavande de la nuit */
+  --carte-bord: #f1eefc;
+  --carte-relief: var(--bg-black);                /* #0d2241 */
+  /* Deux semis de points de lumière qui dérivent sur les lumières de la ville (bas de la photo) */
+  --carte-images:
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 1.2px, transparent 2px),
+    radial-gradient(circle, rgba(255, 220, 250, 0.8) 0 1px, transparent 1.8px),
+    var(--bg-img);
+  --carte-tailles: 23px 29px, 37px 31px, 150% auto;
+  --carte-pos-debut: 0 0, 11px 7px, 50% 96%;
+  --carte-pos-fin: 4px 9px, 19px -3px, 44% 100%;
+  --carte-duree: 5s;
+  --carte-timbre: "LA · 2AM";
+  /* Croissant de lune : un disque clair mordu par un disque de la couleur du ciel du timbre */
+  --carte-timbre-fond:
+    radial-gradient(circle at 62% 38%, #0b0a22 0 8px, transparent 8.5px) content-box,
+    radial-gradient(circle at 52% 44%, #f5ecc8 0 9px, transparent 9.5px) content-box,
+    linear-gradient(#1b1440, #0b0a22) content-box;
+  --carte-tampon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 52' fill='none' stroke='%23f1eefc' stroke-width='1.4'%3E%3Ccircle cx='26' cy='26' r='22'/%3E%3Ccircle cx='26' cy='26' r='17' stroke-width='.8'/%3E%3Ctext x='26' y='24' fill='%23f1eefc' stroke='none' font-family='Arial,sans-serif' font-size='6.5' font-weight='700' text-anchor='middle' letter-spacing='.6'%3EMIDNIGHT%3C/text%3E%3Ctext x='26' y='33' fill='%23f1eefc' stroke='none' font-family='Arial,sans-serif' font-size='6' text-anchor='middle'%3EL.A. · 2:47%3C/text%3E%3Cpath d='M54 14 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 22 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 30 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0M54 38 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0'/%3E%3C/svg%3E");
+}
+
+/* Le cadre vitré porte le timbre */
+[data-layout-logo^="carte-"] .vs-hd-wrapper {
+  position: relative;
+  padding-top: 52px;
+}
+
+/* ─── Titre : lettres remplies de l'image, bord clair, relief de 6 px ─── */
+[data-layout-logo^="carte-"] .vs-hd-title,
+[data-layout-logo^="carte-"] .vs-hd-title.title--glitch {
+  position: relative;
+  font-family: "Oswald", "Roboto Condensed", Impact, sans-serif;
+  font-weight: 700;
+  font-size: clamp(56px, 10vw, 128px);
+  letter-spacing: 0.02em;
+  word-spacing: 0.1em;
+  line-height: 0.95;
+  padding: 0 clamp(8px, 1.5vw, 18px);
+  background-image: var(--carte-images);
+  background-size: var(--carte-tailles);
+  background-position: var(--carte-pos-debut);
+  background-repeat: repeat, repeat, no-repeat; /* nuit : semis répétés, photo seule ; jour : la photo (160 %) */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(2px 0 0 var(--carte-bord)) drop-shadow(-2px 0 0 var(--carte-bord))
+    drop-shadow(0 2px 0 var(--carte-bord)) drop-shadow(0 -2px 0 var(--carte-bord))
+    drop-shadow(1.5px 1.5px 0 var(--carte-relief)) drop-shadow(1.5px 1.5px 0 var(--carte-relief))
+    drop-shadow(1.5px 1.5px 0 var(--carte-relief)) drop-shadow(1.5px 1.5px 0 var(--carte-relief))
+    drop-shadow(0 10px 14px rgba(var(--shadow-rgb), 0.45));
+  /* Le titre ne « glitche » pas (title--glitch remplacé) : la carte reste lisible */
+  animation: carte-pano calc(var(--carte-duree) * var(--dur-scale)) ease-in-out infinite alternate;
+}
+
+@keyframes carte-pano {
+  from { background-position: var(--carte-pos-debut); }
+  to { background-position: var(--carte-pos-fin); }
+}
+
+/* ─── Écriture à la main en travers, au-dessus du V ─── */
+[data-layout-logo^="carte-"] .vs-hd-stage::before {
+  content: var(--carte-salut);
+  position: absolute;
+  z-index: 11;
+  top: -0.95em;
+  left: -0.2em;
+  font-family: var(--font-script);
+  font-size: clamp(30px, 4.6vw, 58px);
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--carte-encre);
+  transform: rotate(-7deg);
+  text-shadow: 0 2px 6px rgba(var(--shadow-rgb), 0.7);
+  pointer-events: none;
+}
+
+/* ─── Timbre dans le coin : bord dentelé (trous en dégradé), image propre à la carte, valeur ─── */
+[data-layout-logo^="carte-"] .vs-hd-wrapper::after {
+  content: var(--carte-timbre);
+  position: absolute;
+  z-index: 0; /* sous l'oblitération (::before) */
+  top: 14px;
+  right: 18px;
+  width: 58px;
+  height: 70px;
+  padding: 6px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font: 700 9px/1 "Oswald", "Roboto Condensed", sans-serif;
+  letter-spacing: 0.08em;
+  color: var(--carte-bord);
+  text-shadow: 0 1px 2px rgba(var(--shadow-rgb), 0.8);
+  background:
+    var(--carte-timbre-fond),
+    radial-gradient(circle at 4px 4px, transparent 2.6px, var(--carte-bord) 3px) -4px -4px / 8px 8px border-box;
+  transform: rotate(4deg);
+  filter: drop-shadow(0 3px 5px rgba(var(--shadow-rgb), 0.45));
+  pointer-events: none;
+}
+
+/* Oblitération : tampon rond et vagues, posés à cheval sur le timbre */
+[data-layout-logo^="carte-"] .vs-hd-wrapper::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 22px;
+  right: 46px;
+  width: 132px;
+  height: 52px;
+  background: var(--carte-tampon) center / contain no-repeat;
+  opacity: 0.55;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+/* ─── Jour : pas de balayage ; phrases griffonnées au dos, en fondu ─── */
+[data-layout-logo="carte-postale"] .vs-hd-scanline {
+  display: none;
+}
+
+[data-layout-logo="carte-postale"] .vs-hd-confession {
+  height: 26px;
+  margin-top: 6px;
+}
+
+[data-layout-logo="carte-postale"] .vs-hd-subtitle {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: clamp(14px, 1.5vw, 17px);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--gold-cream, #ffe1b3);
+}
+
+[data-layout-logo="carte-postale"] .vs-hd-subtitle.gh--intrude {
+  animation: carte-fondu calc(0.8s * var(--dur-scale)) ease-out both;
+}
+
+[data-layout-logo="carte-postale"] .vs-hd-subtitle.gh--hold {
+  animation: none;
+  text-shadow: 0 1px 4px rgba(var(--shadow-rgb), 0.6);
+}
+
+[data-layout-logo="carte-postale"] .vs-hd-subtitle.gh--corrupt {
+  animation: carte-fondu calc(0.75s * var(--dur-scale)) ease-in reverse both;
+}
+
+@keyframes carte-fondu {
+  from { opacity: 0; transform: translateY(4px) rotate(-1deg); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ─── Nuit : les phrases gardent le glitch (v4/logo.css) ; un peu d'air sous la carte ─── */
+[data-layout-logo="carte-nuit"] .vs-hd-confession {
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-layout-logo^="carte-"] .vs-hd-title {
+    animation: none;
+  }
+}
+
+/* Écran étroit : pas de timbre ni de tampon, l'écriture se resserre */
+@media (max-width: 600px) {
+  [data-layout-logo^="carte-"] .vs-hd-wrapper { padding-top: 40px; }
+  [data-layout-logo^="carte-"] .vs-hd-wrapper::before,
+  [data-layout-logo^="carte-"] .vs-hd-wrapper::after { display: none; }
+  [data-layout-logo^="carte-"] .vs-hd-title { font-size: 46px; letter-spacing: 0.01em; }
+  [data-layout-logo^="carte-"] .vs-hd-stage::before { font-size: 28px; }
+  [data-layout-logo="carte-postale"] .vs-hd-subtitle { white-space: normal; font-size: 13px; }
+}

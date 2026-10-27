@@ -119,6 +119,65 @@
   animation: gh-corrupt 0.75s steps(1) forwards;
 }
 
+/* ─── Effet « encre » (nuit, phase 7) : la phrase s'écrit derrière une plume de lumière, tient, puis l'encre se dilue.
+ * Le script du bandeau pose data-effet="encre" quand le registre du thème le demande (sans brouillage ni glitch). ─── */
+.vs-hd-subtitle[data-effet="encre"] {
+  position: relative;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: clamp(15px, 1.7vw, 19px);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: rgb(var(--ink-rgb));
+}
+
+.vs-hd-subtitle[data-effet="encre"].gh--intrude {
+  opacity: 1;
+  animation: encre-ecrit calc(1.9s * var(--dur-scale)) linear both;
+}
+
+/* La plume : un point de lumière qui avance avec l'écriture (un peu en retrait, pour que son halo reste visible) */
+.vs-hd-subtitle[data-effet="encre"].gh--intrude::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  border-radius: 50%;
+  background: rgb(var(--paper-rgb));
+  box-shadow: 0 0 6px rgb(var(--paper-rgb)), 0 0 14px rgb(var(--fx-b-rgb)), 0 0 26px rgb(var(--fx-b-rgb));
+  animation: encre-plume calc(1.9s * var(--dur-scale)) linear both;
+}
+
+.vs-hd-subtitle[data-effet="encre"].gh--hold {
+  opacity: 1;
+  animation: none;
+  clip-path: none;
+  transform: none;
+  text-shadow: 0 0 8px rgba(var(--fx-b-rgb), 0.18), 0 1px 3px rgba(var(--shadow-rgb), 0.6);
+}
+
+.vs-hd-subtitle[data-effet="encre"].gh--corrupt {
+  animation: encre-dilue calc(1.1s * var(--dur-scale)) ease-in forwards;
+}
+
+@keyframes encre-ecrit {
+  from { clip-path: inset(-40% 100% -40% 0); }
+  to { clip-path: inset(-40% -4% -40% 0); }
+}
+
+@keyframes encre-plume {
+  0% { left: -8px; opacity: 1; }
+  92% { opacity: 1; }
+  100% { left: calc(100% - 8px); opacity: 0; }
+}
+
+@keyframes encre-dilue {
+  from { opacity: 1; filter: none; letter-spacing: 0.04em; }
+  to { opacity: 0; filter: blur(7px); letter-spacing: 0.3em; color: rgb(var(--fx-b-rgb)); }
+}
+
 @media (max-width: 600px) {
   .vs-hd-title {
     font-size: 38px;
@@ -128,6 +187,11 @@
   .vs-hd-subtitle {
     font-size: 10px;
     letter-spacing: 3px;
+  }
+
+  .vs-hd-subtitle[data-effet="encre"] {
+    font-size: 13px;
+    letter-spacing: 0.02em;
   }
 }
 

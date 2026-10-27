@@ -53,9 +53,10 @@ html.vs-chatbox body.chatbox {
 html.vs-chatbox body.chatbox {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 170px;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   grid-template-areas:
     "tete tete"
+    "onglets onglets"
     "messages membres"
     "saisie saisie";
   margin: 0;
@@ -65,6 +66,17 @@ html.vs-chatbox body.chatbox {
   font-family: var(--font-body);
   font-size: var(--fs-sm);
   color: var(--textColor);
+}
+
+/* Tout autre élément de la page (fenêtres de couleur et de smileys, éléments ajoutés par Forumactif) sort de la grille :
+ * sinon chacun y crée une ligne de plus et pousse la saisie hors du cadre (vu sur club27 le 27/10). */
+html.vs-chatbox body.chatbox > :not(#chatbox_header, #tab_selector_cb, #chatbox_members, #chatbox, #chatbox_footer) {
+  position: absolute;
+  z-index: 10;
+}
+
+html.vs-chatbox #tab_selector_cb {
+  grid-area: onglets;
 }
 
 html.vs-chatbox body.chatbox a {
@@ -228,6 +240,7 @@ html.vs-chatbox #chatbox {
 html.vs-chatbox #chatbox > p {
   margin: 0;
   padding: 5px 14px;
+  border: 0;
   line-height: 1.55;
   overflow-wrap: anywhere;
   transition: background-color calc(0.15s * var(--dur-scale)) ease;
@@ -245,15 +258,29 @@ html.vs-chatbox #chatbox .date-and-time {
   color: var(--text-3);
 }
 
-/* Avatars des messages : petites pastilles rondes */
-html.vs-chatbox #chatbox .user img,
-html.vs-chatbox #chatbox [class*="avatar"] img {
-  width: 22px;
-  height: 22px;
-  margin-right: 6px;
+/* Images des messages (avatars, smileys) : ni fond ni bordure (Forumactif les entoure de blanc, parfois en style écrit
+ * dans la balise : d'où les !important) */
+html.vs-chatbox #chatbox img {
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Avatar (toute image hors du texte du message) : petite pastille ronde, à gauche du pseudo */
+html.vs-chatbox #chatbox > p img:not(.msg img) {
+  float: left;
+  width: 28px;
+  height: 28px;
+  margin: 2px 10px 0 0;
   border-radius: 50%;
   object-fit: cover;
-  vertical-align: middle;
+}
+
+html.vs-chatbox #chatbox > p::after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 /* Couleur par défaut de Forumactif (#444444, gris foncé illisible sur nos fonds) : le texte prend celle du thème */
@@ -277,7 +304,7 @@ html.vs-chatbox #chatbox .msg > span[style*="green"] strong {
 /* ─── Saisie ─── */
 html.vs-chatbox #chatbox_footer {
   grid-area: saisie;
-  padding: 10px 14px;
+  padding: 8px 14px;
   border-top: 1px solid rgba(var(--ink-rgb), 0.12);
 }
 
