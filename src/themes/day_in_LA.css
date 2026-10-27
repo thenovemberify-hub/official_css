@@ -34,9 +34,9 @@
     --text-muted: #9db3c3;  /* V4 : #688091 (illisible) → ≥ 3:1, mentions secondaires */
     --text-cream: #f4f7f4;
     /* V4 : panneaux plus opaques (0,55 → 0,78) : la photo claire ne passe plus derrière le texte */
-    --surface-glass: rgba(17, 35, 48, 0.78);
-    --surface-glass-dim: rgba(17, 35, 48, 0.7);
-    --surface-glass-deep: rgba(17, 35, 48, 0.88);
+    --surface-glass: rgba(17, 35, 48, 0.84);       /* 27/10 (phase 7) : 0.78 → un peu plus opaque */
+    --surface-glass-dim: rgba(17, 35, 48, 0.78);   /* 0.7 */
+    --surface-glass-deep: rgba(17, 35, 48, 0.9);   /* 0.88 */
     --text-bright: #f0f8fc;
     --edge: #1e3848;
     --white: #ffffff;

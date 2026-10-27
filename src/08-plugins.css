@@ -39,6 +39,7 @@
 /* Conteneur de toutes les sous-sections
  * comme les encadrés d'options, de rappel, etc... */
 .panel {
+  background: var(--surface-glass-dim);   /* 27/10 (phase 7) : les panneaux n'avaient que le flou, trop transparents */
   backdrop-filter: blur(10px);
   border: var(--border);
   border-radius: var(--radius-lg);

@@ -26,9 +26,9 @@
     --text-soft: #c5c5c5;
     --text-muted: #a39b93;  /* V4 : #6a6560 (≈ 1,3:1) → lisible */
     --text-cream: #faf6ed;
-    --surface-glass: rgba(18, 40, 63, 0.45);
-    --surface-glass-dim: rgba(18, 40, 63, 0.35);
-    --surface-glass-deep: rgba(18, 40, 63, 0.6);
+    --surface-glass: rgba(18, 40, 63, 0.64);       /* 27/10 (phase 7) : 0.45 → plus opaque, plus lisible */
+    --surface-glass-dim: rgba(18, 40, 63, 0.55);   /* 0.35 */
+    --surface-glass-deep: rgba(18, 40, 63, 0.76);  /* 0.6 */
 
     --text-bright: #f4f4f4;
     --edge: #40485e;
