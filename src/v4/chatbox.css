@@ -1,0 +1,415 @@
+/* ============================================================================
+ * V4 — CHATBOX (27/10)
+ * ----------------------------------------------------------------------------
+ * La chatbox est une page à part (/chatbox/…) dans une iframe. Le module « Chatbox Velvet »
+ * (js/modules/chatbox_theme.js) y recopie notre CSS, les polices et le thème, et pose la classe
+ * « vs-chatbox » sur son <html> : tout ce qui suit ne vise que cette page.
+ * Mise en page : en-tête (titre, nombre de connectés, Archives / Déconnexion), messages à gauche,
+ * connectés à droite, champ de saisie et boutons de mise en forme en bas. Sous 520px (largeur de
+ * l'iframe), la liste des connectés disparaît. Couleurs et polices : celles du thème (contrat).
+ * Côté page du forum, l'iframe devient un panneau comme les autres (fond, bordure, coins).
+ * ============================================================================ */
+
+/* ─── Page du forum : l'iframe en panneau ─── */
+iframe#frame_chatbox,
+iframe[src*="/chatbox/"] {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--layout-width);
+  min-height: 340px;
+  margin: 0 auto 20px;
+  border: var(--frame-border);
+  border-radius: var(--frame-radius);
+  background: var(--surface-row);
+  backdrop-filter: var(--frame-blur);
+  -webkit-backdrop-filter: var(--frame-blur);
+}
+
+/* ─── La page de la chatbox ─── */
+html.vs-chatbox,
+html.vs-chatbox body.chatbox {
+  height: 100%;
+}
+
+html.vs-chatbox body.chatbox {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "tete tete"
+    "messages membres"
+    "saisie saisie";
+  margin: 0;
+  overflow: hidden;
+  /* Le fond est celui du panneau, côté forum : pas de photo ni de blanc ici */
+  background: transparent !important;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--textColor);
+}
+
+html.vs-chatbox body.chatbox a {
+  background-image: none;
+  text-decoration: none;
+  color: var(--text-2);
+  transition: color calc(0.15s * var(--dur-scale)) ease;
+}
+
+html.vs-chatbox body.chatbox a:hover {
+  color: var(--accent-text);
+}
+
+/* Icônes de la chatbox (Ionicons, redessinées comme le reste du forum, v4/icones.css) */
+html.vs-chatbox .ion-ios-chatboxes-outline::before { content: "\f264"; }
+html.vs-chatbox .ion-log-in::before { content: "\f1be"; }
+html.vs-chatbox .ion-log-out::before { content: "\f1c3"; }
+html.vs-chatbox .ion-android-send::before {
+  content: "\f1d8";                        /* avion en papier (Bootstrap Icons 1.4.0 n'en a pas) */
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900 !important;
+}
+
+/* ─── En-tête ─── */
+html.vs-chatbox #chatbox_header {
+  grid-area: tete;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.12);
+  background: none;
+}
+
+html.vs-chatbox .chatbox-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: var(--track-4);
+  text-transform: uppercase;
+}
+
+html.vs-chatbox .chatbox-title a.chat-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-text);
+}
+
+html.vs-chatbox #nb-users-connected {
+  min-width: 20px;
+  padding: 2px 8px;
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  border-radius: 999px;
+  background: rgba(var(--gold-rgb), 0.12);
+  font-family: var(--font-condensed);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--accent-text);
+}
+
+html.vs-chatbox .title_channel_selected:empty,
+html.vs-chatbox #tab_selector_cb:empty {
+  display: none;
+}
+
+/* Archives / Retour au chat, Connexion / Déconnexion : petits boutons encadrés (sans les « | » de Forumactif) */
+html.vs-chatbox .chatbox-options {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+html.vs-chatbox .chatbox-options a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--panel-radius);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+}
+
+html.vs-chatbox .chatbox-options a:hover {
+  border-color: var(--accent-text);
+}
+
+html.vs-chatbox .chatbox-options strong {
+  font-weight: inherit;
+}
+
+html.vs-chatbox .chatbox-options [class*="ion-"] {
+  margin-right: 6px;
+}
+
+/* ─── Connectés ─── */
+html.vs-chatbox #chatbox_members {
+  grid-area: membres;
+  position: static !important;
+  overflow-y: auto;
+  padding: 10px 12px;
+  border-left: 1px solid rgba(var(--ink-rgb), 0.12);
+  font-size: var(--fs-xs);
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--scroll-thumb-rgb)) transparent;
+}
+
+html.vs-chatbox #chatbox_members .member-title {
+  margin: 0 0 6px;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+html.vs-chatbox #chatbox_members ul {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+html.vs-chatbox #chatbox_members li {
+  padding: 3px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.vs-chatbox #chatbox_members li > span {
+  font-weight: 600;
+}
+
+/* ─── Messages ─── */
+html.vs-chatbox #chatbox {
+  grid-area: messages;
+  position: static !important;
+  overflow-y: auto;
+  padding: 8px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--scroll-thumb-rgb)) transparent;
+}
+
+html.vs-chatbox #chatbox > p {
+  margin: 0;
+  padding: 5px 14px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+  transition: background-color calc(0.15s * var(--dur-scale)) ease;
+}
+
+html.vs-chatbox #chatbox > p:hover {
+  background: rgba(var(--ink-rgb), 0.04);
+}
+
+html.vs-chatbox #chatbox .date-and-time {
+  float: right;
+  margin-left: 12px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+
+/* Avatars des messages : petites pastilles rondes */
+html.vs-chatbox #chatbox .user img,
+html.vs-chatbox #chatbox [class*="avatar"] img {
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+}
+
+/* Couleur par défaut de Forumactif (#444444, gris foncé illisible sur nos fonds) : le texte prend celle du thème */
+html.vs-chatbox #chatbox [style*="#444444" i],
+html.vs-chatbox #chatbox [style*="rgb(68, 68, 68)"] {
+  color: inherit !important;
+}
+
+/* Messages du système (« X a rejoint le chat ») : discrets */
+html.vs-chatbox #chatbox .msg > span[style*="color:green"],
+html.vs-chatbox #chatbox .msg > span[style*="color: green"] {
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: var(--text-3) !important;
+}
+
+html.vs-chatbox #chatbox .msg > span[style*="green"] strong {
+  font-weight: 400;
+}
+
+/* ─── Saisie ─── */
+html.vs-chatbox #chatbox_footer {
+  grid-area: saisie;
+  padding: 10px 14px;
+  border-top: 1px solid rgba(var(--ink-rgb), 0.12);
+}
+
+html.vs-chatbox #chatbox_footer form {
+  margin: 0;
+}
+
+html.vs-chatbox #chatbox_messenger_form {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+html.vs-chatbox #chatbox_messenger_form .style-buttons {
+  flex: 1 1 100%;
+}
+
+html.vs-chatbox .text-field {
+  display: flex;
+  gap: 6px;
+}
+
+html.vs-chatbox input#message {
+  flex: 1;
+  min-width: 0;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--panel-radius);
+  background: rgba(var(--shadow-rgb), 0.3);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--textColor) !important;
+  cursor: text;
+  outline: none;
+}
+
+html.vs-chatbox input#message::placeholder {
+  color: var(--text-3);
+}
+
+html.vs-chatbox input#message:focus {
+  border-color: var(--accent-text);
+}
+
+html.vs-chatbox button#submit {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid rgba(var(--gold-rgb), 0.5);
+  border-radius: var(--panel-radius);
+  background: rgba(var(--gold-rgb), 0.15);
+  font-size: var(--fs-sm);
+  color: var(--accent-text);
+  cursor: pointer;
+  transition: background-color calc(0.15s * var(--dur-scale)) ease;
+}
+
+html.vs-chatbox button#submit:hover {
+  background: rgba(var(--gold-rgb), 0.3);
+}
+
+/* Boutons de mise en forme (B, I, U, S, couleur, smileys, aide) : petits carrés encadrés */
+html.vs-chatbox #chatbox_messenger_form .right-box:not(.style-buttons) {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+html.vs-chatbox input.format-message {
+  display: none;
+}
+
+html.vs-chatbox .fontbutton,
+html.vs-chatbox #help-button {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--panel-radius);
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  user-select: none;
+  transition: color calc(0.15s * var(--dur-scale)) ease, border-color calc(0.15s * var(--dur-scale)) ease;
+}
+
+html.vs-chatbox .fontbutton:hover,
+html.vs-chatbox #help-button:hover {
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+html.vs-chatbox label[for="format-bold"] { font-weight: 800; }
+html.vs-chatbox label[for="format-italic"] { font-style: italic; }
+html.vs-chatbox label[for="format-underline"] { text-decoration: underline; }
+html.vs-chatbox label[for="format-strike"] { text-decoration: line-through; }
+
+html.vs-chatbox input.format-message:checked + .fontbutton {
+  border-color: var(--accent-text);
+  background: rgba(var(--gold-rgb), 0.15);
+  color: var(--accent-text);
+}
+
+/* Couleur choisie : un trait sous le « A » */
+html.vs-chatbox #divcolor-preview {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+html.vs-chatbox #divsmilies img {
+  width: 16px;
+  height: auto;
+  filter: grayscale(1);
+  opacity: 0.8;
+}
+
+html.vs-chatbox #divsmilies:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+html.vs-chatbox #help-button {
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+/* ─── Iframe étroite (téléphone) : pas de colonne des connectés ─── */
+@media (max-width: 520px) {
+  html.vs-chatbox body.chatbox {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "tete"
+      "messages"
+      "saisie";
+  }
+
+  html.vs-chatbox #chatbox_members {
+    display: none;
+  }
+}

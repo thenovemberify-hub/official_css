@@ -40,15 +40,15 @@
   color: var(--text-2);
 }
 
-/* ─── Le Masque : le gif « Reflet » en bas, à cadre fixe (le gif ne fait pas sauter la colonne) ───
- * Les 5 champs et le gif tiennent sans barre de défilement (250px avant : le gif restait caché). */
+/* ─── Le Masque : le gif « Reflet » en bas, à la largeur de la colonne, sa hauteur suit ses proportions ───
+ * L'onglet ne défile plus : il s'allonge avec le gif (250px avant : le gif restait caché). */
 .vs-tab-content.vs-tab1 {
-  max-height: 460px;
+  max-height: none;
+  overflow: visible;
 }
 
 .vs-reflet {
   margin-top: 10px;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid rgba(var(--ink-rgb), 0.15);
   border-radius: var(--panel-radius);
@@ -57,9 +57,8 @@
 .vs-reflet img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: none;
-  object-fit: cover;
 }
 
 /* ─── La Plume : courte, elle s'affiche en entier (et laisse dépasser les infobulles) ─── */
