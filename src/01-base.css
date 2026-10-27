@@ -173,7 +173,10 @@ textarea:focus-visible {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0 1000px var(--subcategory-dark) inset;
+  /* V4 (27/10) : le fond était --subcategory-dark, un gris clair hérité du Blank Theme (#e6e6e6) : les champs
+     pré-remplis par le navigateur (connexion…) devenaient clairs, texte sombre. Fond et texte du thème. */
+  -webkit-box-shadow: 0 0 0 1000px rgb(var(--panel-deep-rgb)) inset;
+  -webkit-text-fill-color: var(--text-cream);
   caret-color: var(--accentClr);
   transition: background-color calc(9999s * var(--dur-scale)) ease-in-out 0s;
 }

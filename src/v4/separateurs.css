@@ -8,7 +8,8 @@
  * système demande moins d'animations), refaites par tools/separateurs.py.
  * ============================================================================ */
 
-/* Le séparateur du template (premier enfant de .signature_div, en style intégré) */
+/* Le séparateur du template (premier enfant de .signature_div, en style intégré). Retiré du template le 27/10
+   (ACTIONS_V4 T14) ; la règle reste tant qu'un forum a l'ancien template : à retirer après la mise en ligne. */
 .signature_div > div:first-child[style*="justify-content"] {
   display: none !important;
 }

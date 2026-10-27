@@ -1,0 +1,278 @@
+/* ============================================================================
+ * V4 — PAGE DE CONNEXION (27/10, revue R3)
+ * ----------------------------------------------------------------------------
+ * /login (et la page que voit un invité sur Membres, Groupes, un profil…) : deux panneaux de Forumactif,
+ *   .panel.login-tabbed : titre .h3, onglets .login-tabs (« Mot de passe » / « Lien par e-mail »),
+ *                         puis deux formulaires (#panel-password, #panel-magic, l'un caché par l'attribut hidden) ;
+ *   .panel (le suivant) : « S'enregistrer ».
+ * Avant : titre brut, onglets collés à gauche, libellés et champs décalés (la grille 150px du template),
+ * champ du mot de passe sans cadre. Maintenant : deux cartes centrées l'une sous l'autre, titre centré, onglets
+ * centrés, une colonne libellé au-dessus du champ, bouton plein. Tous les thèmes (contrat de thème).
+ * ============================================================================ */
+
+#main-content > .panel.login-tabbed,
+#main-content > .panel.login-tabbed ~ .panel {
+  --lg-col: min(360px, 100%);
+  max-width: 560px;
+  margin: 40px auto 0;
+  padding: 0;
+  text-align: center;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: var(--frame-border);
+  border-radius: var(--frame-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+#main-content > .panel.login-tabbed ~ .panel {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+:is(.panel.login-tabbed, .panel.login-tabbed ~ .panel) :is(.corners-top, .corners-bottom) {
+  display: none;
+}
+
+:is(.panel.login-tabbed, .panel.login-tabbed ~ .panel) .content {
+  padding: 0 32px 30px;
+}
+
+/* ─── Titres « Connexion » et « S'enregistrer » ─── */
+:is(.panel.login-tabbed, .panel.login-tabbed ~ .panel) .h3 {
+  margin: 0 -32px;
+  padding: 24px 32px 18px;
+  border-bottom: 1px solid var(--panel-line);
+  font-family: var(--font-title);
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  letter-spacing: var(--track-1);
+  text-align: center;
+  color: var(--text-bright);
+}
+
+/* ─── Onglets : centrés, espacés ; l'onglet ouvert à la couleur d'accent ─── */
+.login-tabbed .login-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0 26px;
+}
+
+.login-tabbed .login-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 18px;
+  background: transparent;
+  border: 1px solid var(--panel-line);
+  border-radius: var(--panel-radius);
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--text-2);
+  transition: border-color calc(0.25s * var(--dur-scale)) ease, color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.login-tabbed .login-tab:hover {
+  border-color: rgba(var(--gold-rgb), 0.5);
+  color: var(--text-bright);
+}
+
+.login-tabbed .login-tab[aria-selected="true"] {
+  background: rgba(var(--gold-rgb), 0.08);
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+.login-tabbed .login-tab:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+/* ─── Formulaires : une colonne centrée, libellé au-dessus du champ ─── */
+.login-tabbed .login-body form:not([hidden]) {
+  display: block;
+}
+
+.login-tabbed .fld_connexion {
+  width: var(--lg-col);
+  margin: 0 auto;
+  text-align: start;
+}
+
+/* Remplace la grille 150px / auto du CSS intégré au template (overall_header) */
+.login-tabbed .fld_connexion dl,
+.login-tabbed .fld_connexion dl:nth-of-type(n+3) {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0 0 18px;
+}
+
+.login-tabbed .fld_connexion dt,
+.login-tabbed .fld_connexion dd {
+  margin: 0;
+}
+
+.login-tabbed .fld_connexion dt label {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* « Lien par e-mail » : sa dernière ligne a un libellé vide (&nbsp;) */
+.login-tabbed #panel-magic dl:last-of-type dt {
+  display: none;
+}
+
+.login-tabbed .fld_connexion :is(input[type="text"], input[type="password"], input[type="email"]) {
+  width: 100% !important;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  background: rgba(var(--shadow-rgb), 0.35);
+  border: 1px solid rgba(var(--paper-rgb), 0.16);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-lg); /* ≥ 16px : pas de zoom automatique sur iPhone */
+  color: var(--text-cream) !important;
+}
+
+.login-tabbed .fld_connexion :is(input[type="text"], input[type="password"], input[type="email"]):focus-visible {
+  border-color: var(--accent-text);
+}
+
+/* Mot de passe : l'œil (afficher / masquer) dans le champ, à droite */
+.login-tabbed .password-container {
+  position: relative;
+  display: block;
+}
+
+.login-tabbed #password {
+  padding-right: 42px;
+}
+
+.login-tabbed .show_hide_pwd {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  filter: invert(1);
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.login-tabbed .show_hide_pwd:hover {
+  opacity: 0.9;
+}
+
+/* « Récupérer mon mot de passe » : petit lien sous le champ, à droite */
+.login-tabbed .fld_connexion dd a[href*="sendpassword"] {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--fs-xs);
+  text-align: end;
+  color: var(--accent-text);
+}
+
+/* Connexion automatique : case et texte centrés */
+.login-tabbed .fld_connexion label[for="autologin"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.login-tabbed #autologin {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: var(--accentClr);
+}
+
+/* Bouton : plein, à la couleur d'accent, sur toute la colonne */
+.login-tabbed .fld_connexion .button1 {
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 12px 20px;
+  background: var(--accentClr);
+  border: 1px solid var(--accentClr);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: rgb(var(--coal-rgb));
+  cursor: pointer;
+}
+
+.login-tabbed .fld_connexion .button1:hover {
+  filter: brightness(1.1);
+}
+
+/* Phrase d'explication du lien par e-mail */
+.login-tabbed .login-hint {
+  margin: 0 0 20px;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  text-align: center;
+  color: var(--text-2);
+}
+
+/* ─── « S'enregistrer » : texte centré, bouton encadré ─── */
+.panel.login-tabbed ~ .panel p {
+  margin: 22px 0 0;
+  font-size: var(--fs-md);
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.panel.login-tabbed ~ .panel hr {
+  width: 60px;
+  margin: 22px auto 0;
+  border: none;
+  border-top: 1px solid var(--panel-line);
+}
+
+.panel.login-tabbed ~ .panel .button2 {
+  display: inline-block;
+  padding: 10px 26px;
+  background: transparent;
+  border: 1px solid var(--accent-text);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-label);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-2);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-text);
+}
+
+.panel.login-tabbed ~ .panel .button2:hover {
+  background: rgba(var(--gold-rgb), 0.1);
+  color: var(--text-bright);
+}
+
+@media (max-width: 600px) {
+  #main-content > .panel.login-tabbed,
+  #main-content > .panel.login-tabbed ~ .panel {
+    margin-inline: 8px;
+  }
+
+  :is(.panel.login-tabbed, .panel.login-tabbed ~ .panel) .content {
+    padding-inline: 20px;
+  }
+}

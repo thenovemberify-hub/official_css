@@ -176,6 +176,13 @@
   letter-spacing: var(--track-1);
 }
 
+/* La couleur des libellés réglée dans l'admin (Profil › Champs du profil) est écrite dans la balise
+   (<span style="color:#…">) : sans cette règle, elle passe devant le thème (noir sur club27, blanc sur l'officiel).
+   Le profil en popup et l'édition du profil font déjà de même (10-prototypes.css, v4/profil-edition.css). */
+.vs-field-label span[style] {
+  color: inherit !important;
+}
+
 .vs-field-content {
   color: rgb(var(--stone-rgb));
 }

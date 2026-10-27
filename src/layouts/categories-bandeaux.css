@@ -131,6 +131,19 @@
   overflow: hidden;
 }
 
+/* Brique sans image (les sous-forums, sur la page d'un forum : leur description n'a pas de gif) : pas de case vide
+   en tête, le nom se pose au-dessus du texte (27/10). L'image du thème (--forum-img) a besoin de cette case : un forum
+   qui en veut une doit avoir un gif dans sa description. */
+[data-layout-categories="briques-bandeaux"] .forum:not(:has(.cat-icon-wrapper)) {
+  grid-template-rows: auto auto 1fr auto;
+}
+
+[data-layout-categories="briques-bandeaux"] .forum:not(:has(.cat-icon-wrapper)) a.forumtitle {
+  padding-top: 18px;
+  padding-bottom: 0;
+  text-shadow: none;
+}
+
 /* La description se défait : image, texte et liens deviennent des cases de la brique */
 [data-layout-categories="briques-bandeaux"] .forum .forum_desc {
   display: contents;

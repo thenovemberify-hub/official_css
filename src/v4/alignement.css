@@ -1,0 +1,14 @@
+/* ============================================================================
+ * ALIGNEMENT (V4, 27/10, revue R5)
+ * ----------------------------------------------------------------------------
+ * Le contenu de la page fait 1012px ; les catégories, les messages, la navigation et la barre de liens se calent
+ * sur --layout-width (1000px), centrés. Le bandeau de titre, le fil d'Ariane et les panneaux posés directement
+ * dans la page (message d'accueil, connexion, inscription…) prenaient les 1012px : 6px de trop de chaque côté.
+ * ============================================================================ */
+#main-content > .panel,
+#main-content > .navigation_links,
+.container > .page-title {
+  box-sizing: border-box;
+  max-width: var(--layout-width);
+  margin-inline: auto;
+}
