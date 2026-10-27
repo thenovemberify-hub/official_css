@@ -10,20 +10,38 @@
  * Côté page du forum, l'iframe devient un panneau comme les autres (fond, bordure, coins).
  * ============================================================================ */
 
-/* ─── Page du forum : l'iframe en panneau ─── */
-iframe#frame_chatbox,
-iframe[src*="/chatbox/"] {
+/* ─── Page du forum : <div class="panel"><div id="chatbox_bottom" style="height:300px"><object id="frame_chatbox">,
+ * puis la poignée de redimensionnement (#chatbox_resize). Le panneau du forum fait le cadre ; la chatbox le remplit. ─── */
+.panel:has(> #chatbox_top, > #chatbox_bottom) {
+  padding: 0;
+  overflow: hidden;
+}
+
+#frame_chatbox {
   display: block;
-  box-sizing: border-box;
   width: 100%;
-  max-width: var(--layout-width);
-  min-height: 340px;
-  margin: 0 auto 20px;
-  border: var(--frame-border);
-  border-radius: var(--frame-radius);
-  background: var(--surface-row);
-  backdrop-filter: var(--frame-blur);
-  -webkit-backdrop-filter: var(--frame-blur);
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+/* Poignée pour agrandir la chatbox (glisser vers le bas) : une barre discrète au lieu de l'image de Forumactif */
+#chatbox_resize {
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 4px auto 6px;
+  padding: 0;
+  border-radius: 2px;
+  background: rgba(var(--ink-rgb), 0.25);
+  object-fit: none;
+  object-position: -9999px -9999px;   /* l'image d'origine sort du cadre : seule la barre reste */
+  cursor: ns-resize;
+  transition: background-color calc(0.15s * var(--dur-scale)) ease;
+}
+
+#chatbox_resize:hover {
+  background: var(--accent-text);
 }
 
 /* ─── La page de la chatbox ─── */
