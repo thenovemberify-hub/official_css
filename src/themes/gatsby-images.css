@@ -1,7 +1,7 @@
 /* ============================================================================
- * GATSBY — IMAGES (26/10)
+ * GATSBY — IMAGES (26/10, relooking du 29/10)
  * ----------------------------------------------------------------------------
- * Toutes les images du thème, au même endroit : fonds du bloc d'accueil et de « Qui est en ligne »,
+ * Toutes les images du thème, au même endroit : visuel et fond du bloc d'accueil, fond de « Qui est en ligne »,
  * avatars du staff sur l'accueil, bandeaux des catégories (#c1…) et des forums, repérés par le NOM dans leur
  * adresse (/f2-the-velvet-lounge → the-velvet-lounge) : le même sur club27 et sur l'officiel, dont les numéros
  * diffèrent. Brique de l'accueil : lien qui finit par « -nom » ; page du forum : data-forum (module 22301). Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
@@ -10,38 +10,41 @@
  * SAUF les avatars du staff : le module 22301 les lit et les pose dans la page, il leur faut l'adresse complète.
  *
  * Changer une image : remplacer l'url sur sa ligne. Un forum sans ligne garde le gif de sa description.
+ * Une image ne sert qu'à un seul endroit (29/10 : la PA et Los Angeles, le QEEL et The Green Room partageaient la leur).
  * ============================================================================ */
 
 [data-theme="gatsby"] {
+    /* Colonne de gauche du bloc d'accueil : la fête de Babylon (webp animé, 330 px, 0,75 Mo) */
+    --hp-visual-img: url("img/gatsby/visuel-babylon.webp");
     /* Fonds, voile compris (sans voile, le texte se perd dans l'image) */
     --hp-backdrop:
-        linear-gradient(rgba(9, 34, 25, 0.8), rgba(9, 34, 25, 0.8)),
-        url("img/gatsby/bandeau-11-haut.jpg");
+        linear-gradient(rgba(9, 34, 25, 0.82), rgba(9, 34, 25, 0.82)),
+        url("img/gatsby/bandeau-22.jpg");
     --qeel-backdrop:
-        linear-gradient(rgba(6, 19, 14, 0.82), rgba(6, 19, 14, 0.82)),
-        url("img/gatsby/bandeau-14-haut.jpg");
+        linear-gradient(rgba(6, 19, 14, 0.84), rgba(6, 19, 14, 0.84)),
+        url("img/gatsby/bandeau-07.jpg");
     /* Staff de l'accueil (cadre compris) */
     --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/sinclair-17-200x320.jpg");
     --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/vanda-18-200x320.jpg");
 }
 
 /* ─── Catégories ─── */
-[data-theme="gatsby"] #c1 { --cat-img: url("img/gatsby/bandeau-06.jpg"); }       /* Behind the Velvet Curtain : les loges */
-[data-theme="gatsby"] #c2 { --cat-img: url("img/gatsby/bandeau-17.jpg"); }       /* Threads of Desire : le couple */
-[data-theme="gatsby"] #c3 { --cat-img: url("img/gatsby/bandeau-05.jpg"); }       /* The Velvet Sin : Salomé */
-[data-theme="gatsby"] #c4 { --cat-img: url("img/gatsby/bandeau-11-haut.jpg"); }  /* Los Angeles : la ville */
-[data-theme="gatsby"] #c6 { --cat-img: url("img/gatsby/bandeau-12.jpg"); }       /* The After-Hours : le bar */
+[data-theme="gatsby"] #c1 { --cat-img: url("img/gatsby/bandeau-27.jpg"); }  /* Behind the Velvet Curtain : le rideau rouge */
+[data-theme="gatsby"] #c2 { --cat-img: url("img/gatsby/bandeau-05.jpg"); }  /* Threads of Desire : Salomé */
+[data-theme="gatsby"] #c3 { --cat-img: url("img/gatsby/bandeau-28.jpg"); }  /* The Velvet Sin : la fontaine, la foule du club */
+[data-theme="gatsby"] #c4 { --cat-img: url("img/gatsby/bandeau-21.jpg"); }  /* Los Angeles : la terrasse, Hollywood */
+[data-theme="gatsby"] #c6 { --cat-img: url("img/gatsby/bandeau-12.jpg"); }  /* The After-Hours : le bar */
 
 /* ─── Forums : la brique de l'accueil et le bandeau de la page du forum ─── */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-crimson-codex"]), [data-forum="the-crimson-codex"] .page-title) { --forum-img: url("img/gatsby/bandeau-02.jpg"); --forum-gif: hidden; }        /* The Crimson Codex */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-velvet-lounge"]), [data-forum="the-velvet-lounge"] .page-title) { --forum-img: url("img/gatsby/bandeau-07.jpg"); --forum-gif: hidden; }        /* The Velvet Lounge */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-casting-calls"]), [data-forum="casting-calls"] .page-title) { --forum-img: url("img/gatsby/bandeau-13.jpg"); --forum-gif: hidden; }      /* Casting Calls */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-bureau-of-sin"]), [data-forum="bureau-of-sin"] .page-title) { --forum-img: url("img/gatsby/bandeau-15.jpg"); --forum-gif: hidden; }      /* Bureau of Sin */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-black-ledger"]), [data-forum="the-black-ledger"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); --forum-gif: hidden; }  /* The Black Ledger */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-lights"]), [data-forum="the-circle-of-lights"] .page-title) { --forum-img: url("img/gatsby/bandeau-18.jpg"); --forum-gif: hidden; }      /* The Circle of Lights */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-shadows"]), [data-forum="the-circle-of-shadows"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }      /* The Circle of Shadows */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-vices"]), [data-forum="the-circle-of-vices"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-bas.jpg"); --forum-gif: hidden; }  /* The Circle of Vices */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-angels"]), [data-forum="the-city-of-angels"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); --forum-gif: hidden; } /* The City of Angels */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-ghosts"]), [data-forum="the-city-of-ghosts"] .page-title) { --forum-img: url("img/gatsby/bandeau-11-bas.jpg"); --forum-gif: hidden; }  /* The City of Ghosts */
-[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-green-room"]), [data-forum="the-green-room"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); --forum-gif: hidden; } /* The Green Room */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-crimson-codex"]), [data-forum="the-crimson-codex"] .page-title) { --forum-img: url("img/gatsby/bandeau-02.jpg"); --forum-gif: hidden; }        /* The Crimson Codex : la coupe à rayons */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-velvet-lounge"]), [data-forum="the-velvet-lounge"] .page-title) { --forum-img: url("img/gatsby/bandeau-18.jpg"); --forum-gif: hidden; }        /* The Velvet Lounge : l'invitée de profil */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-casting-calls"]), [data-forum="casting-calls"] .page-title) { --forum-img: url("img/gatsby/bandeau-13.jpg"); --forum-gif: hidden; }      /* Casting Calls : la revue */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-bureau-of-sin"]), [data-forum="bureau-of-sin"] .page-title) { --forum-img: url("img/gatsby/bandeau-24.jpg"); --forum-gif: hidden; }      /* Bureau of Sin : arches vert d'eau et or */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-black-ledger"]), [data-forum="the-black-ledger"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); --forum-gif: hidden; }  /* The Black Ledger : pièces et billets */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-lights"]), [data-forum="the-circle-of-lights"] .page-title) { --forum-img: url("img/gatsby/bandeau-20.jpg"); --forum-gif: hidden; }      /* The Circle of Lights : la scène, les projecteurs */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-shadows"]), [data-forum="the-circle-of-shadows"] .page-title) { --forum-img: url("img/gatsby/bandeau-08.jpg"); --forum-gif: hidden; }      /* The Circle of Shadows : l'ombre sur la scène */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-circle-of-vices"]), [data-forum="the-circle-of-vices"] .page-title) { --forum-img: url("img/gatsby/bandeau-23.jpg"); --forum-gif: hidden; }      /* The Circle of Vices : l'éventail rouge et or */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-angels"]), [data-forum="the-city-of-angels"] .page-title) { --forum-img: url("img/gatsby/bandeau-19.jpg"); --forum-gif: hidden; }      /* The City of Angels : la piscine, le palmier */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-city-of-ghosts"]), [data-forum="the-city-of-ghosts"] .page-title) { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); --forum-gif: hidden; } /* The City of Ghosts : les gratte-ciel la nuit */
+[data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-green-room"]), [data-forum="the-green-room"] .page-title) { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); --forum-gif: hidden; } /* The Green Room : la trompettiste */
 [data-theme="gatsby"] :is(.forum:has(> a.forumtitle[href$="-the-ivory-tower"]), [data-forum="the-ivory-tower"] .page-title) { --forum-img: url("https://i.ibb.co/Cw4f1LL/kgza3OZ.gif"); --forum-gif: hidden; } /* Zenith (staff) : /f7-the-ivory-tower sur l'officiel ; image donnée par l'utilisateur le 26/10 */
