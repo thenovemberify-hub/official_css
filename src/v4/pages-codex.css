@@ -1,19 +1,18 @@
 /* ============================================================================
  * V4 — RÈGLEMENT, CONTEXTE, FAQ, HIÉRARCHIE EN PLEINE LARGEUR (phase A, A3, 26/10)
  * ----------------------------------------------------------------------------
- * Les sujets de The Crimson Codex (t1 FAQ, t2 hiérarchie, t3 règlement, t4 contexte) commencent par un bloc
- * .vs-admin-card ou .vs-context-card. Dans un sujet dont le PREMIER message commence ainsi, chaque message perd sa colonne
- * profil et son en-tête (date, gif) : la carte s'affiche seule, centrée, à une largeur de lecture.
- * Les boutons du message (Citer, Éditer…) restent accessibles : petite barre en haut à droite, au survol
- * ou au clavier. Repérage par le contenu (:has) : ni template ni sujet à modifier. Seul le premier message compte
- * (.post_row qui n'en suit aucun autre) : une réponse du staff en carte d'admin dans un sujet RP ou une fiche ne change rien.
- * Les sujets de codes du staff (signatures officielles, fiche RP d'exemple) commencent aussi par une carte : ils passent
- * de même en pleine largeur.
+ * Les 4 sujets de The Crimson Codex (règlement, contexte, FAQ, groupes) : chaque message perd sa colonne profil et son
+ * en-tête (date, gif), la carte s'affiche seule, centrée, à une largeur de lecture. Les boutons du message (Citer, Éditer…)
+ * restent accessibles : petite barre en haut à droite, au survol ou au clavier.
+ * Repérage (phase 7, 7.6, 29/10) : le module « Pages du Codex » pose html.vs-codex-pleine dans ces 4 sujets seulement,
+ * reconnus par le NOM de leur adresse (open-the-seal, the-house-rules, the-dealer-s-hand, the-briefing ; le numéro diffère
+ * entre club27 et l'officiel). Avant, tout sujet dont le premier message commençait par une carte d'admin passait en pleine
+ * largeur (demandes d'absence, signatures officielles, fiche RP d'exemple…) : ils retrouvent le look classique.
  * Le sommaire du règlement et la recherche de la FAQ sont posés par le module « Pages du Codex »
  * (js/modules/pages_codex.js).
  * ============================================================================ */
 
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_row {
+.vs-codex-pleine .container:has(> .post_row) .post_row {
   grid-template-columns: minmax(0, 1fr);
   background: none;
   backdrop-filter: none;
@@ -21,11 +20,11 @@
   border-color: transparent;
 }
 
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_profile {
+.vs-codex-pleine .container:has(> .post_row) .post_profile {
   display: none;
 }
 
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_message {
+.vs-codex-pleine .container:has(> .post_row) .post_message {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -35,12 +34,12 @@
 }
 
 /* La carte colle au bandeau de titre (le message avait 25px de retrait, la carte 35px de marge) */
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_message > div > :first-child {
+.vs-codex-pleine .container:has(> .post_row) .post_message > div > :first-child {
   margin-top: 0;
 }
 
 /* L'en-tête devient une barre de boutons discrète, posée sur la carte */
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_details {
+.vs-codex-pleine .container:has(> .post_row) .post_details {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -53,11 +52,11 @@
   transition: opacity calc(0.2s * var(--dur-scale)) ease;
 }
 
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_details > :not(.profile-icons) {
+.vs-codex-pleine .container:has(> .post_row) .post_details > :not(.profile-icons) {
   display: none;
 }
 
-.container:has(> .post_row:not(.post_row ~ .post_row) > .post_message > div > :is(.vs-admin-card, .vs-context-card):first-child) .post_row:is(:hover, :focus-within) .post_details {
+.vs-codex-pleine .container:has(> .post_row) .post_row:is(:hover, :focus-within) .post_details {
   opacity: 1;
 }
 
@@ -156,6 +155,11 @@
 
 .vs-codex-barre .pagination {
   order: 3;
+}
+
+/* Les boutons déplacés prennent seuls la marge automatique (v4/finitions.css la donne aussi à tout .right) */
+.links_bar.vs-codex-barre:has(> a.buttons) > .right {
+  margin-left: 0;
 }
 
 .vs-codex-actions {

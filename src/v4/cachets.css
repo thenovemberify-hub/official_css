@@ -1,0 +1,192 @@
+/* ============================================================================
+ * v4/cachets.css — Le Cachet : les badges dans la colonne profil des messages (phase 7, 7.12, 29/10)
+ * ----------------------------------------------------------------------------
+ * Avec le module « Le Cachet » (js/modules/profil_cachets.js, M13). Décisions de l'utilisateur :
+ *   - look MÉDAILLON DÉCO (octogone, rayons, cœur sombre ; 28/10), une teinte par badge (bronze, argent, or, velours) ;
+ *   - TROIS badges sous l'avatar (.vs-cachet-bandeau), « +N » s'il y en a d'autres ;
+ *   - les autres AU FOND DE LA PLUME (.vs-awards, après les contacts), pas de troisième onglet ; onglets en texte (29/10).
+ * Le module garde la structure de Forumactif (.award, .award_tooltiptext) : il ajoute .vs-badge, data-tier et le dessin.
+ * Sans le module : les récompenses restent les ronds de Forumactif, dans la Plume (08-plugins.css).
+ * Les couleurs des teintes sont celles du métal : les mêmes dans les trois thèmes.
+ * ============================================================================ */
+
+.award.vs-badge {
+  --bs: 40px;
+  --vs-octo: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  position: static; /* l'infobulle se place par rapport au bandeau ou à la collection, pas au badge */
+  display: inline-block;
+  flex: none;
+  width: var(--bs);
+  height: var(--bs);
+  background: none;
+  border-radius: 0;
+  cursor: help;
+}
+
+.award.vs-badge[data-tier="bronze"]  { --c1: #dca677; --c2: #b27a4b; --c3: #6a4225; }
+.award.vs-badge[data-tier="argent"]  { --c1: #eef2f4; --c2: #b9c2c8; --c3: #6a767e; }
+.award.vs-badge[data-tier="or"]      { --c1: #fbebb8; --c2: #ecd08a; --c3: #9a7122; }
+.award.vs-badge[data-tier="velours"] { --c1: #c4505f; --c2: #8f2434; --c3: #48101a; }
+
+/* Le métal : un octogone en dégradé ; dedans, le cœur sombre à rayons et le glyphe à la couleur du métal.
+ * L'ombre est sur l'enveloppe (.vs-badge-b) et pas sur le badge : un filter sur .award en ferait le repère de l'infobulle. */
+.award.vs-badge {
+  --vs-ombre: drop-shadow(0 2px 2.5px rgba(0, 0, 0, 0.55));
+}
+
+.vs-badge-b {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: var(--vs-ombre);
+}
+
+.vs-badge-b::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: var(--vs-octo);
+  background: linear-gradient(135deg, var(--c1), var(--c3) 55%, var(--c1));
+}
+
+.vs-badge-in {
+  position: absolute;
+  inset: 7%;
+  display: grid;
+  place-items: center;
+  clip-path: var(--vs-octo);
+  color: var(--c1);
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--c2) 30%, transparent), transparent 68%),
+    repeating-conic-gradient(rgba(255, 255, 255, 0.06) 0 7.5deg, transparent 7.5deg 15deg),
+    #0c151a;
+}
+
+.vs-badge-in svg {
+  width: 56%;
+  height: 56%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vs-badge-in svg .p {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Badge sans glyphe connu : l'image de la récompense dans le cœur du médaillon */
+.vs-badge-image .vs-badge-in {
+  background: var(--award-image) center / cover no-repeat, #0c151a;
+}
+
+.award.vs-badge:focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.85);
+  outline-offset: 2px;
+}
+
+/* ─── L'infobulle de Forumactif, restylée : centrée sous le bandeau ou la collection ─── */
+.award.vs-badge .award_tooltiptext {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 50%;
+  width: min(210px, 100%);
+  transform: translateX(-50%);
+  padding: 10px 12px;
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  border-radius: calc(4px * var(--radius-scale));
+  box-shadow: 0 8px 22px rgba(var(--shadow-rgb), 0.6);
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+  text-align: left;
+  color: var(--text);
+  cursor: default;
+}
+
+.award.vs-badge:is(:hover, :focus, :focus-within) .award_tooltiptext {
+  display: block;
+}
+
+.award.vs-badge .award_tooltiptext_title {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-title);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent-text);
+}
+
+/* ─── Trois badges sous l'avatar ─── */
+.vs-cachet-bandeau {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 8px 0 6px;
+  padding: 8px 0 6px;
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.vs-cachet-plus {
+  min-height: 26px;
+  padding: 2px 9px;
+  background: none;
+  border: 1px solid var(--panel-line);
+  border-radius: 13px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.vs-cachet-plus:hover {
+  border-color: rgba(var(--gold-rgb), 0.8);
+  color: var(--accent-text);
+}
+
+.vs-cachet-plus:focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.85);
+  outline-offset: 2px;
+}
+
+/* ─── Les autres, au fond de la Plume ─── */
+.vs-tab2 .vs-awards:has(> .award.vs-badge) {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 40px);
+  justify-content: center;
+  gap: 10px 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--panel-line);
+  scroll-margin: 12px;
+}
+
+.vs-cachet-titre {
+  grid-column: 1 / -1;
+  margin: 0 0 2px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-2xs);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-2);
+}
+
+/* Trois badges ou moins : tout est dans le bandeau, le fond de la Plume n'a rien à montrer */
+.vs-tab2 .vs-awards.vs-awards-vide {
+  display: none;
+}

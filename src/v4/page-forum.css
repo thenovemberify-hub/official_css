@@ -1,0 +1,103 @@
+/* ============================================================================
+ * v4/page-forum.css — la page d'un forum, un seul exemplaire de chaque chose (phase 7, 7.14, 29/10)
+ * ----------------------------------------------------------------------------
+ * Template viewforum_body (T à coller) : fil d'Ariane → gros titre (.vs-forum-tete) → sous-forums (.vs-forum-sous-forums,
+ * c'est {BOARD_INDEX}, le template index_box) → une seule barre (.vs-forum-barre) → sujets → pagination en bas.
+ * Ici : les sous-forums perdent ce que le gros titre dit déjà (en-tête et citation de la catégorie) et la barre de liens
+ * de l'accueil ; la barre unique range Surveiller, Marquer comme lu et Trier à droite.
+ * ============================================================================ */
+
+/* ─── Sous-forums ─── */
+/* .category > : plus précis que les dispositions (layouts/, chargées après) qui donnent sa forme au bandeau */
+.vs-forum-sous-forums .category > :is(.cate_title, .cate_quote),
+.vs-forum-sous-forums > .links_bar {
+  display: none;
+}
+
+/* Forum sans sous-forum : {BOARD_INDEX} ne sort rien, le conteneur ne doit pas laisser de marge */
+.vs-forum-sous-forums:not(:has(*)) {
+  display: none;
+}
+
+/* Le gros titre colle au fil d'Ariane ; les sous-forums suivent */
+.vs-forum-tete {
+  margin-bottom: var(--space-md);
+}
+
+/* ─── La barre unique ─── */
+/* Au-dessus des sujets : la barre a un filter (08-plugins.css), donc son propre empilement ; sans cela, le menu
+   « Trier » passait sous les lignes de sujets (elles ont un backdrop-filter et viennent après) */
+.vs-forum-barre {
+  position: relative;
+  z-index: 30;
+}
+
+.vs-forum-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.vs-forum-actions > a {
+  color: var(--text-2);
+}
+
+.vs-forum-actions > a:hover {
+  color: var(--accent-text);
+}
+
+/* « Trier les sujets » : le menu s'ouvre sous le bouton, au-dessus des sujets, au style du thème
+ * (08-plugins.css lui donnait --neutral, clair) */
+.vs-forum-barre #sort-topics {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 4px 10px;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.vs-forum-barre .sort-form {
+  z-index: 20;
+  min-width: 220px;
+  margin: 0;
+  padding: 14px;
+  background: var(--surface-row-strong);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  box-shadow: var(--panel-shadow);
+  color: var(--text);
+  text-align: left;
+  text-transform: none;
+  cursor: default;
+}
+
+.vs-forum-barre .sort-form h3 {
+  margin: 0 0 6px;
+  font-size: var(--fs-xs);
+  color: var(--accent-text);
+}
+
+.vs-forum-barre .sort-form select {
+  width: 100%;
+  min-height: 32px;
+  background-color: var(--surface-row);
+  border: 1px solid rgba(var(--ink-rgb), 0.28);
+  color: var(--text);
+}
+
+.vs-forum-barre .sort-form label {
+  display: block;
+  margin: 2px 0;
+  font-weight: 400;
+}
+
+/* La barre se replie sur deux lignes en fenêtre étroite */
+@media (max-width: 600px) {
+  .vs-forum-actions {
+    margin-left: 0;
+    width: 100%;
+  }
+}

@@ -75,3 +75,160 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
     inset 0 3px 0 var(--vs-groupe),
     0 8px 24px rgba(var(--shadow-rgb), 0.6) !important;
 }
+
+/* ============================================================================
+ * Phase 7 (7.1, 29/10) — COMMANDES « FAÇON CAPTURE » (template memberlist_body)
+ * Deux colonnes au-dessus de la grille : à gauche « Filtrer par groupe » (pastilles de M10) et « Chercher par nom » ;
+ * à droite « Ranger par » et « Ordre », boutons d'envoi du formulaire de Forumactif (listes natives masquées).
+ * Pastille active = remplie à l'accent du thème ; les autres en contour.
+ * ============================================================================ */
+.vs-ml-commandes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 32px;
+  margin: 0 0 22px;
+  padding: 20px 24px;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: var(--panel-border);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-shadow);
+}
+
+.vs-ml-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.vs-ml-natif {
+  display: none; /* les listes restent dans le formulaire : leurs valeurs partent avec lui */
+}
+
+.vs-ml-titre {
+  display: block;
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: var(--track-2);
+  color: var(--text);
+}
+
+/* Un seul groupe sur la page : M10 ne pose rien, la rubrique disparaît */
+.vs-ml-rubrique:has(> .vs-ml-groupes:empty) {
+  display: none;
+}
+
+.vs-ml-commandes .vs-ml-filtre {
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 0;
+}
+
+.vs-ml-pastilles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Les pastilles de tri prennent la forme de celles des groupes */
+.vs-ml-tri,
+.vs-ml-commandes .vs-ml-pastille {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  background: transparent;
+  border: 1px solid rgba(var(--ink-rgb), 0.3);
+  border-radius: calc(20px * var(--radius-scale));
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--track-1);
+  text-transform: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.vs-ml-tri:hover,
+.vs-ml-commandes .vs-ml-pastille:hover {
+  border-color: rgba(var(--gold-rgb), 0.8);
+}
+
+.vs-ml-tri:focus-visible,
+.vs-ml-commandes .vs-ml-pastille:focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.85);
+  outline-offset: 2px;
+}
+
+/* Pastille active : le groupe choisi (M10) ; le tri et l'ordre d'après l'option cochée des listes natives */
+.vs-ml-commandes .vs-ml-pastille[aria-pressed="true"],
+.vs-ml-commandes:has(select[name="mode"] option[value="lastvisit"]:checked) .vs-ml-tri[name="mode"][value="lastvisit"],
+.vs-ml-commandes:has(select[name="mode"] option[value="username"]:checked) .vs-ml-tri[name="mode"][value="username"],
+.vs-ml-commandes:has(select[name="mode"] option[value="posts"]:checked) .vs-ml-tri[name="mode"][value="posts"],
+.vs-ml-commandes:has(select[name="mode"] option[value="joined"]:checked) .vs-ml-tri[name="mode"][value="joined"],
+.vs-ml-commandes:has(select[name="order"] option[value=""]:checked) .vs-ml-tri[name="order"][value=""],
+.vs-ml-commandes:has(select[name="order"] option[value="DESC"]:checked) .vs-ml-tri[name="order"][value="DESC"] {
+  background: rgba(var(--gold-rgb), 0.88);
+  border-color: rgb(var(--gold-rgb));
+  box-shadow: none;
+  color: rgb(var(--veil-rgb));
+}
+
+.vs-ml-commandes .vs-ml-pastille[aria-pressed="true"] .vs-ml-nombre {
+  color: inherit;
+  opacity: 0.75;
+}
+
+/* Chercher par nom */
+.vs-ml-recherche {
+  display: flex;
+  gap: 8px;
+}
+
+.vs-ml-recherche .inputbox {
+  flex: 1;
+  min-width: 0;
+  min-height: 36px;
+  padding: 4px 12px;
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(var(--ink-rgb), 0.3);
+  border-radius: calc(4px * var(--radius-scale));
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+}
+
+.vs-ml-recherche .inputbox::placeholder {
+  color: var(--text-2);
+}
+
+.vs-ml-recherche .button2 {
+  min-height: 36px;
+  padding: 0 14px;
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  border-radius: calc(4px * var(--radius-scale));
+  color: var(--accent-text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--track-2);
+  cursor: pointer;
+}
+
+/* Fenêtre étroite : une seule colonne */
+@media (max-width: 600px) {
+  .vs-ml-commandes {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+}

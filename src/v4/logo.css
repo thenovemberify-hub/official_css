@@ -119,7 +119,8 @@
   animation: gh-corrupt 0.75s steps(1) forwards;
 }
 
-/* ─── Effet « encre » (nuit, phase 7) : la phrase s'écrit derrière une plume de lumière, tient, puis l'encre se dilue.
+/* ─── Effet « encre » (nuit, phase 7) : la phrase s'écrit, tient, puis l'encre se dilue
+ * (7.15, 29/10 : plus de plume de lumière devant l'écriture).
  * Le script du bandeau pose data-effet="encre" quand le registre du thème le demande (sans brouillage ni glitch). ─── */
 .vs-hd-subtitle[data-effet="encre"] {
   position: relative;
@@ -134,20 +135,6 @@
 .vs-hd-subtitle[data-effet="encre"].gh--intrude {
   opacity: 1;
   animation: encre-ecrit calc(1.9s * var(--dur-scale)) linear both;
-}
-
-/* La plume : un point de lumière qui avance avec l'écriture (un peu en retrait, pour que son halo reste visible) */
-.vs-hd-subtitle[data-effet="encre"].gh--intrude::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  margin-top: -3.5px;
-  border-radius: 50%;
-  background: rgb(var(--paper-rgb));
-  box-shadow: 0 0 6px rgb(var(--paper-rgb)), 0 0 14px rgb(var(--fx-b-rgb)), 0 0 26px rgb(var(--fx-b-rgb));
-  animation: encre-plume calc(1.9s * var(--dur-scale)) linear both;
 }
 
 .vs-hd-subtitle[data-effet="encre"].gh--hold {
@@ -165,12 +152,6 @@
 @keyframes encre-ecrit {
   from { clip-path: inset(-40% 100% -40% 0); }
   to { clip-path: inset(-40% -4% -40% 0); }
-}
-
-@keyframes encre-plume {
-  0% { left: -8px; opacity: 1; }
-  92% { opacity: 1; }
-  100% { left: calc(100% - 8px); opacity: 0; }
 }
 
 @keyframes encre-dilue {

@@ -1,0 +1,191 @@
+/* ============================================================================
+ * v4/finitions.css — petits correctifs de la phase 7 (29/10)
+ * ----------------------------------------------------------------------------
+ * Un bloc par retour du carnet (docs/pilotage/PHASE7.md), numéro en tête. CSS seul : aucun template.
+ * ============================================================================ */
+
+/* ─── 7.21 : le nom du joueur, dans la colonne profil des messages, n'est jamais souligné ───
+ * Le soulignement venait du trait animé de tous les liens (01-base.css : dégradé de 1px qui s'étire au survol).
+ * Retour de survol : un léger fondu ; au clavier, un contour. */
+.vs-profile-name a,
+.vs-profile-name a:hover,
+.vs-profile-name a:focus-visible {
+  background-image: none;
+  text-decoration: none;
+}
+
+.vs-profile-name a {
+  transition: opacity var(--transition-fast);
+}
+
+.vs-profile-name a:hover {
+  opacity: 0.8;
+}
+
+.vs-profile-name a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* ─── 7.22 : jour, survol calme d'un sujet ───
+ * Nuit et Gatsby gardent le dédoublement rouge / cyan (03-categories.css) ; le jour passe le titre à l'ambre, sans ombre. */
+[data-theme="day_in_LA"] .topicslist_row:hover .topictitle {
+  color: var(--accent-text);
+  text-shadow: none;
+}
+
+/* ─── 7.20 : bas de page lisible (« Sauter vers », « Outils de modération », « Panneau d'administration ») ───
+ * Ces blocs étaient posés sur la photo du fond, sans cadre. Chacun reçoit le verre des barres de liens ; les listes
+ * et les boutons « Aller » prennent le style des champs du thème. Les cinq icônes de modération du sujet (supprimer,
+ * déplacer, verrouiller, diviser, fusionner) sont retirées : la liste « Outils de modération » propose les mêmes actions. */
+fieldset.jumpbox,
+fieldset.quickmod {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 var(--space-md);
+  padding: 8px 12px;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: 1px solid var(--panel-line);
+  border-radius: calc(4px * var(--radius-scale));
+}
+
+fieldset.jumpbox label,
+fieldset.quickmod label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-2);
+  color: var(--text);
+}
+
+fieldset.jumpbox select,
+fieldset.quickmod select,
+fieldset.jumpbox input[type="submit"],
+fieldset.quickmod input[type="submit"] {
+  min-height: 32px;
+  padding: 4px 10px;
+  background-color: var(--surface-row-strong);
+  border: 1px solid rgba(var(--ink-rgb), 0.28);
+  border-radius: calc(4px * var(--radius-scale));
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+}
+
+fieldset.jumpbox input[type="submit"],
+fieldset.quickmod input[type="submit"] {
+  border-color: rgba(var(--gold-rgb), 0.5);
+  color: var(--accent-text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+:is(fieldset.jumpbox, fieldset.quickmod) :is(select, input[type="submit"]):hover {
+  border-color: rgba(var(--gold-rgb), 0.8);
+}
+
+:is(fieldset.jumpbox, fieldset.quickmod) :is(select, input[type="submit"]):focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.8);
+  outline-offset: 1px;
+}
+
+/* Les cinq icônes rondes de modération, à côté de la liste */
+fieldset.quickmod ~ span.right:has(> a.btn-flat[href*="/modcp?mode="]) {
+  display: none;
+}
+
+/* « Panneau d'administration » : un bouton du thème */
+.specials_links.adminlink center {
+  border: 1px solid rgba(var(--gold-rgb), 0.45);
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+}
+
+.specials_links.adminlink center a {
+  color: var(--accent-text);
+}
+
+/* Fenêtre étroite : les deux blocs l'un sous l'autre, pleine largeur */
+@media (max-width: 700px) {
+  form:has(> fieldset.jumpbox),
+  form:has(> fieldset.quickmod) {
+    float: none;
+    width: 100%;
+  }
+
+  fieldset.jumpbox,
+  fieldset.quickmod {
+    display: flex;
+  }
+}
+
+/* ─── 7.18 A : « Poster un nouveau sujet » et « Répondre » côte à côte ───
+ * .links_bar est en space-between (08-plugins.css) : avec trois enfants, le 2e bouton partait au milieu. Les boutons se
+ * serrent à gauche ; ce qui est marqué .right (favoris, pagination) reste tout à droite. Seulement les barres à boutons. */
+.links_bar:has(> a.buttons) {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.links_bar:has(> a.buttons) > .right {
+  margin-left: auto;
+}
+
+/* ─── 7.18 B : barre d'outils de l'éditeur sans blanc ───
+ * La barre et ses groupes prenaient --neutral / --neutralDark (clairs) en !important (06-posting.css) : il faut un
+ * !important pour passer devant. Icônes inchangées (Q91) : les groupes gardent un fond clair, mais teinté du thème et
+ * adouci, pour que les icônes gris foncé (B, I, U, alignements) restent lisibles. */
+div.sceditor-toolbar {
+  background: var(--surface-row-strong) !important;
+  border-bottom: 1px solid var(--panel-line) !important;
+}
+
+div.sceditor-group {
+  background: rgba(var(--ink-rgb), 0.72) !important;
+  border: 1px solid rgba(var(--ink-rgb), 0.35) !important;
+  border-radius: calc(3px * var(--radius-scale));
+}
+
+/* ─── 7.18 C : « Prévisualiser », « Brouillon », « Envoyer » plus grands, Envoyer en bouton principal ─── */
+.submit-buttons.posting-buttons input:is(.button1, .button2) {
+  min-height: 42px;
+  padding: 10px 24px !important; /* 08-plugins.css pose 6px 14px en !important sur tous les boutons d'envoi */
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  opacity: 1;
+  background: var(--surface-row-strong);
+  border: 1px solid rgba(var(--ink-rgb), 0.35);
+  color: var(--text);
+}
+
+.submit-buttons.posting-buttons input.button1 {
+  background: linear-gradient(rgba(var(--gold-rgb), 0.3), rgba(var(--gold-rgb), 0.3)), var(--surface-row-strong);
+  border-color: rgba(var(--gold-rgb), 0.85);
+  color: var(--accent-text);
+}
+
+.submit-buttons.posting-buttons input:is(.button1, .button2):hover {
+  border-color: rgba(var(--gold-rgb), 0.9);
+  color: var(--accent-text);
+}
+
+.submit-buttons.posting-buttons input:is(.button1, .button2):focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.85);
+  outline-offset: 2px;
+}
+
+.submit-buttons.posting-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+}

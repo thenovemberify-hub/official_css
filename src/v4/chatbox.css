@@ -79,6 +79,16 @@ html.vs-chatbox #tab_selector_cb {
   grid-area: onglets;
 }
 
+/* 7.17 (29/10) : l'en-tête et la saisie restent dans la grille, comme les messages et les connectés. Une fois connecté,
+ * la saisie sortait du cadre (coupée en bas, bouton d'envoi qui dépasse) : le CSS de base de Forumactif les place en
+ * absolu, à une hauteur fixe. */
+html.vs-chatbox :is(#chatbox_header, #chatbox_footer) {
+  position: static !important;
+  inset: auto !important;
+  width: auto !important;
+  height: auto !important;
+}
+
 html.vs-chatbox body.chatbox a {
   background-image: none;
   text-decoration: none;
@@ -133,7 +143,9 @@ html.vs-chatbox .chatbox-title a.chat-title {
   color: var(--accent-text);
 }
 
+/* La bulle du nombre de connectés, à côté de « Chatbox » : doublon du bandeau « N personnes au bar » (7.17) */
 html.vs-chatbox #nb-users-connected {
+  display: none;
   min-width: 20px;
   padding: 2px 8px;
   border: 1px solid rgba(var(--gold-rgb), 0.45);
@@ -511,4 +523,78 @@ html.vs-chatbox #help-button {
 
 .vs-cb-infos #chatbox_popup a:hover {
   background: rgba(var(--gold-rgb), 0.15);
+}
+
+/* ─── 7.17 (29/10) : bandeau « N personnes au bar », réduite par défaut, un bouton pour l'ouvrir ───
+ * Module M12 : .vs-cb-compte (la phrase), .vs-cb-bascule (le bouton), .vs-cb-reduite sur le panneau. */
+
+/* « Rejoindre le Chat » (fenêtre à part) : on se connecte par « Connexion », dans la chatbox */
+.vs-cb-infos #chatbox_popup {
+  display: none;
+}
+
+.panel.vs-cb-infos {
+  padding: 8px 12px 8px 18px; /* .panel posait 0 */
+}
+
+.vs-cb-ligne {
+  min-width: 0;
+}
+
+.vs-cb-compte strong {
+  font-size: 1.15em;
+}
+
+.vs-cb-bascule {
+  margin-left: auto;
+  min-height: 30px;
+  padding: 4px 14px;
+  background: transparent;
+  border: 1px solid rgba(var(--gold-rgb), 0.5);
+  border-radius: var(--radius-pill);
+  font: 600 0.68rem/1.4 var(--font-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  cursor: pointer;
+}
+
+.vs-cb-bascule::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 8px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.vs-cb-bascule[aria-expanded="true"]::after {
+  transform: translateY(1px) rotate(-135deg);
+}
+
+.vs-cb-bascule:hover {
+  background: rgba(var(--gold-rgb), 0.15);
+}
+
+.vs-cb-bascule:focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.85);
+  outline-offset: 2px;
+}
+
+/* Réduite : le bandeau seul. La hauteur de la chatbox est écrite dans la balise (style="height:300px") : !important.
+ * Le cadre reste chargé (hauteur nulle, pas display: none) : il n'a pas à se reconnecter quand on l'ouvre. */
+.vs-cb-reduite > :is(#chatbox_top, #chatbox_bottom) {
+  height: 0 !important;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.vs-cb-reduite > #chatbox_resize {
+  display: none;
+}
+
+.vs-cb-reduite > .vs-cb-infos {
+  border-bottom: 0 !important;
 }

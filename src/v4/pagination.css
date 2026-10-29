@@ -1,0 +1,131 @@
+/* ============================================================================
+ * v4/pagination.css — numéros de page lisibles (phase 7, 7.16, 29/10)
+ * ----------------------------------------------------------------------------
+ * HTML de Forumactif : .pagination > [a « Page 1 sur 2 » (ouvre « Aller à la page »)] • <span> <strong>1</strong>
+ * <span class="page-sep">, </span><a>2</a>&nbsp;&nbsp;<a class="pag-img"><img alt="Suivant"></a></span>
+ * Chaque numéro devient une pastille de verre (36px, cible tactile), la page courante à l'accent du thème ; les virgules
+ * disparaissent, les flèches sont redessinées. La mini-pagination d'une ligne de sujet (.topicslist-pagination) n'est pas
+ * concernée : elle a ses propres pastilles (liste-sujets.css). CSS seul : aucun template.
+ * ============================================================================ */
+
+.pagination:not(.topicslist-pagination *) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0; /* la puce « • » et les espaces insécables entre les blocs */
+}
+
+/* « Page 1 sur 2 » : petit libellé, cliquable (« Aller à la page ») */
+.pagination:not(.topicslist-pagination *) > a[href^="javascript:Pagination"] {
+  font-family: var(--font-ui);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-2);
+  color: var(--text-2);
+  padding: 6px 10px;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border-radius: calc(4px * var(--radius-scale));
+}
+
+.pagination:not(.topicslist-pagination *) > a[href^="javascript:Pagination"] strong {
+  color: var(--text);
+}
+
+.pagination:not(.topicslist-pagination *) > span {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-title);
+  font-size: 16px; /* les « … » de Forumactif, quand il y a beaucoup de pages */
+  color: var(--text-2);
+}
+
+.pagination:not(.topicslist-pagination *) .page-sep {
+  display: none;
+}
+
+/* Les numéros et la page courante */
+.pagination:not(.topicslist-pagination *) > span > :is(a, strong) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background: var(--panel-bg);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  border: 1px solid rgba(var(--ink-rgb), 0.22);
+  border-radius: calc(4px * var(--radius-scale));
+  font-family: var(--font-title);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* 08-plugins.css masquait le dernier lien de la liste (pensé pour la flèche) : sur la dernière page, c'était un numéro */
+.pagination:not(.topicslist-pagination *) > span > a:not(.pag-img) {
+  display: inline-flex;
+}
+
+.pagination:not(.topicslist-pagination *) > span > strong {
+  background: linear-gradient(rgba(var(--gold-rgb), 0.24), rgba(var(--gold-rgb), 0.24)), var(--surface-row-strong);
+  border-color: rgba(var(--gold-rgb), 0.75);
+  color: var(--accent-text);
+}
+
+.pagination:not(.topicslist-pagination *) > span > a:hover {
+  border-color: rgba(var(--gold-rgb), 0.75);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.pagination:not(.topicslist-pagination *) > span > a:focus-visible {
+  outline: 2px solid rgba(var(--gold-rgb), 0.8);
+  outline-offset: 2px;
+}
+
+/* Flèches : l'image de Forumactif (claire ou sombre au hasard) laisse place à un chevron qui suit le thème ; le texte
+ * de remplacement de l'image reste lu par les lecteurs d'écran */
+.pagination:not(.topicslist-pagination *) > span > a.pag-img {
+  display: inline-flex;
+  position: relative;
+  padding: 0;
+}
+
+.pagination:not(.topicslist-pagination *) > span > a.pag-img img {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.pagination:not(.topicslist-pagination *) > span > a.pag-img::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateX(-2px) rotate(45deg);
+}
+
+.pagination:not(.topicslist-pagination *) > span > a.pag-img:first-child::before {
+  transform: translateX(2px) rotate(-135deg);
+}
+
+@media (max-width: 600px) {
+  .pagination:not(.topicslist-pagination *) > span > :is(a, strong) {
+    min-width: 40px;
+    height: 40px;
+  }
+}
