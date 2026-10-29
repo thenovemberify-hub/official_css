@@ -583,16 +583,11 @@ html.vs-chatbox #help-button {
   outline-offset: 2px;
 }
 
-/* Réduite : le bandeau seul. La hauteur de la chatbox est écrite dans la balise (style="height:300px") : !important.
- * Le cadre reste chargé (hauteur nulle, pas display: none) : il n'a pas à se reconnecter quand on l'ouvre. */
-.vs-cb-reduite > :is(#chatbox_top, #chatbox_bottom) {
-  height: 0 !important;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-.vs-cb-reduite > #chatbox_resize {
-  display: none;
+/* Réduite : le bandeau seul. Le module rogne le PANNEAU à la hauteur du bandeau (style="height") ; la chatbox, dessous,
+ * garde sa taille et reste chargée : on ne touche ni à sa hauteur ni à son affichage (le 29/10, la redimensionner
+ * provoquait des reconnexions puis une déconnexion forcée). Le panneau a déjà overflow: hidden. */
+.panel.vs-cb-reduite > :is(#chatbox_top, #chatbox_bottom, #chatbox_resize) {
+  pointer-events: none; /* rien de cliquable dans la partie rognée */
 }
 
 .vs-cb-reduite > .vs-cb-infos {

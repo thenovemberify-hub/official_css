@@ -114,6 +114,12 @@
   display: block;
 }
 
+/* Une seule bulle (retour du 29/10 : deux s'ouvraient, la nôtre et une de Forumactif, claire, à droite) : dans la colonne
+ * profil, toute infobulle de récompense qui n'est pas celle d'un médaillon est masquée */
+html.vs-cachets .post_profile .award_tooltiptext:not(.award.vs-badge > .award_tooltiptext) {
+  display: none !important;
+}
+
 .award.vs-badge .award_tooltiptext_title {
   display: block;
   margin-bottom: 3px;
