@@ -61,6 +61,7 @@
 @import "./v4/pagination.css";           /* phase 7 (7.16) : numéros de page en pastilles de verre (29/10) */
 @import "./v4/favoris.css";              /* phase 7 (7.19) : favoris, une seule version des pages natives (29/10) */
 @import "./v4/finitions.css";             /* phase 7 : petits correctifs, un bloc par retour du carnet (29/10) */
+@import "./v4/logo-sans-verre.css";       /* EXPÉRIENCE 7.13 : logo sans cadre en verre ; retirer cette ligne pour revenir au verre */
 
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";

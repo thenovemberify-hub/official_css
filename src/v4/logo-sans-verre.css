@@ -1,0 +1,43 @@
+/* ============================================================================
+ * v4/logo-sans-verre.css — EXPÉRIENCE 7.13 (29/10) : le bandeau du logo sans cadre en verre
+ * ----------------------------------------------------------------------------
+ * Le logo, l'écriture et les phrases se posent directement sur le décor, dans les trois thèmes.
+ * RÉVERSIBLE : retirer la ligne « v4/logo-sans-verre.css » de index.css, compiler : le verre revient.
+ * ============================================================================ */
+
+.vs-hd-wrapper {
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: transparent !important; /* 02-layout.css pose la bordure du cadre en !important */
+  box-shadow: none;
+}
+
+/* ─── La phrase qui change : son support de lecture, sans cadre ───
+ * (1) un voile en ellipse, sombre au centre et qui se fond dans le décor (pas de bord visible) ;
+ * (2) un halo autour des lettres, posé en filter sur la ligne : il suit toutes les animations (glitch, encre, fondu)
+ *     sans toucher à leurs text-shadow. */
+.vs-hd-confession {
+  isolation: isolate;
+  filter:
+    drop-shadow(0 0 1.5px rgba(var(--shadow-rgb), 0.95))
+    drop-shadow(0 0 6px rgba(var(--shadow-rgb), 0.75));
+}
+
+.vs-hd-confession::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: min(640px, 92vw);
+  height: 300%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(var(--shadow-rgb), 0.62), rgba(var(--shadow-rgb), 0.38) 55%, transparent);
+  pointer-events: none;
+}
+
+/* Gatsby : le fond est déjà sombre et uni, le voile n'ajoute rien */
+[data-layout-logo="enseigne"] .vs-hd-confession::before {
+  display: none;
+}
