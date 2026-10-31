@@ -120,14 +120,19 @@
     --logo-subtitle-color: #d9c48f;
 
     /* ─── Dispositions ─── */
-    /* Six citations de Gatsby le Magnifique (libres de droits), une par catégorie, à tour de rôle */
+    /* Six citations, une par catégorie, à tour de rôle : trois de Gatsby le Magnifique, puis (31/10, « d'autres auteurs »)
+     * Wilde (L'Éventail de Lady Windermere, 1892), Hemingway (Le soleil se lève aussi, 1926), Mae West (I'm No Angel, 1933).
+     * Chacune a son auteur : --cat-quote-source-N, sinon --cat-quote-source. La 3 est aussi celle de la page d'un forum. */
     --cat-quote: "So we beat on, boats against the current, borne back ceaselessly into the past.";
     --cat-quote-2: "I like large parties. They're so intimate. At small parties there isn't any privacy.";
     --cat-quote-3: "In his blue gardens men and girls came and went like moths among the whisperings and the champagne and the stars.";
-    --cat-quote-4: "Gatsby believed in the green light, the orgastic future that year by year recedes before us.";
-    --cat-quote-5: "They're a rotten crowd. You're worth the whole damn bunch put together.";
-    --cat-quote-6: "I hope she'll be a fool — that's the best thing a girl can be in this world, a beautiful little fool.";
+    --cat-quote-4: "I can resist everything except temptation.";
+    --cat-quote-5: "You can't get away from yourself by moving from one place to another.";
+    --cat-quote-6: "When I'm good, I'm very good. But when I'm bad, I'm better.";
     --cat-quote-source: "— F. SCOTT FITZGERALD";
+    --cat-quote-source-4: "— OSCAR WILDE";
+    --cat-quote-source-5: "— ERNEST HEMINGWAY";
+    --cat-quote-source-6: "— MAE WEST";
     --brick-spine-bg: rgba(12, 42, 31, 0.92);
     --qeel-t-newest: "NEW ARRIVAL";
     --qeel-t-online: "ON THE FLOOR";

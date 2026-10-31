@@ -3,8 +3,8 @@
  * ----------------------------------------------------------------------------
  * Avec le module « Le Cachet » (js/modules/profil_cachets.js, M13). Décisions de l'utilisateur :
  *   - look MÉDAILLON DÉCO (octogone, rayons, cœur sombre ; 28/10), une teinte par badge (bronze, argent, or, velours) ;
- *   - TROIS badges sous l'avatar (.vs-cachet-bandeau), « +N » s'il y en a d'autres ;
- *   - les autres AU FOND DE LA PLUME (.vs-awards, après les contacts), pas de troisième onglet ; onglets en texte (29/10).
+ *   - TOUS AU FOND DE LA PLUME (.vs-awards, après les contacts), pas de troisième onglet ; onglets en texte (29/10) ;
+ *     plus rien sous l'avatar (31/10, avant : trois badges et « +N »).
  * Le module garde la structure de Forumactif (.award, .award_tooltiptext) : il ajoute .vs-badge, data-tier et le dessin.
  * Sans le module : les récompenses restent les ronds de Forumactif, dans la Plume (08-plugins.css).
  * Les couleurs des teintes sont celles du métal : les mêmes dans les trois thèmes.
@@ -130,44 +130,7 @@ html.vs-cachets .post_profile .award_tooltiptext:not(.award.vs-badge > .award_to
   color: var(--accent-text);
 }
 
-/* ─── Trois badges sous l'avatar ─── */
-.vs-cachet-bandeau {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin: 8px 0 6px;
-  padding: 8px 0 6px;
-  border-top: 1px solid var(--panel-line);
-  border-bottom: 1px solid var(--panel-line);
-}
-
-.vs-cachet-plus {
-  min-height: 26px;
-  padding: 2px 9px;
-  background: none;
-  border: 1px solid var(--panel-line);
-  border-radius: 13px;
-  font-family: var(--font-ui);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: var(--text-2);
-  cursor: pointer;
-}
-
-.vs-cachet-plus:hover {
-  border-color: rgba(var(--gold-rgb), 0.8);
-  color: var(--accent-text);
-}
-
-.vs-cachet-plus:focus-visible {
-  outline: 2px solid rgba(var(--gold-rgb), 0.85);
-  outline-offset: 2px;
-}
-
-/* ─── Les autres, au fond de la Plume ─── */
+/* ─── Tous au fond de la Plume (31/10 : plus de bandeau sous l'avatar) ─── */
 .vs-tab2 .vs-awards:has(> .award.vs-badge) {
   position: relative;
   display: grid;
@@ -190,9 +153,4 @@ html.vs-cachets .post_profile .award_tooltiptext:not(.award.vs-badge > .award_to
   text-transform: uppercase;
   text-align: center;
   color: var(--text-2);
-}
-
-/* Trois badges ou moins : tout est dans le bandeau, le fond de la Plume n'a rien à montrer */
-.vs-tab2 .vs-awards.vs-awards-vide {
-  display: none;
 }

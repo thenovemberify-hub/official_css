@@ -46,11 +46,11 @@
 
 /* ─── La page de la chatbox ─── */
 html.vs-chatbox,
-html.vs-chatbox body.chatbox {
+html.vs-chatbox body {
   height: 100%;
 }
 
-html.vs-chatbox body.chatbox {
+html.vs-chatbox body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 170px;
   grid-template-rows: auto auto minmax(0, 1fr) auto;
@@ -70,7 +70,7 @@ html.vs-chatbox body.chatbox {
 
 /* Tout autre élément de la page (fenêtres de couleur et de smileys, éléments ajoutés par Forumactif) sort de la grille :
  * sinon chacun y crée une ligne de plus et pousse la saisie hors du cadre (vu sur club27 le 27/10). */
-html.vs-chatbox body.chatbox > :not(#chatbox_header, #tab_selector_cb, #chatbox_members, #chatbox, #chatbox_footer) {
+html.vs-chatbox body > :not(#chatbox_header, #tab_selector_cb, #chatbox_members, #chatbox, #chatbox_footer) {
   position: absolute;
   z-index: 10;
 }
@@ -89,14 +89,14 @@ html.vs-chatbox :is(#chatbox_header, #chatbox_footer) {
   height: auto !important;
 }
 
-html.vs-chatbox body.chatbox a {
+html.vs-chatbox body a {
   background-image: none;
   text-decoration: none;
   color: var(--text-2);
   transition: color calc(0.15s * var(--dur-scale)) ease;
 }
 
-html.vs-chatbox body.chatbox a:hover {
+html.vs-chatbox body a:hover {
   color: var(--accent-text);
 }
 
@@ -458,7 +458,7 @@ html.vs-chatbox #help-button {
 
 /* ─── Iframe étroite (téléphone) : pas de colonne des connectés ─── */
 @media (max-width: 520px) {
-  html.vs-chatbox body.chatbox {
+  html.vs-chatbox body {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
       "tete"
