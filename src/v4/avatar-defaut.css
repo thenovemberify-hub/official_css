@@ -1,9 +1,9 @@
 /* ============================================================================
  * V4 — AVATAR PAR DÉFAUT (31/10)
  * ----------------------------------------------------------------------------
- * Variable du thème --avatar-defaut (themes/_contrat.css ; jour et Gatsby la redéfinissent) :
- *   nuit : img/avatar-defaut-nuit.svg · jour : img/avatar-defaut-jour.svg · Gatsby : « nouveau-12 » (le bar, choisi
- *   par l'utilisateur), img/gatsby/avatars/avatar-defaut-400x640.jpg.
+ * Variable du thème --avatar-defaut (themes/_contrat.css ; Gatsby la redéfinit) :
+ *   nuit et jour : img/avatar-defaut.webp (la double silhouette que l'utilisateur avait réglée dans Forumactif) ;
+ *   Gatsby : « nouveau-12 » sans cadre (le bar), img/gatsby/avatars/avatar-defaut-400x640.jpg ; choix du 31/10.
  * - Image d'avatar CASSÉE (adresse morte, ex. un lien raccourci expiré) : le module « Avatar par défaut »
  *   (js/modules/avatar_defaut.js, M14) remplace son adresse par celle-ci ; le CSS ne peut pas voir une image cassée.
  * - « New arrival » de l'accueil SANS avatar (le dernier inscrit n'en a pas mis) : le cadre vide prend l'avatar par défaut,

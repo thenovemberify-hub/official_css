@@ -123,7 +123,8 @@
     /* Six citations, une par catégorie, à tour de rôle : trois de Gatsby le Magnifique, puis (31/10, « d'autres auteurs »)
      * Wilde (L'Éventail de Lady Windermere, 1892), Hemingway (Le soleil se lève aussi, 1926), Mae West (I'm No Angel, 1933).
      * Chacune a son auteur : --cat-quote-source-N, sinon --cat-quote-source. La 3 est aussi celle de la page d'un forum. */
-    /* Avatar par défaut (31/10, choisi par l'utilisateur : « nouveau-12 », le bar) */
+    /* Avatar par défaut (31/10, choisi par l'utilisateur : « nouveau-12 », le bar ; version sans cadre : le cadre d'arcane
+     * de Gatsby s'y pose déjà) */
     --avatar-defaut: url("img/gatsby/avatars/avatar-defaut-400x640.jpg");
     --cat-quote: "So we beat on, boats against the current, borne back ceaselessly into the past.";
     --cat-quote-2: "I like large parties. They're so intimate. At small parties there isn't any privacy.";
