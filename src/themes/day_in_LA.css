@@ -1,86 +1,124 @@
 /* ============================================================================
- * THÈME 2 : DAY IN LA (bleu azur & ambre ; s'appelait « vert_foret » jusqu'à la V4)
- * Palette : #5095BF | #A0D3F2 | #F28705 | #D96704 | #8C2703
+ * THÈME 2 : DAY IN LA — « heure dorée » (31/10/2026 ; s'appelait « vert_foret » jusqu'à la V4)
+ * Palette : #1a110b | #24170e | #3a2616 (bruns) · #f0a444 | #ffc37a (ambre) · #f1e4d0 | #fff3e0 (crème)
+ * 31/10 : le jour bleu azur (panneaux bleu marine sur la photo) est remplacé par l'heure dorée choisie sur la maquette
+ * https://claude.ai/artifact/NKs5DR4yn2ZrkyCFrKPmXh : PALETTE et IMAGES seulement ; en-tête, typographie, dispositions et
+ * logo « carte postale » inchangés ; le fond reste visible entre les panneaux. Plan : docs/pilotage/JOUR_B_HEURE_DOREE.md.
+ * Images étalonnées une fois pour toutes (img/jour-b/, pas de filtre CSS). Ancienne palette : git show v3 ou l'historique.
+ * Contrastes (texte sur panneau plein #24170e) : texte 13,9:1 · atténué 8,7:1 · ambre 8,4:1 ; 5,4:1 au plus bas (survol).
  * L'ancien nom reste reconnu le temps de la bascule : le module Velvet Theme (22301) réécrit
  * le choix mémorisé des membres sous le nouveau nom (ACTIONS_V4 M6). À retirer après la V4.
  * ============================================================================ */
 [data-theme="day_in_LA"],
 [data-theme="vert_foret"] {
-    --bg-img: url("https://imagesend.fr/uploads/20260815/14cbb47cf4fb88a45b945ea8e543df6683d610db.jpg");
+    --bg-img: url("img/jour-b/J1-fond-heure-doree.webp");
     --bg-position: center 10%;
-    --hp-visual-img: url("https://64.media.tumblr.com/76fd205c3cd32b79b37ab49248af146a/9ac08417b001f6b8-f8/s500x750/df335cb2391907d1c2469c7d1456d4878812a7b5.gif");
+    --hp-visual-img: url("img/jour-b/J2-visuel-heure-doree.webp");
     --hp-quote-text: "I DON'T WANT\A TO FALL IN LOVE,\A I DON'T WANT\A TO HEAR THE\A SIRENS CALL :\A \A IS THERE A\A WORLD WITHOUT\A LOVE ?\A I TRY TO\A THINK ABOUT IT";
     --hp-avatar-sinclair: url("https://imagesend.fr/uploads/20260828/d208f60fbf850c7acb0ed29031d1486083b4d6fb.jpg");
     --hp-avatar-vanda: url("https://imagesend.fr/uploads/20260828/938780a5f690ca33259a6aa3abbee47d7a961d67.jpg");
 
-    /* Surfaces & Fonds (nuances sombres basées sur #5095BF & #8C2703) */
-    --fond-category: #112330;
+    /* Surfaces & fonds : bruns chauds */
+    --fond-category: #24170e;
     --midnight-purple: #2d130a;
-    --taupe: #8ea6b6;
-    --pale-1: #ecf4f9;
-    --thistle: #A0D3F2;
-    --pale-2: #dbeef7;
-    --pale-3: #b8d7e8;
-    --pale-4: #cfe7f5;
-    --bg-soft: #1e3848;
-    --bg-dim: #152936;
-    --bg-darker: #0c1820;
-    --bg-black: #060d12;
+    --taupe: #c9b49a;
+    --pale-1: #fbf3e6;
+    --thistle: #ffd9a8;
+    --pale-2: #f6e8d2;
+    --pale-3: #e8d2b2;
+    --pale-4: #f1e0c6;
+    --bg-soft: #3a2616;
+    --bg-dim: #24170e;
+    --bg-darker: #1a110b;
+    --bg-black: #120b06;
 
-    /* Typographie & Contrastes */
-    --textColor: #c2d6e3;
-    --textColorAccent: #A0D3F2;
-    --text-soft: #b3c9d8;   /* V4 : #9bb5c7 → ≥ 4,5:1 sur les panneaux */
-    --text-muted: #9db3c3;  /* V4 : #688091 (illisible) → ≥ 3:1, mentions secondaires */
-    --text-cream: #f4f7f4;
-    /* V4 : panneaux plus opaques (0,55 → 0,78) : la photo claire ne passe plus derrière le texte */
-    --surface-glass: rgba(17, 35, 48, 0.84);       /* 27/10 (phase 7) : 0.78 → un peu plus opaque */
-    --surface-glass-dim: rgba(17, 35, 48, 0.78);   /* 0.7 */
-    --surface-glass-deep: rgba(17, 35, 48, 0.9);   /* 0.88 */
-    --text-bright: #f0f8fc;
-    --edge: #1e3848;
+    /* Typographie & contrastes (couleurs seulement : les polices ne changent pas) */
+    --textColor: #f1e4d0;
+    --textColorAccent: #ffd9a8;
+    --text-soft: #e0cdb2;
+    --text-muted: #c9b49a;
+    --text-cream: #fff7ea;
+    --text-bright: #fff3e0;
+    /* Verre : même opacité qu'avant (le fond reste visible entre les panneaux, décision du 31/10) */
+    --surface-glass: rgba(36, 23, 14, 0.84);
+    --surface-glass-dim: rgba(36, 23, 14, 0.78);
+    --surface-glass-deep: rgba(36, 23, 14, 0.9);
+    --edge: #3a2616;
     --white: #ffffff;
 
-    /* Accents Ambre & Or (#F28705, #D96704, #8C2703) */
-    --accentClr: #F28705;
-    --gold-rgb: 242, 135, 5;
-    --borderGold: #F28705;
+    /* Accents : ambre de fin de journée */
+    --accentClr: #f0a444;
+    --gold-rgb: 240, 164, 68;
+    --borderGold: #f0a444;
+    --gold-accent: #f0a444;
+    --gold-light: #f7c98a;
+    --gold-medium: #d9832e;
+    --gold-bronze: #a65a1c;
+    --gold-dark: #7a3a10;
+    --gold-darker: #4a200a;
+    --gold-cream: #ffe7c4;
 
-    --gold-accent: #F28705;
-    --gold-light: #f7ba63;
-    --gold-medium: #D96704;
-    --gold-bronze: #a64d03;
-    --gold-dark: #8C2703;
-    --gold-darker: #541702;
-    --gold-cream: #ffe1b3;
+    /* Ambre « texte », plus clair que l'ambre « décor » (bordures, icônes, filets) */
+    --accent-text: #ffc37a;
+    --gold-accent-text: #ffc37a;
 
-    /* V4 : ambre « texte », plus clair que l'ambre « décor » (bordures, icônes, filets) */
-    --accent-text: #ffb454;
-    --gold-accent-text: #ffb454;
+    /* Fond des lignes et petits blocs posés sur la photo (liste de sujets, barres de liens) */
+    --surface-row: rgba(28, 18, 11, 0.88);
+    --surface-row-strong: rgba(28, 18, 11, 0.94);
 
-    /* V4 : fond des lignes et petits blocs posés sur la photo (liste de sujets, barres de liens) */
-    --surface-row: rgba(10, 22, 31, 0.88);
-    --surface-row-strong: rgba(10, 22, 31, 0.94);
+    /* Canaux du contrat (_contrat.css), restés bleu nuit dans l'ancien jour : passés au brun et au crème, comme Gatsby
+       les passe au vert (mêmes rôles) ; mauve et pierre servent de textes secondaires : ≥ 4,5:1 sur le brun */
+    --ink-rgb: 255, 231, 196;
+    --ink-glint-rgb: 255, 240, 214;
+    --ink-shine-rgb: 255, 226, 180;
+    --ink-bright-rgb: 255, 243, 224;
+    --paper-rgb: 255, 247, 234;
+    --fx-a-rgb: 240, 164, 68;
+    --fx-b-rgb: 255, 122, 46;
+    --mauve-rgb: 224, 205, 178;
+    --stone-rgb: 201, 180, 154;
+    --violet-rgb: 46, 29, 17;
+    --violet-light-rgb: 120, 78, 40;
+    --deep-navy-rgb: 14, 9, 5;
+    --field-option-rgb: 34, 22, 13;
+    --on-honey-rgb: 30, 19, 10;
+    --wine-black-rgb: 20, 12, 7;
+    --wine-abyss-rgb: 16, 10, 6;
+    --wine-rgb: 58, 30, 20;
+    --panel-rgb: 28, 18, 11;
+    --panel-deep-rgb: 18, 11, 6;
+    --abyss-rgb: 20, 12, 7;
+    --panel-dim-rgb: 24, 15, 9;
+    --veil-rgb: 26, 17, 11;
+    --panel-hover-rgb: 58, 38, 22;
+    --navy-rgb: 36, 23, 14;
+    --teal-night-rgb: 30, 19, 12;
+    --field-rgb: 22, 14, 8;
 
     /* QEEL */
-    --qeel-border: rgba(160, 211, 242, 0.15);
-    --qeel-lavender: #A0D3F2;
-    --qeel-mauve: #5095BF;
-    --qeel-taupe: #8ea6b6;
-    --qeel-purple-light: #b83605;
-    --qeel-purple-dim: rgba(140, 39, 3, 0.5);
-    --qeel-text-bright: #f0f8fc;
-    --qeel-glass-deep: rgba(6, 13, 18, 0.45);
+    --qeel-border: rgba(240, 164, 68, 0.18);
+    --qeel-lavender: #ffd9a8;
+    --qeel-mauve: #d9832e;
+    --qeel-taupe: #c9b49a;
+    --qeel-purple-light: #f0a444;
+    --qeel-purple-dim: rgba(240, 164, 68, 0.35);
+    --qeel-text-bright: #fff3e0;
+    --qeel-glass-deep: rgba(18, 11, 6, 0.45);
 
-    /* Page d'Accueil (HP) */
-    --hp-surface: #112330;
-    --hp-border: rgba(160, 211, 242, 0.15);
-    --hp-lavender: #A0D3F2;
-    --hp-mauve: #5095BF;
-    --hp-taupe: #8ea6b6;
-    --hp-purple: #172d3d;
-    --hp-purple-light: #F28705;
-    --hp-purple-dim: rgba(242, 135, 5, 0.28);
-    --hp-text: #A0D3F2;
-    --hp-text-bright: #f0f8fc;
+    /* Page d'accueil (PA) : même structure et mêmes polices, couleurs seulement */
+    --hp-surface: #24170e;
+    --hp-border: rgba(240, 164, 68, 0.2);
+    --hp-lavender: #ffd9a8;
+    --hp-mauve: #d9832e;
+    --hp-taupe: #c9b49a;
+    --hp-purple: #2e1d11;
+    --hp-purple-light: #f0a444;
+    --hp-purple-dim: rgba(240, 164, 68, 0.28);
+    --hp-text: #ffd9a8;
+    --hp-text-bright: #fff3e0;
+}
+
+/* Logo « carte postale » (layouts/logo-carte-postale.css) : bord des lettres crème doré au lieu du blanc */
+:is([data-theme="day_in_LA"], [data-theme="vert_foret"])[data-layout-logo="carte-postale"] {
+    --carte-bord: #ffe7c4;
 }

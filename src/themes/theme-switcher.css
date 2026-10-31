@@ -48,7 +48,7 @@
 .velvet-theme[data-t="day_in_LA"],
 .velvet-theme[data-t="vert_foret"],
 .velvet-theme[data-theme="day_in_LA"] {
-    background: linear-gradient(135deg, #5095BF 50%, #F28705 50%);
+    background: linear-gradient(135deg, #3a2616 50%, #f0a444 50%); /* 31/10 : heure dorée (avant : azur et ambre) */
 }
 
 .velvet-theme[data-t="gatsby"],

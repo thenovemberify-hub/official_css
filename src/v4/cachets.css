@@ -88,12 +88,14 @@
   outline-offset: 2px;
 }
 
-/* ─── L'infobulle de Forumactif, restylée : centrée sous le bandeau ou la collection ─── */
+/* ─── L'infobulle de Forumactif, restylée : centrée AU-DESSUS de la collection (31/10 : elle s'ouvrait dessous et
+ * chevauchait le message suivant, la collection étant tout au fond de la Plume) ─── */
 .award.vs-badge .award_tooltiptext {
   display: none;
   position: absolute;
   z-index: 20;
-  top: calc(100% + 6px);
+  top: auto; /* la règle de base des récompenses pose un top : avec bottom, la bulle était écrasée */
+  bottom: calc(100% + 6px);
   left: 50%;
   width: min(210px, 100%);
   transform: translateX(-50%);
@@ -118,6 +120,18 @@
  * profil, toute infobulle de récompense qui n'est pas celle d'un médaillon est masquée */
 html.vs-cachets .post_profile .award_tooltiptext:not(.award.vs-badge > .award_tooltiptext) {
   display: none !important;
+}
+
+/* 31/10 : la seconde bulle (claire, à droite) venait de là. Au survol d'une récompense, un script de Forumactif COPIE son
+ * infobulle directement dans <body> (et la retire à la sortie) : hors de la colonne profil, la règle du dessus ne la
+ * voyait pas. Vu sur club27, t71, message de Katya. */
+html.vs-cachets body > .award_tooltiptext {
+  display: none !important;
+}
+
+/* Description identique au titre (saisie ainsi dans l'admin) : masquée, le module l'enveloppe dans .vs-badge-redite */
+.award.vs-badge .vs-badge-redite {
+  display: none;
 }
 
 .award.vs-badge .award_tooltiptext_title {
