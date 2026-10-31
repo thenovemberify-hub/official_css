@@ -228,10 +228,9 @@
     --cat-quote-6: "Desire is a dangerous game.";
     --cat-quote-source: "— LE VELVET SIN";
     /* Auteur propre à une citation (31/10) : --cat-quote-source-2 à --cat-quote-source-6, facultatifs (sinon celui du dessus) */
-    /* Bandeaux (layouts/categories-bandeaux.css, et la page d'un forum) : images posées par le thème, catégorie
-     * par catégorie (#c1…) et forum par forum (themes/gatsby-images.css). Sans image : un fond uni. */
+    /* Bandeaux des catégories (layouts/categories-bandeaux.css) : images posées par le thème, catégorie par catégorie
+     * (#c1… : themes/gatsby-images.css). Sans image : un fond uni. */
     --cat-img: none;
-    --forum-img: none;
     /* « Qui est en ligne » en registre (layouts/qeel-guestlist.css) : libellés, traduisibles par un thème */
     --qeel-t-newest: "NOUVELLE SIGNATURE";
     --qeel-t-online: "DANS LES SALONS";

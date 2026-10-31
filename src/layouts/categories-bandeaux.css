@@ -8,8 +8,8 @@
  *   - chaque brique s'ouvre sur le NOM DU FORUM, sur fond uni, souligné d'un filet doré (01/11 : plus d'image
  *     par forum dans les briques, le gif de la description est caché) ;
  *   - la case vide de la dernière rangée reçoit le motif d'éventails ;
- *   - la page d'un forum (data-forum, posé par le module 22301) reprend son image en bandeau de titre.
- * Images : variables --cat-img (par catégorie) et --forum-img (par forum), données par le thème
+ *   - la page d'un forum garde le bandeau de titre de toutes les pages (01/11 : plus d'image ni de citation).
+ * Image : variable --cat-img (par catégorie), donnée par le thème
  * (themes/gatsby-images.css). Sans image : un fond uni, rien ne casse.
  * ============================================================================ */
 
@@ -104,7 +104,8 @@
 
 /* Case vide de la dernière rangée : une citation sur le motif d'éventails. Pas la même que celle du bandeau :
    la case prend la citation décalée de trois (catégorie 1 → citation 4, 2 → 5…). 31/10 : chaque citation a son auteur
-   (--cat-quote-source-N, sinon --cat-quote-source) */
+   (--cat-quote-source-N, sinon --cat-quote-source). 01/11 : le module Velvet Theme (M6) remplace ce choix sur chaque
+   catégorie, pour qu'elle change à chaque page vue ; ces règles ne servent plus que sans lui */
 [data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 1) { --cat-quote-case: var(--cat-quote-4); --cat-quote-case-source: var(--cat-quote-source-4, var(--cat-quote-source)); }
 [data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 2) { --cat-quote-case: var(--cat-quote-5); --cat-quote-case-source: var(--cat-quote-source-5, var(--cat-quote-source)); }
 [data-layout-categories="briques-bandeaux"] .category:nth-of-type(6n + 3) { --cat-quote-case: var(--cat-quote-6); --cat-quote-case-source: var(--cat-quote-source-6, var(--cat-quote-source)); }
@@ -123,7 +124,7 @@
 
 /* ─── Une brique : le nom en tête, sur fond uni, souligné d'un filet doré à losange ───
    01/11 : plus d'image par forum dans les briques (elles se disputaient le regard avec le bandeau de la catégorie) ;
-   seul le bandeau porte une image. Celle du forum (--forum-img) ne sert plus qu'au bandeau de la page du forum. */
+   seul le bandeau de la catégorie porte une image. */
 [data-layout-categories="briques-bandeaux"] .forum {
   grid-template-areas:
     "tete tete"
@@ -179,53 +180,9 @@
   padding: 10px 18px 14px;
 }
 
-/* ─── Page d'un forum : le titre devient un bandeau à l'image du forum ─── */
-[data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  min-height: 220px;
-  padding: 28px 360px 28px 40px;
-  text-align: start;
-  font-family: var(--font-display);
-  font-size: 44px;
-  background:
-    linear-gradient(90deg, rgba(var(--panel-deep-rgb), 0.95) 0%, rgba(var(--panel-deep-rgb), 0.7) 50%,
-      rgba(var(--panel-deep-rgb), 0.25) 100%),
-    var(--forum-img) center / cover no-repeat,
-    var(--panel-bg);
-  border: var(--frame-border);
-  text-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.9);
-}
-
-[data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title::after {
-  content: var(--cat-quote-3) "\A" var(--cat-quote-source-3, var(--cat-quote-source));
-  position: absolute;
-  right: 30px;
-  bottom: 24px;
-  width: 300px;
-  white-space: pre-line;
-  text-align: end;
-  font-style: italic;
-  font-size: var(--fs-md);
-  letter-spacing: 0;
-  line-height: 1.45;
-  text-transform: none;
-  color: var(--text-bright);
-}
-
-/* ─── Écran étroit : bandeau sans citation, nom réduit ─── */
+/* ─── Écran étroit : nom réduit ─── */
 @media (max-width: 760px) {
   [data-layout-categories="briques-bandeaux"] .cate_title h2 {
-    font-size: var(--fs-3xl);
-  }
-
-  [data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title::after {
-    display: none;
-  }
-
-  [data-layout-categories="briques-bandeaux"][data-forum] .container > .page-title {
-    padding-right: 40px;
     font-size: var(--fs-3xl);
   }
 }

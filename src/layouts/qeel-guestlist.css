@@ -260,6 +260,9 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   text-align: center;
   container-type: inline-size; /* 31/10 : les chiffres se règlent sur la largeur (voir .vs-qeel-stat-number) */
+  /* 01/11 : un conteneur de taille n'a plus de largeur propre ; centré dans sa colonne, il tombait à 0 et les deux
+     compteurs se superposaient. Il prend donc toute la largeur */
+  align-self: stretch;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-stat-sep {

@@ -2,19 +2,19 @@
  * GATSBY — IMAGES (26/10, relooking du 29/10)
  * ----------------------------------------------------------------------------
  * Toutes les images du thème, au même endroit : visuel et fond du bloc d'accueil, fond de « Qui est en ligne »,
- * avatars du staff sur l'accueil, bandeaux des catégories (#c1…) et des pages de forum, repérés par le NOM dans
- * leur adresse (/f2-the-velvet-lounge → the-velvet-lounge, posé en data-forum par le module 22301) : le même sur
- * club27 et sur l'officiel, dont les numéros diffèrent. Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
+ * avatars du staff sur l'accueil, bandeaux des catégories (#c1…). Fichiers : css/official_css/img/gatsby/, servis par GitHub Pages à côté du CSS
  * (préparés par tools/images-gatsby.py, depuis assets/references).
  * Chemins relatifs : ils partent du fichier CSS (test.css / main.css, à la racine du dépôt official_css).
  * SAUF les avatars du staff : le module 22301 les lit et les pose dans la page, il leur faut l'adresse complète.
  *
- * Images des forums : depuis le 01/11, seulement le bandeau de la page du forum (les briques de l'accueil n'en ont plus).
- * Changer une image : remplacer l'url sur sa ligne. Un forum sans ligne a un bandeau uni.
+ * Plus d'image par forum depuis le 01/11 (ni dans les briques, ni sur la page du forum) : seules les catégories en ont.
+ * Changer une image : remplacer l'url sur sa ligne.
  * Une image ne sert qu'à un seul endroit (29/10 : la PA et Los Angeles, le QEEL et The Green Room partageaient la leur).
  * ============================================================================ */
 
 [data-theme="gatsby"] {
+    /* Fond de page : le papier peint d'éventails vert et or (tuile sans raccord, 277 x 306, tools/images-gatsby.py ; 01/11) */
+    --gatsby-papier: url("img/gatsby/papier-peint.png");
     /* Colonne de gauche du bloc d'accueil : la fête de Babylon (webp animé, 330 px, 0,75 Mo) */
     --hp-visual-img: url("img/gatsby/visuel-babylon.webp");
     /* Fonds, voile compris (sans voile, le texte se perd dans l'image) */
@@ -23,7 +23,7 @@
         url("img/gatsby/bandeau-22.jpg");
     --qeel-backdrop:
         linear-gradient(rgba(6, 19, 14, 0.84), rgba(6, 19, 14, 0.84)),
-        url("img/gatsby/bandeau-07.jpg");
+        url("img/gatsby/bandeau-20.jpg");  /* le cabaret (01/11 ; avant : la main au couteau du théâtre) */
     /* Staff de l'accueil (cadre compris) */
     --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/sinclair-17-200x320.jpg");
     --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/vanda-18-200x320.jpg");
@@ -37,16 +37,3 @@
 [data-theme="gatsby"] #c5 { --cat-img: url("img/gatsby/bandeau-29.jpg"); }  /* The Velvet Reverie : ciel étoilé, projecteurs, l'avion (le songe) */
 [data-theme="gatsby"] #c6 { --cat-img: url("img/gatsby/bandeau-12.jpg"); }  /* The After-Hours : le bar */
 
-/* ─── Forums : le bandeau de la page du forum ─── */
-[data-theme="gatsby"][data-forum="the-crimson-codex"] .page-title { --forum-img: url("img/gatsby/bandeau-02.jpg"); }        /* The Crimson Codex : la coupe à rayons */
-[data-theme="gatsby"][data-forum="the-velvet-lounge"] .page-title { --forum-img: url("img/gatsby/bandeau-18.jpg"); }        /* The Velvet Lounge : l'invitée de profil */
-[data-theme="gatsby"][data-forum="casting-calls"] .page-title { --forum-img: url("img/gatsby/bandeau-13.jpg"); }      /* Casting Calls : la revue */
-[data-theme="gatsby"][data-forum="bureau-of-sin"] .page-title { --forum-img: url("img/gatsby/bandeau-24.jpg"); }      /* Bureau of Sin : arches vert d'eau et or */
-[data-theme="gatsby"][data-forum="the-black-ledger"] .page-title { --forum-img: url("img/gatsby/bandeau-09-bas.jpg"); }  /* The Black Ledger : pièces et billets */
-[data-theme="gatsby"][data-forum="the-circle-of-lights"] .page-title { --forum-img: url("img/gatsby/bandeau-20.jpg"); }      /* The Circle of Lights : la scène, les projecteurs */
-[data-theme="gatsby"][data-forum="the-circle-of-shadows"] .page-title { --forum-img: url("img/gatsby/bandeau-08.jpg"); }      /* The Circle of Shadows : l'ombre sur la scène */
-[data-theme="gatsby"][data-forum="the-circle-of-vices"] .page-title { --forum-img: url("img/gatsby/bandeau-23.jpg"); }      /* The Circle of Vices : l'éventail rouge et or */
-[data-theme="gatsby"][data-forum="the-city-of-angels"] .page-title { --forum-img: url("img/gatsby/bandeau-19.jpg"); }      /* The City of Angels : la piscine, le palmier */
-[data-theme="gatsby"][data-forum="the-city-of-ghosts"] .page-title { --forum-img: url("img/gatsby/bandeau-09-haut.jpg"); } /* The City of Ghosts : les gratte-ciel la nuit */
-[data-theme="gatsby"][data-forum="the-green-room"] .page-title { --forum-img: url("img/gatsby/bandeau-14-haut.jpg"); } /* The Green Room : la trompettiste */
-[data-theme="gatsby"][data-forum="the-ivory-tower"] .page-title { --forum-img: url("https://i.ibb.co/Cw4f1LL/kgza3OZ.gif"); } /* Zenith (staff) : /f7-the-ivory-tower sur l'officiel ; image donnée par l'utilisateur le 26/10 */

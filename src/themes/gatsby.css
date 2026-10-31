@@ -6,21 +6,24 @@
  * module 22301 ajoute : polices Bodoni Moda et Josefin Sans, phrases du bandeau, catégories
  * en briques, « Qui est en ligne » en registre, logo en enseigne.
  * Images (fonds de la PA et de « Qui est en ligne », bandeaux, avatars du staff) : themes/gatsby-images.css (26/10) ;
- * le fond de page est dessiné en CSS (arches), rien à charger.
+ * le fond de page aussi (papier peint, 01/11 ; avant : un motif d'arches dessiné en CSS).
  * ============================================================================ */
 [data-theme="gatsby"] {
-    /* ─── Fond : le motif d'arches dorées de la maquette, sur vert profond ───
+    /* ─── Fond : le papier peint d'éventails vert et or, sous un voile vert profond (le motif reste discret
+     * derrière les panneaux ; --gatsby-voile règle sa présence) ───
      * TA TEXTURE : remplace « none » par url("lien-de-ton-image") ; elle se pose par-dessus le motif, répétée
      * telle quelle (pour une photo qui couvre tout l'écran : mettre aussi « cover » au lieu du premier « auto »
      * de --bg-size et « no-repeat » au lieu du premier « repeat » de --bg-repeat). */
     --gatsby-texture: none;
+    --gatsby-papier: none;             /* l'image : themes/gatsby-images.css */
+    --gatsby-voile: rgba(6, 19, 14, 0.8);
     --bg-img:
         var(--gatsby-texture),
-        radial-gradient(circle at 50% 100%, transparent 0 34px, rgba(212, 175, 85, 0.10) 34px 35px, transparent 35px 44px,
-            rgba(212, 175, 85, 0.10) 44px 45px, transparent 45px 54px, rgba(212, 175, 85, 0.10) 54px 55px, transparent 55px),
+        linear-gradient(var(--gatsby-voile), var(--gatsby-voile)),
+        var(--gatsby-papier),
         linear-gradient(180deg, #06130e, #06130e);
-    --bg-size: auto, 120px 60px, cover;
-    --bg-repeat: repeat, repeat, no-repeat;
+    --bg-size: auto, cover, 277px 306px, cover;
+    --bg-repeat: repeat, no-repeat, repeat, no-repeat;
     --bg-position: center top;
     /* Citation du visuel de l'accueil (texte, comme les paroles de la nuit et du jour) : Gatsby le Magnifique,
      * libre de droits (Fitzgerald, mort en 1940). Le visuel lui-même : celui de la nuit, en attendant ton choix. */
