@@ -218,6 +218,8 @@
     --brick-bg: var(--panel-bg);
     --brick-spine-bg: var(--panel-bg);
     --brick-radius: var(--panel-radius);
+    /* Avatar par défaut (31/10) : avatar absent ou image cassée (module avatar_defaut.js, M14 ; v4/avatar-defaut.css) */
+    --avatar-defaut: url("img/avatar-defaut-nuit.svg");
     --cat-quote: "Hollywood dreams, velvet nightmares.";
     --cat-quote-2: "Some sins are divine.";
     --cat-quote-3: "We keep your secrets. We own your sins.";

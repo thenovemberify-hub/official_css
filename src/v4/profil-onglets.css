@@ -2,7 +2,8 @@
  * V4 — LE MASQUE ET LA PLUME (colonne profil des messages ; 27/10)
  * ----------------------------------------------------------------------------
  * Le module « Le Masque et La Plume » (js/modules/profil_masque_plume.js) range les champs de profil :
- * - Le Masque : Âge, Occupation, Statut civil, Orientation, Habitation, puis le gif « Reflet » (.vs-reflet) ;
+ * - Le Masque : Âge, Occupation, Statut civil, Orientation, Habitation, puis les autres champs (dont « Fragment d'âme ») ;
+ *   le gif « Reflet » part en tête du message (module fragment_ame.js, v4/entete-message.css ; 31/10) ;
  * - La Plume : badge « Exclusif » (.vs-exclusif, infobulle au survol et au focus), Disponibilité RP et Absence
  *   précédées d'une pastille (.vs-pastille--ok / --moyen / --non), Nom du vava, Crédits, Écriture ; dans la rangée
  *   des contacts, une icône par lien renseigné (fiche, TW, moodboard, playlist, MP), avec son nom au survol.
@@ -45,20 +46,6 @@
 .vs-tab-content.vs-tab1 {
   max-height: none;
   overflow: visible;
-}
-
-.vs-reflet {
-  margin-top: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(var(--ink-rgb), 0.15);
-  border-radius: var(--panel-radius);
-}
-
-.vs-reflet img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: none;
 }
 
 /* ─── La Plume : courte, elle s'affiche en entier (et laisse dépasser les infobulles) ─── */

@@ -259,6 +259,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   text-align: center;
+  container-type: inline-size; /* 31/10 : les chiffres se règlent sur la largeur (voir .vs-qeel-stat-number) */
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-stat-sep {
@@ -274,9 +275,16 @@
   border-left: 1px solid var(--qeel-border);
 }
 
+/* 31/10 : à 40px fixes, « 64 » et « 5047 » (chiffres de l'officiel) se touchaient et un compteur à 5 chiffres débordait ;
+ * la taille suit maintenant la largeur du bloc (40px au plus, 24px au moins), avec un peu d'air entre les deux colonnes */
+[data-layout-qeel="guestlist"] .vs-qeel-stat-chunk {
+  min-width: 0;
+  padding-inline: 6px;
+}
+
 [data-layout-qeel="guestlist"] .vs-qeel-stat-number {
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: clamp(24px, 14cqi, 40px);
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1;

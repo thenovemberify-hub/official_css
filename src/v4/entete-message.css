@@ -1,7 +1,7 @@
 /* ============================================================================
  * V4 — EN-TÊTE DES MESSAGES (phase A, A1 ; commencée le 26/10 avec Gatsby)
  * ----------------------------------------------------------------------------
- * - Le gif du champ de profil « Fragment d'âme » est déplacé en tête du message par le module
+ * - Le gif du champ de profil « Reflet » (31/10 ; avant : « Fragment d'âme ») est déplacé en tête du message par le module
  *   « Fragment d'âme » (js/modules/fragment_ame.js) : <div class="vs-post-fragment"><img></div>, premier
  *   enfant de .post_details. Il se place au-dessus de la colonne profil, à la largeur de l'avatar.
  *   Sans gif (membre sans ce champ, anciens messages) : l'en-tête reste comme avant.

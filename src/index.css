@@ -56,6 +56,7 @@
 @import "./v4/connexion.css";             /* page de connexion et bloc « S'enregistrer » (27/10) */
 @import "./v4/profil-onglets.css";        /* colonne profil des messages : Le Masque et La Plume (27/10) */
 @import "./v4/chatbox.css";               /* chatbox (iframe) aux couleurs du thème, avec le module chatbox_theme.js (27/10) */
+@import "./v4/avatar-defaut.css";         /* 31/10 : avatar par défaut du thème (image cassée, dernier inscrit sans avatar), avec avatar_defaut.js */
 @import "./v4/cachets.css";               /* phase 7 (7.12) : Le Cachet, badges en médaillons, avec profil_cachets.js (29/10) */
 @import "./v4/page-forum.css";           /* phase 7 (7.14) : page d'un forum sans doublons (29/10) */
 @import "./v4/pagination.css";           /* phase 7 (7.16) : numéros de page en pastilles de verre (29/10) */
@@ -66,7 +67,7 @@
 /* 5. Dispositions choisies par le thème (data-layout-* sur <html>, posé par le module Velvet Theme) */
 @import "./layouts/categories-briques.css";
 @import "./layouts/categories-bandeaux.css"; /* variante des briques : bandeaux d'images (Gatsby) */
-@import "./layouts/qeel-guestlist.css";      /* essai (phase 6) : à retirer si refusé */
+@import "./layouts/qeel-guestlist.css";      /* « Qui est en ligne » en registre : Gatsby (31/10 : le thème d'essai de la nuit est retiré) */
 @import "./layouts/logo-enseigne.css";
 @import "./layouts/logo-carte-postale.css"; /* logos carte postale du jour et de la nuit (phase 7) */
 @import "./layouts/profil-cadres.css";      /* cadres des avatars selon l'arcane (Gatsby) */

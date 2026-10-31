@@ -17,6 +17,7 @@
     --hp-quote-text: "I DON'T WANT\A TO FALL IN LOVE,\A I DON'T WANT\A TO HEAR THE\A SIRENS CALL :\A \A IS THERE A\A WORLD WITHOUT\A LOVE ?\A I TRY TO\A THINK ABOUT IT";
     --hp-avatar-sinclair: url("https://imagesend.fr/uploads/20260828/d208f60fbf850c7acb0ed29031d1486083b4d6fb.jpg");
     --hp-avatar-vanda: url("https://imagesend.fr/uploads/20260828/938780a5f690ca33259a6aa3abbee47d7a961d67.jpg");
+    --avatar-defaut: url("img/avatar-defaut-jour.svg");
 
     /* Surfaces & fonds : bruns chauds */
     --fond-category: #24170e;
