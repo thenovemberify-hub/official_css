@@ -5,8 +5,8 @@
  * ^="briques") pour une structure moins protocolaire, d'après la maquette du 26/10 :
  *   - la tranche verticale devient un BANDEAU au-dessus des briques : image de la catégorie, losange au
  *     chiffre romain et nom (26/10, s7 : sans citation, titre à gauche puis à droite une catégorie sur deux) ;
- *   - chaque brique s'ouvre sur l'IMAGE DU FORUM, nom posé dessus : l'image donnée par le thème si elle
- *     existe (--forum-img, le gif de la description est alors caché), sinon le gif lui-même ;
+ *   - chaque brique s'ouvre sur le NOM DU FORUM, sur fond uni, souligné d'un filet doré (01/11 : plus d'image
+ *     par forum dans les briques, le gif de la description est caché) ;
  *   - la case vide de la dernière rangée reçoit le motif d'éventails ;
  *   - la page d'un forum (data-forum, posé par le module 22301) reprend son image en bandeau de titre.
  * Images : variables --cat-img (par catégorie) et --forum-img (par forum), données par le thème
@@ -121,74 +121,50 @@
     var(--brick-bg);
 }
 
-/* ─── Une brique : l'image du forum en tête, le nom posé dessus ─── */
+/* ─── Une brique : le nom en tête, sur fond uni, souligné d'un filet doré à losange ───
+   01/11 : plus d'image par forum dans les briques (elles se disputaient le regard avec le bandeau de la catégorie) ;
+   seul le bandeau porte une image. Celle du forum (--forum-img) ne sert plus qu'au bandeau de la page du forum. */
 [data-layout-categories="briques-bandeaux"] .forum {
   grid-template-areas:
     "tete tete"
     "texte texte"
     "liens liens"
     "dernier compteurs";
-  grid-template-rows: 130px auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
   overflow: hidden;
 }
 
-/* Brique sans image (les sous-forums, sur la page d'un forum : leur description n'a pas de gif) : pas de case vide
-   en tête, le nom se pose au-dessus du texte (27/10). L'image du thème (--forum-img) a besoin de cette case : un forum
-   qui en veut une doit avoir un gif dans sa description. */
-[data-layout-categories="briques-bandeaux"] .forum:not(:has(.cat-icon-wrapper)) {
-  grid-template-rows: auto auto 1fr auto;
-}
-
-[data-layout-categories="briques-bandeaux"] .forum:not(:has(.cat-icon-wrapper)) a.forumtitle {
-  padding-top: 18px;
-  padding-bottom: 0;
-  text-shadow: none;
-}
-
-/* La description se défait : image, texte et liens deviennent des cases de la brique */
+/* La description se défait : texte et liens deviennent des cases de la brique ; le gif de la description est caché */
 [data-layout-categories="briques-bandeaux"] .forum .forum_desc {
   display: contents;
 }
 
 [data-layout-categories="briques-bandeaux"] .forum_desc > br,
-[data-layout-categories="briques-bandeaux"] .forum_desc .sublink br {
-  display: none;
-}
-
+[data-layout-categories="briques-bandeaux"] .forum_desc .sublink br,
 [data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon-wrapper {
-  grid-area: tete;
-  position: relative;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: var(--forum-img) center / cover no-repeat, rgb(var(--panel-deep-rgb));
-  border-bottom: 1px solid rgba(var(--gold-rgb), 0.4);
-}
-
-/* Voile en bas de l'image : le nom reste lisible sur n'importe quelle image */
-[data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 25%, rgba(var(--panel-deep-rgb), 0.92));
-}
-
-[data-layout-categories="briques-bandeaux"] .forum_desc .cat-icon {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border: none;
-  visibility: var(--forum-gif);
+  display: none;
 }
 
 [data-layout-categories="briques-bandeaux"] a.forumtitle {
   grid-area: tete;
-  z-index: 1;
-  align-self: end;
-  padding: 0 18px 12px;
+  position: relative;
+  padding: 22px 18px 26px;
+  background: linear-gradient(180deg, rgba(var(--gold-rgb), 0.06), transparent), rgb(var(--panel-deep-rgb));
   border-bottom: none;
-  text-shadow: 0 2px 8px rgba(var(--shadow-rgb), 0.9);
+  text-shadow: none;
+}
+
+/* Le filet : un trait coupé d'un losange, dessiné en masque pour prendre l'or du thème */
+[data-layout-categories="briques-bandeaux"] a.forumtitle::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: 8px;
+  width: 130px;
+  height: 10px;
+  background: rgb(var(--gold-rgb));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='10'%3E%3Cpath d='M0 4.5h55v1H0zM57 4.5h2v1h-2zM71 4.5h2v1h-2zM75 4.5h55v1H75zM65 1l4 4-4 4-4-4z'/%3E%3C/svg%3E") center / 130px 10px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='10'%3E%3Cpath d='M0 4.5h55v1H0zM57 4.5h2v1h-2zM71 4.5h2v1h-2zM75 4.5h55v1H75zM65 1l4 4-4 4-4-4z'/%3E%3C/svg%3E") center / 130px 10px no-repeat;
 }
 
 [data-layout-categories="briques-bandeaux"] .forum_desc .txt {

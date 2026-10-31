@@ -232,7 +232,6 @@
      * par catégorie (#c1…) et forum par forum (themes/gatsby-images.css). Sans image : un fond uni. */
     --cat-img: none;
     --forum-img: none;
-    --forum-gif: visible;         /* « hidden » cache le gif de la description quand le thème donne une image */
     /* « Qui est en ligne » en registre (layouts/qeel-guestlist.css) : libellés, traduisibles par un thème */
     --qeel-t-newest: "NOUVELLE SIGNATURE";
     --qeel-t-online: "DANS LES SALONS";
