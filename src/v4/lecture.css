@@ -1,0 +1,39 @@
+/* ============================================================================
+ * V4 — CONFORT DE LECTURE DES LONGS TEXTES RP (01/11, maquette II de la page témoin)
+ * ----------------------------------------------------------------------------
+ * Histoire de la fiche, scénario (histoire, liens, mot HRP), contexte, fiche de liens, contrat de confort, Grand Plans.
+ * Avant : 13px (11px dans les Grand Plans), texte justifié sans coupure des mots (≈ 95 signes par ligne), et l'interligne
+ * de 1,75 prévu par les gabarits était écrasé sur chaque paragraphe par la règle générale « p { line-height: 1.55 } ».
+ * Les gabarits (07-rp-templates.css, pages/contexte.css) restent tels quels : tout est réglé ici, chargé après eux,
+ * et vaut aussi pour les messages déjà postés. La coupure des mots suit la langue de la page (fr).
+ * ============================================================================ */
+
+/* Récits : 14,5px, interligne 1,75 */
+:is(.vs-dossier-archives-content, .vs-wanted-story-content, .vs-rel-text, .vs-wanted-link-desc),
+:is(.vs-dossier-archives-content, .vs-wanted-story-content, .vs-context-body) p {
+  font-size: calc(14.5px * var(--fs-scale));
+  line-height: 1.75;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Mots HRP (scénario, contrat de confort) : plus d'italique gris, un texte droit un ton plus clair */
+:is(.vs-wanted-notes-callout, .vs-comfort-notes-content),
+:is(.vs-wanted-notes-callout, .vs-comfort-notes-content) p {
+  font-size: calc(13.5px * var(--fs-scale));
+  font-style: normal;
+  line-height: 1.7;
+  color: var(--text-soft);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Grand Plans : 11px → 12,5px (boîtes à défilement et notes) */
+.vs-gp-scroll-text,
+.vs-gp-scroll-text p,
+.vs-gp-note-item {
+  font-size: calc(12.5px * var(--fs-scale));
+  line-height: 1.65;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}

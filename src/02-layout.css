@@ -25,6 +25,15 @@
   padding-top: 20px;
 }
 
+/* 01/11 : hors de l'accueil, l'en-tête prend la hauteur du logo (≈ 300px au lieu de ≈ 500) : sur un sujet, le premier
+ * message arrive dès le premier écran. data-entete="compact" : posé par le module Velvet Theme (22301) ; sans le module,
+ * l'en-tête garde sa grande taille partout */
+[data-entete="compact"] .velvet-header {
+  aspect-ratio: auto;
+  min-height: 0;
+  padding-bottom: 12px;
+}
+
 /* Bordure extérieure fine (or) */
 .velvet-header::before,
 .velvet-header::after {
