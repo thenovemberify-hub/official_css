@@ -90,7 +90,7 @@
   pointer-events: none;
 }
 
-/* ─── Nuit et jour : un cadre fin autour du gif et de l'avatar (Gatsby a ses cadres selon l'arcane) ───
+/* ─── Nuit et jour : un cadre fin autour du gif et de l'avatar (en Gatsby, l'avatar reste sobre : layouts/profil-cadres.css) ───
  * Un filet à la couleur d'accent du thème (or la nuit, orange le jour), un second filet clair à 3px, une lueur douce.
  * Rien ne se pose sur l'image. */
 html:not([data-layout-profil="cadres"]) :is(.vs-profile-avatar, .vs-post-fragment) {
