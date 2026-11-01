@@ -316,15 +316,28 @@ delire {
   padding-top: 8px;
 }
 
-/* Un code : un clic le sélectionne en entier */
-.vs-casse-code {
+/* Un nom de balise dans une phrase */
+.vs-casse-mot {
   font-family: var(--font-mono);
-  font-size: 0.9em;
-  overflow-wrap: break-word;
-  -webkit-user-select: all;
-  user-select: all;
+  font-size: 0.92em;
   color: var(--accent-text);
-  cursor: copy;
+}
+
+/* Les codes : la balise [code] de Forumactif, avec le bouton « Copier » du module select_content_code.js ; ici, sur une ligne */
+.vs-casse .codebox {
+  width: 100%;
+  margin: 4px 0 0;
+}
+
+.vs-casse .codebox dt {
+  display: none;
+}
+
+.vs-casse .codebox dd {
+  padding: 5px 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--accent-text);
 }
 
 .vs-casse-situation {
@@ -338,34 +351,43 @@ delire {
 
 .vs-casse-casier {
   display: grid;
-  grid-template-columns: 204px minmax(0, 1fr);
-  gap: 4px 18px;
-  padding-block: 14px;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 4px 16px;
+  padding-block: 16px;
   border-bottom: 1px solid rgba(var(--gold-rgb), 0.14);
+}
+
+.vs-casse-nom {
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
+  line-height: 1.5;
+  color: var(--accent-text);
+}
+
+.vs-casse-corps {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+.vs-casse-usage {
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.vs-casse-usage i {
+  color: var(--text-muted);
 }
 
 .vs-casse-exemple {
   min-width: 0;
-}
-
-.vs-casse-source {
-  grid-column: 2;
-  font-size: var(--fs-sm);
-  line-height: 1.5;
-  color: var(--text-muted);
-}
-
-.vs-casse-source b {
-  font-weight: 600;
-  color: var(--text-soft);
+  padding-left: 12px;
+  border-left: 2px solid rgba(var(--gold-rgb), 0.45);
 }
 
 @media (max-width: 680px) {
   .vs-casse-casier {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .vs-casse-source {
-    grid-column: 1;
   }
 }

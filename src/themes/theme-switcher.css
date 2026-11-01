@@ -42,7 +42,7 @@
 /* Couleurs par défaut des pastilles de thème si non stylées en inline */
 .velvet-theme[data-t="bleu_nuit"],
 .velvet-theme[data-theme="bleu_nuit"] {
-    background: #12283f;
+    background: linear-gradient(135deg, #150f30 50%, #c9a3ff 50%); /* 01/11 : encre de néon (avant : bleu marine uni) */
 }
 
 .velvet-theme[data-t="day_in_LA"],

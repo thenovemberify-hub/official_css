@@ -15,6 +15,8 @@
 [data-theme="gatsby"] {
     /* Fond de page : le papier peint d'éventails vert et or (tuile sans raccord, 277 x 306, tools/images-gatsby.py ; 01/11) */
     --gatsby-papier: url("img/gatsby/papier-peint.png");
+    /* Portique Art déco autour du logo de l'accueil (dessin : tools/portique.py ; 01/11) */
+    --logo-portique: url("img/gatsby/portique.svg");
     /* Colonne de gauche du bloc d'accueil : la fête de Babylon (webp animé, 330 px, 0,75 Mo) */
     --hp-visual-img: url("img/gatsby/visuel-babylon.webp");
     /* Fonds, voile compris (sans voile, le texte se perd dans l'image) */

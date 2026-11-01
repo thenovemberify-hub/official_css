@@ -71,6 +71,36 @@
   opacity: 0.85;
 }
 
+/* 01/11 : le Portique (maquette https://claude.ai/artifact/KFPDzF31gykir1iFMhZQqC) : un hall en gradins autour du logo occupe le
+ * vide de l'en-tête de l'accueil et calme le papier peint. Pas sur l'en-tête compact (trop bas), ni en fenêtre plus étroite que
+ * le dessin. data-entete et data-layout-logo ne sont que sur <html> (data-theme est aussi sur <body>). */
+@media (min-width: 1040px) {
+  /* Pas de limite à 70vh : sur un petit écran d'ordinateur portable, le portique s'écraserait sur le logo */
+  [data-layout-logo="enseigne"]:not([data-entete="compact"]) .velvet-header {
+    max-height: none;
+  }
+
+  [data-layout-logo="enseigne"]:not([data-entete="compact"]) .velvet-header::before {
+    inset: 0 auto 0 50%;
+    z-index: -1;
+    width: 1000px;
+    transform: translateX(-50%);
+    background: var(--logo-portique, none) center / 100% 100% no-repeat;
+    border-image: none;
+    filter: drop-shadow(0 0 36px rgba(var(--shadow-rgb), 0.8));
+  }
+
+  [data-layout-logo="enseigne"]:not([data-entete="compact"]) .vs-hd-stage {
+    transform: translateY(104px);
+  }
+
+  [data-layout-logo="enseigne"]:not([data-entete="compact"]) .vs-hd-subtitle {
+    color: var(--textColorAccent);
+    font-size: 15px;
+    letter-spacing: 0.24em;
+  }
+}
+
 /* Phrases du bandeau : en fondu, lumineuses, sans glitch */
 [data-layout-logo="enseigne"] .vs-hd-subtitle.gh--intrude {
   animation: enseigne-fondu calc(0.65s * var(--dur-scale)) ease-out both;

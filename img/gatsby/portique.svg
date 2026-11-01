@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 506" preserveAspectRatio="none">
+<defs><clipPath id="c"><path d="M62,506V232H112V172H172V122H252V82H352V52H648V82H748V122H828V172H888V232H938V506Z"/></clipPath>
+<radialGradient id="f" cx=".5" cy=".55" r=".65"><stop offset="0" stop-color="#0e2c20"/><stop offset="1" stop-color="#06130e"/></radialGradient></defs>
+<path d="M40,506V210H90V150H150V100H230V60H330V30H670V60H770V100H850V150H910V210H960V506Z" fill="#06130e"/>
+<path d="M62,506V232H112V172H172V122H252V82H352V52H648V82H748V122H828V172H888V232H938V506Z" fill="url(#f)"/>
+<g clip-path="url(#c)" stroke="#c9a24d" stroke-opacity=".13" fill="none"><path d="M500,520L1380,333"/><path d="M500,520L1356,242"/><path d="M500,520L1322,154"/><path d="M500,520L1279,70"/><path d="M500,520L1228,-9"/><path d="M500,520L1169,-82"/><path d="M500,520L1102,-149"/><path d="M500,520L1029,-208"/><path d="M500,520L950,-259"/><path d="M500,520L866,-302"/><path d="M500,520L778,-336"/><path d="M500,520L687,-360"/><path d="M500,520L594,-375"/><path d="M500,520L500,-380"/><path d="M500,520L406,-375"/><path d="M500,520L313,-360"/><path d="M500,520L222,-336"/><path d="M500,520L134,-302"/><path d="M500,520L50,-259"/><path d="M500,520L-29,-208"/><path d="M500,520L-102,-149"/><path d="M500,520L-169,-82"/><path d="M500,520L-228,-9"/><path d="M500,520L-279,70"/><path d="M500,520L-322,154"/><path d="M500,520L-356,242"/><path d="M500,520L-380,333"/></g>
+<g stroke="#c9a24d" stroke-opacity=".55" fill="none"><path d="M76,344V506"/><path d="M924,344V506"/><path d="M86,344V506"/><path d="M914,344V506"/><path d="M96,344V506"/><path d="M904,344V506"/><path d="M106,344V506"/><path d="M894,344V506"/></g>
+<path d="M40,506V210H90V150H150V100H230V60H330V30H670V60H770V100H850V150H910V210H960V506" fill="none" stroke="#c9a24d" stroke-width="2"/>
+<path d="M50,506V220H100V160H160V110H240V70H340V40H660V70H760V110H840V160H900V220H950V506" fill="none" stroke="#c9a24d" stroke-opacity=".6"/>
+<path d="M62,506V232H112V172H172V122H252V82H352V52H648V82H748V122H828V172H888V232H938V506" fill="none" stroke="#c9a24d" stroke-opacity=".9"/>
+<g stroke="#c9a24d" fill="none"><path d="M360,432H486M514,432H640"/><path d="M500,424l8,8l-8,8l-8,-8z" fill="#c9a24d"/></g>
+</svg>
