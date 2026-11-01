@@ -65,8 +65,19 @@
  * --vs-col-profil : largeur de la colonne profil, marge comprise (205px + 20px). */
 .post_details:has(> .vs-post-fragment) {
   --vs-col-profil: 225px;
+  --vs-gap-entete: 38px;
   position: relative;
-  gap: 38px;
+  gap: var(--vs-gap-entete);
+}
+
+/* 01/11 : cet espace sépare le gif de la date, pas IP de J'aime : le bouton garde le même écart que les autres
+ * (15px, 8px en Gatsby : le gap de ul.profile-icons) */
+.post_details:has(> .vs-post-fragment) .like_button {
+  margin-left: calc(15px - var(--vs-gap-entete));
+}
+
+[data-theme="gatsby"] .post_details:has(> .vs-post-fragment) .like_button {
+  margin-left: calc(8px - var(--vs-gap-entete));
 }
 
 .post_details:has(> .vs-post-fragment)::after {
