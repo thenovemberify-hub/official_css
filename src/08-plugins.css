@@ -2173,16 +2173,7 @@ form[name="form_login"] .content {
   border-radius: calc(5px * var(--radius-scale));
 }
 
-velvetify {
-  display: inline;
-  color: var(--thistle);
-  font-family: var(--font-title);
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: var(--track-3);
-  font-size: 1em;
-  background: var(--fond-category);
-}
+/* velvetify : v4/balises.css (01/11) */
 
 /* Added for The Crimson Codex links centering */
 .sublink {

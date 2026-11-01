@@ -1,0 +1,371 @@
+/* ============================================================================
+ * V4 — LA CASSE DU VELVET : BALISES D'ÉCRITURE RP (01/11, maquette docs/pilotage/maquettes-balises/)
+ * ----------------------------------------------------------------------------
+ * Des éléments maison, sans classe, qu'on écrit directement dans le texte : <murmure>…</murmure>. Tout est en em, pour suivre
+ * le texte qui les entoure (message simple ou fiche), et les couleurs viennent du contrat de thème. Elles s'imbriquent.
+ * Les noms n'ont pas d'accent : une balise ne peut pas en contenir.
+ * Sujet à poster pour les membres : content/pages/balises-ecriture.html (mise en page .vs-casse, en bas de ce fichier).
+ * ============================================================================ */
+
+/* ─── Velvetify (retravaillée le 01/11 ; était dans 08-plugins.css) ───
+ * Une étiquette de velours : capitales espacées dans la police de libellé du thème, reflet, deux filets. Avant, ses couleurs
+ * (--thistle sur --fond-category) ne ressortaient pas pareil selon le thème, et son espacement en px ne suivait pas la taille. */
+velvetify {
+  padding: 0.16em 0.6em 0.1em;
+  background:
+    linear-gradient(100deg, transparent 20%, rgba(var(--paper-rgb), 0.09) 48%, transparent 72%),
+    linear-gradient(rgba(var(--gold-rgb), 0.24), rgba(var(--gold-rgb), 0.1));
+  box-shadow: inset 0 1px 0 rgba(var(--gold-rgb), 0.75), inset 0 -1px 0 rgba(var(--gold-rgb), 0.75);
+  font-family: var(--font-label);
+  font-size: 0.84em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+velvetify::before,
+velvetify::after {
+  content: "\25C6";
+  font-size: 0.5em;
+  letter-spacing: 0;
+  vertical-align: 0.34em;
+  color: rgb(var(--gold-rgb));
+}
+
+velvetify::before {
+  margin-right: 0.9em;
+}
+
+velvetify::after {
+  margin-left: 0.5em;
+}
+
+/* Pages où elle sert de simple libellé (cartes du staff, formulaires) : leur style reste le leur */
+:is(.vs-admin-card, .vs-admin-form) velvetify {
+  padding: 0;
+  background: none;
+  box-shadow: none;
+}
+
+:is(.vs-admin-card, .vs-admin-form) velvetify::before,
+:is(.vs-admin-card, .vs-admin-form) velvetify::after {
+  content: none;
+}
+
+/* ─── Voix ─── */
+murmure {
+  font-size: 0.92em;
+  color: var(--text-soft);
+  text-decoration: underline dotted rgba(var(--gold-rgb), 0.75) 1px;
+  text-underline-offset: 0.28em;
+}
+
+cri {
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+  text-shadow: 0.07em 0.07em 0 rgba(var(--fx-a-rgb), 0.8);
+}
+
+/* La voix de la Mort chez Pratchett : petites capitales, sans guillemets */
+glas {
+  font-family: var(--font-display);
+  font-size: 1.06em;
+  font-variant: small-caps;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+  color: var(--text-bright);
+}
+
+apart {
+  font-family: var(--font-title);
+  font-size: 0.94em;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+apart::before {
+  content: "(";
+}
+
+apart::after {
+  content: ")";
+}
+
+off {
+  font-family: var(--font-mono);
+  font-size: 0.94em;
+  color: var(--text-soft);
+}
+
+off::before {
+  content: "off";
+  margin-right: 0.5em;
+  padding: 0 0.4em;
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  font-size: 0.72em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  vertical-align: 0.12em;
+  color: var(--accent-text);
+}
+
+/* Autre langue : la traduction s'écrit dans title, et s'affiche au survol ou au toucher */
+langue {
+  position: relative;
+  border-bottom: 1px dotted var(--accent-text);
+  font-style: italic;
+  color: var(--accent-text);
+  cursor: help;
+}
+
+langue[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  z-index: 5;
+  width: max-content;
+  max-width: 240px;
+  padding: 5px 9px;
+  background: rgb(var(--panel-deep-rgb));
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.5), 0 6px 18px rgba(var(--shadow-rgb), 0.6);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1.4;
+  color: var(--text-bright);
+}
+
+/* ─── Mémoire ─── */
+souvenir {
+  font-family: var(--font-title);
+  font-style: italic;
+  color: var(--text-soft);
+  opacity: 0.92;
+  text-shadow: 0 0 0.5em rgba(var(--gold-rgb), 0.28);
+}
+
+/* S'écrit vide : <silence></silence>. Le tiret trop long de Sterne */
+silence::before {
+  content: "\2014\2014\2014";
+  margin-inline: 0.15em;
+  letter-spacing: -0.02em;
+  color: var(--accent-text);
+}
+
+/* ─── Effacement ─── */
+rature {
+  color: var(--text-muted);
+  text-decoration: line-through rgb(var(--danger-pale-rgb)) 0.11em;
+}
+
+/* Au survol ou au toucher, le mot apparaît */
+caviar {
+  padding-inline: 0.15em;
+  background: var(--text-muted);
+  color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+caviar:hover {
+  background: transparent;
+  color: var(--text-bright);
+}
+
+brume {
+  filter: blur(0.2em);
+  transition: filter 0.4s ease;
+}
+
+brume:hover {
+  filter: none;
+}
+
+/* ─── Matière ─── */
+plume {
+  font-family: var(--font-script);
+  font-size: 1.75em;
+  line-height: 1;
+  color: var(--accent-text);
+}
+
+machine {
+  font-family: "Special Elite", var(--font-typewriter);
+  font-size: 0.97em;
+  color: var(--text-bright);
+}
+
+neon {
+  color: rgb(var(--cream-rgb));
+  text-shadow: 0 0 0.12em rgb(var(--cream-rgb)), 0 0 0.4em rgb(var(--fx-a-rgb)), 0 0 0.95em rgb(var(--fx-a-rgb));
+}
+
+glitch {
+  color: var(--text-bright);
+  text-shadow: -0.1em 0 rgba(var(--fx-a-rgb), 0.9), 0.1em 0 rgba(var(--fx-b-rgb), 0.9);
+}
+
+delire {
+  font-style: italic;
+  background: linear-gradient(90deg, #ff7ab8, #ffd166, #6fe7dd, #b79cff, #ff7ab8) 0 0 / 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  -webkit-text-fill-color: transparent;
+  text-decoration: underline wavy rgba(183, 156, 255, 0.65) 1px;
+  text-underline-offset: 0.26em;
+}
+
+/* Un seul mouvement discret par balise, et aucun si le lecteur n'en veut pas */
+@media (prefers-reduced-motion: no-preference) {
+  neon {
+    animation: vs-b-neon 8s steps(1) infinite;
+  }
+
+  glitch {
+    animation: vs-b-glitch 6s steps(1) infinite;
+  }
+
+  delire {
+    animation: vs-b-delire 11s linear infinite;
+  }
+
+  @keyframes vs-b-neon {
+    0%, 62%, 65%, 68%, 100% { opacity: 1; }
+    63%, 66% { opacity: 0.45; }
+  }
+
+  @keyframes vs-b-glitch {
+    0%, 88%, 94%, 100% { text-shadow: -0.1em 0 rgba(var(--fx-a-rgb), 0.9), 0.1em 0 rgba(var(--fx-b-rgb), 0.9); }
+    90% { text-shadow: 0.16em 0.03em rgba(var(--fx-a-rgb), 0.95), -0.16em -0.03em rgba(var(--fx-b-rgb), 0.95); }
+    92% { text-shadow: -0.2em 0 rgba(var(--fx-a-rgb), 0.95), 0.1em 0.05em rgba(var(--fx-b-rgb), 0.95); }
+  }
+
+  @keyframes vs-b-delire {
+    to { background-position: -240% 0; }
+  }
+}
+
+/* ─── Le sujet « La Casse du Velvet » ───
+ * Un message posté une fois par le staff. Forumactif change chaque retour à la ligne en <br> : ils sont neutralisés. */
+.vs-casse {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 723px;
+  margin: 14px auto;
+  display: grid;
+  gap: 30px;
+  padding: clamp(20px, 5vw, 38px);
+  background: var(--panel-bg);
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.3), 0 10px 30px rgba(var(--shadow-rgb), 0.35);
+  font-size: calc(14.5px * var(--fs-scale));
+  line-height: 1.7;
+  color: var(--textColor);
+  text-align: start;
+}
+
+.vs-casse br {
+  display: none;
+}
+
+.vs-casse-tete {
+  display: grid;
+  gap: 8px;
+}
+
+.vs-casse-titre {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 44px);
+  line-height: 1.05;
+  color: var(--text-bright);
+}
+
+.vs-casse-tete p,
+.vs-casse-situation p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.vs-casse-rubrique {
+  padding-bottom: 7px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.45);
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  line-height: 1.2;
+  color: var(--text-bright);
+}
+
+.vs-casse-bloc {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.vs-casse-pas {
+  display: grid;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+/* Un code : un clic le sélectionne en entier */
+.vs-casse-code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  overflow-wrap: break-word;
+  -webkit-user-select: all;
+  user-select: all;
+  color: var(--accent-text);
+  cursor: copy;
+}
+
+.vs-casse-situation {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+  padding: 18px 20px;
+  background: rgba(var(--panel-deep-rgb), 0.5);
+  box-shadow: inset 0 0 0 1px rgba(var(--gold-rgb), 0.18);
+}
+
+.vs-casse-casier {
+  display: grid;
+  grid-template-columns: 204px minmax(0, 1fr);
+  gap: 4px 18px;
+  padding-block: 14px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.14);
+}
+
+.vs-casse-exemple {
+  min-width: 0;
+}
+
+.vs-casse-source {
+  grid-column: 2;
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.vs-casse-source b {
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+@media (max-width: 680px) {
+  .vs-casse-casier {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vs-casse-source {
+    grid-column: 1;
+  }
+}
