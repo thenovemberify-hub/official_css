@@ -8,9 +8,19 @@
  * et vaut aussi pour les messages déjà postés. La coupure des mots suit la langue de la page (fr).
  * ============================================================================ */
 
-/* Récits : 14,5px, interligne 1,75 */
+/* Récits : interligne 1,75 */
 :is(.vs-dossier-archives-content, .vs-wanted-story-content, .vs-rel-text, .vs-wanted-link-desc),
-:is(.vs-dossier-archives-content, .vs-wanted-story-content, .vs-context-body) p {
+:is(.vs-dossier-archives-content, .vs-wanted-story-content) p {
+  font-size: var(--fs-base);  /* 01/11 : retour à 13px dans les fiches, 14,5px faisait trop d'écart avec le reste de la fiche */
+  line-height: 1.75;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+/* Le contexte est une page de lecture à lui seul : il garde 14,5px.
+ * Règle à part entière et non exception à celle du dessus : la compilation remonte les sélecteurs déjà vus (.vs-context-body p
+ * existe dans pages/contexte.css), une exception placée après le groupe perdrait contre lui. */
+.vs-context-body p {
   font-size: calc(14.5px * var(--fs-scale));
   line-height: 1.75;
   -webkit-hyphens: auto;

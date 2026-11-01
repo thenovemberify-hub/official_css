@@ -1,0 +1,327 @@
+/* ============================================================================
+ * V4 — FICHE DE POST RP « LE PALACE » (01/11, choisie sur la maquette docs/pilotage/maquettes-fiches-rp/)
+ * ----------------------------------------------------------------------------
+ * Une scène symétrique : deux portraits sous arches se font face, le titre brille entre eux sur un soleil de rayons d'or.
+ * Le cadre a des coins en gradins ; une rampe de lumières ferme la fiche. Le texte, en grand romain, se lit au centre.
+ * Couleurs et polices viennent du contrat de thème. Code à donner aux membres : content/codes-rp/post-palace.html.
+ *
+ * Écriture : le texte se colle tel quel dans .vs-palace-texte, sans <p>. Le gras donne une parole, l'italique une pensée,
+ * la lettrine se pose seule (::first-letter). Forumactif change chaque retour à la ligne en <br> : ils sont neutralisés
+ * partout, sauf ceux du texte, qui font les paragraphes. L'ancienne fiche (.vs-rp-post) reste en place pour les messages déjà postés.
+ * ============================================================================ */
+.vs-palace {
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 723px;
+  margin: 14px auto;
+  color: var(--textColor);
+  text-align: start;
+}
+
+.vs-palace br {
+  display: none;
+}
+
+.vs-palace-texte > br {
+  display: inline;
+}
+
+/* Le retour à la ligne qui suit un bloc inséré ne doit pas s'ajouter à sa marge */
+.vs-palace-texte > div + br {
+  display: none;
+}
+
+.vs-palace img {
+  display: block;
+  max-width: none;
+  border: 0;
+  background: rgb(var(--panel-deep-rgb));
+}
+
+.vs-palace-texte {
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.vs-palace-texte :is(b, strong) {
+  font-weight: 600;
+}
+
+.vs-palace {
+  --palace-coin: 8px;
+  --palace-cadre: polygon(
+    calc(2 * var(--palace-coin)) 0, calc(100% - 2 * var(--palace-coin)) 0,
+    calc(100% - 2 * var(--palace-coin)) var(--palace-coin), calc(100% - var(--palace-coin)) var(--palace-coin),
+    calc(100% - var(--palace-coin)) calc(2 * var(--palace-coin)), 100% calc(2 * var(--palace-coin)),
+    100% calc(100% - 2 * var(--palace-coin)), calc(100% - var(--palace-coin)) calc(100% - 2 * var(--palace-coin)),
+    calc(100% - var(--palace-coin)) calc(100% - var(--palace-coin)), calc(100% - 2 * var(--palace-coin)) calc(100% - var(--palace-coin)),
+    calc(100% - 2 * var(--palace-coin)) 100%, calc(2 * var(--palace-coin)) 100%,
+    calc(2 * var(--palace-coin)) calc(100% - var(--palace-coin)), var(--palace-coin) calc(100% - var(--palace-coin)),
+    var(--palace-coin) calc(100% - 2 * var(--palace-coin)), 0 calc(100% - 2 * var(--palace-coin)),
+    0 calc(2 * var(--palace-coin)), var(--palace-coin) calc(2 * var(--palace-coin)),
+    var(--palace-coin) var(--palace-coin), calc(2 * var(--palace-coin)) var(--palace-coin));
+  padding: 1px;
+  background: linear-gradient(160deg, rgb(var(--gold-rgb)), rgba(var(--gold-rgb), 0.35) 45%, rgb(var(--gold-rgb)));
+  clip-path: var(--palace-cadre);
+}
+
+.vs-palace::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background: linear-gradient(rgb(var(--panel-deep-rgb)), rgb(var(--panel-rgb)) 42%, rgb(var(--panel-deep-rgb)));
+  clip-path: var(--palace-cadre);
+}
+
+.vs-palace-scene {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(10px, 2.6cqw, 22px);
+  padding: clamp(26px, 6cqw, 44px) clamp(18px, 5.4cqw, 40px) 0;
+  overflow: hidden;
+}
+
+/* Le soleil : des rayons d'or qui partent du centre de la scène */
+.vs-palace-scene::before {
+  content: "";
+  position: absolute;
+  inset: -40% -10% 0;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg at 50% 64%, rgba(var(--gold-rgb), 0.17) 0 2.5deg, transparent 2.5deg 7.5deg);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 64%, #000 8%, transparent 68%);
+  mask-image: radial-gradient(ellipse at 50% 64%, #000 8%, transparent 68%);
+}
+
+.vs-palace-portrait {
+  position: relative;
+  flex: 0 1 28%;
+  min-width: 0;
+  padding: 6px 6px 0;
+  border: 1px solid rgba(var(--gold-rgb), 0.75);
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+}
+
+/* La clé de l'arche */
+.vs-palace-portrait::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  background: rgb(var(--gold-rgb));
+  transform: rotate(45deg);
+}
+
+.vs-palace-portrait img {
+  width: 100%;
+  aspect-ratio: 5 / 8;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;
+  box-shadow: 0 0 0 1px rgba(var(--gold-rgb), 0.45);
+}
+
+.vs-palace-portrait span {
+  display: block;
+  margin-inline: -7px;
+  padding: 7px 4px 6px;
+  background: linear-gradient(rgb(var(--gold-rgb)), rgba(var(--gold-rgb), 0.82));
+  font-family: var(--font-label);
+  font-size: clamp(8.5px, 1.5cqw, 10.5px);
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(var(--on-honey-rgb));
+}
+
+.vs-palace-affiche {
+  flex: 1 1 0;
+  min-width: 0;
+  align-self: center;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+/* L'éventail */
+.vs-palace-affiche::before {
+  content: "";
+  width: 62px;
+  height: 31px;
+  background: repeating-conic-gradient(from -90deg at 50% 100%, rgb(var(--gold-rgb)) 0 3.4deg, transparent 3.4deg 12deg);
+  border-radius: 62px 62px 0 0;
+}
+
+.vs-palace-titre {
+  font-family: var(--font-decorative);
+  font-size: clamp(25px, 5.9cqw, 43px);
+  font-weight: 700;
+  line-height: 1.06;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+  color: var(--gold-cream);
+  background: linear-gradient(105deg, rgb(var(--gold-rgb)) 28%, var(--gold-cream) 50%, rgb(var(--gold-rgb)) 72%) 50% 0 / 280% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.vs-palace-citation {
+  padding-top: 11px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.5);
+  font-family: var(--font-display);
+  font-size: clamp(14px, 2.4cqw, 17px);
+  font-style: italic;
+  line-height: 1.32;
+  text-wrap: balance;
+  color: var(--text-soft);
+}
+
+.vs-palace-lieu {
+  margin-inline: clamp(18px, 5.4cqw, 40px);
+  padding: 11px 8px;
+  border-block: 1px solid rgba(var(--gold-rgb), 0.5);
+  font-family: var(--font-label);
+  font-size: clamp(9.5px, 1.5cqw, 11px);
+  letter-spacing: 0.24em;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.vs-palace-texte {
+  max-width: 34em;
+  margin: 0 auto;
+  padding: 32px clamp(20px, 6cqw, 22px) 34px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: calc(18.5px * var(--fs-scale));
+  font-weight: 500;
+  line-height: 1.58;
+  color: var(--text-bright);
+}
+
+.vs-palace-texte::first-letter {
+  float: left;
+  margin: 0.08em 0.2em 0 0;
+  padding: 0.08em 0.15em 0.05em;
+  border: 1px solid rgb(var(--gold-rgb));
+  outline: 1px solid rgba(var(--gold-rgb), 0.4);
+  outline-offset: 2px;
+  font-family: "Cinzel", serif;
+  font-size: 2.9em;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent-text);
+}
+
+.vs-palace-texte :is(b, strong) {
+  color: var(--accent-text);
+}
+
+.vs-palace-texte :is(i, em) {
+  color: var(--text-soft);
+}
+
+/* Réplique : un grand italique, entre deux filets qui se terminent par un losange */
+.vs-palace-replique {
+  position: relative;
+  margin: 22px -4%;
+  padding: 18px 8%;
+  font-size: 1.3em;
+  font-style: italic;
+  line-height: 1.34;
+  text-align: center;
+  text-wrap: balance;
+  -webkit-hyphens: none;
+  hyphens: none;
+  color: var(--accent-text);
+  background:
+    linear-gradient(90deg, transparent, rgb(var(--gold-rgb)) 20% 80%, transparent) top / 100% 1px no-repeat,
+    linear-gradient(90deg, transparent, rgb(var(--gold-rgb)) 20% 80%, transparent) bottom / 100% 1px no-repeat;
+}
+
+/* Entracte : deux éventails tête-bêche */
+.vs-palace-entracte {
+  width: 74px;
+  height: 18px;
+  margin: 20px auto;
+  background:
+    repeating-conic-gradient(from -90deg at 50% 100%, rgb(var(--gold-rgb)) 0 4deg, transparent 4deg 14deg) top / 36px 18px no-repeat,
+    linear-gradient(90deg, transparent, rgb(var(--gold-rgb)) 40% 60%, transparent) bottom / 100% 1px no-repeat;
+}
+
+/* La rampe : une rangée d'ampoules allumées */
+.vs-palace-fin {
+  position: relative;
+  padding: 26px 20px 28px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.4);
+  background: linear-gradient(rgba(var(--gold-rgb), 0.12), transparent 70%);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.vs-palace-fin::before {
+  content: "";
+  position: absolute;
+  inset: -4px 14% auto;
+  height: 7px;
+  background: radial-gradient(circle at 50% 50%, var(--gold-cream) 0 2px, rgba(var(--gold-rgb), 0.55) 3px, transparent 4px) 0 0 / 22px 7px round;
+  filter: drop-shadow(0 0 5px rgb(var(--gold-rgb)));
+}
+
+.vs-palace-fin a {
+  color: var(--accent-text);
+  text-underline-offset: 3px;
+}
+
+/* Petits écrans : les portraits côte à côte, le titre dessous */
+@media (max-width: 680px) {
+  .vs-palace-scene {
+    flex-wrap: wrap;
+  }
+
+  .vs-palace-portrait {
+    flex: 0 1 44%;
+  }
+
+  .vs-palace-affiche {
+    flex: 1 0 100%;
+    order: 3;
+    padding-block: 18px;
+  }
+}
+
+/* Un reflet passe sur le titre */
+@media (prefers-reduced-motion: no-preference) {
+  .vs-palace-titre {
+    animation: vs-palace-reflet 9s ease-in-out infinite;
+  }
+
+  @keyframes vs-palace-reflet {
+    0%, 55% {
+      background-position: 100% 0;
+    }
+
+    85%, 100% {
+      background-position: 0 0;
+    }
+  }
+}

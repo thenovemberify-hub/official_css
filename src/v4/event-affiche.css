@@ -1,0 +1,327 @@
+/* ============================================================================
+ * V4 — PREMIER POST D'UN SUJET D'EVENT : « L'AFFICHE » (01/11, choisie sur la maquette docs/pilotage/maquettes-event/)
+ * ----------------------------------------------------------------------------
+ * Le thriller hollywoodien de la grande époque, en papier découpé : orange et noir à plat, lettres coupées aux ciseaux,
+ * un éclair qui fend la feuille. L'affiche s'assemble au défilement ; sans cette fonction du navigateur, elle est assemblée.
+ * Post unique de l'admin : ses couleurs sont les siennes et ne suivent pas le thème du lecteur (l'objet garde son identité).
+ * Code à coller : content/codes-rp/event-affiche.html. Aucun style dans le code du message, tout est ici :
+ * - une lettre = un <span> : décalage (nth-child) et taille du mot (selon son nombre de lettres, :has) se règlent seuls ;
+ * - autant d'actes qu'on veut : couleur et décalage suivent leur rang.
+ * Après l'event : retirer la ligne d'index.css (les anciens posts perdraient leur mise en page) ou la garder.
+ * Polices sur GitHub Pages, chargées seulement quand une affiche est à l'écran (@font-face inutilisé = aucun téléchargement).
+ * ============================================================================ */
+@font-face {
+  font-family: "VS Anton";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("img/fonts/anton-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "VS Josefin";
+  font-style: normal;
+  font-weight: 100 700;
+  font-display: swap;
+  src: url("img/fonts/josefin-sans-latin.woff2") format("woff2");
+}
+
+.vs-ev-affiche {
+  --af-orange: #ee4a1b;
+  --af-noir: #100e0c;
+  --af-creme: #f3e7cc;
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 723px;
+  margin: 14px auto;
+  overflow: hidden;
+  background: var(--af-orange);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+  color: var(--af-noir);
+  text-align: start;
+}
+
+.vs-ev-affiche br {
+  display: none;
+}
+
+.vs-ev-affiche *,
+.vs-ev-affiche *::before {
+  box-sizing: border-box;
+}
+
+.vs-ev-affiche-une {
+  position: relative;
+  aspect-ratio: 723 / 780;
+  overflow: hidden;
+}
+
+/* La masse noire et son bord en éclair */
+.vs-ev-affiche-eclair {
+  position: absolute;
+  inset: 0;
+  background: var(--af-noir);
+  clip-path: polygon(100% 22%, 66% 33%, 73% 38%, 36% 46%, 43% 51%, 0 63%, 0 100%, 100% 100%);
+}
+
+/* L'image, sa fenêtre taillée en biseau, passée en noir et orange */
+.vs-ev-affiche-portrait {
+  position: absolute;
+  right: 5.5%;
+  top: 36%;
+  width: 33%;
+  height: 41%;
+  background: var(--af-orange);
+  clip-path: polygon(18% 0, 100% 3%, 95% 100%, 0 94%, 8% 44%);
+}
+
+.vs-ev-affiche-portrait img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.5) brightness(1.15);
+  mix-blend-mode: multiply;
+}
+
+/* Le titre en deux mots. Une lettre = un <span>, décalé selon son rang */
+.vs-ev-affiche-lettres {
+  position: absolute;
+  display: flex;
+  font-family: "VS Anton", "Impact", sans-serif;
+  font-weight: 400;
+  line-height: 0.9;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.vs-ev-affiche-lettres span {
+  display: block;
+  transform: translate(var(--dx, 0), var(--dy, 0)) rotate(var(--r, 0deg));
+  transition: transform 0.28s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.vs-ev-affiche-lettres span:nth-child(8n + 1) { --r: -3deg; --dy: 0.024em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 2) { --r: 2deg; --dx: -0.016em; --dy: -0.02em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 3) { --r: -1deg; --dx: 0.008em; --dy: 0.028em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 4) { --r: 4deg; --dx: -0.008em; --dy: -0.016em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 5) { --r: -5deg; --dx: 0.016em; --dy: 0.02em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 6) { --r: 3deg; --dx: -0.012em; --dy: 0.032em; }
+.vs-ev-affiche-lettres span:nth-child(8n + 7) { --r: -2deg; --dy: -0.024em; }
+.vs-ev-affiche-lettres span:nth-child(8n) { --r: 2deg; --dx: 0.012em; --dy: 0.016em; }
+
+.vs-ev-affiche-lettres:hover span {
+  transform: rotate(0deg);
+}
+
+/* Mot du haut, noir sur orange : la taille suit le nombre de lettres pour remplir la feuille sans toucher le bord */
+.vs-ev-affiche-haut {
+  left: 3.5%;
+  top: 5.5%;
+  font-size: 36cqw;
+  color: var(--af-noir);
+}
+
+.vs-ev-affiche-haut:has(span:nth-child(4)) { font-size: 31cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(5)) { font-size: 25cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(6)) { font-size: 21.5cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(7)) { font-size: 18.5cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(8)) { font-size: 16cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(9)) { font-size: 14.5cqw; }
+.vs-ev-affiche-haut:has(span:nth-child(10)) { font-size: 13cqw; }
+
+/* Mot du bas, orange sur noir : plus étroit, l'image est à sa droite */
+.vs-ev-affiche-bas-mot {
+  left: 8%;
+  bottom: 3.5%;
+  font-size: 36.5cqw;
+  color: var(--af-orange);
+}
+
+.vs-ev-affiche-bas-mot:has(span:nth-child(4)) { font-size: 29cqw; }
+.vs-ev-affiche-bas-mot:has(span:nth-child(5)) { font-size: 23cqw; }
+.vs-ev-affiche-bas-mot:has(span:nth-child(6)) { font-size: 19.5cqw; }
+.vs-ev-affiche-bas-mot:has(span:nth-child(7)) { font-size: 16.7cqw; }
+.vs-ev-affiche-bas-mot:has(span:nth-child(8)) { font-size: 14.6cqw; }
+
+.vs-ev-affiche-credits {
+  position: absolute;
+  left: 4%;
+  top: 31%;
+  width: 30%;
+  font-family: "VS Josefin", sans-serif;
+  font-size: clamp(8.5px, 1.5cqw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  text-transform: lowercase;
+  color: var(--af-noir);
+}
+
+.vs-ev-affiche-accroche {
+  position: absolute;
+  right: 5.5%;
+  bottom: 7%;
+  width: 26%;
+  font-family: "VS Josefin", sans-serif;
+  font-size: clamp(11px, 2.25cqw, 16.5px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-wrap: balance;
+  color: var(--af-creme);
+}
+
+/* Les actes : des bandes coupées aux ciseaux, en escalier. nth-of-type et non nth-child : Forumactif glisse des <br> entre eux */
+.vs-ev-affiche-actes {
+  display: grid;
+  gap: 8px;
+  padding-block: 20px;
+  background: var(--af-noir);
+}
+
+.vs-ev-affiche-acte {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 18px;
+  width: 84%;
+  padding: 11px 44px 13px 20px;
+  background: var(--af-orange);
+  clip-path: polygon(0 3%, 100% 0, 95% 50%, 100% 100%, 0 96%);
+  font-family: "VS Josefin", sans-serif;
+  font-size: clamp(13.5px, 2.15cqw, 15.5px);
+  line-height: 1.32;
+  color: var(--af-noir);
+}
+
+.vs-ev-affiche-acte:nth-of-type(even) {
+  background: var(--af-creme);
+}
+
+.vs-ev-affiche-acte:nth-of-type(3n + 2) {
+  margin-left: 8%;
+}
+
+.vs-ev-affiche-acte:nth-of-type(3n) {
+  margin-left: 16%;
+}
+
+.vs-ev-affiche-acte > b {
+  font-family: "VS Anton", sans-serif;
+  font-size: clamp(38px, 7.7cqw, 56px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.vs-ev-affiche-acte strong {
+  display: block;
+  font-family: "VS Anton", sans-serif;
+  font-size: 1.32em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Les conditions : la feuille crème, entrée par un bord dentelé */
+.vs-ev-affiche-bas {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px 30px;
+  padding: clamp(30px, 6.4cqw, 46px) clamp(20px, 5.6cqw, 40px) clamp(24px, 5cqw, 36px);
+  background: var(--af-creme);
+  font-family: "VS Josefin", sans-serif;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+
+.vs-ev-affiche-bas::before {
+  content: "";
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 20px;
+  background: var(--af-noir);
+  clip-path: polygon(0 0, 100% 0, 100% 34%, 88% 100%, 76% 30%, 62% 88%, 47% 26%, 33% 92%, 18% 36%, 8% 80%, 0 40%);
+}
+
+.vs-ev-affiche-recit {
+  font-size: clamp(17px, 2.9cqw, 21px);
+  font-weight: 600;
+  line-height: 1.28;
+  text-wrap: pretty;
+}
+
+.vs-ev-affiche-entree > b {
+  display: block;
+  margin-bottom: 7px;
+  font-family: "VS Anton", sans-serif;
+  font-size: 23px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #c43a10;
+}
+
+.vs-ev-affiche-limite {
+  grid-column: 1 / -1;
+  padding: 10px 16px 8px;
+  background: var(--af-noir);
+  clip-path: polygon(0 8%, 100% 0, 99% 92%, 1% 100%);
+  font-family: "VS Anton", sans-serif;
+  font-size: clamp(19px, 3.4cqw, 25px);
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--af-orange);
+}
+
+.vs-ev-affiche a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 680px) {
+  .vs-ev-affiche-bas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vs-ev-affiche-acte {
+    width: 100%;
+    padding-right: 34px;
+  }
+
+  .vs-ev-affiche-acte:nth-of-type(n) {
+    margin-left: 0;
+  }
+}
+
+/* À l'entrée dans l'écran, le noir, l'image et les mots viennent à leur place */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .vs-ev-affiche-eclair,
+    .vs-ev-affiche-portrait,
+    .vs-ev-affiche-haut,
+    .vs-ev-affiche-bas-mot,
+    .vs-ev-affiche-acte {
+      animation: 1s linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 34%;
+    }
+
+    .vs-ev-affiche-eclair { animation-name: vs-ev-af-droite; }
+    .vs-ev-affiche-portrait { animation-name: vs-ev-af-haut; }
+    .vs-ev-affiche-haut,
+    .vs-ev-affiche-acte { animation-name: vs-ev-af-gauche; }
+    .vs-ev-affiche-bas-mot { animation-name: vs-ev-af-bas; }
+
+    @keyframes vs-ev-af-droite { from { transform: translateX(16%); } }
+    @keyframes vs-ev-af-haut { from { transform: translateY(-20%) rotate(3deg); } }
+    @keyframes vs-ev-af-gauche { from { transform: translateX(-14%); } }
+    @keyframes vs-ev-af-bas { from { transform: translateY(26%); } }
+  }
+}
