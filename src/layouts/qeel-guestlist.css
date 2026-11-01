@@ -1,10 +1,12 @@
 /* ============================================================================
  * DISPOSITION « THE GUEST LIST » DE « QUI EST EN LIGNE » (V4, phase 6, proposition A)
  * ----------------------------------------------------------------------------
- * D'après la maquette du 26/10 : à gauche le nouvel arrivant en médaillon et les connectés ;
- * au centre le registre des 96 dernières heures, en deux colonnes numérotées ; à droite les
- * chiffres, les quatre arcanes et leur devise. Même HTML qu'aujourd'hui (template index_body),
- * aucun script : seules les places changent (grille), le reste suit le thème.
+ * D'après la maquette du 26/10 : à gauche le nouvel arrivant en vignette et les connectés ;
+ * au centre le registre, en trois colonnes ; à droite les chiffres, les quatre arcanes et leur
+ * devise. Même HTML qu'aujourd'hui (template index_body), aucun script : seules les places changent
+ * (grille), le reste suit le thème.
+ * 01/11 (retours de la co-admine) : plus de numéros, plus d'arche, plus de mention des 96 heures ;
+ * hauteur fixe de 440px (demande de l'utilisateur) : le surplus de noms défile à l'intérieur du bloc.
  *
  * Ne s'applique que si le thème la demande (registre du module 22301 →
  * data-layout-qeel="guestlist" sur <html>) : thème d'essai « essai_guestlist » (la nuit avec
@@ -16,7 +18,9 @@
 /* ─── Grille : gauche | registre | chiffres, arcanes, devise ─── */
 [data-layout-qeel="guestlist"] .vs-qeel-wrapper {
   grid-template-columns: 230px minmax(0, 1fr) 260px;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  height: 440px; /* le bloc ne bouge pas, quel que soit le nombre de noms */
+  overflow: hidden;
   grid-template-areas:
     "gauche liste chiffres"
     "gauche liste arcanes"
@@ -61,49 +65,58 @@
 /* ─── Gauche : nouvel arrivant, puis les connectés ─── */
 [data-layout-qeel="guestlist"] .vs-qeel-left {
   grid-area: gauche;
+  min-height: 0;
+  overflow: hidden;
   border-right: 1px solid var(--qeel-border);
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-left-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   gap: 18px;
   padding: 26px 20px;
 }
 
+/* Une petite photo droite à côté du nom : elle laisse la place aux connectés */
 [data-layout-qeel="guestlist"] .vs-qeel-bienvenue {
-  flex-direction: column;
+  flex: none;
+  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  text-align: center;
+  gap: 12px;
+  text-align: left;
 }
 
-/* Libellé, puis médaillon, puis nom : le bloc du libellé et du nom s'efface pour qu'on les ordonne */
 [data-layout-qeel="guestlist"] .vs-qeel-bienvenue-meta {
-  display: contents;
-}
-
-[data-layout-qeel="guestlist"] .vs-qeel-label {
-  order: -1;
+  display: block;
+  min-width: 0;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-label::before {
   content: var(--qeel-t-newest);
 }
 
-/* Médaillon en arche autour de l'avatar (posé par le module « avatar du dernier inscrit ») */
+/* La vignette (avatar posé par le module « avatar du dernier inscrit ») */
 [data-layout-qeel="guestlist"] .vs-qeel-newest-avatar,
 [data-layout-qeel="guestlist"] .vs-qeel-newest-avatar img {
-  width: 110px;
-  height: 140px;
-  border-radius: 55px 55px 0 0;
+  width: 60px;
+  height: 78px;
+  border-radius: 0;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-newest-avatar {
   flex-shrink: 0;
   overflow: hidden;
-  border: 1px solid rgb(var(--gold-rgb));
-  outline: 1px solid rgba(var(--gold-rgb), 0.22);
-  outline-offset: 4px;
-  background: radial-gradient(circle at 50% 35%, var(--surface-row-strong), transparent);
+  border: none;
+  outline: none;
+  background: none;
+}
+
+[data-layout-qeel="guestlist"] #lastuser_avatar {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-newest-avatar img {
@@ -115,12 +128,18 @@
 [data-layout-qeel="guestlist"] .vs-qeel-newest-name a {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: var(--fs-2xl);
+  font-size: var(--fs-xl);
+  line-height: 1.15;
   letter-spacing: 0;
   text-transform: none;
 }
 
 [data-layout-qeel="guestlist"] .vs-qeel-left .vs-qeel-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
   gap: 8px;
   padding-top: 14px;
   border-top: 1px solid var(--qeel-border);
@@ -138,6 +157,15 @@
   text-align: start;
 }
 
+/* Les connectés en trop défilent dans la colonne */
+[data-layout-qeel="guestlist"] #online_users_list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--gold-rgb), 0.5) transparent;
+}
+
 [data-layout-qeel="guestlist"] #online_users_list a {
   display: block;
   font-family: var(--font-display);
@@ -145,9 +173,13 @@
   line-height: 1.6;
 }
 
-/* ─── Centre : le registre des 96 heures ─── */
+/* ─── Centre : le registre ─── */
 [data-layout-qeel="guestlist"] .vs-qeel-72h {
   grid-area: liste;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
   gap: 12px;
   padding: 22px 26px;
   background: var(--qeel-glass-deep);
@@ -172,36 +204,27 @@
   color: var(--text-bright);
 }
 
-[data-layout-qeel="guestlist"] .vs-qeel-72h .vs-qeel-header::after {
-  content: var(--qeel-t-recent-sub);
-  white-space: nowrap;
-  font-family: var(--font-label);
-  font-size: var(--fs-2xs);
-  letter-spacing: var(--track-3);
-  color: var(--text-3);
-}
-
 [data-layout-qeel="guestlist"] #last_connected {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  max-height: 400px;
+  flex: none;
+  height: 320px; /* 10 rangées entières : aucun nom coupé en deux en bas du bloc */
+  max-height: none; /* zones/qeel.css limite cette liste à 120px */
   overflow-y: auto;
-  counter-reset: qeel-guest;
   scrollbar-width: thin;
   scrollbar-color: rgba(var(--gold-rgb), 0.5) transparent;
 }
 
 [data-layout-qeel="guestlist"] #last_connected a {
-  flex: 0 0 50%;
+  flex: 0 0 33.33%;
   box-sizing: border-box;
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  height: 32px;
   min-width: 0;
-  padding: 5px 16px 5px 0;
+  padding: 0 12px 0 0;
   border-bottom: 1px dotted var(--qeel-border);
-  counter-increment: qeel-guest;
   font-family: var(--font-display);
   font-style: italic;
   font-size: var(--fs-lg);
@@ -213,32 +236,12 @@
   font-weight: 500;
 }
 
-/* Numéro de la ligne */
-[data-layout-qeel="guestlist"] #last_connected a::before {
-  content: counter(qeel-guest, decimal-leading-zero);
-  flex-shrink: 0;
-  width: 22px;
-  font-style: normal;
-  font-size: var(--fs-xs);
-  color: var(--text-3);
-}
-
 [data-layout-qeel="guestlist"] #last_connected a > span {
   flex: 1;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-/* Losange or en fin de ligne (le nom garde la couleur de son groupe, écrite par Forumactif) */
-[data-layout-qeel="guestlist"] #last_connected a::after {
-  content: "";
-  flex-shrink: 0;
-  width: 7px;
-  height: 7px;
-  transform: rotate(45deg);
-  background: rgba(var(--gold-rgb), 0.6);
 }
 
 /* ─── Droite : chiffres, arcanes, devise ─── */
@@ -345,6 +348,8 @@
 /* ─── Écran étroit : tout en une colonne ─── */
 @media (max-width: 760px) {
   [data-layout-qeel="guestlist"] .vs-qeel-wrapper {
+    height: auto;
+    grid-template-rows: none;
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "gauche" "chiffres" "liste" "arcanes" "devise" "copyright";
   }
@@ -353,7 +358,16 @@
     border-right: none;
   }
 
+  [data-layout-qeel="guestlist"] .vs-qeel-left-content {
+    height: auto;
+  }
+
+  [data-layout-qeel="guestlist"] #last_connected {
+    height: auto;
+    max-height: 320px;
+  }
+
   [data-layout-qeel="guestlist"] #last_connected a {
-    flex-basis: 100%;
+    flex-basis: 50%;
   }
 }

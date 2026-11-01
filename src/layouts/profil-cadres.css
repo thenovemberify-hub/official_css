@@ -2,8 +2,9 @@
  * DISPOSITION « CADRES » DES AVATARS (V4, Gatsby, 26/10)
  * ----------------------------------------------------------------------------
  * Un cadre Art déco autour de l'avatar, différent selon l'arcane du membre, avec une pierre à la couleur de
- * l'arcane : dans la colonne profil des messages (.vs-profile-avatar) et sur les cartes de la liste des membres
- * (.userlist_avatar). Cadres : img/gatsby/cadres/ (redessinés d'après assets/references/gatsby-10).
+ * l'arcane, dans la colonne profil des messages (.vs-profile-avatar). Cadres : img/gatsby/cadres/ (redessinés d'après
+ * assets/references/gatsby-10). 01/11 (retours de la co-admine) : retiré de la liste des membres, qui prend le liseré du
+ * groupe comme les autres thèmes (v4/membres.css).
  * L'arcane est lue dans la couleur du pseudo (style="color:#…" posé par Forumactif) : rien à changer
  * dans les templates, et un groupe renuméroté n'y change rien. Sans arcane reconnue : cadre « arcs », sans pierre.
  *   The Emperor #b71c1c → gradins ; The Star #d63384 → éventails ; The Devil #e67e22 → chevrons ;
@@ -14,7 +15,7 @@
  * Ne s'applique que si le thème le demande (registre 22301 : profil: 'cadres' → data-layout-profil).
  * ============================================================================ */
 
-[data-layout-profil="cadres"] :is(.vs-profile-avatar, .userlist_avatar) {
+[data-layout-profil="cadres"] .vs-profile-avatar {
   --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
   --cadre-bande: 14px;
   --cadre-pierre-y: 1px;
@@ -33,26 +34,8 @@
   margin: var(--cadre-bande);
 }
 
-/* Les !important répondent à ceux de la carte (08-plugins.css) ; le zoom du survol ne déborde plus sur le cadre */
-[data-layout-profil="cadres"] .userlist_avatar {
-  background: rgb(var(--panel-deep-rgb)) !important;
-}
-
-[data-layout-profil="cadres"] .userlist_avatar > img {
-  top: var(--cadre-bande) !important;
-  left: var(--cadre-bande) !important;
-  width: calc(100% - 2 * var(--cadre-bande)) !important;
-  height: calc(100% - 2 * var(--cadre-bande)) !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-}
-
-[data-layout-profil="cadres"] .userlist_profil:hover .userlist_avatar > img {
-  transform: none !important;
-}
-
 /* Le cadre, dans la bordure : il ne touche pas la photo */
-[data-layout-profil="cadres"] :is(.vs-profile-avatar, .userlist_avatar)::after {
+[data-layout-profil="cadres"] .vs-profile-avatar::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -62,7 +45,7 @@
 }
 
 /* La pierre de l'arcane, au milieu du haut du cadre */
-[data-layout-profil="cadres"] :is(.vs-profile-avatar, .userlist_avatar)::before {
+[data-layout-profil="cadres"] .vs-profile-avatar::before {
   content: "";
   display: var(--cadre-pierre-display);
   position: absolute;
@@ -78,62 +61,33 @@
   pointer-events: none;
 }
 
-/* ─── Un cadre par arcane (messages, puis liste des membres) ─── */
-[data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="b71c1c" i]) .vs-profile-avatar,
-  .userlist_profil:has(.userlist_pseudo [style*="b71c1c" i]) .userlist_avatar) {
+/* ─── Un cadre par arcane ─── */
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="b71c1c" i]) .vs-profile-avatar {
   --cadre-avatar: url("img/gatsby/cadres/cadre-gradins.svg");
   --cadre-pierre: #b71c1c;
   --cadre-pierre-display: block;
   --cadre-pierre-y: 1px;
 }
 
-[data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="d63384" i]) .vs-profile-avatar,
-  .userlist_profil:has(.userlist_pseudo [style*="d63384" i]) .userlist_avatar) {
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="d63384" i]) .vs-profile-avatar {
   --cadre-avatar: url("img/gatsby/cadres/cadre-eventails.svg");
   --cadre-pierre: #d63384;
   --cadre-pierre-display: block;
   --cadre-pierre-y: 1px;
 }
 
-[data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="e67e22" i]) .vs-profile-avatar,
-  .userlist_profil:has(.userlist_pseudo [style*="e67e22" i]) .userlist_avatar) {
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="e67e22" i]) .vs-profile-avatar {
   --cadre-avatar: url("img/gatsby/cadres/cadre-chevrons.svg");
   --cadre-pierre: #e67e22;
   --cadre-pierre-display: block;
   --cadre-pierre-y: 1px;
 }
 
-[data-layout-profil="cadres"] :is(.post_profile:has(.vs-profile-name [style*="00b0f0" i]) .vs-profile-avatar,
-  .userlist_profil:has(.userlist_pseudo [style*="00b0f0" i]) .userlist_avatar) {
+[data-layout-profil="cadres"] .post_profile:has(.vs-profile-name [style*="00b0f0" i]) .vs-profile-avatar {
   --cadre-avatar: url("img/gatsby/cadres/cadre-arcs.svg");
   --cadre-pierre: #00b0f0;
   --cadre-pierre-display: block;
   --cadre-pierre-y: 1px;
-}
-
-/* ─── Liste des membres : le cadre remplace le liseré de la carte ; les infos qui montent au survol
- * passent sous le cadre (il reste visible), le texte garde ses marges à l'intérieur des filets.
- * Les !important répondent à ceux de la carte (08-plugins.css). */
-[data-layout-profil="cadres"] .userlist_profil {
-  border-color: transparent !important;
-  border-radius: 0 !important;
-}
-
-[data-layout-profil="cadres"] .userlist_profil:hover {
-  border-color: transparent !important;
-}
-
-[data-layout-profil="cadres"] .userlist_profil::after {
-  content: none !important;
-}
-
-[data-layout-profil="cadres"] .userlist_details {
-  padding: 18px 22px 26px !important;
-}
-
-/* Au repos, seul le pseudo dépasse : on remonte la bande pour qu'il passe au-dessus des ornements du bas du cadre */
-[data-layout-profil="cadres"] .userlist_profil:not(:hover) .userlist_details {
-  transform: translateY(calc(100% - 60px)) !important;
 }
 
 /* Le gif « Fragment d'âme » en tête du message (v4/entete-message.css) : un filet d'or, comme une vitrine */

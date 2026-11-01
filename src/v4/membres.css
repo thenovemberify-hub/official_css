@@ -1,25 +1,35 @@
 /* ============================================================================
- * V4 — LISTE DES MEMBRES : un voile derrière la grille (phase 4b, choisi le 26/10)
+ * V4 — LISTE DES MEMBRES : une grille serrée, sans panneau (retours de la co-admine, 01/11)
  * ----------------------------------------------------------------------------
- * Les cartes ont déjà une image opaque : le voile ne sert pas à la lisibilité mais à unifier
- * la page avec les autres panneaux et à calmer la photo entre les cartes. Volontairement
- * plus léger que --surface-row (fond plein écarté : les cartes sombres s'y confondaient).
+ * 6px entre les cartes au lieu de 35, 5 cartes par ligne au lieu de 4 à la largeur du forum (moins sur un petit écran),
+ * à la proportion des avatars (5:8). Les !important répondent à ceux de 08-plugins.css.
+ * Avant (phase 4b, 26/10) : un voile et un cadre autour de la grille, qui ajoutaient de l'espace.
  * ============================================================================ */
 .userlist {
-  padding: 28px !important; /* 08-plugins.css impose padding: 24px 0 !important */
-  background: rgba(var(--veil-rgb), 0.5);
-  backdrop-filter: var(--panel-blur);
-  -webkit-backdrop-filter: var(--panel-blur);
-  border: var(--panel-border);
-  border-radius: var(--panel-radius);
-  box-shadow: var(--panel-shadow);
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)) !important;
+  gap: 6px !important;
+  padding: 0 !important;
+}
+
+.userlist_profil {
+  max-width: none !important;
+  height: auto !important;
+  aspect-ratio: 5 / 8;
+  margin: 0 !important;
+}
+
+/* Une carte plus étroite : le nom tient sur la ligne visible */
+.userlist_pseudo {
+  font-size: 12.5px !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
 }
 
 /* ============================================================================
  * A4 (26/10) — FILTRE PAR GROUPE ET LISERÉ
  * Le module « Filtre des membres » (js/modules/membres_filtre.js) pose au-dessus de la grille une barre
  * .vs-ml-filtre (une pastille par groupe, plus « Tous ») et donne à chaque carte la couleur de son groupe
- * (--vs-groupe, lue dans le pseudo). En Gatsby, le cadre selon l'arcane remplace le liseré (layouts/profil-cadres.css).
+ * (--vs-groupe, lue dans le pseudo).
  * ============================================================================ */
 .vs-ml-filtre {
   display: flex;
@@ -68,8 +78,9 @@
   display: none !important;
 }
 
-/* Liseré : le bord de la carte et un filet en haut, à la couleur du groupe (les !important répondent à 08-plugins) */
-html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
+/* Liseré : le bord de la carte et un filet en haut, à la couleur du groupe, dans tous les thèmes (01/11 : en Gatsby
+ * aussi, le cadre doré est retiré de la liste). Les !important répondent à 08-plugins */
+.userlist_profil[data-groupe] {
   border-color: var(--vs-groupe) !important;
   box-shadow:
     inset 0 3px 0 var(--vs-groupe),
@@ -77,46 +88,33 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
 }
 
 /* ============================================================================
- * Phase 7 (7.1, 29/10) — COMMANDES « FAÇON CAPTURE » (template memberlist_body)
- * Deux colonnes au-dessus de la grille : à gauche « Filtrer par groupe » (pastilles de M10) et « Chercher par nom » ;
- * à droite « Ranger par » et « Ordre », boutons d'envoi du formulaire de Forumactif (listes natives masquées).
- * Pastille active = remplie à l'accent du thème ; les autres en contour.
+ * COMMANDES (template memberlist_body ; 7.1, 29/10 ; allégées le 01/11, retours de la co-admine)
+ * Deux lignes de mots sur un simple voile, au lieu d'un grand panneau de pastilles : le filtre par groupe (M10), puis le
+ * tri et l'ordre (boutons d'envoi du formulaire de Forumactif, listes natives masquées) ; à droite, la loupe.
+ * Le mot actif est souligné. Le voile n'a ni bordure ni ombre : juste de quoi lire sur les photos de fond.
  * ============================================================================ */
 .vs-ml-commandes {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 32px;
-  margin: 0 0 22px;
-  padding: 20px 24px;
-  background: var(--panel-bg);
-  backdrop-filter: var(--panel-blur);
-  -webkit-backdrop-filter: var(--panel-blur);
-  border: var(--panel-border);
-  border-radius: var(--panel-radius);
-  box-shadow: var(--panel-shadow);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 22px;
+  margin: 0 0 6px;
+  padding: 6px 10px;
+  background: rgba(var(--veil-rgb), 0.86);
 }
 
 .vs-ml-col {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 0;
+  display: contents;
 }
 
 .vs-ml-natif {
   display: none; /* les listes restent dans le formulaire : leurs valeurs partent avec lui */
 }
 
+/* Les libellés « Filtrer par groupe », « Ranger par »… : les mots suffisent. Celui du nom devient la loupe, plus bas */
 .vs-ml-titre {
-  display: block;
-  margin: 0 0 8px;
-  font-family: var(--font-ui);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  font-variant: small-caps;
-  text-transform: lowercase;
-  letter-spacing: var(--track-2);
-  color: var(--text);
+  display: none;
 }
 
 /* Un seul groupe sur la page : M10 ne pose rien, la rubrique disparaît */
@@ -124,29 +122,39 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
   display: none;
 }
 
+.vs-ml-rubrique:has(> .vs-ml-groupes) {
+  flex: 0 0 100%;
+  order: 1;
+}
+
+.vs-ml-rubrique:has(> .vs-ml-pastilles) {
+  order: 2;
+}
+
 .vs-ml-commandes .vs-ml-filtre {
-  justify-content: flex-start;
-  gap: 8px;
+  justify-content: center;
+  gap: 2px;
   margin: 0;
 }
 
 .vs-ml-pastilles {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 2px;
 }
 
-/* Les pastilles de tri prennent la forme de celles des groupes */
+/* Des mots, et non plus des pastilles : tri, ordre et groupes */
 .vs-ml-tri,
 .vs-ml-commandes .vs-ml-pastille {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 36px;
-  padding: 0 14px;
-  background: transparent;
-  border: 1px solid rgba(var(--ink-rgb), 0.3);
-  border-radius: calc(20px * var(--radius-scale));
+  min-height: 30px;
+  padding: 0 8px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
   color: var(--text);
   font-family: var(--font-ui);
   font-size: var(--fs-xs);
@@ -154,12 +162,12 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
   letter-spacing: var(--track-1);
   text-transform: none;
   cursor: pointer;
-  transition: border-color var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .vs-ml-tri:hover,
 .vs-ml-commandes .vs-ml-pastille:hover {
-  border-color: rgba(var(--gold-rgb), 0.8);
+  color: var(--accent-text);
 }
 
 .vs-ml-tri:focus-visible,
@@ -168,7 +176,7 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
   outline-offset: 2px;
 }
 
-/* Pastille active : le groupe choisi (M10) ; le tri et l'ordre d'après l'option cochée des listes natives */
+/* Mot actif : le groupe choisi (M10) ; le tri et l'ordre d'après l'option cochée des listes natives */
 .vs-ml-commandes .vs-ml-pastille[aria-pressed="true"],
 .vs-ml-commandes:has(select[name="mode"] option[value="lastvisit"]:checked) .vs-ml-tri[name="mode"][value="lastvisit"],
 .vs-ml-commandes:has(select[name="mode"] option[value="username"]:checked) .vs-ml-tri[name="mode"][value="username"],
@@ -176,59 +184,69 @@ html:not([data-layout-profil="cadres"]) .userlist_profil[data-groupe] {
 .vs-ml-commandes:has(select[name="mode"] option[value="joined"]:checked) .vs-ml-tri[name="mode"][value="joined"],
 .vs-ml-commandes:has(select[name="order"] option[value=""]:checked) .vs-ml-tri[name="order"][value=""],
 .vs-ml-commandes:has(select[name="order"] option[value="DESC"]:checked) .vs-ml-tri[name="order"][value="DESC"] {
-  background: rgba(var(--gold-rgb), 0.88);
-  border-color: rgb(var(--gold-rgb));
   box-shadow: none;
-  color: rgb(var(--veil-rgb));
+  color: var(--accent-text);
+  border-bottom-color: var(--vs-groupe, var(--accent-text));
 }
 
 .vs-ml-commandes .vs-ml-pastille[aria-pressed="true"] .vs-ml-nombre {
   color: inherit;
-  opacity: 0.75;
 }
 
-/* Chercher par nom */
-.vs-ml-recherche {
+/* Chercher par nom : une loupe ; le champ s'ouvre au clic (ou s'il contient déjà un nom). Entrée lance la recherche :
+ * le bouton « Chercher » reste le bouton d'envoi du formulaire, simplement masqué */
+.vs-ml-rubrique:has(.vs-ml-recherche) {
+  order: 3;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.vs-ml-rubrique:has(.vs-ml-recherche) .vs-ml-titre {
+  display: block;
+  order: 2;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  overflow: hidden;
+  font-size: 0;
+  cursor: pointer;
+  background: var(--accent-text);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='m15 15 5 5'/%3E%3C/svg%3E") center / 21px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6'/%3E%3Cpath d='m15 15 5 5'/%3E%3C/svg%3E") center / 21px no-repeat;
+}
+
+.vs-ml-recherche .button2 {
+  display: none;
 }
 
 .vs-ml-recherche .inputbox {
-  flex: 1;
-  min-width: 0;
-  min-height: 36px;
-  padding: 4px 12px;
-  background: var(--surface-row-strong);
-  border: 1px solid rgba(var(--ink-rgb), 0.3);
-  border-radius: calc(4px * var(--radius-scale));
+  flex: none;
+  width: 0;
+  min-height: 30px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
   color: var(--text);
   font-family: var(--font-ui);
   font-size: var(--fs-sm);
+  transition: width var(--transition-fast), border-color var(--transition-fast);
 }
 
 .vs-ml-recherche .inputbox::placeholder {
   color: var(--text-2);
 }
 
-.vs-ml-recherche .button2 {
-  min-height: 36px;
-  padding: 0 14px;
-  background: var(--surface-row-strong);
-  border: 1px solid rgba(var(--gold-rgb), 0.55);
-  border-radius: calc(4px * var(--radius-scale));
-  color: var(--accent-text);
-  font-family: var(--font-ui);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: var(--track-2);
-  cursor: pointer;
+.vs-ml-recherche .inputbox:focus {
+  outline: none;
 }
 
-/* Fenêtre étroite : une seule colonne */
-@media (max-width: 600px) {
-  .vs-ml-commandes {
-    grid-template-columns: 1fr;
-    padding: 16px;
-  }
+.vs-ml-rubrique:focus-within .inputbox,
+.vs-ml-recherche .inputbox:not(:placeholder-shown) {
+  width: 170px;
+  padding: 0 4px;
+  border-bottom-color: var(--accent-text);
 }
