@@ -1,0 +1,201 @@
+/* ============================================================================
+ * V4 — LETTRES DU STAFF : VALIDATION D'UNE FICHE, COLD CASE (01/11)
+ * ----------------------------------------------------------------------------
+ * Remplace les anciens messages en style écrit dans le code (fond #0a0a0a, texte #ccc, italique justifié) : la lettre
+ * prend les couleurs et les polices du thème, se lit en texte droit, et finit sur les « premiers pas » du nouveau
+ * membre, en cartes numérotées et cliquables (Dossiers, briefing, mandat de recherche).
+ * Codes à coller : content/staff/validation.html. Variantes : .vs-valid--cold (Cold Case : ton éteint, pas d'étapes).
+ * Forumactif change chaque retour à la ligne d'un message en <br> : ils sont neutralisés ici, les paragraphes
+ * sont des <p>.
+ * ============================================================================ */
+.vs-valid {
+  max-width: 680px;
+  margin: 12px auto;
+  display: grid;
+  gap: 22px;
+  padding: 26px 30px 24px;
+  background: var(--panel-bg);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  box-shadow: inset 0 0 0 4px rgba(var(--panel-deep-rgb), 0.35), 0 10px 30px rgba(var(--shadow-rgb), 0.35);
+  text-align: start;
+}
+
+.vs-valid br {
+  display: none;
+}
+
+/* En-tête : le cachet de l'état du dossier, et qui écrit */
+.vs-valid-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(var(--gold-rgb), 0.2);
+}
+
+.vs-valid-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px;
+  border: 1px solid rgba(var(--gold-rgb), 0.55);
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.vs-valid-stamp::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: rgb(var(--gold-rgb));
+}
+
+.vs-valid-from {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--text-soft);
+  opacity: 0.8;
+}
+
+/* La lettre : une phrase d'ouverture en titre, puis du texte droit */
+.vs-valid-letter {
+  display: grid;
+  gap: 12px;
+}
+
+.vs-valid-letter p {
+  margin: 0;
+  font-size: calc(14.5px * var(--fs-scale));
+  line-height: 1.75;
+  color: var(--textColor);
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.vs-valid-letter .vs-valid-lead {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--text-bright);
+  text-wrap: balance;
+}
+
+/* Premiers pas : des cartes numérotées, le lien sur toute la carte */
+.vs-valid-steps-title {
+  margin: 0 0 -10px;
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.vs-valid-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: vs-valid-step;
+}
+
+.vs-valid-steps li {
+  counter-increment: vs-valid-step;
+  margin: 0;
+  min-width: 0;
+}
+
+.vs-valid-steps a {
+  display: grid;
+  align-content: start; /* même hauteur pour toutes les cartes, contenu en haut : les titres restent alignés */
+  gap: 4px;
+  height: 100%;
+  padding: 14px 16px 15px;
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  background: rgba(var(--panel-deep-rgb), 0.35);
+  text-decoration: none;
+  transition: border-color calc(0.25s * var(--dur-scale)) ease, background-color calc(0.25s * var(--dur-scale)) ease;
+}
+
+.vs-valid-steps a::before {
+  content: counter(vs-valid-step, upper-roman);
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  color: var(--accent-text);
+}
+
+.vs-valid-steps a:hover,
+.vs-valid-steps a:focus-visible {
+  border-color: rgba(var(--gold-rgb), 0.7);
+  background: rgba(var(--gold-rgb), 0.06);
+}
+
+.vs-valid-step-title {
+  font-family: var(--font-label);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+
+.vs-valid-step-desc {
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+/* Signature */
+.vs-valid-sign {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(var(--gold-rgb), 0.2);
+}
+
+.vs-valid-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-style: italic;
+  color: var(--accent-text);
+}
+
+.vs-valid-role {
+  font-family: var(--font-label);
+  font-size: var(--fs-2xs);
+  letter-spacing: var(--track-3);
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* Cold Case : cachet éteint, pas de dorure */
+.vs-valid--cold .vs-valid-stamp {
+  border-color: rgba(var(--gold-rgb), 0.25);
+  color: var(--text-soft);
+}
+
+.vs-valid--cold .vs-valid-stamp::before {
+  background: transparent;
+  border: 1px solid var(--text-soft);
+}
+
+@media (max-width: 600px) {
+  .vs-valid {
+    padding: 20px 18px;
+  }
+
+  .vs-valid-letter .vs-valid-lead {
+    font-size: var(--fs-xl);
+  }
+}

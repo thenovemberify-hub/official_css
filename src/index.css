@@ -63,6 +63,7 @@
 @import "./v4/favoris.css";              /* phase 7 (7.19) : favoris, une seule version des pages natives (29/10) */
 @import "./v4/lecture.css";               /* 01/11 : longs textes RP plus lisibles (taille, interligne, coupure des mots) */
 @import "./v4/message-sponsorise.css";    /* 01/11 : message sponsorisé sans cadre vide, textes de la publicité lisibles */
+@import "./v4/validation.css";            /* 01/11 : lettres du staff (validation d'une fiche, Cold Case) */
 @import "./v4/finitions.css";             /* phase 7 : petits correctifs, un bloc par retour du carnet (29/10) */
 @import "./v4/logo-sans-verre.css";       /* EXPÉRIENCE 7.13 : logo sans cadre en verre ; retirer cette ligne pour revenir au verre */
 
