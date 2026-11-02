@@ -32,6 +32,7 @@
     /* Avatars des comptes partout sur le forum, et des invités (02/11 ; module avatar_defaut.js, M14) */
     --avatar-compte-sinclair: url("img/gatsby/avatars/sinclair-08-sans-cadre-400x640.jpg");
     --avatar-compte-vanda: url("img/gatsby/avatars/vanda-05-sans-cadre-400x640.jpg");
+    --avatar-compte-velvet-sin: url("img/gatsby/avatars/velvetsin-15-sans-cadre-400x640.jpg");
     --avatar-invite: url("img/gatsby/avatars/invite-07-sans-cadre-400x640.jpg");
 }
 
