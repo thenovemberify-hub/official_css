@@ -26,10 +26,17 @@
     --qeel-backdrop:
         linear-gradient(rgba(6, 19, 14, 0.84), rgba(6, 19, 14, 0.84)),
         url("img/gatsby/bandeau-20.jpg");  /* le cabaret (01/11 ; avant : la main au couteau du théâtre) */
-    /* Staff de l'accueil (cadre compris) */
-    --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/sinclair-17-200x320.jpg");
-    --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/vanda-18-200x320.jpg");
+    /* Staff de l'accueil, les mêmes que leurs comptes (02/11, choix de l'utilisateur) */
+    --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/sinclair-08-sans-cadre-400x640.jpg");
+    --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/gatsby/avatars/vanda-05-sans-cadre-400x640.jpg");
+    /* Avatars des comptes partout sur le forum, et des invités (02/11 ; module avatar_defaut.js, M14) */
+    --avatar-compte-sinclair: url("img/gatsby/avatars/sinclair-08-sans-cadre-400x640.jpg");
+    --avatar-compte-vanda: url("img/gatsby/avatars/vanda-05-sans-cadre-400x640.jpg");
+    --avatar-invite: url("img/gatsby/avatars/invite-07-sans-cadre-400x640.jpg");
 }
+
+/* Photos du staff, vignette carrée : le haut de l'image, sinon Vanda perd son visage (02/11) */
+[data-theme="gatsby"] .vs-hp-avatar img { object-position: center 10%; }
 
 /* ─── Catégories ─── */
 [data-theme="gatsby"] #c1 { --cat-img: url("img/gatsby/bandeau-27.jpg"); }  /* Behind the Velvet Curtain : le rideau rouge */
