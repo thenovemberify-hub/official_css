@@ -3,12 +3,12 @@
  * ============================================================================ */
 :root,
 [data-theme="bleu_nuit"] {
-    --bg-img: url("https://imagesend.fr/uploads/20260501/ac66a5fe38faf9e4d9ee58a63fc5143461c20f58.jpg");
+    --bg-img: url("img/nuit/N1-fond-nuit.webp");
     --bg-position: center top;
-    --hp-visual-img: url("https://imagesend.fr/uploads/27ff10bf74706db3316a79dd2be9c7e0c6a906d9.gif");
+    --hp-visual-img: url("img/nuit/N2-visuel-nuit.webp");
     --hp-quote-text: "I'M GIVING\A YOU\A A NIGHT\A CALL TO\A TELL YOU\A HOW I\A FEEL,\A \A I WANT TO\A DRIVE YOU\A THROUGH THE NIGHT,\A DOWN THE\A HILLS";
-    --hp-avatar-sinclair: url("https://imagesend.fr/uploads/20260501/847c8eeb020fd8e6b7e57999d33d0e97d2fccb1f.jpg");
-    --hp-avatar-vanda: url("https://imagesend.fr/uploads/20260503/0694a34da1daa36cc728ebbf647f3eae6aef554e.jpg");
+    --hp-avatar-sinclair: url("https://thenovemberify-hub.github.io/official_css/img/nuit/sinclair.jpg");
+    --hp-avatar-vanda: url("https://thenovemberify-hub.github.io/official_css/img/nuit/vanda.jpg");
     /* 01/11 « encre de néon » (maquette https://claude.ai/artifact/KFPDzF31gykir1iFMhZQqC) : les panneaux passent du bleu
      * marine à l'encre violette de la photo ; contraste du texte courant : de 8,3-9,0:1 à 13,5:1 */
     --fond-category: #150f30;

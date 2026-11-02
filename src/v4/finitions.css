@@ -189,3 +189,12 @@ div.sceditor-group {
   gap: 12px;
   padding: 14px;
 }
+
+/* Recherche avancée (recette du 02/11) : champs sombres sur panneau sombre, on ne les voyait pas ; titres collés au bord */
+form[action*="mode=results"] input.inputbox {
+  border-color: color-mix(in srgb, var(--textColor) 30%, transparent);
+}
+
+form[action*="mode=results"] .panel > .inner {
+  padding: 14px 18px;
+}
