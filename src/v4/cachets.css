@@ -168,3 +168,38 @@ html.vs-cachets body > .award_tooltiptext {
   text-align: center;
   color: var(--text-2);
 }
+
+/* ─── Les notifications de récompense (02/11) : Forumactif y met l'image de la récompense saisie dans l'admin, pas sa classe,
+ * donc pas le badge reçu. On dessine à la place un médaillon d'or commun, glyphe « cachet » (celui du module). ─── */
+.notification.new_award .notif_avatar {
+  --vs-octo: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+  position: relative;
+  background: none;
+  border-radius: 0;
+  filter: drop-shadow(0 2px 2.5px rgba(0, 0, 0, 0.55));
+}
+
+.notification.new_award .notif_avatar img {
+  display: none;
+}
+
+.notification.new_award .notif_avatar::before,
+.notification.new_award .notif_avatar::after {
+  content: "";
+  position: absolute;
+  clip-path: var(--vs-octo);
+}
+
+.notification.new_award .notif_avatar::before {
+  inset: 0;
+  background: linear-gradient(135deg, #fbebb8, #9a7122 55%, #fbebb8);
+}
+
+.notification.new_award .notif_avatar::after {
+  inset: 7%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbebb8' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2.5l2 1.8 2.6-.4 1.2 2.3 2.4 1.1-.3 2.6L21.5 12l-1.6 2.1.3 2.6-2.4 1.1-1.2 2.3-2.6-.4-2 1.8-2-1.8-2.6.4-1.2-2.3-2.4-1.1.3-2.6L2.5 12l1.6-2.1-.3-2.6 2.4-1.1 1.2-2.3 2.6.4z'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3C/svg%3E") center / 60% no-repeat,
+    radial-gradient(circle, color-mix(in srgb, #ecd08a 30%, transparent), transparent 68%),
+    repeating-conic-gradient(rgba(255, 255, 255, 0.06) 0 7.5deg, transparent 7.5deg 15deg),
+    #0c151a;
+}
